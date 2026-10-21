@@ -1,0 +1,393 @@
+{
+  "id": "hicaz",
+  "names": {
+    "tr": "Hicaz",
+    "ar": "حِجَاز",
+    "en": "Hijaz"
+  },
+  "durak": 9,
+  "guclu": 31,
+  "yeden": 0,
+  "seyir": "inici-cikici",
+  "dizi": {
+    "cikici": [
+      9,
+      14,
+      26,
+      31,
+      40,
+      48,
+      53,
+      62
+    ],
+    "inici": null
+  },
+  "cesniler": [
+    {
+      "tur": "hicaz-dortlusu",
+      "baslangic": 9
+    },
+    {
+      "tur": "rast-beslisi",
+      "baslangic": 31
+    }
+  ],
+  "varyantlar": [
+    {
+      "id": "humayun",
+      "dizi": [
+        9,
+        14,
+        26,
+        31,
+        40,
+        44,
+        53,
+        62
+      ],
+      "not": "TDV Hümâyun: hicaz dörtlüsü + nevâda bûselik beşlisi (Acem perdesi içerir)."
+    }
+  ],
+  "yarimKarar": [
+    31
+  ],
+  "asmaKararlar": [
+    26,
+    40
+  ],
+  "genisleme": {
+    "pest": 0,
+    "tiz": 62
+  },
+  "seyirBolumleri": {
+    "zemin": "Nevâ veya Dügâh civarından başlar; Nîm-Hicaz ve Dik-Kürdî sesleriyle Hicaz karakteri verilir.",
+    "meyan": "Nevâ üzerinde Rast beşlisiyle Gerdâniye ve Eviç perdelerine çıkılır.",
+    "karar": "Nevâ'dan Nîm-Hicaz ve Dik-Kürdî üzerinden Dügâh perdesinde karar verilir."
+  },
+  "school": [
+    "turk",
+    "misir",
+    "hicaz"
+  ],
+  "tags": [
+    "celalli",
+    "yakaris",
+    "hasyet",
+    "ikindi ezani",
+    "heybet"
+  ],
+  "difficulty": 2,
+  "ruhiTesir": "Kalbi derinden sarsan yakarış, haşyet, ilahi heybet ve celâl duyguları uyandırır.",
+  "gelenekNotu": [
+    "İlahi tehdit, cehennem ve azap tasvirleri",
+    "Kıyamet sahneleri ve kozmik dehşet",
+    "İçten ve derin yakarış duaları"
+  ],
+  "ezanGelenegi": {
+    "metin": "İkindi ve Yatsı Ezânı (Akşamın yaklaştığı saatlerde ürpertici çağrı)",
+    "kaynak": "Geleneksel Türk Ezan Usulü",
+    "kesinlik": "gelenek"
+  },
+  "motifs": [
+    {
+      "id": "hicaz-m1",
+      "name": {
+        "tr": "Hicaz Dörtlüsü Girişi",
+        "ar": "مدخل رباعي الحجاز",
+        "en": "Hijaz Tetrachord Opening"
+      },
+      "type": "giris",
+      "path": [
+        {
+          "abs": 9,
+          "beats": 1
+        },
+        {
+          "abs": 14,
+          "beats": 1
+        },
+        {
+          "abs": 26,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "hicaz-m2",
+      "name": {
+        "tr": "Nevâ Güçlüsü ve Hüseynî",
+        "ar": "النوى والحسيني",
+        "en": "Neva Dominant & Huseyni"
+      },
+      "type": "guclu",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 40,
+          "beats": 2
+        },
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 26,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "hicaz-m3",
+      "name": {
+        "tr": "Eviç Zirvesi",
+        "ar": "ذروة الأوج",
+        "en": "Evic Peak Motif"
+      },
+      "type": "asma-karar",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 40,
+          "beats": 1
+        },
+        {
+          "abs": 48,
+          "beats": 1
+        },
+        {
+          "abs": 53,
+          "beats": 2
+        },
+        {
+          "abs": 48,
+          "beats": 1
+        },
+        {
+          "abs": 40,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "hicaz-m4",
+      "name": {
+        "tr": "Dügâh Kararına İniş",
+        "ar": "الهبوط إلى دوكاه",
+        "en": "Cadence to Dugah"
+      },
+      "type": "inis-karar",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 26,
+          "beats": 1
+        },
+        {
+          "abs": 14,
+          "beats": 1
+        },
+        {
+          "abs": 9,
+          "beats": 3
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "to": "ussak",
+      "via": "Dügâh",
+      "viaAbs": 9,
+      "path": [
+        {
+          "abs": 26
+        },
+        {
+          "abs": 17
+        },
+        {
+          "abs": 9
+        }
+      ],
+      "note": {
+        "tr": "Segâh perdesine yumuşatılarak Uşşak makamına geçilir."
+      }
+    },
+    {
+      "to": "rast",
+      "via": "Rast",
+      "viaAbs": 0,
+      "path": [
+        {
+          "abs": 9
+        },
+        {
+          "abs": 0
+        }
+      ],
+      "note": {
+        "tr": "Rast perdesine basılarak Rast kararında kalınır."
+      }
+    },
+    {
+      "to": "nihavend",
+      "via": "Nevâ",
+      "viaAbs": 31,
+      "path": [
+        {
+          "abs": 26
+        },
+        {
+          "abs": 31
+        },
+        {
+          "abs": 36
+        },
+        {
+          "abs": 31
+        }
+      ],
+      "note": {
+        "tr": "Nevâ üzerinde Bûselik sesleriyle Nihavend'e bağlanılır."
+      }
+    }
+  ],
+  "confidence": "high",
+  "needsReview": false,
+  "notlar": "TDV Hicaz: Hicaz dörtlüsü + Nevâ'da Rast beşlisi. Eski blueprint Acem (44) içerdiği için aslında Hümâyun dizisiydi; bu fark varyant olarak belgelendi.",
+  "kaynaklar": [
+    {
+      "baslik": "TDV İslâm Ansiklopedisi — Hicaz",
+      "yazar": "İsmail Hakkı Özkan",
+      "url": "https://islamansiklopedisi.org.tr/hicaz--musiki",
+      "erisimTarihi": "2026-10-20"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "log": [
+      {
+        "tarih": "2026-10-20",
+        "not": "Hicaz ve Hümâyun dizileri ayrıştırıldı."
+      }
+    ]
+  },
+  "characterTags": [
+    "celalli",
+    "yakaris",
+    "hasyet",
+    "ikindi ezani",
+    "heybet"
+  ],
+  "kararName": "Dügâh",
+  "description": {
+    "tr": "Kalbi derinden sarsan yakarış, haşyet, ilahi heybet ve celâl duyguları uyandırır."
+  },
+  "degrees": [
+    {
+      "name": {
+        "tr": "Dügâh",
+        "ar": "Dügâh",
+        "en": "Dügâh"
+      },
+      "komas": 0,
+      "arCents": 0,
+      "isMicro": false,
+      "abs": 9
+    },
+    {
+      "name": {
+        "tr": "Dik-Kürdî",
+        "ar": "Dik-Kürdî",
+        "en": "Dik-Kürdî"
+      },
+      "komas": 5,
+      "arCents": 113,
+      "isMicro": true,
+      "abs": 14
+    },
+    {
+      "name": {
+        "tr": "Nîm-Hicaz",
+        "ar": "Nîm-Hicaz",
+        "en": "Nîm-Hicaz"
+      },
+      "komas": 17,
+      "arCents": 385,
+      "isMicro": true,
+      "abs": 26
+    },
+    {
+      "name": {
+        "tr": "Nevâ",
+        "ar": "Nevâ",
+        "en": "Nevâ"
+      },
+      "komas": 22,
+      "arCents": 498,
+      "isMicro": true,
+      "abs": 31
+    },
+    {
+      "name": {
+        "tr": "Hüseynî",
+        "ar": "Hüseynî",
+        "en": "Hüseynî"
+      },
+      "komas": 31,
+      "arCents": 702,
+      "isMicro": true,
+      "abs": 40
+    },
+    {
+      "name": {
+        "tr": "Eviç",
+        "ar": "Eviç",
+        "en": "Eviç"
+      },
+      "komas": 39,
+      "arCents": 883,
+      "isMicro": true,
+      "abs": 48
+    },
+    {
+      "name": {
+        "tr": "Gerdâniye",
+        "ar": "Gerdâniye",
+        "en": "Gerdâniye"
+      },
+      "komas": 44,
+      "arCents": 996,
+      "isMicro": false,
+      "abs": 53
+    },
+    {
+      "name": {
+        "tr": "Muhayyer",
+        "ar": "Muhayyer",
+        "en": "Muhayyer"
+      },
+      "komas": 53,
+      "arCents": 1200,
+      "isMicro": true,
+      "abs": 62
+    }
+  ]
+}

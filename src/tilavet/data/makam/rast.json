@@ -1,0 +1,402 @@
+{
+  "id": "rast",
+  "names": {
+    "tr": "Rast",
+    "ar": "رَاسْت",
+    "en": "Rast"
+  },
+  "durak": 0,
+  "guclu": 31,
+  "yeden": -5,
+  "seyir": "cikici",
+  "dizi": {
+    "cikici": [
+      0,
+      9,
+      17,
+      22,
+      31,
+      40,
+      48,
+      53
+    ],
+    "inici": [
+      0,
+      9,
+      17,
+      22,
+      31,
+      40,
+      44,
+      53
+    ]
+  },
+  "cesniler": [
+    {
+      "tur": "rast-beslisi",
+      "baslangic": 0
+    },
+    {
+      "tur": "rast-dortlusu",
+      "baslangic": 31
+    }
+  ],
+  "yarimKarar": [
+    31
+  ],
+  "asmaKararlar": [
+    9,
+    17,
+    22
+  ],
+  "genisleme": {
+    "pest": -5,
+    "tiz": 62
+  },
+  "seyirBolumleri": {
+    "zemin": "Rast ve Dügâh perdeleri civarından başlar, Segâh ve Çargâh ile Nevâ'ya yükselir.",
+    "meyan": "Nevâ üzerinde Gerdâniye ve Eviç perdeleriyle tiz bölgeye genişler.",
+    "karar": "Nevâ'dan aşağı çeşniler basılarak Rast perdesinde tam karar verilir."
+  },
+  "school": [
+    "turk",
+    "misir",
+    "hicaz"
+  ],
+  "tags": [
+    "ferah",
+    "vakarli",
+    "dengeli",
+    "adalet",
+    "öğle ezânı"
+  ],
+  "difficulty": 1,
+  "ruhiTesir": "Zihne berraklık, kalbe sükûnet ve adalet hissi verir. Fazla neşeli veya fazla kederli olmayan dengeli ve asil bir tavra sahiptir.",
+  "gelenekNotu": [
+    "İlahi azamet ve yaratılış nizamı âyetleri",
+    "Hüküm ve adalet âyetleri",
+    "Cennet tasvirleri ve ilahi müjdeler",
+    "Kıyamet ve haşr sahneleri"
+  ],
+  "ezanGelenegi": {
+    "metin": "Öğle Ezânı (Günün aydınlığında vakar, celal ve adalet)",
+    "kaynak": "Geleneksel Türk ve Mısır Ezan Uygulamaları",
+    "kesinlik": "gelenek"
+  },
+  "motifs": [
+    {
+      "id": "rast-m1",
+      "name": {
+        "tr": "Rast Klasik Giriş",
+        "ar": "مدخل راست الكلاسيكي",
+        "en": "Rast Classic Opening"
+      },
+      "type": "giris",
+      "path": [
+        {
+          "abs": 0,
+          "beats": 1
+        },
+        {
+          "abs": 9,
+          "beats": 1
+        },
+        {
+          "abs": 17,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "rast-m2",
+      "name": {
+        "tr": "Nevâ Güçlü Asılış",
+        "ar": "ارتكاز النوى",
+        "en": "Neva Dominant Pivot"
+      },
+      "type": "guclu",
+      "path": [
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        },
+        {
+          "abs": 40,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "rast-m3",
+      "name": {
+        "tr": "Eviç Açılımı",
+        "ar": "امتداد الأوج",
+        "en": "Evic Expansion"
+      },
+      "type": "asma-karar",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 40,
+          "beats": 1
+        },
+        {
+          "abs": 48,
+          "beats": 1
+        },
+        {
+          "abs": 53,
+          "beats": 2
+        },
+        {
+          "abs": 48,
+          "beats": 1
+        },
+        {
+          "abs": 40,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "rast-m4",
+      "name": {
+        "tr": "Rast Karara İniş",
+        "ar": "الهبوط إلى القرار",
+        "en": "Descent to Rast Cadence"
+      },
+      "type": "inis-karar",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 17,
+          "beats": 1
+        },
+        {
+          "abs": 9,
+          "beats": 1
+        },
+        {
+          "abs": 0,
+          "beats": 3
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "to": "ussak",
+      "via": "Dügâh",
+      "viaAbs": 9,
+      "path": [
+        {
+          "abs": 0
+        },
+        {
+          "abs": 9
+        },
+        {
+          "abs": 17
+        },
+        {
+          "abs": 9
+        }
+      ],
+      "note": {
+        "tr": "Dügâh perdesinde asılarak Uşşak dörtlüsüne geçki yapılır."
+      }
+    },
+    {
+      "to": "nihavend",
+      "via": "Çargâh",
+      "viaAbs": 22,
+      "path": [
+        {
+          "abs": 9
+        },
+        {
+          "abs": 13
+        },
+        {
+          "abs": 22
+        }
+      ],
+      "note": {
+        "tr": "Kürdî perdesi alınıp Çargâh üzerinde Bûselik seslerine geçilir."
+      }
+    },
+    {
+      "to": "segah",
+      "via": "Segâh",
+      "viaAbs": 17,
+      "path": [
+        {
+          "abs": 9
+        },
+        {
+          "abs": 17
+        },
+        {
+          "abs": 22
+        },
+        {
+          "abs": 17
+        }
+      ],
+      "note": {
+        "tr": "Segâh perdesine yumuşak bir iniş yapılarak Segâh makamına bağlanılır."
+      }
+    }
+  ],
+  "confidence": "high",
+  "needsReview": false,
+  "notlar": "Klasik Rast makamı. İnici varyantta Eviç yerine Acem perdesi kullanılabilir (TDV Rast).",
+  "kaynaklar": [
+    {
+      "baslik": "TDV İslâm Ansiklopedisi — Rast",
+      "yazar": "İsmail Hakkı Özkan",
+      "url": "https://islamansiklopedisi.org.tr/rast--musiki",
+      "erisimTarihi": "2026-10-20"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "log": [
+      {
+        "tarih": "2026-10-20",
+        "not": "53-koma cetveli TDV analizine göre derlendi."
+      }
+    ]
+  },
+  "characterTags": [
+    "ferah",
+    "vakarli",
+    "dengeli",
+    "adalet",
+    "öğle ezânı"
+  ],
+  "kararName": "Rast",
+  "description": {
+    "tr": "Zihne berraklık, kalbe sükûnet ve adalet hissi verir. Fazla neşeli veya fazla kederli olmayan dengeli ve asil bir tavra sahiptir."
+  },
+  "degrees": [
+    {
+      "name": {
+        "tr": "Rast",
+        "ar": "Rast",
+        "en": "Rast"
+      },
+      "komas": 0,
+      "arCents": 0,
+      "isMicro": false,
+      "abs": 0
+    },
+    {
+      "name": {
+        "tr": "Dügâh",
+        "ar": "Dügâh",
+        "en": "Dügâh"
+      },
+      "komas": 9,
+      "arCents": 204,
+      "isMicro": false,
+      "abs": 9
+    },
+    {
+      "name": {
+        "tr": "Segâh",
+        "ar": "Segâh",
+        "en": "Segâh"
+      },
+      "komas": 17,
+      "arCents": 385,
+      "isMicro": true,
+      "abs": 17
+    },
+    {
+      "name": {
+        "tr": "Çargâh",
+        "ar": "Çargâh",
+        "en": "Çargâh"
+      },
+      "komas": 22,
+      "arCents": 498,
+      "isMicro": true,
+      "abs": 22
+    },
+    {
+      "name": {
+        "tr": "Nevâ",
+        "ar": "Nevâ",
+        "en": "Nevâ"
+      },
+      "komas": 31,
+      "arCents": 702,
+      "isMicro": true,
+      "abs": 31
+    },
+    {
+      "name": {
+        "tr": "Hüseynî",
+        "ar": "Hüseynî",
+        "en": "Hüseynî"
+      },
+      "komas": 40,
+      "arCents": 906,
+      "isMicro": false,
+      "abs": 40
+    },
+    {
+      "name": {
+        "tr": "Eviç",
+        "ar": "Eviç",
+        "en": "Eviç"
+      },
+      "komas": 48,
+      "arCents": 1087,
+      "isMicro": false,
+      "abs": 48
+    },
+    {
+      "name": {
+        "tr": "Gerdâniye",
+        "ar": "Gerdâniye",
+        "en": "Gerdâniye"
+      },
+      "komas": 53,
+      "arCents": 1200,
+      "isMicro": true,
+      "abs": 53
+    }
+  ]
+}

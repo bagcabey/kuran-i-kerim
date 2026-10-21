@@ -1,0 +1,27 @@
+{
+  "id": "fatiha_1_1_husari",
+  "titleTr": "Fâtiha Sûresi, 1. Âyet",
+  "surah": 1,
+  "ayah": 1,
+  "qariName": "Mahmûd Halîl el-Husarî",
+  "makamId": "rast",
+  "tonicHz": 195.57,
+  "audioDurationSeconds": 6.2,
+  "audioUrl": "https://everyayah.com/data/Husary_128kbps/001001.mp3",
+  "samples": [
+    { "t": 0.0, "hz": 0, "cent": 0 },
+    { "t": 0.3, "hz": 195.6, "cent": 0.0 },
+    { "t": 0.6, "hz": 196.2, "cent": 5.5 },
+    { "t": 0.9, "hz": 220.1, "cent": 204.0 },
+    { "t": 1.4, "hz": 244.3, "cent": 384.9 },
+    { "t": 1.8, "hz": 260.8, "cent": 498.1 },
+    { "t": 2.3, "hz": 244.1, "cent": 383.5 },
+    { "t": 2.8, "hz": 220.0, "cent": 203.2 },
+    { "t": 3.4, "hz": 0, "cent": 0 },
+    { "t": 3.8, "hz": 220.4, "cent": 206.3 },
+    { "t": 4.5, "hz": 244.5, "cent": 386.3 },
+    { "t": 5.2, "hz": 220.1, "cent": 204.0 },
+    { "t": 5.8, "hz": 195.5, "cent": -0.6 },
+    { "t": 6.2, "hz": 0, "cent": 0 }
+  ]
+}

@@ -1,0 +1,338 @@
+[
+  {
+    "id": "mahrec",
+    "term": "Mahreç",
+    "termAr": "مَخْرَج",
+    "category": "tecvid",
+    "definition": "Harflerin ağız, boğaz ve geniz gibi ses organlarından çıktığı, telaffuz edildiği yer.",
+    "relatedLesson": "L1-5-mahreclere-giris"
+  },
+  {
+    "id": "sifat",
+    "term": "Sıfat",
+    "termAr": "صِفَة",
+    "category": "tecvid",
+    "definition": "Harfin mahrecinden çıkarken kazandığı kalınlık, incelik, nefes akması (hems) veya hapsedilmesi (cehr) gibi ses hususiyetleri.",
+    "relatedLesson": "L1-6-harflerin-sifatlari"
+  },
+  {
+    "id": "hareke",
+    "term": "Hareke",
+    "termAr": "حَرَكَة",
+    "category": "elifba",
+    "definition": "Arap harflerinin seslendirilmesini sağlayan üstün, esre ve ötre işaretlerinin genel adı.",
+    "relatedLesson": "L2-1-harekeler-giris"
+  },
+  {
+    "id": "ustun",
+    "term": "Üstün (Fetha)",
+    "termAr": "فَتْحَة",
+    "category": "elifba",
+    "definition": "Harfin üstüne konulan ve ince harfleri 'e', kalın harfleri 'a' sesiyle okutan çizgi.",
+    "relatedLesson": "L2-1-harekeler-giris"
+  },
+  {
+    "id": "esre",
+    "term": "Esre (Kesra)",
+    "termAr": "كَسْرَة",
+    "category": "elifba",
+    "definition": "Harfin altına konulan ve ince harfleri 'i', kalın harfleri 'ı-i' arası okutan çizgi.",
+    "relatedLesson": "L2-1-harekeler-giris"
+  },
+  {
+    "id": "otre",
+    "term": "Ötre (Damme)",
+    "termAr": "ضَمَّة",
+    "category": "elifba",
+    "definition": "Harfin üstüne konulan küçük 'vav' şeklindeki işaret; ince harfleri 'ü', kalın harfleri 'u' okutur.",
+    "relatedLesson": "L2-1-harekeler-giris"
+  },
+  {
+    "id": "tenvin",
+    "term": "Tenvin",
+    "termAr": "تَنْوِين",
+    "category": "elifba",
+    "definition": "Kelime sonundaki iki üstün, iki esre veya iki ötreye verilen ad; cezimli bir nûn sesi ekler.",
+    "relatedLesson": "L2-1-harekeler-giris"
+  },
+  {
+    "id": "cezm",
+    "term": "Cezm (Sükûn)",
+    "termAr": "سُكُون",
+    "category": "elifba",
+    "definition": "Harfin harekesiz olduğunu gösteren yuvarlak işaret; harfi durdurarak tutar.",
+    "relatedLesson": "L2-2-cezm-ve-sedde"
+  },
+  {
+    "id": "sedde",
+    "term": "Şedde (Teşdid)",
+    "termAr": "شَدَّة",
+    "category": "elifba",
+    "definition": "Bir harfin iki kere, ilki cezimli ikincisi harekeli olarak okunmasını sağlayan üç dişli işaret.",
+    "relatedLesson": "L2-2-cezm-ve-sedde"
+  },
+  {
+    "id": "med",
+    "term": "Med",
+    "termAr": "مَدّ",
+    "category": "tecvid",
+    "definition": "Sesi uzatmak demektir. Vav, yâ ve elif harfleriyle yapılan asli veya fer'i uzatmalar.",
+    "relatedLesson": "L3-4-med-bolumu"
+  },
+  {
+    "id": "kasr",
+    "term": "Kasr",
+    "termAr": "قَصْر",
+    "category": "tecvid",
+    "definition": "Uzatmayı terk edip harfi tabiî miktarda (1 elif / 1 hareke) kısa okumak.",
+    "relatedLesson": "L3-5-kalkale-ve-kasr"
+  },
+  {
+    "id": "gunne",
+    "term": "Gunne",
+    "termAr": "غُنَّة",
+    "category": "tecvid",
+    "definition": "Genizden (hayşûm) gelen, nûn ve mîm harflerine özgü hoş ve tınlayan ses.",
+    "relatedLesson": "L3-3-gunne-ve-museddet"
+  },
+  {
+    "id": "izhar",
+    "term": "İzhâr",
+    "termAr": "إِظْهَار",
+    "category": "tecvid",
+    "definition": "Nun sâkin veya tenvinden sonra boğaz harfleri geldiğinde nun sesini gunnesiz ve net olarak açığa çıkarmak.",
+    "relatedLesson": "L3-1-nun-sakin-izhar"
+  },
+  {
+    "id": "idgam",
+    "term": "İdğâm",
+    "termAr": "إِدْغَام",
+    "category": "tecvid",
+    "definition": "Sâkin bir harfi harekeli bir harfe katarak şeddeli tek bir harf gibi okumak.",
+    "relatedLesson": "L3-1-nun-sakin-idgam"
+  },
+  {
+    "id": "iklab",
+    "term": "İklâb",
+    "termAr": "إِقْلَاب",
+    "category": "tecvid",
+    "definition": "Nun sâkin veya tenvinden sonra 'bâ' (ب) harfi geldiğinde nun sesini gunneli mîm (م) sesine dönüştürmek.",
+    "relatedLesson": "L3-1-nun-sakin-iklab"
+  },
+  {
+    "id": "ihfa",
+    "term": "İhfâ",
+    "termAr": "إِخْفَاء",
+    "category": "tecvid",
+    "definition": "Nun sâkin veya tenvini izhar ile idğam arasında, şeddesiz ve genizden gunne ile gizleyerek okumak.",
+    "relatedLesson": "L3-1-nun-sakin-ihfa"
+  },
+  {
+    "id": "kalkale",
+    "term": "Kalkale",
+    "termAr": "قَلْقَلَة",
+    "category": "tecvid",
+    "definition": "ق ط ب ج د harfleri cezimli olduğunda mahrecin sarsılarak kuvvetli bir ses yankısıyla duyulması.",
+    "relatedLesson": "L3-5-kalkale-ve-kasr"
+  },
+  {
+    "id": "tefhim",
+    "term": "Tefhim",
+    "termAr": "تَفْخِيم",
+    "category": "tecvid",
+    "definition": "Harfi ağız boşluğunu dolduracak şekilde kalın okumak.",
+    "relatedLesson": "L3-6-ra-ve-lam-tefhim"
+  },
+  {
+    "id": "terkik",
+    "term": "Terkîk",
+    "termAr": "تَرْقِيق",
+    "category": "tecvid",
+    "definition": "Harfi ince ve zarif bir sesle okumak.",
+    "relatedLesson": "L3-6-ra-ve-lam-tefhim"
+  },
+  {
+    "id": "vakif",
+    "term": "Vakıf",
+    "termAr": "وَقْف",
+    "category": "tilavet",
+    "definition": "Tilavete devam etmek niyetiyle, nefes alarak bir kelimenin sonunda sesi kesmek.",
+    "relatedLesson": "L4-2-vakif-ve-ibtida"
+  },
+  {
+    "id": "ibtida",
+    "term": "İbtidâ",
+    "termAr": "اِبْتِدَاء",
+    "category": "tilavet",
+    "definition": "Vakıftan sonra kıraate manayı bozmayacak uygun bir kelimeden yeniden başlamak.",
+    "relatedLesson": "L4-2-vakif-ve-ibtida"
+  },
+  {
+    "id": "lahn-i-celi",
+    "term": "Lahn-ı Celî",
+    "termAr": "اللَّحْنُ الجَلِيّ",
+    "category": "tilavet",
+    "definition": "Harfin zatını veya harekesini değiştirerek manayı bozan açık ve büyük hata; namazı ve kıraati ifsat eder.",
+    "relatedLesson": "L4-5-hatalar-atlasi"
+  },
+  {
+    "id": "lahn-i-hafi",
+    "term": "Lahn-ı Hafî",
+    "termAr": "اللَّحْنُ الخَفِيّ",
+    "category": "tilavet",
+    "definition": "Med, gunne veya ihfa gibi tecvid inceliklerini eksik yaparak güzelliği bozan gizli hata.",
+    "relatedLesson": "L4-5-hatalar-atlasi"
+  },
+  {
+    "id": "tahkik",
+    "term": "Tahkîk",
+    "termAr": "تَحْقِيق",
+    "category": "tilavet",
+    "definition": "Harflerin haklarını ve müstahaklarını tastamam vererek yapılan en yavaş ve en dikkatli tilavet hızı.",
+    "relatedLesson": "L4-1-okuma-hizlari"
+  },
+  {
+    "id": "tertil",
+    "term": "Tertîl",
+    "termAr": "تَرْتِيل",
+    "category": "tilavet",
+    "definition": "Tefekkür ve huşû ile, kelimeleri tane tane ve orta-yavaş ritimde okuma biçimi.",
+    "relatedLesson": "L4-1-okuma-hizlari"
+  },
+  {
+    "id": "tedvir",
+    "term": "Tedvîr",
+    "termAr": "تَدْوِير",
+    "category": "tilavet",
+    "definition": "Tahkik ile hadr arasında, günümüz cemaat namazlarında sıkça tercih edilen orta hız.",
+    "relatedLesson": "L4-1-okuma-hizlari"
+  },
+  {
+    "id": "hadr",
+    "term": "Hadr",
+    "termAr": "حَدْر",
+    "category": "tilavet",
+    "definition": "Tecvid kurallarını bozmadan, harfleri birbirine karıştırmadan yapılan en seri (hızlı) hatim kıraati.",
+    "relatedLesson": "L4-1-okuma-hizlari"
+  },
+  {
+    "id": "makam",
+    "term": "Makam",
+    "termAr": "مَقَام",
+    "category": "makam",
+    "definition": "Belli aralıklardaki ses dizisi üzerinde belirli bir kural ve seyir (hareket) disipliniyle icra edilen melodik yapı.",
+    "relatedLesson": "L5-1-makama-giris"
+  },
+  {
+    "id": "perde",
+    "term": "Perde",
+    "termAr": "نَغْمَة / دَرَجَة",
+    "category": "makam",
+    "definition": "Müzikteki belirli bir frekansa karşılık gelen ses basamağı (nota).",
+    "relatedLesson": "L5-1-makama-giris"
+  },
+  {
+    "id": "dizi",
+    "term": "Dizi (Gam)",
+    "termAr": "سُلَّم",
+    "category": "makam",
+    "definition": "Bir makamı meydana getiren perdelerin karardan tize doğru sıralanışı.",
+    "relatedLesson": "L5-1-makama-giris"
+  },
+  {
+    "id": "karar",
+    "term": "Karar Perdesi",
+    "termAr": "قَرَار",
+    "category": "makam",
+    "definition": "Makamın başladığı, dinlendiği ve nihayetinde tamamlandığı temel referans perdesi.",
+    "relatedLesson": "L5-1-makama-giris"
+  },
+  {
+    "id": "guclu",
+    "term": "Güçlü Perdesi",
+    "termAr": "غَمَّاز",
+    "category": "makam",
+    "definition": "Makamın seyrinde en çok vurgulanan, yarım kararların ve asma kararların verildiği merkezi perde.",
+    "relatedLesson": "L5-1-makama-giris"
+  },
+  {
+    "id": "seyir",
+    "term": "Seyir",
+    "termAr": "سَيْر",
+    "category": "makam",
+    "definition": "Makam dizisindeki seslerin çıkıcı, inici veya inici-çıkıcı olarak izlediği melodik güzergâh.",
+    "relatedLesson": "L5-1-makama-giris"
+  },
+  {
+    "id": "gecki",
+    "term": "Geçki (Modülasyon)",
+    "termAr": "اِنْتِقَال",
+    "category": "makam",
+    "definition": "Bir makam icra edilirken ortak bir perde veya ilgi yoluyla geçici olarak başka bir makama geçip dönme sanatı.",
+    "relatedLesson": "L5-4-makam-geckileri"
+  },
+  {
+    "id": "koma",
+    "term": "Koma",
+    "termAr": "كُومَا",
+    "category": "makam",
+    "definition": "Geleneksel Türk musikisinde tam bir sesin (büyük ikili) dokuzda biri olan en küçük mikrotonal aralık.",
+    "relatedLesson": "L5-1-makama-giris"
+  },
+  {
+    "id": "cent",
+    "term": "Cent",
+    "termAr": "سِنْت",
+    "category": "makam",
+    "definition": "Batı akustiğinde bir oktavın 1200 eşit parçaya bölünmesiyle elde edilen logaritmik perde ölçüm birimi (1 yarım ses = 100 cent).",
+    "relatedLesson": "L5-1-makama-giris"
+  },
+  {
+    "id": "drone",
+    "term": "Drone (Karar Sesi)",
+    "termAr": "صَوْتُ القَرَار المُسْتَمِرّ",
+    "category": "makam",
+    "definition": "Öğrencinin entonasyonunu ve makam hissini kaybetmemesi için arkada sürekli çalan temel referans karar sesi.",
+    "relatedLesson": "L5-1-makama-giris"
+  },
+  {
+    "id": "mukabele",
+    "term": "Mukabele",
+    "termAr": "مُقَابَلَة",
+    "category": "tilavet",
+    "definition": "Bir kimsenin Kur'an'ı tilavet etmesi, diğerlerinin ise Mushaf'tan takip etmesi veya karşılıklı okuması usulü.",
+    "relatedLesson": "L4-6-mukabele-ve-hatim"
+  },
+  {
+    "id": "hatim",
+    "term": "Hatim",
+    "termAr": "خَتْم",
+    "category": "tilavet",
+    "definition": "Kur'ân-ı Kerîm'in Fâtiha'dan Nâs sûresine kadar baştan sona tamamının tilavet edilmesi.",
+    "relatedLesson": "L4-6-mukabele-ve-hatim"
+  },
+  {
+    "id": "icazet",
+    "term": "İcazet",
+    "termAr": "إِجَازَة",
+    "category": "genel",
+    "definition": "Hafızlık veya kıraat ilmini ehil bir hocadan başarıyla tamamlayan kimseye verilen silsileli yetki belgesi.",
+    "relatedLesson": "L0-1-giris-ve-adab"
+  },
+  {
+    "id": "kurra",
+    "term": "Kurrâ",
+    "termAr": "قُرَّاء",
+    "category": "genel",
+    "definition": "Kur'ân-ı Kerîm'i kıraat ve tecvid vecihleriyle en üst seviyede ve usulüne uygun okuyan üstat kıraat âlimleri.",
+    "relatedLesson": "L0-1-giris-ve-adab"
+  },
+  {
+    "id": "hafiz",
+    "term": "Hâfız",
+    "termAr": "حَافِظ",
+    "category": "genel",
+    "definition": "Kur'ân-ı Kerîm'in 604 sayfalık metninin tamamını lafzıyla ezberlemiş olan kimse.",
+    "relatedLesson": "L0-1-giris-ve-adab"
+  }
+]

@@ -1,0 +1,213 @@
+[
+  {
+    "id": "L0-1-giris-ve-adab",
+    "level": 0,
+    "module": "hazirlik",
+    "title": { "tr": "Kur'an'a Giriş ve Tilavet Adabı", "ar": "آدَابُ التِّلَاوَة", "en": "Introduction & Etiquette" },
+    "objectives": ["Kur'an tilavetinin manevi ve ahlaki gayesini kavrar", "Abdest, kıble, eûzü-besmele ve huşû adabını öğrenir"],
+    "estimatedMinutes": 8,
+    "prerequisites": [],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "intro", "text": "Kur'ân-ı Kerîm, Allah Teâlâ'nın insanlığa gönderdiği son ve evrensel hidâyet rehberidir. Tilavet; yalnızca harfleri telaffuz etmek değil, lafzı tecvidle süslemek, manayı tefekkür etmek ve kalbe tesir ettirmektir." },
+      { "type": "explain", "text": "Tilavetin Zahirî ve Bâtınî Edepleri:\n1. Maddî ve mânevî temizlik (Abdest almak, misvak kullanmak, temiz kıyafet).\n2. Kıbleye yönelerek vakarla oturmak.\n3. 'Eûzü-Besmele' ile şeytanın vesveselerinden Allah'a sığınmak.\n4. Acele etmeden, tecvid ve tertil üzere tane tane okumak.\n5. Âyetlerin vadettiği rahmette ümitlenmek, uyardığı azapta sığınmak." },
+      { "type": "quiz", "questions": [
+        { "q": "Kur'an tilavetine başlarken ilk yapılması gereken sünnet nedir?", "options": ["Hemen hızlıca okumak", "Eûzü-Besmele çekip huşû ile başlamak", "Makam değiştirmek"], "answer": 1 }
+      ]}
+    ]
+  },
+  {
+    "id": "L0-2-mushaf-anatomisi",
+    "level": 0,
+    "module": "hazirlik",
+    "title": { "tr": "Mushaf'ın Tertibi: Sûre, Âyet, Cüz ve Sayfa", "ar": "تَرْتِيبُ الْمُصْحَف", "en": "Mushaf Anatomy" },
+    "objectives": ["Mushaf-ı Şerif'in iç düzenini tanır", "Cüz, hizb, sayfa ve âyet madalyonlarını kavrar"],
+    "estimatedMinutes": 10,
+    "prerequisites": ["L0-1-giris-ve-adab"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "intro", "text": "Klasik Medine Mushafı tam 604 sayfadır. Her sayfa istisnalar dışında 15 satırdan meydana gelir. Kur'ân-ı Kerîm'de 114 sûre ve 6236 âyet-i kerîme bulunmaktadır." },
+      { "type": "explain", "text": "Temel Kavramlar:\n- Âyet: Mushaf'ta çiçekli madalyonlarla birbirinden ayrılan cümle veya lafız öbeği.\n- Sûre: Âyetlerin unvan kartuşlarıyla bir araya geldiği 114 ana bölüm.\n- Cüz: Mushaf'ın 20'şer sayfalık 30 eşit parçasından her biri.\n- Secde Âyeti: Okunduğunda veya dinlendiğinde tilavet secdesi yapılmasını bildiren kenar işareti." }
+    ]
+  },
+  {
+    "id": "L1-1-harfler-ve-sesler",
+    "level": 1,
+    "module": "elifba",
+    "title": { "tr": "Elif-Ba: 28 Harfin Şekli ve Asli Sesi", "ar": "حُرُوفُ الْهِجَاء", "en": "The 28 Arabic Letters" },
+    "objectives": ["28 Arap harfini tekil halleriyle tanır", "Harflerin kalın ve ince ayrımını kavrar"],
+    "estimatedMinutes": 15,
+    "prerequisites": ["L0-2-mushaf-anatomisi"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "intro", "text": "Arap alfabesinde 28 asli harf bulunur. Arapça sağdan sola yazılır ve okunur. Harfler ince ve kalın sesli olarak iki ana gruba ayrılır." },
+      { "type": "interactive_letters", "totalLetters": 28 },
+      { "type": "explain", "text": "Kalın Harfler (خ ص ض غ ط ق ظ): 'Hussa daktin kîz' (خُصَّ ضَغْطٍ قِظْ) şifresiyle toplanmıştır. Bu harfler ağız boşluğu doldurularak dolgun (a-u arası) bir tonla okunur. Diğer harfler ise zarif ve ince (e-i arası) okunur." }
+    ]
+  },
+  {
+    "id": "L1-2-kulak-egitimi-benzer-harfler",
+    "level": 1,
+    "module": "elifba",
+    "title": { "tr": "Kulak Eğitimi: Benzer Sesli Harfleri Ayırt Etme", "ar": "تَمْيِيزُ الْحُرُوفِ الْمُتَشَابِهَة", "en": "Distinguishing Similar Letters" },
+    "objectives": ["Peltek ث ile ince س ve kalın ص harflerini kulakla ayırt eder", "ذ ile ز ve ظ harflerini netleştirir"],
+    "estimatedMinutes": 12,
+    "prerequisites": ["L1-1-harfler-ve-sesler"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "intro", "text": "Arapçada birbirine benzeyen seslerin yanlış telaffuzu kelimenin manasını tamamen değiştirebilir (Örn: 'Kalp' قَلْب ile 'Köpek' كَلْب gibi). Bu derste kritik harf çiftlerini dinleyip kulağımızı eğitiyoruz." },
+      { "type": "pairs", "items": [
+        { "pair": "ث (Peltek Se) vs س (Keskin Sin) vs ص (Kalın Sad)", "diff": "ث dil ucu dişlerin arasından; س dil ucu alt diş arkasında ıslıklı; ص dili damağa yapıştırarak kalın." },
+        { "pair": "ح (Boğaz Ha) vs ه (Göğüs He) vs خ (Hırıltılı Hı)", "diff": "ح boğazın tam ortasından buharlı; ه göğüsten derin; خ boğazın ağza en yakın üst kısmından hırıltıyla." },
+        { "pair": "ق (Kaf) vs ك (Kef)", "diff": "ق dil kökünün küçük dile vuran kalın sesi; ك biraz daha önden çıkan ince 'k' sesi." },
+        { "pair": "ذ (Peltek Ze) vs ز (Keskin Ze) vs ظ (Kalın Peltek Zı)", "diff": "ذ peltek yumuşak; ز arı vızıltısı gibi keskin; ظ dil ucu dışarıda ve kalın." }
+      ]}
+    ]
+  },
+  {
+    "id": "L1-5-mahreclere-giris",
+    "level": 1,
+    "module": "elifba",
+    "title": { "tr": "Mahreç Atlası: Seslerin Çıkış Bölgeleri", "ar": "مَخَارِجُ الْحُرُوف", "en": "Makharij (Points of Articulation)" },
+    "objectives": ["5 ana mahreç bölgesini öğrenir (Cevf, Halk, Lisân, Şefeteyn, Hayşûm)", "Her harfin kaynağını zihninde canlandırır"],
+    "estimatedMinutes": 15,
+    "prerequisites": ["L1-2-kulak-egitimi-benzer-harfler"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "diagram", "target": "mouth_anatomy" },
+      { "type": "explain", "text": "5 Ana Mahreç Bölgesi:\n1. Boğaz (Halk - حَلْق): 6 boğaz harfi (ء ه ع ح غ خ)\n2. Dil (Lisân - لِسَان): 18 harf (dil kökü, orta, yan ve uç bölümleri)\n3. Dudaklar (Şefeteyn - شَفَتَيْن): 4 harf (ب م و ف)\n4. Ağız Boşluğu (Cevf - جَوْف): Med harfleri (Uzatan ا و ي sesleri)\n5. Geniz (Hayşûm - خَيْشُوم): Gunne sesinin çıktığı burun içi boşluk." }
+    ]
+  },
+  {
+    "id": "L2-1-harekeler-giris",
+    "level": 2,
+    "module": "okuma",
+    "title": { "tr": "Harekeler: Üstün, Esre, Ötre ve Tenvin", "ar": "الْحَرَكَاتُ وَالتَّنْوِين", "en": "Vowels & Tanween" },
+    "objectives": ["Harfleri üstün (e/a), esre (i/ı) ve ötre (ü/u) ile seslendirir", "Tenvin ile nûnlu bitişleri okur"],
+    "estimatedMinutes": 12,
+    "prerequisites": ["L1-5-mahreclere-giris"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "intro", "text": "Harekeler harflere can veren sesli işaretlerdir. Bir harfin harekesi varsa o harf 'harekeli', yoksa 'sâkin' (cezimli) adını alır." },
+      { "type": "examples", "items": [
+        { "char": "بَ", "sound": "be", "type": "Üstün (Fetha)" },
+        { "char": "بِ", "sound": "bi", "type": "Esre (Kesra)" },
+        { "char": "بُ", "sound": "bü", "type": "Ötre (Damme)" },
+        { "char": "بًا", "sound": "ben", "type": "İki Üstün" },
+        { "char": "بٍ", "sound": "bin", "type": "İki Esre" },
+        { "char": "بٌ", "sound": "bün", "type": "İki Ötre" }
+      ]}
+    ]
+  },
+  {
+    "id": "L2-2-cezm-ve-sedde",
+    "level": 2,
+    "module": "okuma",
+    "title": { "tr": "Cezm (Sükûn) ve Şedde ile Birleştirme", "ar": "السُّكُونُ وَالشَّدَّة", "en": "Sukun and Shaddah" },
+    "objectives": ["Cezimli harfi kendinden önceki harfe tutturarak okur", "Şeddeli harfi iki defa (tutarak ve fırlatarak) seslendirir"],
+    "estimatedMinutes": 14,
+    "prerequisites": ["L2-1-harekeler-giris"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "intro", "text": "Cezm harfin sesini durdurur; şedde ise iki aynı harfi tek bir harfte birleştirerek kuvvetlendirir." }
+    ]
+  },
+  {
+    "id": "L2-5-fatiha-okumaya-gecis",
+    "level": 2,
+    "module": "okuma",
+    "title": { "tr": "İlk Âyetler: Kelime Kelime Fâtiha Tilaveti", "ar": "تِلَاوَةُ سُورَةِ الْفَاتِحَة", "en": "First Verses: Surah Al-Fatiha" },
+    "objectives": ["Fâtiha Sûresi'ni kelime kelime takip ederek okur", "Model kurrâ ile kendi sesini karşılaştırır"],
+    "estimatedMinutes": 20,
+    "prerequisites": ["L2-2-cezm-ve-sedde"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "interactive_ayah", "surah": 1, "ayah": 1, "text": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ" },
+      { "type": "interactive_ayah", "surah": 1, "ayah": 2, "text": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ" },
+      { "type": "imitate", "surah": 1, "ayah": 1, "recordingRequired": true }
+    ]
+  },
+  {
+    "id": "L3-1-nun-sakin-izhar",
+    "level": 3,
+    "module": "tecvid",
+    "title": { "tr": "Nun Sâkin ve Tenvin: İzhâr Kuralı", "ar": "حُكْمُ الْإِظْهَار", "en": "Rules of Noon Sakinah: Izhar" },
+    "objectives": ["İzhâr harflerini (ء ه ع ح غ خ) ezberler", "Gunne yapmadan nûn sesini berrak çıkarır"],
+    "estimatedMinutes": 12,
+    "prerequisites": ["L2-5-fatiha-okumaya-gecis"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "explain", "text": "Sâkin Nûn (نْ) veya tenvinden (ـًـٍـٌ) sonra 6 boğaz harfinden biri gelirse İZHÂR olur. Nûn sesi genze kaçırılmadan, tutulmadan, berrak bir şekilde okunur." },
+      { "type": "examples", "items": [
+        { "ayah": "112:4", "phrase": "كُفُوًا أَحَدٌ", "rule": "Tenvinden sonra Hemze geldiği için İzhâr" },
+        { "ayah": "108:2", "phrase": "فَصَلِّ لِرَبِّكَ وَانْحَرْ", "rule": "Sakin nun'dan sonra Ha harfi geldiği için İzhâr" }
+      ]}
+    ]
+  },
+  {
+    "id": "L3-4-med-bolumu",
+    "level": 3,
+    "module": "tecvid",
+    "title": { "tr": "Med Kaideleri: Aslî ve Fer'î Medler", "ar": "أَحْكَامُ الْمُدُود", "en": "Rules of Madd (Prolongation)" },
+    "objectives": ["Med harflerini (و ا ي) ve med sebeplerini (hemze, sükûn) kavrar", "Medd-i Muttasıl, Munfasıl ve Lâzım mertebelerini uygular"],
+    "estimatedMinutes": 15,
+    "prerequisites": ["L3-1-nun-sakin-izhar"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "explain", "text": "Med harfinden sonra med sebebi (hemze veya sükûn) gelirse uzatma miktarı artar:\n- Medd-i Tabiî: 1 elif (yaklaşık 1-1.5 saniye)\n- Medd-i Muttasıl: Bitişik hemze ile 4 elif (zorunlu uzatma)\n- Medd-i Munfasıl: Ayrı kelimedeki hemze ile 4 elif (caiz uzatma)\n- Medd-i Lâzım: Aslî sükûn ile tam 4 elif (vacip uzatma)." }
+    ]
+  },
+  {
+    "id": "L4-1-okuma-hizlari",
+    "level": 4,
+    "module": "teknikler",
+    "title": { "tr": "Kıraat Hızları: Tahkîk, Tertîl, Tedvîr ve Hadr", "ar": "مَرَاتِبُ الْقِرَاءَة", "en": "Recitation Tempos" },
+    "objectives": ["4 farklı tilavet hızının farkını kavrar", "Aynı âyeti farklı tempolarda dinleyerek kulağını alıştırır"],
+    "estimatedMinutes": 12,
+    "prerequisites": ["L3-4-med-bolumu"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "explain", "text": "Kur'an tilavetinde 4 meşhur hız mertebesi vardır:\n1. Tahkîk: En ağır tempo, her kuralın hakkı milimetrik verilir; talim için idealdir.\n2. Tertîl: Tefekkür ağırlıklı, yavaş-orta tempo; Kur'an'ın tavsiye ettiği esastır.\n3. Tedvîr: Orta sürat; cemaat namazlarında en yaygın olanıdır.\n4. Hadr: En seri hız; tecvidi çiğnemeden yapılan hatim tilavetidir." }
+    ]
+  },
+  {
+    "id": "L4-5-hatalar-atlasi",
+    "level": 4,
+    "module": "teknikler",
+    "title": { "tr": "Hatalar Atlası: Lahn-ı Celî ve Lahn-ı Hafî", "ar": "أَطْلَسُ اللَّحْن", "en": "Atlas of Common Errors" },
+    "objectives": ["En sık yapılan 50 tilavet hatasını öğrenir", "Namazı bozan açık hata ile güzelliği bozan gizli hatayı ayırt eder"],
+    "estimatedMinutes": 15,
+    "prerequisites": ["L4-1-okuma-hizlari"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "explain", "text": "Lahn kıraatteki hata demektir:\n- Lahn-ı Celî (Büyük Hata): Harfi başka harfe çevirmek (ث yerine س demek gibi) veya harekeyi değiştirmek (üstünü ötre yapmak gibi). Namazı ifsat eder.\n- Lahn-ı Hafî (Küçük Hata): Gunneyi az tutmak, meddi 4 elif yerine 2 elif çekmek gibi güzelliği zedeleyen kusurlardır." }
+    ]
+  },
+  {
+    "id": "L5-1-makama-giris",
+    "level": 5,
+    "module": "makam",
+    "title": { "tr": "Makam Sanatına Giriş: Perde, Karar ve Seyir", "ar": "مَدْخَلٌ إِلَى عِلْمِ الْمَقَامَات", "en": "Introduction to Makam" },
+    "objectives": ["Makamın tilavetteki meşru sınırını kavrar (Tecvid > Makam ilkesi)", "Perde, karar ve seyir kavramlarını öğrenir"],
+    "estimatedMinutes": 15,
+    "prerequisites": ["L4-5-hatalar-atlasi"],
+    "status": "published",
+    "needsReview": false,
+    "sections": [
+      { "type": "important_note", "text": "ÖNEMLİ İLKE: Makamlar tilavetin vakarını ve hüznünü artıran geleneksel ses sanatıdır; dini hüküm değildir. Tecvid kuralını bozan hiçbir nağme caiz değildir. Öncelik daima tecvid ve huşûdadır." },
+      { "type": "explain", "text": "Makamın 3 Temel Direği:\n1. Karar Perdesi: Makamın evi; tilavetin dinlendiği zemin.\n2. Güçlü Perdesi: Melodinin etrafında döndüğü ağırlık merkezi.\n3. Seyir: Seslerin izlediği yol (Çıkıcı, İnici veya İnici-Çıkıcı)." }
+    ]
+  }
+]

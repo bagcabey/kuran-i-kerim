@@ -1,0 +1,23 @@
+{
+  "id": "L1-6-sifatlar-giris",
+  "level": 1,
+  "module": "elif-ba",
+  "title": { "tr": "Harflerin Sıfatlarına Giriş", "ar": "صفات الحروف", "en": "Letter Attributes Introduction" },
+  "objectives": [
+    { "tr": "Harflerin kalınlık ve incelik özelliklerini öğrenir" },
+    { "tr": "İstila ve istifale harflerini tanır" }
+  ],
+  "estimatedMinutes": 15,
+  "prerequisites": ["L1-1-harfler"],
+  "status": "draft",
+  "needsReview": true,
+  "sections": [
+    { "type": "intro", "text": { "tr": "Harflerin mahreçlerinin yanı sıra kalınlık, incelik, nefes akışı gibi sıfatları da vardır." } },
+    { "type": "explain", "text": { "tr": "Kalın harfler yedi tanedir (Hussa daktin kîz): خ ص ض غ ط ق ظ. Diğer harfler genel olarak incedir." } },
+    { "type": "summary", "bullets": [
+      { "tr": "7 kalın harf vardır: خ ص ض غ ط ق ظ" },
+      { "tr": "Ra ve Lam bazı durumlarda kalın veya ince okunur" }
+    ]}
+  ],
+  "sources": ["Tecvid İlmihali"]
+}

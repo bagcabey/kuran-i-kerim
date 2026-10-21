@@ -1,0 +1,45 @@
+{
+  "id": "Q-3-2",
+  "title": { "tr": "İzhar Mini Sınavı" },
+  "passScore": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single",
+      "prompt": { "tr": "Aşağıdakilerden hangisi izhar harfidir?" },
+      "options": [
+        { "id": "a", "text": { "tr": "ع" } },
+        { "id": "b", "text": { "tr": "ب" } },
+        { "id": "c", "text": { "tr": "ر" } },
+        { "id": "d", "text": { "tr": "م" } }
+      ],
+      "correct": ["a"],
+      "explanation": { "tr": "ع boğaz harflerindendir; izhar harfleri ء ه ع ح غ خ'dir." }
+    },
+    {
+      "id": "q2",
+      "type": "multi",
+      "prompt": { "tr": "İzhar harflerini işaretleyin." },
+      "options": [
+        { "id": "a", "text": { "tr": "ح" } },
+        { "id": "b", "text": { "tr": "ن" } },
+        { "id": "c", "text": { "tr": "خ" } },
+        { "id": "d", "text": { "tr": "ل" } }
+      ],
+      "correct": ["a", "c"]
+    },
+    {
+      "id": "q3",
+      "type": "listen",
+      "prompt": { "tr": "Dinlediğiniz okunuş hangi kurala örnektir?" },
+      "audioId": "A-3-2-002",
+      "options": [
+        { "id": "a", "text": { "tr": "İzhar" } },
+        { "id": "b", "text": { "tr": "İdğam" } },
+        { "id": "c", "text": { "tr": "İklâb" } },
+        { "id": "d", "text": { "tr": "İhfâ" } }
+      ],
+      "correct": ["a"]
+    }
+  ]
+}

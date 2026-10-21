@@ -1,0 +1,230 @@
+[
+  {
+    "id": "mustafa_ismail",
+    "name": "Şeyh Mustafa İsmail",
+    "nameAr": "مُصْطَفَى إِسْمَاعِيل",
+    "school": "misir",
+    "schoolTitle": "Mısır Makam Ekolü & Makamlar Sultanı",
+    "style": "Mücevved & Makam Üstadı",
+    "famousMakams": [
+      "Rast",
+      "Bayâtî",
+      "Nihavend",
+      "Acem",
+      "Segâh"
+    ],
+    "bio": "Kur'an tilavetinde makam ilminin, perde geçkilerinin ve mana ile nağme ahengini kurmanın tartışmasız en büyük dâhisi.",
+    "avatarText": "MIS",
+    "audioBase": "https://everyayah.com/data/Mustafa_Ismail_48kbps/",
+    "hasMuallim": false
+  },
+  {
+    "id": "minshawi_mujawwad",
+    "name": "Muhammed Sıddîk el-Minşâvî (Mücevved)",
+    "nameAr": "مُحَمَّد صِدِّيق المِنْشَاوِي (مُجَوَّد)",
+    "school": "misir",
+    "schoolTitle": "Mısır Klasik Ekolü",
+    "style": "Mücevved / Makam Zirvesi",
+    "famousMakams": [
+      "Sabâ",
+      "Bayâtî",
+      "Hicaz",
+      "Nihavend"
+    ],
+    "bio": "Ağlayan ve ağlatan ses; Sabâ ve Bayâtî makamlarında dünya çapında aşılmamış huşû zirvesi.",
+    "avatarText": "MSM",
+    "audioBase": "https://everyayah.com/data/Minshawy_Mujawwad_192kbps/",
+    "hasMuallim": false
+  },
+  {
+    "id": "minshawi",
+    "name": "Muhammed Sıddîk el-Minşâvî (Mürettel)",
+    "nameAr": "مُحَمَّد صِدِّيق المِنْشَاوِي (مُرَتَّل)",
+    "school": "misir",
+    "schoolTitle": "Mısır Klasik Ekolü",
+    "style": "Mürettel & Mushaf-ı Muallim",
+    "famousMakams": [
+      "Uşşak (Bayâtî)",
+      "Rast",
+      "Sabâ",
+      "Hicaz"
+    ],
+    "bio": "Kur'an tilavetinde huşû ve samimiyetin zirve ismi; sakin ve berrak tertîliyle meşhurdur.",
+    "avatarText": "MSM",
+    "audioBase": "https://everyayah.com/data/Minshawy_Murattal_128kbps/",
+    "hasMuallim": true
+  },
+  {
+    "id": "abdulbasit_mujawwad",
+    "name": "Abdülbâsıt Abdüssamed (Mücevved)",
+    "nameAr": "عَبْدُ البَاسِط عَبْدُ الصَّمَد (مُجَوَّد)",
+    "school": "misir",
+    "schoolTitle": "Mısır Klasik Ekolü",
+    "style": "Mücevved & Efsanevi Tizler",
+    "famousMakams": [
+      "Segâh",
+      "Hicaz",
+      "Sabâ",
+      "Acem"
+    ],
+    "bio": "Eşsiz nefesi ve göklere uzanan tiz perdelerdeki berraklığıyla dinleyenleri cezbeden tilavet anıtı.",
+    "avatarText": "ABM",
+    "audioBase": "https://everyayah.com/data/Abdul_Basit_Mujawwad_128kbps/",
+    "hasMuallim": false
+  },
+  {
+    "id": "abdulbasit",
+    "name": "Abdülbâsıt Abdüssamed (Mürettel)",
+    "nameAr": "عَبْدُ البَاسِط عَبْدُ الصَّمَد (مُرَتَّل)",
+    "school": "misir",
+    "schoolTitle": "Mısır Klasik Ekolü",
+    "style": "Mürettel",
+    "famousMakams": [
+      "Hicaz",
+      "Segâh",
+      "Sabâ",
+      "Rast"
+    ],
+    "bio": "Tertil formunda harf mahreçlerini zedelemeden okuyan dünya çapında şöhret sahibi üstat.",
+    "avatarText": "ABA",
+    "audioBase": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/",
+    "hasMuallim": false
+  },
+  {
+    "id": "husary",
+    "name": "Mahmûd Halîl el-Husarî",
+    "nameAr": "مَحْمُود خَلِيل الحُصَرِي",
+    "school": "misir",
+    "schoolTitle": "Mısır Klasik Ekolü",
+    "style": "Tahkîk & Mizan Üstadı",
+    "famousMakams": [
+      "Rast",
+      "Uşşak",
+      "Nihavend"
+    ],
+    "bio": "Kıraat ilminin ve harf mahreçlerinin en hatasız ve kusursuz icracısı kabul edilir.",
+    "avatarText": "MKH",
+    "audioBase": "https://everyayah.com/data/Husary_128kbps/",
+    "hasMuallim": true
+  },
+  {
+    "id": "husary_mujawwad",
+    "name": "Mahmûd Halîl el-Husarî (Mücevved)",
+    "nameAr": "مَحْمُود خَلِيل الحُصَرِي (مُجَوَّد)",
+    "school": "misir",
+    "schoolTitle": "Mısır Klasik Ekolü",
+    "style": "Mücevved & Makamlı",
+    "famousMakams": [
+      "Rast",
+      "Uşşak",
+      "Nihavend",
+      "Acem"
+    ],
+    "bio": "Hatasız tecvid kuralı üzerine bina edilmiş vakarlı ve ağırbaşlı mücevved icraları.",
+    "avatarText": "HKM",
+    "audioBase": "https://everyayah.com/data/Husary_128kbps_Mujawwad/",
+    "hasMuallim": false
+  },
+  {
+    "id": "dossary",
+    "name": "Şeyh Yâsir ed-Devserî",
+    "nameAr": "يَاسِر الدَّوْسَرِي",
+    "school": "hicaz",
+    "schoolTitle": "Hicaz / Mescid-i Haram",
+    "style": "Kâbe İmamı Kıraati",
+    "famousMakams": [
+      "Kürdî",
+      "Uşşak",
+      "Hicaz"
+    ],
+    "bio": "Kâbe-i Muazzama imamı; güçlü, yankılı ve derinden etkileyen vakarlı Kürdî ve Bayâtî icraları.",
+    "avatarText": "YAD",
+    "audioBase": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/",
+    "hasMuallim": false
+  },
+  {
+    "id": "qatami",
+    "name": "Şeyh Nâsır el-Katâmî",
+    "nameAr": "نَاصِر القَطَامِي",
+    "school": "hicaz",
+    "schoolTitle": "Körfez / Riyad Ekolü",
+    "style": "Dokunaklı & Modern",
+    "famousMakams": [
+      "Kürdî",
+      "Bayâtî"
+    ],
+    "bio": "Riyad camilerinde hüznü ve gözyaşını samimi bir tınıyla birleştiren çağdaş kâri.",
+    "avatarText": "NAQ",
+    "audioBase": "https://everyayah.com/data/Nasser_Alqatami_128kbps/",
+    "hasMuallim": false
+  },
+  {
+    "id": "alafasy",
+    "name": "Meşâri Râşid el-Afâsî",
+    "nameAr": "مِشَارِي رَاشِد العَفَاسِي",
+    "school": "hicaz",
+    "schoolTitle": "Körfez / Hicaz Ekolü",
+    "style": "Modern Mürettel",
+    "famousMakams": [
+      "Kürdî",
+      "Rast",
+      "Hicaz",
+      "Nihavend"
+    ],
+    "bio": "Milyonlarca gencin Kur'an sevgisini artıran, modern berrak kayıtları ve tecvid intizamıyla öne çıkan kâri.",
+    "avatarText": "MRA",
+    "audioBase": "https://everyayah.com/data/Alafasy_128kbps/",
+    "hasMuallim": false
+  },
+  {
+    "id": "ali_jaber",
+    "name": "Şeyh Ali Câbir",
+    "nameAr": "عَلِي جَابِر",
+    "school": "hicaz",
+    "schoolTitle": "Mekke-i Mükerreme Ekolü",
+    "style": "Harem-i Şerif Teravih Tertili",
+    "famousMakams": [
+      "Bayâtî",
+      "Kürdî"
+    ],
+    "bio": "Kâbe-i Muazzama teravihlerinde milyonları ağlatan sade, içten ve pürüzsüz kıraat.",
+    "avatarText": "AC",
+    "audioBase": "https://everyayah.com/data/Ali_Jaber_64kbps/",
+    "hasMuallim": false
+  },
+  {
+    "id": "shuraym",
+    "name": "Şeyh Suûd eş-Şüraym",
+    "nameAr": "سُعُود الشُّرَيْم",
+    "school": "hicaz",
+    "schoolTitle": "Hicaz / Kâbe İmamı",
+    "style": "Kâbe İmamı Kıraati",
+    "famousMakams": [
+      "Nevâ",
+      "Hicaz",
+      "Rast"
+    ],
+    "bio": "Uzun yıllar Kâbe imamlığı yapmış; ritmik, dengeli ve vakarlı tilavet ekolü.",
+    "avatarText": "SAS",
+    "audioBase": "https://everyayah.com/data/Saood_ash-Shuraym_128kbps/",
+    "hasMuallim": false
+  },
+  {
+    "id": "turk-ekol",
+    "name": "Türk Makam Ekolü Seçkisi",
+    "nameAr": "المَدْرَسَةُ التُّرْكِيَّة",
+    "school": "turk",
+    "schoolTitle": "Geleneksel Türk Ekolü",
+    "style": "Cami & Tasavvufi Tertil",
+    "famousMakams": [
+      "Rast",
+      "Segâh",
+      "Uşşak",
+      "Hüzzam"
+    ],
+    "bio": "Osmanlı'dan bugüne uzanan tecvid nezaketi, ney tonu ve ölçülü koma geçişleriyle Türk tilavet mektebi.",
+    "avatarText": "TRK",
+    "audioBase": "https://everyayah.com/data/Husary_128kbps/",
+    "hasMuallim": true
+  }
+]

@@ -1,0 +1,357 @@
+{
+  "id": "neva",
+  "names": {
+    "tr": "Nevâ",
+    "ar": "نَوَى",
+    "en": "Nawa"
+  },
+  "durak": 9,
+  "guclu": 31,
+  "yeden": 0,
+  "seyir": "inici-cikici",
+  "dizi": {
+    "cikici": [
+      9,
+      17,
+      22,
+      31,
+      40,
+      48,
+      53,
+      62
+    ],
+    "inici": null
+  },
+  "cesniler": [
+    {
+      "tur": "usak-dortlusu",
+      "baslangic": 9
+    },
+    {
+      "tur": "rast-beslisi",
+      "baslangic": 31
+    }
+  ],
+  "varyantlar": [
+    {
+      "id": "buselik-uzeri",
+      "dizi": [
+        9,
+        17,
+        22,
+        31,
+        40,
+        44,
+        53,
+        62
+      ],
+      "not": "Nevâ'da Bûselik beşlisi varyantı."
+    }
+  ],
+  "yarimKarar": [
+    31
+  ],
+  "asmaKararlar": [
+    17,
+    22
+  ],
+  "genisleme": {
+    "pest": 0,
+    "tiz": 62
+  },
+  "seyirBolumleri": {
+    "zemin": "Nevâ perdesinden veya civarından başlar; güçlü etrafında vakarla salınır.",
+    "meyan": "Nevâ üzerinde Rast veya Bûselik beşlisiyle Gerdâniye ve Muhayyer'e yükselir.",
+    "karar": "Nevâ'dan Çargâh ve Segâh geçilerek Dügâh'ta karar verilir."
+  },
+  "school": [
+    "turk",
+    "misir"
+  ],
+  "tags": [
+    "hikmet",
+    "suknet",
+    "vusat",
+    "ogle ezani",
+    "vakar"
+  ],
+  "difficulty": 3,
+  "ruhiTesir": "Hikmetli bir sükûnet, vüs'at (genişlik) ve ruh ferahlığı verir. İcrası en çok ustalık isteyen klasik makamlardandır.",
+  "gelenekNotu": [
+    "Hikmet ve ibret dolu meseller",
+    "Kâinatın mükemmel yaratılışı",
+    "İlahi irade ve takdir âyetleri"
+  ],
+  "ezanGelenegi": {
+    "metin": "Öğle ve İkindi Ezânı (Günün vakar dolu dingin vakitleri)",
+    "kaynak": "Klasik Osmanlı Ezan Tavrı",
+    "kesinlik": "gelenek"
+  },
+  "motifs": [
+    {
+      "id": "neva-m1",
+      "name": {
+        "tr": "Nevâ Perdesinde Zemin",
+        "ar": "ارتكاز على النوى",
+        "en": "Neva Center Opening"
+      },
+      "type": "giris",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 2
+        },
+        {
+          "abs": 40,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        }
+      ]
+    },
+    {
+      "id": "neva-m2",
+      "name": {
+        "tr": "Nevâ'da Rast Beşlisi",
+        "ar": "خماسي الراست على النوى",
+        "en": "Rast Fifth on Neva"
+      },
+      "type": "guclu",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 40,
+          "beats": 1
+        },
+        {
+          "abs": 48,
+          "beats": 1
+        },
+        {
+          "abs": 53,
+          "beats": 2
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "neva-m3",
+      "name": {
+        "tr": "Dügâh Kararına İniş",
+        "ar": "الهبوط إلى دوكاه",
+        "en": "Cadence to Dugah"
+      },
+      "type": "inis-karar",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 17,
+          "beats": 1
+        },
+        {
+          "abs": 9,
+          "beats": 3
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "to": "ussak",
+      "via": "Dügâh",
+      "viaAbs": 9,
+      "path": [
+        {
+          "abs": 31
+        },
+        {
+          "abs": 22
+        },
+        {
+          "abs": 17
+        },
+        {
+          "abs": 9
+        }
+      ],
+      "note": {
+        "tr": "Uşşak dörtlüsüyle doğrudan Uşşak kararına bağlanılır."
+      }
+    },
+    {
+      "to": "rast",
+      "via": "Rast",
+      "viaAbs": 0,
+      "path": [
+        {
+          "abs": 9
+        },
+        {
+          "abs": 0
+        }
+      ],
+      "note": {
+        "tr": "Rast perdesine inilerek Rast kararında kalınır."
+      }
+    },
+    {
+      "to": "segah",
+      "via": "Segâh",
+      "viaAbs": 17,
+      "path": [
+        {
+          "abs": 31
+        },
+        {
+          "abs": 22
+        },
+        {
+          "abs": 17
+        }
+      ],
+      "note": {
+        "tr": "Segâh perdesinde asılarak Segâh makamına geçilir."
+      }
+    }
+  ],
+  "confidence": "medium",
+  "needsReview": true,
+  "notlar": "Nevâ makamı dizisi: Dügâh'ta Uşşak dörtlüsü + Nevâ'da Rast (veya Bûselik) beşlisi (TDV Tâhir/Nevâ). Tâhir makamından seyir ile ayrılır.",
+  "kaynaklar": [
+    {
+      "baslik": "TDV İslâm Ansiklopedisi — Nevâ",
+      "yazar": "İsmail Hakkı Özkan",
+      "url": "https://islamansiklopedisi.org.tr/neva--musiki",
+      "erisimTarihi": "2026-10-20"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "log": [
+      {
+        "tarih": "2026-10-20",
+        "not": "Nevâ dizisi ve Tâhir ayrımı TDV'ye göre belgelendi."
+      }
+    ]
+  },
+  "characterTags": [
+    "hikmet",
+    "suknet",
+    "vusat",
+    "ogle ezani",
+    "vakar"
+  ],
+  "kararName": "Dügâh",
+  "description": {
+    "tr": "Hikmetli bir sükûnet, vüs'at (genişlik) ve ruh ferahlığı verir. İcrası en çok ustalık isteyen klasik makamlardandır."
+  },
+  "degrees": [
+    {
+      "name": {
+        "tr": "Dügâh",
+        "ar": "Dügâh",
+        "en": "Dügâh"
+      },
+      "komas": 0,
+      "arCents": 0,
+      "isMicro": false,
+      "abs": 9
+    },
+    {
+      "name": {
+        "tr": "Segâh",
+        "ar": "Segâh",
+        "en": "Segâh"
+      },
+      "komas": 8,
+      "arCents": 181,
+      "isMicro": false,
+      "abs": 17
+    },
+    {
+      "name": {
+        "tr": "Çargâh",
+        "ar": "Çargâh",
+        "en": "Çargâh"
+      },
+      "komas": 13,
+      "arCents": 294,
+      "isMicro": true,
+      "abs": 22
+    },
+    {
+      "name": {
+        "tr": "Nevâ",
+        "ar": "Nevâ",
+        "en": "Nevâ"
+      },
+      "komas": 22,
+      "arCents": 498,
+      "isMicro": true,
+      "abs": 31
+    },
+    {
+      "name": {
+        "tr": "Hüseynî",
+        "ar": "Hüseynî",
+        "en": "Hüseynî"
+      },
+      "komas": 31,
+      "arCents": 702,
+      "isMicro": true,
+      "abs": 40
+    },
+    {
+      "name": {
+        "tr": "Eviç",
+        "ar": "Eviç",
+        "en": "Eviç"
+      },
+      "komas": 39,
+      "arCents": 883,
+      "isMicro": true,
+      "abs": 48
+    },
+    {
+      "name": {
+        "tr": "Gerdâniye",
+        "ar": "Gerdâniye",
+        "en": "Gerdâniye"
+      },
+      "komas": 44,
+      "arCents": 996,
+      "isMicro": false,
+      "abs": 53
+    },
+    {
+      "name": {
+        "tr": "Muhayyer",
+        "ar": "Muhayyer",
+        "en": "Muhayyer"
+      },
+      "komas": 53,
+      "arCents": 1200,
+      "isMicro": true,
+      "abs": 62
+    }
+  ]
+}

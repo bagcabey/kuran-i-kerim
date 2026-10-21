@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QariReferenceContour",
+  "type": "object",
+  "required": [
+    "id",
+    "titleTr",
+    "surah",
+    "ayah",
+    "qariName",
+    "makamId",
+    "tonicHz",
+    "audioDurationSeconds",
+    "audioUrl",
+    "samples"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "titleTr": { "type": "string" },
+    "surah": { "type": "integer", "minimum": 1, "maximum": 114 },
+    "ayah": { "type": "integer", "minimum": 1 },
+    "qariName": { "type": "string" },
+    "makamId": { "type": "string" },
+    "tonicHz": { "type": "number", "minimum": 50, "maximum": 600 },
+    "audioDurationSeconds": { "type": "number", "minimum": 0.5 },
+    "audioUrl": { "type": "string", "format": "uri" },
+    "samples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["t", "hz", "cent"],
+        "properties": {
+          "t": { "type": "number", "minimum": 0 },
+          "hz": { "type": "number", "minimum": 0 },
+          "cent": { "type": "number" }
+        }
+      }
+    }
+  }
+}

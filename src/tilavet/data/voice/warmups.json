@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "warnings": {
+    "tr": "Ağrı, yanma veya ses kısılması hissederseniz hemen durun. Bu bölüm tıbbi tavsiye yerine geçmez; ses sorunlarında bir uzmana danışın."
+  },
+  "routines": [
+    {
+      "id": "warm-5",
+      "title": { "tr": "5 Dakikalık Isınma" },
+      "minutes": 5,
+      "steps": [
+        { "id": "s1", "type": "breath", "title": { "tr": "Diyafram nefesi" }, "inhaleSec": 4, "holdSec": 2, "exhaleSec": 6, "cycles": 4 },
+        { "id": "s2", "type": "lip-trill", "title": { "tr": "Dudak titretme" }, "durationSec": 45, "hint": { "tr": "Rahat bir perdeden başlayıp yavaşça yukarı/aşağı kayın." } },
+        { "id": "s3", "type": "humming", "title": { "tr": "Mırıldanma (humming)" }, "durationSec": 45 },
+        { "id": "s4", "type": "siren", "title": { "tr": "Siren (alçaktan yükseğe kayma)" }, "durationSec": 45 },
+        { "id": "s5", "type": "scale", "title": { "tr": "5'li dizi vokalizi" }, "makamId": "rast", "degreesPath": [0, 1, 2, 3, 4, 3, 2, 1, 0] }
+      ]
+    },
+    {
+      "id": "warm-10",
+      "title": { "tr": "10 Dakikalık Isınma" },
+      "minutes": 10,
+      "steps": [
+        { "id": "s1", "type": "breath", "title": { "tr": "Diyafram nefesi" }, "inhaleSec": 4, "holdSec": 4, "exhaleSec": 8, "cycles": 6 },
+        { "id": "s2", "type": "lip-trill", "title": { "tr": "Dudak titretme" }, "durationSec": 60 },
+        { "id": "s3", "type": "humming", "title": { "tr": "Mırıldanma" }, "durationSec": 60 },
+        { "id": "s4", "type": "siren", "title": { "tr": "Siren" }, "durationSec": 60 },
+        { "id": "s5", "type": "sustain", "title": { "tr": "Uzun ses tutma (aaa)" }, "targetSec": 15, "reps": 3 },
+        { "id": "s6", "type": "scale", "title": { "tr": "Makam dizisi vokalizi" }, "makamId": "ussak", "degreesPath": [0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1, 0] }
+      ]
+    }
+  ],
+  "modules": [
+    { "id": "V1", "title": { "tr": "Ses Sağlığı ve Güvenlik" } },
+    { "id": "V2", "title": { "tr": "Duruş ve Nefes" } },
+    { "id": "V3", "title": { "tr": "Isınma Rutinleri" } },
+    { "id": "V4", "title": { "tr": "Rezonans" } },
+    { "id": "V5", "title": { "tr": "Ses Sınırı Ölçümü" } },
+    { "id": "V6", "title": { "tr": "Perde Doğruluğu (İntonasyon)" } },
+    { "id": "V7", "title": { "tr": "Süsleme ve Geçişler" } },
+    { "id": "V8", "title": { "tr": "Dinamik ve İfade" } },
+    { "id": "V9", "title": { "tr": "Mikrofon ve Kayıt" } },
+    { "id": "V10", "title": { "tr": "Performans ve Mukabele" } }
+  ]
+}

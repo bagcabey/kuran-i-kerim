@@ -1,0 +1,381 @@
+{
+  "id": "segah",
+  "names": {
+    "tr": "Segâh",
+    "ar": "سِيكَاه",
+    "en": "Sikah"
+  },
+  "durak": 17,
+  "guclu": 31,
+  "yeden": 13,
+  "seyir": "cikici",
+  "dizi": {
+    "cikici": [
+      17,
+      22,
+      31,
+      40,
+      48,
+      53,
+      65,
+      70
+    ],
+    "inici": null
+  },
+  "cesniler": [
+    {
+      "tur": "segah-beslisi",
+      "baslangic": 17
+    },
+    {
+      "tur": "hicaz-dortlusu",
+      "baslangic": 48
+    }
+  ],
+  "varyantlar": [
+    {
+      "id": "dik-hisar",
+      "degisim": {
+        "40": 39
+      },
+      "not": "Hüseynî yerine dik-hisar kullanılabilir."
+    },
+    {
+      "id": "acemli",
+      "degisim": {
+        "48": 44
+      },
+      "not": "Eviç yerine Acem perdesi gelebilir."
+    }
+  ],
+  "yarimKarar": [
+    31
+  ],
+  "asmaKararlar": [
+    40,
+    48
+  ],
+  "genisleme": {
+    "pest": 13,
+    "tiz": 70
+  },
+  "seyirBolumleri": {
+    "zemin": "Segâh perdesinden başlar; Çargâh ve Nevâ'ya yumuşak bir yükseliş yapılır.",
+    "meyan": "Nevâ'dan Hüseynî ve Eviç üzerinden Tiz-Segâh bölgesine genişler.",
+    "karar": "Eviç ve Nevâ üzerinden Çargâh geçilerek Segâh perdesinde karar verilir."
+  },
+  "school": [
+    "turk",
+    "misir",
+    "hicaz"
+  ],
+  "tags": [
+    "mistik",
+    "vecd",
+    "munacat",
+    "aksam ezani",
+    "itri tekbiri"
+  ],
+  "difficulty": 2,
+  "ruhiTesir": "Mistik bir vecd, derin münâcât, tefekkür ve teslimiyet uyandırır. Türk din mûsikisinin temel makamıdır (Itrî Tekbiri ve Salât-ı Ümmiye).",
+  "gelenekNotu": [
+    "Tesbih, tenzih ve tevhid âyetleri",
+    "Peygamber Efendimiz'e salavat ve muhabbet",
+    "Tefekkür ve yaratılış hikmetleri"
+  ],
+  "ezanGelenegi": {
+    "metin": "Akşam Ezânı (Itrî ekolüyle akşamın çabuk kılınışına uygun huşûlu sedâ)",
+    "kaynak": "Geleneksel Türk Ezan Tavrı",
+    "kesinlik": "gelenek"
+  },
+  "motifs": [
+    {
+      "id": "segah-m1",
+      "name": {
+        "tr": "Segâh Beşlisi Açılışı",
+        "ar": "افتتاح خماسي السيكاه",
+        "en": "Sikah Fifth Opening"
+      },
+      "type": "giris",
+      "path": [
+        {
+          "abs": 17,
+          "beats": 2
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "segah-m2",
+      "name": {
+        "tr": "Nevâ Güçlüsü ve Eviç",
+        "ar": "النوى والأوج",
+        "en": "Neva Dominant & Evic"
+      },
+      "type": "guclu",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 40,
+          "beats": 1
+        },
+        {
+          "abs": 48,
+          "beats": 2
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "segah-m3",
+      "name": {
+        "tr": "Tiz Segâh Meyanı",
+        "ar": "ميانه تيز سيكاه",
+        "en": "High Sikah Climax"
+      },
+      "type": "asma-karar",
+      "path": [
+        {
+          "abs": 53,
+          "beats": 1
+        },
+        {
+          "abs": 65,
+          "beats": 1
+        },
+        {
+          "abs": 70,
+          "beats": 2
+        },
+        {
+          "abs": 65,
+          "beats": 1
+        },
+        {
+          "abs": 53,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "segah-m4",
+      "name": {
+        "tr": "Segâh Kararına Bağlanış",
+        "ar": "الاستقرار على السيكاه",
+        "en": "Cadence to Sikah"
+      },
+      "type": "inis-karar",
+      "path": [
+        {
+          "abs": 48,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 17,
+          "beats": 3
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "to": "huzzam",
+      "via": "Hisar",
+      "viaAbs": 36,
+      "path": [
+        {
+          "abs": 17
+        },
+        {
+          "abs": 31
+        },
+        {
+          "abs": 36
+        },
+        {
+          "abs": 48
+        }
+      ],
+      "note": {
+        "tr": "Nevâ üzerinde Hisar perdesi kullanılarak Hüzzam makamına geçilir."
+      }
+    },
+    {
+      "to": "rast",
+      "via": "Rast",
+      "viaAbs": 0,
+      "path": [
+        {
+          "abs": 17
+        },
+        {
+          "abs": 9
+        },
+        {
+          "abs": 0
+        }
+      ],
+      "note": {
+        "tr": "Dügâh üzerinden Rast perdesine inilerek Rast kararında kalınır."
+      }
+    },
+    {
+      "to": "ussak",
+      "via": "Dügâh",
+      "viaAbs": 9,
+      "path": [
+        {
+          "abs": 17
+        },
+        {
+          "abs": 9
+        }
+      ],
+      "note": {
+        "tr": "Dügâh perdesine inilerek Uşşak makamına geçki yapılır."
+      }
+    }
+  ],
+  "confidence": "high",
+  "needsReview": false,
+  "notlar": "Segâh beşlisi + Eviç'te Hicaz dörtlüsü (TDV Segâh). Karar frekansı 244.3 Hz civarıdır (247 Hz doğal Si DEĞİL).",
+  "kaynaklar": [
+    {
+      "baslik": "TDV İslâm Ansiklopedisi — Segâh",
+      "yazar": "İsmail Hakkı Özkan",
+      "url": "https://islamansiklopedisi.org.tr/segah--musiki",
+      "erisimTarihi": "2026-10-20"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "log": [
+      {
+        "tarih": "2026-10-20",
+        "not": "Karar frekansı 244.3 Hz koma hesabıyla düzeltildi."
+      }
+    ]
+  },
+  "characterTags": [
+    "mistik",
+    "vecd",
+    "munacat",
+    "aksam ezani",
+    "itri tekbiri"
+  ],
+  "kararName": "Segâh",
+  "description": {
+    "tr": "Mistik bir vecd, derin münâcât, tefekkür ve teslimiyet uyandırır. Türk din mûsikisinin temel makamıdır (Itrî Tekbiri ve Salât-ı Ümmiye)."
+  },
+  "degrees": [
+    {
+      "name": {
+        "tr": "Segâh",
+        "ar": "Segâh",
+        "en": "Segâh"
+      },
+      "komas": 0,
+      "arCents": 0,
+      "isMicro": false,
+      "abs": 17
+    },
+    {
+      "name": {
+        "tr": "Çargâh",
+        "ar": "Çargâh",
+        "en": "Çargâh"
+      },
+      "komas": 5,
+      "arCents": 113,
+      "isMicro": true,
+      "abs": 22
+    },
+    {
+      "name": {
+        "tr": "Nevâ",
+        "ar": "Nevâ",
+        "en": "Nevâ"
+      },
+      "komas": 14,
+      "arCents": 317,
+      "isMicro": true,
+      "abs": 31
+    },
+    {
+      "name": {
+        "tr": "Hüseynî",
+        "ar": "Hüseynî",
+        "en": "Hüseynî"
+      },
+      "komas": 23,
+      "arCents": 521,
+      "isMicro": true,
+      "abs": 40
+    },
+    {
+      "name": {
+        "tr": "Eviç",
+        "ar": "Eviç",
+        "en": "Eviç"
+      },
+      "komas": 31,
+      "arCents": 702,
+      "isMicro": true,
+      "abs": 48
+    },
+    {
+      "name": {
+        "tr": "Gerdâniye",
+        "ar": "Gerdâniye",
+        "en": "Gerdâniye"
+      },
+      "komas": 36,
+      "arCents": 815,
+      "isMicro": false,
+      "abs": 53
+    },
+    {
+      "name": {
+        "tr": "Nîm-Şehnaz",
+        "ar": "Nîm-Şehnaz",
+        "en": "Nîm-Şehnaz"
+      },
+      "komas": 48,
+      "arCents": 1087,
+      "isMicro": false,
+      "abs": 65
+    },
+    {
+      "name": {
+        "tr": "Tiz-Segâh",
+        "ar": "Tiz-Segâh",
+        "en": "Tiz-Segâh"
+      },
+      "komas": 53,
+      "arCents": 1200,
+      "isMicro": true,
+      "abs": 70
+    }
+  ]
+}

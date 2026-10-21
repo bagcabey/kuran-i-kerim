@@ -1,0 +1,14 @@
+node_modules/
+backup_pre_v3/
+temp_chrome_profile/
+temp_chrome_profile_verify/
+__probe__.ts
+__pycache__/
+*.pyc
+kimatik_lab/makam_okulu
+/audio
+/tools
+/data/makamlar.json
+*.log
+.DS_Store
+Thumbs.db

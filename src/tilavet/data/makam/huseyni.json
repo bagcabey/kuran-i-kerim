@@ -1,0 +1,30 @@
+{
+  "id": "huseyni",
+  "names": { "tr": "Hüseynî", "ar": "حسيني", "en": "Huseyni" },
+  "school": ["turk", "misir", "hicaz"],
+  "characterTags": ["yiğit", "coşkulu", "vurgulu"],
+  "difficulty": 2,
+  "kararName": "Dügâh",
+  "guclu": "Hüseynî",
+  "seyir": "inici-cikici",
+  "degrees": [
+    { "name": { "tr": "Dügâh" },    "komas": 0,  "arCents": 0 },
+    { "name": { "tr": "Segâh" },    "komas": 8,  "arCents": 150, "isMicro": true },
+    { "name": { "tr": "Çargâh" },   "komas": 13, "arCents": 300 },
+    { "name": { "tr": "Nevâ" },     "komas": 22, "arCents": 500 },
+    { "name": { "tr": "Hüseynî" },  "komas": 31, "arCents": 700 },
+    { "name": { "tr": "Acem" },     "komas": 35, "arCents": 800 },
+    { "name": { "tr": "Gerdâniye" },"komas": 44, "arCents": 1000 },
+    { "name": { "tr": "Muhayyer" }, "komas": 53, "arCents": 1200 }
+  ],
+  "motifs": [
+    { "id": "hus-m1", "name": { "tr": "Hüseynî perdesinde güçlü vurgusu" }, "degreesPath": [4, 5, 4, 3] },
+    { "id": "hus-m2", "name": { "tr": "Uşşak dörtlüsüyle karara iniş" }, "degreesPath": [3, 2, 1, 0] }
+  ],
+  "transitions": [
+    { "to": "ussak", "via": "Dügâh", "note": { "tr": "Dügâh perdesinde Uşşak kararına varış" } }
+  ],
+  "description": { "tr": "Vakur, coşkulu ve azamet bildiren ayetlerin tilavetinde tercih edilen köklü bir makamdır." },
+  "needsReview": true,
+  "status": "draft"
+}

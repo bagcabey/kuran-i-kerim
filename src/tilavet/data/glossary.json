@@ -1,0 +1,26 @@
+[
+  {
+    "id": "mahrec",
+    "term": { "tr": "Mahreç", "ar": "مخرج" },
+    "def": { "tr": "Harfin çıktığı yer. Boğaz, dil, dudak, ağız boşluğu ve geniz olmak üzere beş ana bölgeye ayrılır." },
+    "lessons": ["L1-5-mahrecler"]
+  },
+  {
+    "id": "gunne",
+    "term": { "tr": "Gunne", "ar": "غنة" },
+    "def": { "tr": "Nun ve mimin genizden çıkan, yaklaşık iki hareke süren ses." },
+    "lessons": ["L3-7-gunne"]
+  },
+  {
+    "id": "karar",
+    "term": { "tr": "Karar" },
+    "def": { "tr": "Makamın bitiş ve dayanak perdesi." },
+    "lessons": ["L5-1-makama-giris"]
+  },
+  {
+    "id": "seyir",
+    "term": { "tr": "Seyir" },
+    "def": { "tr": "Makamın melodik yolu: nereden başlayıp nerede asılıp nerede karara indiği." },
+    "lessons": ["L5-1-makama-giris"]
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "id": "L2-6-seviye2-sinav",
+  "level": 2,
+  "module": "harekeler",
+  "title": { "tr": "Seviye 2 Bitirme Sınavı (Fâtiha Tilaveti)", "ar": "اختبار المستوى الثاني", "en": "Level 2 Final Exam" },
+  "objectives": [
+    { "tr": "Fâtiha sûresini harekelerine ve vasl kurallarına uygun okur" },
+    { "tr": "Seviye 2 kazanımlarını eksiksiz sergiler" }
+  ],
+  "estimatedMinutes": 15,
+  "prerequisites": ["L1-6-sifatlar-giris"],
+  "status": "draft",
+  "needsReview": true,
+  "sections": [
+    { "type": "intro", "text": { "tr": "Bu sınavda Fâtiha sûresini baştan sona hareke ve kelime birleştirme kurallarına dikkat ederek okuyacaksınız." } },
+    { "type": "imitate", "ayah": "1:1", "recordingRequired": true },
+    { "type": "summary", "bullets": [
+      { "tr": "Fâtiha sûresi tecvidsiz de olsa doğru harekelerle hatasız okunmalıdır" }
+    ]}
+  ],
+  "sources": ["Kur'an Eğitimi Kılavuzu"]
+}

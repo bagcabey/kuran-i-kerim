@@ -1,0 +1,29 @@
+{
+  "id": "L3-2-izhar",
+  "level": 3,
+  "module": "tecvid-temelleri",
+  "title": { "tr": "Nun Sâkin ve Tenvin: İzhar", "ar": "الإظهار", "en": "Izhar" },
+  "objectives": [
+    { "tr": "6 boğaz harfini (izhar harfleri) ezberler" },
+    { "tr": "İzhar'da gunne yapmadan net okur" }
+  ],
+  "estimatedMinutes": 12,
+  "prerequisites": ["L3-1-nun-sakin-giris"],
+  "status": "draft",
+  "needsReview": true,
+  "sections": [
+    { "type": "intro", "text": { "tr": "İzhar, 'açıkça okumak' demektir. Nun sâkin veya tenvinden sonra boğaz harflerinden biri gelirse nun, gunne yapılmadan net okunur." } },
+    { "type": "explain", "text": { "tr": "İzhar harfleri altıdır: ء ه ع ح غ خ. Bu harflerin mahreci boğazdır; nun ile mahreçleri uzak olduğu için nun karışmaz." } },
+    { "type": "listen", "audioId": "A-3-2-001", "caption": { "tr": "Yavaş okunuş: önce nun, sonra boğaz harfi" } },
+    { "type": "examples", "items": [
+      { "ayah": "78:1", "note": { "tr": "Örnek ayet seçimi uzman onayına tabidir." } }
+    ]},
+    { "type": "imitate", "ayah": "78:1", "recordingRequired": true },
+    { "type": "quiz", "quizId": "Q-3-2" },
+    { "type": "summary", "bullets": [
+      { "tr": "İzhar harfleri: ء ه ع ح غ خ" },
+      { "tr": "Gunne yapılmaz, nun net okunur" }
+    ]}
+  ],
+  "sources": ["Tecvid ilmihali — kaynak uzman tarafından eklenecek"]
+}

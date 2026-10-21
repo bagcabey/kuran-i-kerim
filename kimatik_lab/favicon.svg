@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd56b"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#997316"/>
+    </linearGradient>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a251e"/>
+      <stop offset="100%" stop-color="#080d0a"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bgGrad)"/>
+  <rect width="60" height="60" x="2" y="2" rx="12" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-opacity="0.6"/>
+  <!-- Open Mushaf Book Icon -->
+  <path d="M32 44 C26 38 18 38 14 40 L14 20 C18 18 26 18 32 24 C38 18 46 18 50 20 L50 40 C46 38 38 38 32 44 Z" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M32 24 L32 44" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Quran Star -->
+  <circle cx="32" cy="14" r="2.5" fill="#ffd56b"/>
+</svg>

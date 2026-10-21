@@ -1,0 +1,389 @@
+{
+  "id": "nihavend",
+  "names": {
+    "tr": "Nihavend",
+    "ar": "نِهَاوَنْد",
+    "en": "Nahawand"
+  },
+  "durak": 0,
+  "guclu": 31,
+  "yeden": -5,
+  "seyir": "inici-cikici",
+  "dizi": {
+    "cikici": [
+      0,
+      9,
+      13,
+      22,
+      31,
+      36,
+      48,
+      53
+    ],
+    "inici": [
+      0,
+      9,
+      13,
+      22,
+      31,
+      35,
+      44,
+      53
+    ]
+  },
+  "cesniler": [
+    {
+      "tur": "buselik-beslisi",
+      "baslangic": 0
+    },
+    {
+      "tur": "hicaz-dortlusu",
+      "baslangic": 31
+    }
+  ],
+  "transpoze": {
+    "ornek": "C üzerinde (Çargâh kararı)",
+    "kararAbs": 22
+  },
+  "yarimKarar": [
+    31
+  ],
+  "asmaKararlar": [
+    13,
+    22
+  ],
+  "genisleme": {
+    "pest": -5,
+    "tiz": 53
+  },
+  "seyirBolumleri": {
+    "zemin": "Nevâ veya Rast civarından başlar; Kürdî ve Çargâh sesleriyle Bûselik beşlisi duyurulur.",
+    "meyan": "Çıkıcı seyirde Nevâ üzerinde Hicaz dörtlüsü (Hisar ve Eviç), inici seyirde Kürdî dörtlüsü (Nîm-Hisar ve Acem) kullanılır.",
+    "karar": "Nevâ'dan Çargâh, Kürdî ve Dügâh üzerinden Rast perdesinde tam karar verilir."
+  },
+  "school": [
+    "turk",
+    "misir",
+    "hicaz"
+  ],
+  "tags": [
+    "vakar",
+    "dinginlik",
+    "huzur",
+    "letafet",
+    "yatsi ezani"
+  ],
+  "difficulty": 2,
+  "ruhiTesir": "Vakar, dinginlik, letafet ve sükûnet hissi verir. Batı mûsikisindeki armonik minöre yakındır.",
+  "gelenekNotu": [
+    "Peygamber kıssaları ve hikmetli öğütler",
+    "Kâinat nizamı ve tefekkür âyetleri",
+    "Huzur, sekinet ve teslimiyet telkini"
+  ],
+  "ezanGelenegi": {
+    "metin": "Yatsı Ezânı (Gecenin sessizliğine geçişte huzur ve letafet)",
+    "kaynak": "Geleneksel Türk Ezan Uygulamaları",
+    "kesinlik": "gelenek"
+  },
+  "motifs": [
+    {
+      "id": "nihavend-m1",
+      "name": {
+        "tr": "Nihavend Bûselik Beşlisi",
+        "ar": "بوسليك النهاوند",
+        "en": "Nahawand Buselik Fifth"
+      },
+      "type": "giris",
+      "path": [
+        {
+          "abs": 0,
+          "beats": 1
+        },
+        {
+          "abs": 9,
+          "beats": 1
+        },
+        {
+          "abs": 13,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "nihavend-m2",
+      "name": {
+        "tr": "Nevâ Güçlüsü Üzerinde Salınım",
+        "ar": "تمايل النوى",
+        "en": "Oscillation on Neva"
+      },
+      "type": "guclu",
+      "path": [
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        },
+        {
+          "abs": 36,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "nihavend-m3",
+      "name": {
+        "tr": "Hicaz Dörtlüsü Geçişi (Çıkıcı)",
+        "ar": "رباعي الحجاز الصاعد",
+        "en": "Ascending Hijaz Fourth"
+      },
+      "type": "asma-karar",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 36,
+          "beats": 1
+        },
+        {
+          "abs": 48,
+          "beats": 1
+        },
+        {
+          "abs": 53,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "nihavend-m4",
+      "name": {
+        "tr": "Rast Kararına Dönüş",
+        "ar": "الرجوع إلى قرار الراست",
+        "en": "Cadence to Rast"
+      },
+      "type": "inis-karar",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 13,
+          "beats": 1
+        },
+        {
+          "abs": 9,
+          "beats": 1
+        },
+        {
+          "abs": 0,
+          "beats": 3
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "to": "rast",
+      "via": "Rast",
+      "viaAbs": 0,
+      "path": [
+        {
+          "abs": 13
+        },
+        {
+          "abs": 9
+        },
+        {
+          "abs": 0
+        }
+      ],
+      "note": {
+        "tr": "Aynı durak (Rast) üzerinde Segâh perdesi basılarak Rast makamına geçilir."
+      }
+    },
+    {
+      "to": "kurdi",
+      "via": "Kürdî",
+      "viaAbs": 13,
+      "path": [
+        {
+          "abs": 22
+        },
+        {
+          "abs": 13
+        },
+        {
+          "abs": 9
+        }
+      ],
+      "note": {
+        "tr": "Kürdî perdesinden Dügâh kararına inilerek Kürdî makamına bağlanılır."
+      }
+    },
+    {
+      "to": "hicaz",
+      "via": "Hisar",
+      "viaAbs": 36,
+      "path": [
+        {
+          "abs": 31
+        },
+        {
+          "abs": 36
+        },
+        {
+          "abs": 48
+        },
+        {
+          "abs": 53
+        }
+      ],
+      "note": {
+        "tr": "Nevâ üzerindeki Hicaz dörtlüsü genişletilerek Hicaz makamına geçki yapılır."
+      }
+    }
+  ],
+  "confidence": "high",
+  "needsReview": false,
+  "notlar": "Standart durak Rast perdesidir (TDV Nihâvend). Çıkıcıda Hisar (36) ve Eviç (48), inicide Nîm-Hisar (35) ve Acem (44) kullanılır.",
+  "kaynaklar": [
+    {
+      "baslik": "TDV İslâm Ansiklopedisi — Nihâvend",
+      "yazar": "İsmail Hakkı Özkan",
+      "url": "https://islamansiklopedisi.org.tr/nihavend--musiki",
+      "erisimTarihi": "2026-10-20"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "log": [
+      {
+        "tarih": "2026-10-20",
+        "not": "Çıkıcı ve inici varyantlar ayrıştırıldı."
+      }
+    ]
+  },
+  "characterTags": [
+    "vakar",
+    "dinginlik",
+    "huzur",
+    "letafet",
+    "yatsi ezani"
+  ],
+  "kararName": "Rast",
+  "description": {
+    "tr": "Vakar, dinginlik, letafet ve sükûnet hissi verir. Batı mûsikisindeki armonik minöre yakındır."
+  },
+  "degrees": [
+    {
+      "name": {
+        "tr": "Rast",
+        "ar": "Rast",
+        "en": "Rast"
+      },
+      "komas": 0,
+      "arCents": 0,
+      "isMicro": false,
+      "abs": 0
+    },
+    {
+      "name": {
+        "tr": "Dügâh",
+        "ar": "Dügâh",
+        "en": "Dügâh"
+      },
+      "komas": 9,
+      "arCents": 204,
+      "isMicro": false,
+      "abs": 9
+    },
+    {
+      "name": {
+        "tr": "Kürdî",
+        "ar": "Kürdî",
+        "en": "Kürdî"
+      },
+      "komas": 13,
+      "arCents": 294,
+      "isMicro": true,
+      "abs": 13
+    },
+    {
+      "name": {
+        "tr": "Çargâh",
+        "ar": "Çargâh",
+        "en": "Çargâh"
+      },
+      "komas": 22,
+      "arCents": 498,
+      "isMicro": true,
+      "abs": 22
+    },
+    {
+      "name": {
+        "tr": "Nevâ",
+        "ar": "Nevâ",
+        "en": "Nevâ"
+      },
+      "komas": 31,
+      "arCents": 702,
+      "isMicro": true,
+      "abs": 31
+    },
+    {
+      "name": {
+        "tr": "Hisar",
+        "ar": "Hisar",
+        "en": "Hisar"
+      },
+      "komas": 36,
+      "arCents": 815,
+      "isMicro": false,
+      "abs": 36
+    },
+    {
+      "name": {
+        "tr": "Eviç",
+        "ar": "Eviç",
+        "en": "Eviç"
+      },
+      "komas": 48,
+      "arCents": 1087,
+      "isMicro": false,
+      "abs": 48
+    },
+    {
+      "name": {
+        "tr": "Gerdâniye",
+        "ar": "Gerdâniye",
+        "en": "Gerdâniye"
+      },
+      "komas": 53,
+      "arCents": 1200,
+      "isMicro": true,
+      "abs": 53
+    }
+  ]
+}

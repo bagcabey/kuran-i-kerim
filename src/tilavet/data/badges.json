@@ -1,0 +1,14 @@
+[
+  { "id": "first-lesson",  "title": { "tr": "İlk Adım" },          "desc": { "tr": "İlk dersi tamamladın." } },
+  { "id": "elif-ba-done",  "title": { "tr": "Elif-Ba Tamam" },     "desc": { "tr": "Harfleri bitirdin." } },
+  { "id": "first-fatiha",  "title": { "tr": "İlk Fatiha" },        "desc": { "tr": "Seviye 2 sınavını geçtin." } },
+  { "id": "tecvid-done",   "title": { "tr": "Tecvid Yolcusu" },    "desc": { "tr": "Seviye 3'ü tamamladın." } },
+  { "id": "streak-7",      "title": { "tr": "7 Gün Seri" },        "desc": { "tr": "7 gün üst üste çalıştın." } },
+  { "id": "streak-30",     "title": { "tr": "30 Gün Seri" },       "desc": { "tr": "30 gün üst üste çalıştın." } },
+  { "id": "rast-traveler", "title": { "tr": "Rast Yolcusu" },      "desc": { "tr": "Rast modülünü bitirdin." } },
+  { "id": "uşşak-traveler","title": { "tr": "Uşşak Yolcusu" },     "desc": { "tr": "Uşşak modülünü bitirdin." } },
+  { "id": "hicaz-traveler","title": { "tr": "Hicaz Yolcusu" },     "desc": { "tr": "Hicaz modülünü bitirdin." } },
+  { "id": "pitch-90",      "title": { "tr": "Kulak Ustası" },      "desc": { "tr": "Perde karşılaştırmasında 90+ aldın." } },
+  { "id": "rec-25",        "title": { "tr": "Sürekli Pratik" },    "desc": { "tr": "25 kayıt yaptın." } },
+  { "id": "minutes-600",   "title": { "tr": "10 Saat Emek" },      "desc": { "tr": "Toplam 10 saat çalıştın." } }
+]

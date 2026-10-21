@@ -1,0 +1,345 @@
+{
+  "id": "kurdi",
+  "names": {
+    "tr": "Kürdî",
+    "ar": "كُرْدِي",
+    "en": "Kurdi"
+  },
+  "durak": 9,
+  "guclu": 31,
+  "yeden": 0,
+  "seyir": "cikici",
+  "dizi": {
+    "cikici": [
+      9,
+      13,
+      22,
+      31,
+      40,
+      44,
+      53,
+      62
+    ],
+    "inici": null
+  },
+  "cesniler": [
+    {
+      "tur": "kurdi-dortlusu",
+      "baslangic": 9
+    },
+    {
+      "tur": "buselik-beslisi",
+      "baslangic": 31
+    }
+  ],
+  "yarimKarar": [
+    31
+  ],
+  "asmaKararlar": [
+    13,
+    22
+  ],
+  "genisleme": {
+    "pest": 0,
+    "tiz": 62
+  },
+  "seyirBolumleri": {
+    "zemin": "Dügâh civarından başlar; küçük ikili (Kürdî) perdesi belirgin duyurularak Nevâ'ya çıkılır.",
+    "meyan": "Nevâ üzerinde Bûselik veya Çargâh çeşnileriyle Gerdâniye ve Muhayyer seslerinde dolaşılır.",
+    "karar": "Nevâ'dan Çargâh ve Kürdî perdesi üzerinden Dügâh'ta karar verilir."
+  },
+  "school": [
+    "hicaz",
+    "misir",
+    "turk"
+  ],
+  "tags": [
+    "akici",
+    "husu",
+    "haremeyn tavri",
+    "teravih",
+    "duygusal"
+  ],
+  "difficulty": 1,
+  "ruhiTesir": "Akıcılık, huşû ve içtenlik telkin eder. Çağdaş Haremeyn kıraat ekolünün (Mekke/Medine teravihleri) en çok tercih ettiği makamdır.",
+  "gelenekNotu": [
+    "Müjde ve rahmet âyetleri",
+    "Kıyamet ve hesap sahnelerinin hüzünlü anlatımı",
+    "Kısa ve ritmik sûreler"
+  ],
+  "ezanGelenegi": {
+    "metin": "Yatsı ve Teravih Namazları (Mekke ve Medine Haremeyn tavrı)",
+    "kaynak": "Çağdaş Haremeyn Uygulamaları",
+    "kesinlik": "gelenek"
+  },
+  "motifs": [
+    {
+      "id": "kurdi-m1",
+      "name": {
+        "tr": "Kürdî Dörtlüsü Girişi",
+        "ar": "مدخل رباعي الكرد",
+        "en": "Kurdi Tetrachord Opening"
+      },
+      "type": "giris",
+      "path": [
+        {
+          "abs": 9,
+          "beats": 1
+        },
+        {
+          "abs": 13,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "kurdi-m2",
+      "name": {
+        "tr": "Nevâ Güçlüsü ve Bûselik",
+        "ar": "النوى وبوسليك",
+        "en": "Neva Dominant & Buselik"
+      },
+      "type": "guclu",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 40,
+          "beats": 1
+        },
+        {
+          "abs": 44,
+          "beats": 1
+        },
+        {
+          "abs": 53,
+          "beats": 2
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "kurdi-m3",
+      "name": {
+        "tr": "Kürdî Kararına İniş",
+        "ar": "الهبوط إلى دوكاه كرد",
+        "en": "Cadence to Dugah"
+      },
+      "type": "inis-karar",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 13,
+          "beats": 2
+        },
+        {
+          "abs": 9,
+          "beats": 3
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "to": "nihavend",
+      "via": "Çargâh",
+      "viaAbs": 22,
+      "path": [
+        {
+          "abs": 13
+        },
+        {
+          "abs": 22
+        },
+        {
+          "abs": 31
+        }
+      ],
+      "note": {
+        "tr": "Çargâh üzerinde Bûselik çeşnisiyle Nihavend makamına geçilir."
+      }
+    },
+    {
+      "to": "ussak",
+      "via": "Segâh",
+      "viaAbs": 17,
+      "path": [
+        {
+          "abs": 13
+        },
+        {
+          "abs": 17
+        },
+        {
+          "abs": 9
+        }
+      ],
+      "note": {
+        "tr": "Kürdî perdesi yerine Segâh koması basılarak Uşşak'a bağlanılır."
+      }
+    },
+    {
+      "to": "hicaz",
+      "via": "Dik-Kürdî",
+      "viaAbs": 14,
+      "path": [
+        {
+          "abs": 9
+        },
+        {
+          "abs": 14
+        },
+        {
+          "abs": 26
+        },
+        {
+          "abs": 31
+        }
+      ],
+      "note": {
+        "tr": "Nîm-Hicaz perdesi alınarak Hicaz makamına geçki yapılır."
+      }
+    }
+  ],
+  "confidence": "high",
+  "needsReview": false,
+  "notlar": "TDV Kürdî: Çıkıcı veya bazen çıkıcı-inici. Eski blueprint inici-çıkıcı yazmıştı.",
+  "kaynaklar": [
+    {
+      "baslik": "TDV İslâm Ansiklopedisi — Kürdî",
+      "yazar": "İsmail Hakkı Özkan",
+      "url": "https://islamansiklopedisi.org.tr/kurdi--musiki",
+      "erisimTarihi": "2026-10-20"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "log": [
+      {
+        "tarih": "2026-10-20",
+        "not": "Seyir türü çıkıcı olarak TDV'ye göre güncellendi."
+      }
+    ]
+  },
+  "characterTags": [
+    "akici",
+    "husu",
+    "haremeyn tavri",
+    "teravih",
+    "duygusal"
+  ],
+  "kararName": "Dügâh",
+  "description": {
+    "tr": "Akıcılık, huşû ve içtenlik telkin eder. Çağdaş Haremeyn kıraat ekolünün (Mekke/Medine teravihleri) en çok tercih ettiği makamdır."
+  },
+  "degrees": [
+    {
+      "name": {
+        "tr": "Dügâh",
+        "ar": "Dügâh",
+        "en": "Dügâh"
+      },
+      "komas": 0,
+      "arCents": 0,
+      "isMicro": false,
+      "abs": 9
+    },
+    {
+      "name": {
+        "tr": "Kürdî",
+        "ar": "Kürdî",
+        "en": "Kürdî"
+      },
+      "komas": 4,
+      "arCents": 91,
+      "isMicro": false,
+      "abs": 13
+    },
+    {
+      "name": {
+        "tr": "Çargâh",
+        "ar": "Çargâh",
+        "en": "Çargâh"
+      },
+      "komas": 13,
+      "arCents": 294,
+      "isMicro": true,
+      "abs": 22
+    },
+    {
+      "name": {
+        "tr": "Nevâ",
+        "ar": "Nevâ",
+        "en": "Nevâ"
+      },
+      "komas": 22,
+      "arCents": 498,
+      "isMicro": true,
+      "abs": 31
+    },
+    {
+      "name": {
+        "tr": "Hüseynî",
+        "ar": "Hüseynî",
+        "en": "Hüseynî"
+      },
+      "komas": 31,
+      "arCents": 702,
+      "isMicro": true,
+      "abs": 40
+    },
+    {
+      "name": {
+        "tr": "Acem",
+        "ar": "Acem",
+        "en": "Acem"
+      },
+      "komas": 35,
+      "arCents": 792,
+      "isMicro": true,
+      "abs": 44
+    },
+    {
+      "name": {
+        "tr": "Gerdâniye",
+        "ar": "Gerdâniye",
+        "en": "Gerdâniye"
+      },
+      "komas": 44,
+      "arCents": 996,
+      "isMicro": false,
+      "abs": 53
+    },
+    {
+      "name": {
+        "tr": "Muhayyer",
+        "ar": "Muhayyer",
+        "en": "Muhayyer"
+      },
+      "komas": 53,
+      "arCents": 1200,
+      "isMicro": true,
+      "abs": 62
+    }
+  ]
+}

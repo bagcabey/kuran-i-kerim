@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1411">
+  <title>KUR'ÂN-I KERÎM — Âyet İnceleme & Esbâb-ı Nüzûl</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css?v=20261020_1740">
+  <link rel="stylesheet" href="design-system.css?v=20261021_04">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Amiri:wght@400;700&family=Amiri+Quran&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ui-v5.css?v=20261021_v5a">
+</head>
+<body id="v5">
+
+  <!-- Arka Plan Işık Halesi (Ambient Glow) -->
+  <div class="ambient-bg" aria-hidden="true"></div>
+
+  <div class="app-shell inceleme-app-shell" style="min-height: 100vh;">
+    
+    <!-- ÜST TELEMETRİ & HUD BARI -->
+    <header class="app-header">
+      <div class="brand-area">
+        <span class="v5-brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1.6 15 4.9l4.4-.3-.3 4.4 3.3 3-3.3 3 .3 4.4-4.4-.3-3 3.3-3-3.3-4.4.3.3-4.4L1.6 12l3.3-3-.3-4.4 4.4.3zm0 5.9a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z"/></svg></span>
+        <div class="brand-text">
+          <div class="brand-title">Kur'ân-ı Kerîm</div>
+          <div class="brand-subtitle">Âyet İnceleme & Esbâb-ı Nüzûl</div>
+        </div>
+      </div>
+      <div class="hud-telemetry">
+        <div class="hud-item">
+          <span class="hud-dot" style="background: var(--accent-gold); box-shadow: 0 0 10px var(--accent-gold);"></span>
+          <span class="hud-label">ÂYET</span>
+          <span class="hud-value gold" id="hudActiveAyahBadge">2. Bakara Sûresi — 255. Âyet</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">NÜZÛL</span>
+          <span class="hud-value" id="hudSurahPlace">Medine Dönemi (87. Sıra)</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">KAPSAM</span>
+          <span class="hud-value" id="hudSurahTotal">Toplam 286 Âyet</span>
+        </div>
+        <div class="hud-item">
+          <a href="index.html" id="btnReturnToMushafLink" class="btn btn-gold btn-sm" style="text-decoration: none; gap: 6px;">
+            Mushaf-ı Şerîf'e Dön
+          </a>
+        </div>
+        <button type="button" id="btnThemeToggle" class="theme-toggle" aria-label="Temayı değiştir" title="Açık / koyu görünüm">
+          <span class="theme-toggle-icon" aria-hidden="true">☼</span>
+          <span class="theme-toggle-label">Görünüm</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ANA İNCELEME ÇALIŞMA ALANI -->
+    <main class="workspace inceleme-page-workspace">
+      <header class="page-intro study-intro">
+        <div>
+          <span class="page-eyebrow">KUR’ÂN-I KERÎM · ARAŞTIRMA</span>
+          <h1>Âyetleri bağlamıyla inceleyin.</h1>
+          <p>Bir sûre veya âyet seçin; meâl, okunuş, nüzûl bilgisi ve kaynak notlarını birlikte değerlendirin.</p>
+        </div>
+        <div class="intro-context" aria-label="Seçili âyet">
+          <span>Şu an inceleniyor</span>
+          <strong id="studyIntroAyah">Bakara · 255</strong>
+        </div>
+      </header>
+      
+      <!-- 1. KONTROL, SEÇİM VE ARAMA GÜVERTESİ -->
+      <section class="inceleme-control-deck">
+        <div class="inceleme-deck-row">
+          
+          <!-- Sure & Ayet Seçicileri -->
+          <div class="inceleme-select-group">
+            <div class="inceleme-field">
+              <label for="selectSurahInceleme" class="form-label">Sûre</label>
+              <select id="selectSurahInceleme" class="inceleme-surah-select">
+                <!-- 114 Sure JavaScript ile dinamik doldurulacak -->
+              </select>
+            </div>
+
+            <div class="inceleme-field">
+              <label for="selectAyahInceleme" class="form-label">Âyet</label>
+              <select id="selectAyahInceleme" class="inceleme-ayah-select">
+                <!-- Ayet numaraları dinamik gelecek -->
+              </select>
+            </div>
+
+            <button type="button" id="btnPrevAyahInceleme" class="btn btn-outline btn-sm" title="Önceki Âyet (Klavye: Sol Ok)">
+              ◀ Önceki
+            </button>
+            <button type="button" id="btnNextAyahInceleme" class="btn btn-outline btn-sm" title="Sonraki Âyet (Klavye: Sağ Ok)">
+              Sonraki ▶
+            </button>
+          </div>
+
+          <!-- Arama Kutusu -->
+          <div class="inceleme-search-wrap">
+            <label class="sr-only" for="inputIncelemeSearch">Sûre, âyet numarası veya konu ara</label>
+            <input type="search" id="inputIncelemeSearch" class="inceleme-search-input" placeholder="Sûre (İhlâs), âyet (2:255) veya konu (Sabır)">
+            <button type="button" id="btnExecIncelemeSearch" class="btn btn-gold btn-sm">
+              Ara & İncele
+            </button>
+          </div>
+        </div>
+
+        <!-- Hızlı Keşif Kısayolları (Popüler & Hikayeli Âyetler) -->
+        <details class="quick-shortcut-disclosure quick-discovery-disclosure">
+          <summary class="quick-shortcut-summary">Örnek veya rastgele âyet seç</summary>
+          <div class="quick-discovery-strip" role="group" aria-label="Âyet keşif kısayolları">
+            <button type="button" class="quick-discovery-pill" data-surah="1" data-ayah="1" aria-pressed="false">Fâtiha (1:1)</button>
+            <button type="button" class="quick-discovery-pill" data-surah="2" data-ayah="255" aria-pressed="false">Âyetü'l-Kürsî (2:255)</button>
+            <button type="button" class="quick-discovery-pill" data-surah="12" data-ayah="3" aria-pressed="false">Yûsuf Kıssası (12:3)</button>
+            <button type="button" class="quick-discovery-pill" data-surah="18" data-ayah="10" aria-pressed="false">Ashâb-ı Kehf (18:10)</button>
+            <button type="button" class="quick-discovery-pill" data-surah="36" data-ayah="20" aria-pressed="false">Yâsîn / Habîb (36:20)</button>
+            <button type="button" class="quick-discovery-pill" data-surah="93" data-ayah="1" aria-pressed="false">Duhâ (93:1)</button>
+            <button type="button" class="quick-discovery-pill" data-surah="103" data-ayah="1" aria-pressed="false">Asr (103:1)</button>
+            <button type="button" class="quick-discovery-pill" data-surah="112" data-ayah="1" aria-pressed="false">İhlâs (112:1)</button>
+            <button type="button" id="btnRandomAyahInceleme" class="btn btn-outline btn-sm quick-random-pill" title="Rastgele Bir Hikmetli Âyet İncele">
+              Rastgele Âyet
+            </button>
+          </div>
+        </details>
+        <p id="ayahSearchStatus" class="sr-only" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- 2. VİTRİN (HERO) ÂYET KARTI -->
+      <section id="heroCard" class="hero-ayah-card">
+        <div class="hero-ayah-header">
+          <div class="hero-ayah-title">
+            <span id="heroAyahHeading">Âyet Metni, Fonetik Okunuşu & Meali</span>
+          </div>
+          <div class="hero-player-row">
+            <button id="btnPlayAyahAudio" class="btn-audio-hero" title="Kâbe İmamı Şeyh Yâsir ed-Devserî'den Dinle (Klavye Kısayolu: Boşluk Tuşu)">
+              ▶ Âyeti Dinle (Kâbe İmamı Şeyh Yâsir ed-Devserî)
+            </button>
+          </div>
+        </div>
+
+        <!-- Arapça Uthmani Orijinal Hat -->
+        <div class="hero-arabic-frame">
+          <div id="heroAyahArabic" class="hero-arabic-text">
+            اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ
+          </div>
+        </div>
+
+        <!-- Latin Fonetik & Diyanet Meali -->
+        <div class="hero-translations-grid">
+          <div class="translation-box latin-box">
+            <span class="translation-label cyan"> Fonetik Latin Okunuşu (Transkripsiyon)</span>
+            <div id="heroAyahLatin" class="translation-text">
+              Allâhu lâ ilâhe illâ hüve'l-hayyu'l-kayyûm...
+            </div>
+          </div>
+
+          <div class="translation-box meal-box">
+            <span class="translation-label green"> Türkçe Diyanet Meali</span>
+            <div id="heroAyahMeal" class="translation-text">
+              Allah, kendisinden başka hiçbir ilâh bulunmayandır. O, diridir (hayy), her şeyi ayakta tutandır (kayyûm)...
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. ÂYETİN HİKAYESİ VE NÜZUL SEBEBİ (ESBÂB-I NÜZÛL) -->
+      <section class="section-panel-card kissa-card">
+        <div class="section-header">
+          <div class="section-title">
+            <span id="kissaTitle">Âyetin Hikayesi, Nüzul Sebebi & Tarihi Arka Plan</span>
+          </div>
+          <span class="section-tag tag-gold">ESBÂB-I NÜZÛL & KISSA</span>
+        </div>
+
+        <div id="kissaBody" class="kissa-body">
+          <!-- Dinamik olarak doldurulacak -->
+        </div>
+      </section>
+
+      <section class="section-panel-card" aria-labelledby="scholarsStatusTitle">
+        <div class="section-header">
+          <h2 id="scholarsStatusTitle" class="section-title">Tefsir Meclisi</h2>
+        </div>
+        <p role="status">
+          Âlimlere atfedilen yorumlar için kaynak ve uzman onayı doğrulanmış bir yayın
+          kaydı bulunmadığından bu bölüm henüz kullanıma açık değildir.
+        </p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Kur'an-ı Kerim İnceleme & Tefsir Motoru -->
+  <script src="inceleme_engine.js?v=20261021_1300"></script>
+  <script src="design-system.js?v=20261021_v5a"></script>
+  <script src="ui-v5.js?v=20261021_v5a"></script>
+</body>
+</html>

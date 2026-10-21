@@ -1,0 +1,375 @@
+{
+  "id": "ussak",
+  "names": {
+    "tr": "Uşşak",
+    "ar": "عُشَّاق",
+    "en": "Ushshak"
+  },
+  "durak": 9,
+  "guclu": 31,
+  "yeden": 0,
+  "seyir": "cikici",
+  "dizi": {
+    "cikici": [
+      9,
+      17,
+      22,
+      31,
+      40,
+      44,
+      53,
+      62
+    ],
+    "inici": null
+  },
+  "cesniler": [
+    {
+      "tur": "usak-dortlusu",
+      "baslangic": 9
+    },
+    {
+      "tur": "buselik-beslisi",
+      "baslangic": 31
+    }
+  ],
+  "iliskili": [
+    "bayati"
+  ],
+  "yarimKarar": [
+    31
+  ],
+  "asmaKararlar": [
+    17,
+    22
+  ],
+  "genisleme": {
+    "pest": 0,
+    "tiz": 62
+  },
+  "seyirBolumleri": {
+    "zemin": "Dügâh perdesinden veya civarından başlar; Segâh koması duyurularak Nevâ'ya çıkılır.",
+    "meyan": "Nevâ üzerinde Bûselik beşlisiyle Acem ve Gerdâniye seslerinde dolaşılır.",
+    "karar": "Nevâ'dan Çargâh ve Segâh üzerinden Dügâh'ta karar verilir."
+  },
+  "school": [
+    "turk",
+    "misir",
+    "hicaz"
+  ],
+  "tags": [
+    "samimi",
+    "icten",
+    "huzun",
+    "ikindi ezani",
+    "tovbe"
+  ],
+  "difficulty": 1,
+  "ruhiTesir": "Tevazu, derin hüzün, huşû ve samimiyet telkin eder. Âşığın maşuka yakarışı gibi yürek yakıcıdır.",
+  "gelenekNotu": [
+    "Müminlerin vasıfları ve ahlak âyetleri",
+    "Tevbe, istiğfar ve ilahi rahmet",
+    "Peygamber kıssalarındaki imtihan anları"
+  ],
+  "ezanGelenegi": {
+    "metin": "İkindi ve Yatsı Ezânı (Günün yorgunluğunda huşû ve teslimiyet)",
+    "kaynak": "Geleneksel Türk Ezan Tavrı",
+    "kesinlik": "gelenek"
+  },
+  "motifs": [
+    {
+      "id": "ussak-m1",
+      "name": {
+        "tr": "Uşşak Zemin Girişi",
+        "ar": "مدخل العشاق",
+        "en": "Ushshak Ground Opening"
+      },
+      "type": "giris",
+      "path": [
+        {
+          "abs": 9,
+          "beats": 1
+        },
+        {
+          "abs": 17,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "ussak-m2",
+      "name": {
+        "tr": "Nevâ Üzerinde Seyir",
+        "ar": "سير النوى",
+        "en": "Pivoting around Neva"
+      },
+      "type": "guclu",
+      "path": [
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        },
+        {
+          "abs": 40,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        }
+      ]
+    },
+    {
+      "id": "ussak-m3",
+      "name": {
+        "tr": "Uşşak Düşüş Nağmesi",
+        "ar": "نغمة الهبوط",
+        "en": "Ushshak Descending Wave"
+      },
+      "type": "asma-karar",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 17,
+          "beats": 2
+        },
+        {
+          "abs": 9,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "ussak-m4",
+      "name": {
+        "tr": "Karar Perdesine Bağlanış",
+        "ar": "الاستقرار على الدوكاه",
+        "en": "Cadence to Dugah"
+      },
+      "type": "inis-karar",
+      "path": [
+        {
+          "abs": 17,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 17,
+          "beats": 1
+        },
+        {
+          "abs": 9,
+          "beats": 3
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "to": "rast",
+      "via": "Rast",
+      "viaAbs": 0,
+      "path": [
+        {
+          "abs": 9
+        },
+        {
+          "abs": 0
+        }
+      ],
+      "note": {
+        "tr": "Rast perdesine inilerek makamlar şahına bağlanılır."
+      }
+    },
+    {
+      "to": "hicaz",
+      "via": "Dik-Kürdî",
+      "viaAbs": 14,
+      "path": [
+        {
+          "abs": 9
+        },
+        {
+          "abs": 14
+        },
+        {
+          "abs": 26
+        },
+        {
+          "abs": 31
+        }
+      ],
+      "note": {
+        "tr": "Dik-Kürdî ve Nîm-Hicaz basılarak Hicaz dörtlüsüne geçilir."
+      }
+    },
+    {
+      "to": "saba",
+      "via": "Çargâh",
+      "viaAbs": 22,
+      "path": [
+        {
+          "abs": 9
+        },
+        {
+          "abs": 17
+        },
+        {
+          "abs": 22
+        },
+        {
+          "abs": 27
+        }
+      ],
+      "note": {
+        "tr": "Çargâh'tan sonra Hicaz perdesi (27) basılarak Sabâ'ya geçilir."
+      }
+    }
+  ],
+  "confidence": "high",
+  "needsReview": false,
+  "notlar": "Bayâtî makamı aynı diziyi kullanır; seyir güçlü (Nevâ) civarından başlar (TDV Bayatî). Dügâh→Segâh 8 komadır (≈181 c), 150 c değildir.",
+  "kaynaklar": [
+    {
+      "baslik": "TDV İslâm Ansiklopedisi — Uşşak",
+      "yazar": "İsmail Hakkı Özkan",
+      "url": "https://islamansiklopedisi.org.tr/ussak--musiki",
+      "erisimTarihi": "2026-10-20"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "log": [
+      {
+        "tarih": "2026-10-20",
+        "not": "8 komalık Segâh aralığı doğrulandı."
+      }
+    ]
+  },
+  "characterTags": [
+    "samimi",
+    "icten",
+    "huzun",
+    "ikindi ezani",
+    "tovbe"
+  ],
+  "kararName": "Dügâh",
+  "description": {
+    "tr": "Tevazu, derin hüzün, huşû ve samimiyet telkin eder. Âşığın maşuka yakarışı gibi yürek yakıcıdır."
+  },
+  "degrees": [
+    {
+      "name": {
+        "tr": "Dügâh",
+        "ar": "Dügâh",
+        "en": "Dügâh"
+      },
+      "komas": 0,
+      "arCents": 0,
+      "isMicro": false,
+      "abs": 9
+    },
+    {
+      "name": {
+        "tr": "Segâh",
+        "ar": "Segâh",
+        "en": "Segâh"
+      },
+      "komas": 8,
+      "arCents": 181,
+      "isMicro": false,
+      "abs": 17
+    },
+    {
+      "name": {
+        "tr": "Çargâh",
+        "ar": "Çargâh",
+        "en": "Çargâh"
+      },
+      "komas": 13,
+      "arCents": 294,
+      "isMicro": true,
+      "abs": 22
+    },
+    {
+      "name": {
+        "tr": "Nevâ",
+        "ar": "Nevâ",
+        "en": "Nevâ"
+      },
+      "komas": 22,
+      "arCents": 498,
+      "isMicro": true,
+      "abs": 31
+    },
+    {
+      "name": {
+        "tr": "Hüseynî",
+        "ar": "Hüseynî",
+        "en": "Hüseynî"
+      },
+      "komas": 31,
+      "arCents": 702,
+      "isMicro": true,
+      "abs": 40
+    },
+    {
+      "name": {
+        "tr": "Acem",
+        "ar": "Acem",
+        "en": "Acem"
+      },
+      "komas": 35,
+      "arCents": 792,
+      "isMicro": true,
+      "abs": 44
+    },
+    {
+      "name": {
+        "tr": "Gerdâniye",
+        "ar": "Gerdâniye",
+        "en": "Gerdâniye"
+      },
+      "komas": 44,
+      "arCents": 996,
+      "isMicro": false,
+      "abs": 53
+    },
+    {
+      "name": {
+        "tr": "Muhayyer",
+        "ar": "Muhayyer",
+        "en": "Muhayyer"
+      },
+      "komas": 53,
+      "arCents": 1200,
+      "isMicro": true,
+      "abs": 62
+    }
+  ]
+}

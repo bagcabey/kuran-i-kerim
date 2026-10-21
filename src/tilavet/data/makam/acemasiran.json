@@ -1,0 +1,366 @@
+{
+  "id": "acem",
+  "names": {
+    "tr": "Acem",
+    "ar": "عَجَم",
+    "en": "Ajam"
+  },
+  "durak": -9,
+  "guclu": 22,
+  "yeden": -13,
+  "seyir": "inici-cikici",
+  "dizi": {
+    "cikici": [
+      -9,
+      0,
+      9,
+      13,
+      22,
+      31,
+      40,
+      44
+    ],
+    "inici": null
+  },
+  "cesniler": [
+    {
+      "tur": "cargah-dizisi-transpoze",
+      "baslangic": -9
+    },
+    {
+      "tur": "cargah-beslisi",
+      "baslangic": 22
+    }
+  ],
+  "yarimKarar": [
+    22
+  ],
+  "asmaKararlar": [
+    0,
+    9
+  ],
+  "genisleme": {
+    "pest": -13,
+    "tiz": 44
+  },
+  "seyirBolumleri": {
+    "zemin": "Çargâh veya Acem-Aşîran civarından başlar; majör karakterli berrak sesler duyurulur.",
+    "meyan": "Çargâh ve Nevâ üzerinde parıldayan perdelerle tiz bölgeye çıkılır.",
+    "karar": "Nevâ ve Çargâh'tan Dügâh ve Rast geçilerek Acem-Aşîran perdesinde tam karar verilir."
+  },
+  "school": [
+    "misir",
+    "turk",
+    "hicaz"
+  ],
+  "tags": [
+    "zafer",
+    "izzet",
+    "san",
+    "azamet",
+    "bayram"
+  ],
+  "difficulty": 2,
+  "ruhiTesir": "Zafer, sevinç, azamet, izzet ve ilahi şan duygusu verir. Batı mûsikisindeki majör tonla birebir örtüşür.",
+  "gelenekNotu": [
+    "İlahi zafer ve fetih âyetleri",
+    "Müminlerin izzet ve üstünlüğü",
+    "Kâinatın ilahi nizamı ve azameti"
+  ],
+  "ezanGelenegi": {
+    "metin": "Cuma ve Bayram Namazları (Büyük toplanma ve bayram neşesi)",
+    "kaynak": "Geleneksel Türk Din Mûsikisi",
+    "kesinlik": "gelenek"
+  },
+  "motifs": [
+    {
+      "id": "acem-m1",
+      "name": {
+        "tr": "Acem-Aşîran Girişi",
+        "ar": "مدخل عجم عشيران",
+        "en": "Ajam Ashiran Opening"
+      },
+      "type": "giris",
+      "path": [
+        {
+          "abs": -9,
+          "beats": 1
+        },
+        {
+          "abs": 0,
+          "beats": 1
+        },
+        {
+          "abs": 9,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "acem-m2",
+      "name": {
+        "tr": "Çargâh Güçlüsü Açılımı",
+        "ar": "انفتاح الجهاركاه",
+        "en": "Chargah Dominant Pivot"
+      },
+      "type": "guclu",
+      "path": [
+        {
+          "abs": 9,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 2
+        },
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "acem-m3",
+      "name": {
+        "tr": "Acem Perdesi Zirvesi",
+        "ar": "ذروة العجم",
+        "en": "Ajam Climax"
+      },
+      "type": "asma-karar",
+      "path": [
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 40,
+          "beats": 1
+        },
+        {
+          "abs": 44,
+          "beats": 2
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "acem-m4",
+      "name": {
+        "tr": "Acem-Aşîran Kararına Dönüş",
+        "ar": "الرجوع إلى قرار عجم عشيران",
+        "en": "Cadence to Ajam Ashiran"
+      },
+      "type": "inis-karar",
+      "path": [
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 9,
+          "beats": 1
+        },
+        {
+          "abs": 0,
+          "beats": 1
+        },
+        {
+          "abs": -9,
+          "beats": 3
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "to": "rast",
+      "via": "Rast",
+      "viaAbs": 0,
+      "path": [
+        {
+          "abs": -9
+        },
+        {
+          "abs": 0
+        }
+      ],
+      "note": {
+        "tr": "Rast perdesine basılarak Rast makamına geçilir."
+      }
+    },
+    {
+      "to": "nihavend",
+      "via": "Çargâh",
+      "viaAbs": 22,
+      "path": [
+        {
+          "abs": 9
+        },
+        {
+          "abs": 13
+        },
+        {
+          "abs": 22
+        }
+      ],
+      "note": {
+        "tr": "Çargâh üzerinde Bûselik sesleriyle Nihavend'e bağlanılır."
+      }
+    },
+    {
+      "to": "kurdi",
+      "via": "Dügâh",
+      "viaAbs": 9,
+      "path": [
+        {
+          "abs": 22
+        },
+        {
+          "abs": 13
+        },
+        {
+          "abs": 9
+        }
+      ],
+      "note": {
+        "tr": "Dügâh perdesinde Kürdî kararına inilir."
+      }
+    }
+  ],
+  "confidence": "medium",
+  "needsReview": true,
+  "notlar": "Acem-aşîran makamı: Çargâh dizisinin Acem-aşîran perdesine (-9) göçürülmüş halidir. Eski blueprint C4 kararlı transpoze sürüm vermişti.",
+  "kaynaklar": [
+    {
+      "baslik": "TDV İslâm Ansiklopedisi — Acem-Aşîran",
+      "yazar": "İsmail Hakkı Özkan",
+      "url": "https://islamansiklopedisi.org.tr/acem-asiran",
+      "erisimTarihi": "2026-10-20"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "log": [
+      {
+        "tarih": "2026-10-20",
+        "not": "Doğal durak Acem-Aşîran (-9) olarak ayarlandı."
+      }
+    ]
+  },
+  "characterTags": [
+    "zafer",
+    "izzet",
+    "san",
+    "azamet",
+    "bayram"
+  ],
+  "kararName": "Acem-Aşîran",
+  "description": {
+    "tr": "Zafer, sevinç, azamet, izzet ve ilahi şan duygusu verir. Batı mûsikisindeki majör tonla birebir örtüşür."
+  },
+  "degrees": [
+    {
+      "name": {
+        "tr": "Acem-Aşîran",
+        "ar": "Acem-Aşîran",
+        "en": "Acem-Aşîran"
+      },
+      "komas": 0,
+      "arCents": 0,
+      "isMicro": false,
+      "abs": -9
+    },
+    {
+      "name": {
+        "tr": "Rast",
+        "ar": "Rast",
+        "en": "Rast"
+      },
+      "komas": 9,
+      "arCents": 204,
+      "isMicro": false,
+      "abs": 0
+    },
+    {
+      "name": {
+        "tr": "Dügâh",
+        "ar": "Dügâh",
+        "en": "Dügâh"
+      },
+      "komas": 18,
+      "arCents": 408,
+      "isMicro": false,
+      "abs": 9
+    },
+    {
+      "name": {
+        "tr": "Kürdî",
+        "ar": "Kürdî",
+        "en": "Kürdî"
+      },
+      "komas": 22,
+      "arCents": 498,
+      "isMicro": true,
+      "abs": 13
+    },
+    {
+      "name": {
+        "tr": "Çargâh",
+        "ar": "Çargâh",
+        "en": "Çargâh"
+      },
+      "komas": 31,
+      "arCents": 702,
+      "isMicro": true,
+      "abs": 22
+    },
+    {
+      "name": {
+        "tr": "Nevâ",
+        "ar": "Nevâ",
+        "en": "Nevâ"
+      },
+      "komas": 40,
+      "arCents": 906,
+      "isMicro": false,
+      "abs": 31
+    },
+    {
+      "name": {
+        "tr": "Hüseynî",
+        "ar": "Hüseynî",
+        "en": "Hüseynî"
+      },
+      "komas": 49,
+      "arCents": 1109,
+      "isMicro": true,
+      "abs": 40
+    },
+    {
+      "name": {
+        "tr": "Acem",
+        "ar": "Acem",
+        "en": "Acem"
+      },
+      "komas": 53,
+      "arCents": 1200,
+      "isMicro": true,
+      "abs": 44
+    }
+  ]
+}

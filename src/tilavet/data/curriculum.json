@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "levels": [
+    {
+      "level": 0,
+      "id": "hazirlik",
+      "title": { "tr": "Hazırlık", "en": "Getting Ready" },
+      "lessons": ["L0-1-kuran-ve-adab", "L0-2-mushaf-tanima", "L0-3-uygulama-turu-mikrofon", "L0-4-seviye-testi", "L0-5-hedef-belirleme"]
+    },
+    {
+      "level": 1,
+      "id": "elif-ba",
+      "title": { "tr": "Elif-Ba", "en": "Alphabet" },
+      "lessons": ["L1-1-harfler", "L1-2-benzer-harfler", "L1-3-birlestirme", "L1-4-pekistirme-oyunlari", "L1-5-mahrecler", "L1-6-sifatlar-giris"]
+    },
+    {
+      "level": 2,
+      "id": "harekeler",
+      "title": { "tr": "Harekeler ve Okuma", "en": "Vowels & Reading" },
+      "lessons": ["L2-1-hareke-tenvin", "L2-2-cezm-sedde-med", "L2-3-heceleme", "L2-4-vasl-lam-tarif", "L2-5-kelime-kelime", "L2-6-seviye2-sinav"]
+    },
+    {
+      "level": 3,
+      "id": "tecvid",
+      "title": { "tr": "Tecvid Temelleri", "en": "Tajweed Basics" },
+      "lessons": ["L3-1-nun-sakin-giris", "L3-2-izhar", "L3-3-idgam", "L3-4-iklab", "L3-5-ihfa", "L3-6-mim-sakin", "L3-7-gunne", "L3-8-med-bolumu", "L3-9-kalkale", "L3-10-lam-ra", "L3-11-seviye3-sinav"]
+    },
+    {
+      "level": 4,
+      "id": "tilavet",
+      "title": { "tr": "Tilavet Teknikleri", "en": "Recitation Techniques" },
+      "lessons": ["L4-1-hizlar", "L4-2-vakif-ibtida", "L4-3-nefes", "L4-4-ifade", "L4-5-hatalar-atlasi", "L4-6-mukabele", "L4-7-seviye4-sinav"]
+    },
+    {
+      "level": 5,
+      "id": "makam-ses",
+      "title": { "tr": "Makam ve Ses Sanatı", "en": "Maqam & Voice" },
+      "lessons": ["L5-1-makama-giris", "L5-2-gecki", "L5-3-final-performans"]
+    }
+  ]
+}

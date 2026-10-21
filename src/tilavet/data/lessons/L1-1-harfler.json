@@ -1,0 +1,24 @@
+{
+  "id": "L1-1-harfler",
+  "level": 1,
+  "module": "elif-ba",
+  "title": { "tr": "Arap Alfabesi ve Harfler", "ar": "الحروف الهجائية", "en": "Arabic Alphabet" },
+  "objectives": [
+    { "tr": "28 temel Arapça harfi tanır" },
+    { "tr": "Harflerin müstakil yazılışlarını ayırt eder" }
+  ],
+  "estimatedMinutes": 10,
+  "prerequisites": [],
+  "status": "draft",
+  "needsReview": true,
+  "sections": [
+    { "type": "intro", "text": { "tr": "Kur'an-ı Kerim alfabesi 28 temel harften oluşur. Tüm harfler sağdan sola yazılır ve okunur." } },
+    { "type": "explain", "text": { "tr": "Harfler: Elif, Be, Te, Se, Cim, Ha, Hı, Dal, Zel, Ra, Ze, Sin, Şın, Sad, Dad, Tı, Zı, Ayn, Gayn, Fe, Kaf, Kef, Lam, Mim, Nun, Vav, He, Ye." } },
+    { "type": "letterGrid", "letters": ["ا", "ب", "ت", "ث", "ج", "ح", "خ", "د", "ذ", "ر", "ز", "س", "ش", "ص", "ض", "ط", "ظ", "ع", "غ", "ف", "ق", "ك", "ل", "م", "ن", "و", "ه", "ي"] },
+    { "type": "summary", "bullets": [
+      { "tr": "28 temel harf vardır" },
+      { "tr": "Sağdan sola okunur" }
+    ]}
+  ],
+  "sources": ["Diyanet Elif-Ba Cüzü"]
+}

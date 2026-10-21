@@ -1,0 +1,22 @@
+{
+  "id": "L3-8-seviye3-sinav",
+  "level": 3,
+  "module": "tecvid",
+  "title": { "tr": "Seviye 3 Tecvid Bitirme Sınavı", "ar": "اختبار التجويد", "en": "Level 3 Tajweed Final Exam" },
+  "objectives": [
+    { "tr": "Tecvid kurallarını ayet üzerinde doğru uygular" },
+    { "tr": "Mahreç ve sıfatlara riayet eder" }
+  ],
+  "estimatedMinutes": 20,
+  "prerequisites": ["L3-2-izhar"],
+  "status": "draft",
+  "needsReview": true,
+  "sections": [
+    { "type": "intro", "text": { "tr": "Bu sınavda nun sâkin, mim sâkin, medler ve kalkale kurallarını içeren âyetleri okuyacaksınız." } },
+    { "type": "imitate", "ayah": "112:1", "recordingRequired": true },
+    { "type": "summary", "bullets": [
+      { "tr": "Tecvid kuralları teorik ve pratik olarak kavranmıştır" }
+    ]}
+  ],
+  "sources": ["Tecvid İlmihali"]
+}

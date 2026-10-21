@@ -1,0 +1,371 @@
+{
+  "id": "huzzam",
+  "names": {
+    "tr": "Hüzzam",
+    "ar": "حُزَّام",
+    "en": "Huzzam"
+  },
+  "durak": 17,
+  "guclu": 31,
+  "yeden": 13,
+  "seyir": "inici-cikici",
+  "dizi": {
+    "cikici": [
+      17,
+      22,
+      31,
+      36,
+      48,
+      53,
+      65,
+      70
+    ],
+    "inici": null
+  },
+  "cesniler": [
+    {
+      "tur": "huzzam-beslisi",
+      "baslangic": 17
+    },
+    {
+      "tur": "hicaz-dortlusu",
+      "baslangic": 48
+    }
+  ],
+  "yarimKarar": [
+    31
+  ],
+  "asmaKararlar": [
+    36,
+    48
+  ],
+  "genisleme": {
+    "pest": 13,
+    "tiz": 70
+  },
+  "seyirBolumleri": {
+    "zemin": "Nevâ veya Segâh civarından başlar; Çargâh, Nevâ ve Hisar perdesiyle Hüzzam yakarışı duyurulur.",
+    "meyan": "Nevâ üzerinde Eviç ve Nîm-Şehnaz perdeleriyle Tiz-Segâh bölgesinde feryat nağmeleri basılır.",
+    "karar": "Hisar ve Nevâ'dan Çargâh geçilerek Segâh perdesinde kırık bir teslimiyetle karar verilir."
+  },
+  "school": [
+    "turk",
+    "misir"
+  ],
+  "tags": [
+    "yanik",
+    "yakaris",
+    "gozyasi",
+    "aksam ezani",
+    "mevlid"
+  ],
+  "difficulty": 3,
+  "ruhiTesir": "Türk ve Şark mûsikisinin en derin yakarış, gözyaşı ve feryat makamlarındandır. Balığın karnındaki Hz. Yûnus'un duası Hüzzam'ın kırık nağmeleriyle arşa yükselir.",
+  "gelenekNotu": [
+    "Peygamber duaları ve mahzun münâcâtlar",
+    "Ayrılık, hasret ve can yakıcı tövbeler",
+    "Mevlid-i Şerif münâcât ve velâdet bahrı"
+  ],
+  "ezanGelenegi": {
+    "metin": "İkindi ve Akşam Vakitleri (Günün batışında hüzün ve iç yakıcı feryat)",
+    "kaynak": "Geleneksel Türk Din Mûsikisi",
+    "kesinlik": "gelenek"
+  },
+  "motifs": [
+    {
+      "id": "huzzam-m1",
+      "name": {
+        "tr": "Hüzzam Beşlisi Girişi",
+        "ar": "مدخل خماسي الحزام",
+        "en": "Huzzam Fifth Opening"
+      },
+      "type": "giris",
+      "path": [
+        {
+          "abs": 17,
+          "beats": 2
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "huzzam-m2",
+      "name": {
+        "tr": "Hisar Perdesiyle Yakarış",
+        "ar": "نداء بحصار",
+        "en": "Lament with Hisar"
+      },
+      "type": "guclu",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 36,
+          "beats": 2
+        },
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "huzzam-m3",
+      "name": {
+        "tr": "Eviç Üzerinde Meyan",
+        "ar": "ميانه على الأوج",
+        "en": "Climax on Evic"
+      },
+      "type": "asma-karar",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 48,
+          "beats": 1
+        },
+        {
+          "abs": 53,
+          "beats": 1
+        },
+        {
+          "abs": 65,
+          "beats": 2
+        },
+        {
+          "abs": 48,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "huzzam-m4",
+      "name": {
+        "tr": "Hüzzam Hüzünlü Karar",
+        "ar": "الاستقرار الحزين",
+        "en": "Melancholic Huzzam Cadence"
+      },
+      "type": "inis-karar",
+      "path": [
+        {
+          "abs": 36,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 17,
+          "beats": 3
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "to": "segah",
+      "via": "Segâh",
+      "viaAbs": 17,
+      "path": [
+        {
+          "abs": 31
+        },
+        {
+          "abs": 22
+        },
+        {
+          "abs": 17
+        }
+      ],
+      "note": {
+        "tr": "Hisar perdesi terkedilip Segâh perdesine inilerek Segâh makamına bağlanılır."
+      }
+    },
+    {
+      "to": "hicaz",
+      "via": "Hicaz",
+      "viaAbs": 27,
+      "path": [
+        {
+          "abs": 31
+        },
+        {
+          "abs": 26
+        },
+        {
+          "abs": 14
+        },
+        {
+          "abs": 9
+        }
+      ],
+      "note": {
+        "tr": "Hicaz seslerine geçilerek Dügâh kararında Hicaz icra edilir."
+      }
+    },
+    {
+      "to": "rast",
+      "via": "Rast",
+      "viaAbs": 0,
+      "path": [
+        {
+          "abs": 17
+        },
+        {
+          "abs": 9
+        },
+        {
+          "abs": 0
+        }
+      ],
+      "note": {
+        "tr": "Segâh ve Dügâh üzerinden Rast perdesine inilerek Rast kararı verilir."
+      }
+    }
+  ],
+  "confidence": "high",
+  "needsReview": false,
+  "notlar": "Hüzzam beşlisi (Segâh, Çargâh, Nevâ, Hisar, Eviç) + Eviç'te Hicaz dörtlüsü (TDV Hüzzam). Karar frekansı 244.3 Hz civarıdır.",
+  "kaynaklar": [
+    {
+      "baslik": "TDV İslâm Ansiklopedisi — Hüzzam",
+      "yazar": "İsmail Hakkı Özkan",
+      "url": "https://islamansiklopedisi.org.tr/huzzam--musiki",
+      "erisimTarihi": "2026-10-20"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "log": [
+      {
+        "tarih": "2026-10-20",
+        "not": "huzzam-m1 motifi bozuk veriden arındırıldı."
+      }
+    ]
+  },
+  "characterTags": [
+    "yanik",
+    "yakaris",
+    "gozyasi",
+    "aksam ezani",
+    "mevlid"
+  ],
+  "kararName": "Segâh",
+  "description": {
+    "tr": "Türk ve Şark mûsikisinin en derin yakarış, gözyaşı ve feryat makamlarındandır. Balığın karnındaki Hz. Yûnus'un duası Hüzzam'ın kırık nağmeleriyle arşa yükselir."
+  },
+  "degrees": [
+    {
+      "name": {
+        "tr": "Segâh",
+        "ar": "Segâh",
+        "en": "Segâh"
+      },
+      "komas": 0,
+      "arCents": 0,
+      "isMicro": false,
+      "abs": 17
+    },
+    {
+      "name": {
+        "tr": "Çargâh",
+        "ar": "Çargâh",
+        "en": "Çargâh"
+      },
+      "komas": 5,
+      "arCents": 113,
+      "isMicro": true,
+      "abs": 22
+    },
+    {
+      "name": {
+        "tr": "Nevâ",
+        "ar": "Nevâ",
+        "en": "Nevâ"
+      },
+      "komas": 14,
+      "arCents": 317,
+      "isMicro": true,
+      "abs": 31
+    },
+    {
+      "name": {
+        "tr": "Hisar",
+        "ar": "Hisar",
+        "en": "Hisar"
+      },
+      "komas": 19,
+      "arCents": 430,
+      "isMicro": true,
+      "abs": 36
+    },
+    {
+      "name": {
+        "tr": "Eviç",
+        "ar": "Eviç",
+        "en": "Eviç"
+      },
+      "komas": 31,
+      "arCents": 702,
+      "isMicro": true,
+      "abs": 48
+    },
+    {
+      "name": {
+        "tr": "Gerdâniye",
+        "ar": "Gerdâniye",
+        "en": "Gerdâniye"
+      },
+      "komas": 36,
+      "arCents": 815,
+      "isMicro": false,
+      "abs": 53
+    },
+    {
+      "name": {
+        "tr": "Nîm-Şehnaz",
+        "ar": "Nîm-Şehnaz",
+        "en": "Nîm-Şehnaz"
+      },
+      "komas": 48,
+      "arCents": 1087,
+      "isMicro": false,
+      "abs": 65
+    },
+    {
+      "name": {
+        "tr": "Tiz-Segâh",
+        "ar": "Tiz-Segâh",
+        "en": "Tiz-Segâh"
+      },
+      "komas": 53,
+      "arCents": 1200,
+      "isMicro": true,
+      "abs": 70
+    }
+  ]
+}

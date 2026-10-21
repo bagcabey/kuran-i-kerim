@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1411">
+  <title>KUR'ÂN-I KERÎM — Tilavet, Tecvid &amp; Âyet İnceleme Atölyesi</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css?v=20261020_1740">
+  <link rel="stylesheet" href="tilavet_akademi.css?v=20261022_03">
+  <link rel="stylesheet" href="audio_lab/ui/ses_lab_v4.css?v=20261020_1640">
+  <link rel="stylesheet" href="design-system.css?v=20261021_04">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Amiri:wght@400;700&family=Amiri+Quran&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ui-v5.css?v=20261021_v5a">
+</head>
+<body id="v5">
+
+  <!-- Ekran Okuyucu Hızlı Atlama Linki (Skip Link) -->
+  <a class="skip-link" href="#main-workspace">Ana Çalışma Alanına Geç</a>
+
+  <!-- Arka Plan Işık Halesi (Ambient Glow) -->
+  <div class="ambient-bg" aria-hidden="true"></div>
+
+  <div class="app-shell" data-active-tab="tab-tilavet">
+    
+    <!-- ===================================================================
+         1. ÜST TELEMETRİ & HUD BARI (APP-HEADER)
+         =================================================================== -->
+    <header class="app-header">
+      <a class="brand-area" href="#tab-tilavet" aria-label="Kur’an-ı Kerîm ana sayfa">
+        <span class="v5-brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1.6 15 4.9l4.4-.3-.3 4.4 3.3 3-3.3 3 .3 4.4-4.4-.3-3 3.3-3-3.3-4.4.3.3-4.4L1.6 12l3.3-3-.3-4.4 4.4.3zm0 5.9a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z"/></svg></span>
+        <div class="brand-text">
+          <h1 class="brand-title">Kur'ân-ı Kerîm</h1>
+          <div class="brand-subtitle">Oku · Dinle · Öğren</div>
+        </div>
+      </a>
+
+      <div class="hud-telemetry">
+        <!-- Canlı Mikrofon Durumu -->
+        <div class="hud-item" id="hudMicContainer" role="status" title="Canlı Tilavet Mikrofon Durumu">
+          <span class="hud-dot" id="micHudDot" aria-hidden="true"></span>
+          <span class="hud-label">MİKROFON</span>
+          <span class="hud-value" id="hudMicStatus">HAZIR</span>
+        </div>
+
+        <!-- Aktif Kâri Rozeti -->
+        <div class="hud-item" id="hudReciterContainer" title="Seçili Kâri">
+          <span class="hud-label">KÂRİ</span>
+          <span class="hud-value" id="activeReciterBadge">Kâbe İmamı</span>
+        </div>
+
+        <!-- Mushaf Sayfa & Cüz Rozeti -->
+        <div class="hud-item" id="hudMushafPageBadge" title="Aktif Mushaf Sayfası ve Cüz">
+          <span class="hud-label">MUSHAF</span>
+          <span class="hud-value gold" id="hudMushafPageValue">50. Sayfa (3. Cüz)</span>
+        </div>
+
+        <!-- İnceleme Sekmesi HUD Telemetrisi (Âyet, Nüzul, Kapsam) -->
+        <div class="hud-item" id="hudIncelemeAyahItem" title="Aktif İncelenen Âyet">
+          <span class="hud-dot" style="background: var(--accent-gold); box-shadow: 0 0 10px var(--accent-gold);" aria-hidden="true"></span>
+          <span class="hud-label">İNCELEME</span>
+          <span class="hud-value gold" id="hudActiveAyahBadge">2. Bakara Sûresi — 255. Âyet</span>
+        </div>
+
+        <div class="hud-item" id="hudIncelemePlaceItem" title="Nüzul Dönemi">
+          <span class="hud-label">DÖNEM</span>
+          <span class="hud-value" id="hudSurahPlace">Medine Dönemi</span>
+        </div>
+
+        <div class="hud-item" id="hudIncelemeTotalItem" title="Sûre Âyet Kapsamı">
+          <span class="hud-label">KAPSAM</span>
+          <span class="hud-value" id="hudSurahTotal">Toplam 286 Âyet</span>
+        </div>
+
+        <button type="button" id="btnThemeToggle" class="theme-toggle" aria-label="Temayı değiştir" title="Açık / koyu görünüm">
+          <span class="theme-toggle-icon" aria-hidden="true">☼</span>
+          <span class="theme-toggle-label">Görünüm</span>
+        </button>
+
+      </div>
+    </header>
+
+    <!-- ===================================================================
+         2. SOL GEZİNTİ RAYI (NAV-TABS / APP-RAIL)
+         =================================================================== -->
+    <nav class="nav-tabs" role="tablist" aria-label="Ana Gezinti Menüsü">
+      <div class="rail-heading">
+        <div class="rail-caption">
+          <span class="rail-caption-kicker">ÇALIŞMA ALANI</span>
+          <span class="rail-caption-title">Gezinti</span>
+        </div>
+        <button type="button" id="btnToggleRail" class="rail-collapse-toggle" aria-label="Menüyü daralt" aria-expanded="true" title="Menüyü daralt">
+          <span class="rail-toggle-icon" aria-hidden="true">‹</span>
+          <span class="sr-only">Menüyü daralt</span>
+        </button>
+      </div>
+
+      <!-- Sekme 1 Butonu: Mushaf & Tilavet -->
+      <button type="button" class="nav-tab-btn active" role="tab" aria-controls="tab-tilavet" data-tab="tab-tilavet" id="tabBtnTilavet" aria-selected="true" title="Mushaf-ı Şerîf &amp; Canlı Tilavet Laboratuvarı">
+        <span class="rail-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3.5A2.5 2.5 0 0 1 7.5 1H20v17H7.5a1 1 0 0 0 0 2H20v2H7.5A2.5 2.5 0 0 1 5 19.5zM9 5v2h7V5z"/></svg></span>
+        <span class="nav-txt">Mushaf &amp; Tilavet</span>
+        <span class="nav-count">604 S.</span>
+      </button>
+
+      <!-- Sekme 2 Butonu: Âyet İnceleme & Tefsir -->
+      <button type="button" class="nav-tab-btn" role="tab" aria-controls="tab-inceleme" data-tab="tab-inceleme" id="tabBtnInceleme" aria-selected="false" title="Âyet İnceleme &amp; Esbâb-ı Nüzûl">
+        <span class="rail-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 2h8l6 6v14H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V9h5.5zM8 13h8v2H8zm0 4h6v2H8z"/></svg></span>
+        <span class="nav-txt">Âyet İnceleme &amp; Tefsir</span>
+        <span class="nav-count">Nüzûl</span>
+      </button>
+
+      <!-- Sekme 3 Butonu: Tilavet Akademisi -->
+      <button type="button" class="nav-tab-btn" role="tab" aria-controls="tab-akademi" data-tab="tab-akademi" id="tabBtnAkademi" aria-selected="false" title="Tilavet Akademisi, Makam Okulu &amp; Şan Eğitimi">
+        <span class="rail-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8z"/></svg></span>
+        <span class="nav-txt">Tilavet Akademisi</span>
+        <span class="nav-count">10 Seviye</span>
+      </button>
+
+      <div class="rail-spacer"></div>
+
+      <!-- Hızlı Araç: Beni Bul (Ayet Konumlandırıcı Komut Paleti) -->
+      <button id="btnRailBeniBul" type="button" class="nav-showcase-link" aria-haspopup="dialog" title="Kur'an-ı Kerim Akıllı Ayet Arama ve Konumlandırıcı">
+        <span class="rail-nav-icon" aria-hidden="true">⌕</span>
+        <div class="nav-txt">
+          <span class="nav-showcase-title">Beni Bul</span>
+          <span class="nav-showcase-description">Akıllı âyet arama</span>
+        </div>
+        <span class="showcase-badge nav-txt">ARA</span>
+      </button>
+
+      <div class="rail-version">Tilavet ve öğrenme alanı</div>
+      <p class="v5-rail-note"><strong>Fem-i muhsin</strong>Bu araçlar tamamlayıcıdır; ehil bir hocanın canlı tedrisatının yerini tutmaz.</p>
+    </nav>
+
+    <!-- ===================================================================
+         3. ANA ÇALIŞMA ALANI (WORKSPACE)
+         =================================================================== -->
+    <main id="main-workspace" class="workspace" tabindex="-1">
+      
+      <!-- =================================================================
+           SEKME 1: MUSHAF-I ŞERÎF & CANLI TİLAVET LABORATUVARI
+           ================================================================= -->
+      <section id="tab-tilavet" class="tab-content active" role="tabpanel" aria-labelledby="tabBtnTilavet">
+        <header class="page-intro reader-intro">
+          <div>
+            <span class="page-eyebrow">KUR’ÂN-I KERÎM · MUSHAF</span>
+            <h1>Oku, dinle, üzerinde düşün.</h1>
+            <p>Kur’an-ı Kerîm’i Mushaf düzeninde takip edin; bir âyeti seçerek dinleme, anlam ve tecvid bilgisine ulaşın.</p>
+          </div>
+          <button id="btnIntroFindAyah" class="intro-search-action" type="button">
+            <span>Bir âyet bulun</span>
+            <kbd>Ctrl K</kbd>
+          </button>
+        </header>
+        
+        <!-- Üst Kontrol & Sayfa Gezinti Araç Çubuğu (Global Navigation) -->
+        <div class="mushaf-global-toolbar" role="toolbar" aria-label="Mushaf gezinti">
+          <div class="toolbar-left-group">
+            <button id="btnPrevPage" class="btn btn-outline nav-page-btn" title="Önceki Sayfa (Klavye: Sol Ok)">
+              ◀ Önceki
+            </button>
+            <div class="page-selector-box">
+              <label for="inputPageNum">Sayfa</label>
+              <input type="number" id="inputPageNum" min="1" max="604" value="50" class="page-num-input" aria-label="Sayfa numarası">
+              <span aria-hidden="true">/ 604</span>
+              <button id="btnGoToPage" class="btn btn-gold btn-sm">Git</button>
+            </div>
+            <button id="btnNextPage" class="btn btn-outline nav-page-btn" title="Sonraki Sayfa (Klavye: Sağ Ok)">
+              Sonraki ▶
+            </button>
+          </div>
+
+          <div class="toolbar-center-group">
+            <div class="toolbar-field">
+              <label class="toolbar-label" for="selectSurah">Sûre</label>
+              <select id="selectSurah" class="form-select surah-select">
+                <!-- 114 Sure JavaScript ile dinamik basılacak -->
+              </select>
+            </div>
+            <div class="toolbar-field">
+              <label class="toolbar-label" for="selectReciter">Kârî</label>
+              <select id="selectReciter" class="form-select toolbar-reciter-select">
+                <option value="dossary" selected>Kâbe İmamı (Dossary)</option>
+                <option value="mustafa_ismail">Şeyh Mustafa İsmail (Makamlar Üstadı)</option>
+                <option value="minshawi_mujawwad">M. Sıddîk el-Minşâvî (Mücevved)</option>
+                <option value="abdulbasit_mujawwad">Abdülbâsıt Abdüssamed (Mücevved)</option>
+                <option value="husary_mujawwad">M. Halîl el-Husarî (Mücevved)</option>
+                <option value="ali_jaber">Şeyh Ali Câbir (Mekke Ekolü)</option>
+                <option value="shuraym">Şeyh Suûd eş-Şüraym (Kâbe)</option>
+                <option value="minshawi">M. Sıddîk el-Minşâvî (Mürettel)</option>
+                <option value="husary">M. Halîl el-Husarî (Mürettel)</option>
+                <option value="abdulbasit">Abdülbâsıt Abdüssamed (Mürettel)</option>
+                <option value="qatami">Nâsır el-Katâmî</option>
+                <option value="alafasy">Meşâri el-Afâsî</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="toolbar-right-group">
+            <div class="font-scale" role="group" aria-label="Mushaf yazı boyutu">
+              <button id="btnFontMinus" class="btn btn-outline btn-sm" type="button" aria-label="Yazıyı küçült">A−</button>
+              <button id="btnFontPlus" class="btn btn-outline btn-sm" type="button" aria-label="Yazıyı büyüt">A+</button>
+            </div>
+            <button id="btnOpenIncelemePage" type="button" class="btn btn-outline" style="border-color: var(--accent-gold); color: var(--accent-gold); font-weight: 700;">
+              Âyet İnceleme &amp; Tefsir
+            </button>
+          </div>
+        </div>
+
+        <!-- Hızlı Sayfa Atlama Butonları (Meşhur Sayfalar) -->
+        <details class="quick-shortcut-disclosure quick-page-shortcuts-disclosure">
+          <summary class="quick-shortcut-summary">Meşhur sayfalara hızlı git</summary>
+          <div class="quick-page-shortcuts" role="group" aria-label="Meşhur sayfalar">
+            <button type="button" class="btn-page-shortcut" data-page="1" aria-pressed="false">Fâtiha (1)</button>
+            <button type="button" class="btn-page-shortcut" data-page="2" aria-pressed="false">Bakara Başı (2)</button>
+            <button type="button" class="btn-page-shortcut" data-page="42" aria-pressed="false">Âyetü'l-Kürsî (42)</button>
+            <button type="button" class="btn-page-shortcut" data-page="50" aria-pressed="false">Âmenerrasûlü (50)</button>
+            <button type="button" class="btn-page-shortcut" data-page="440" aria-pressed="false">Yâsîn (440)</button>
+            <button type="button" class="btn-page-shortcut" data-page="562" aria-pressed="false">Mülk (562)</button>
+            <button type="button" class="btn-page-shortcut" data-page="582" aria-pressed="false">Nebe / Amme (582)</button>
+            <button type="button" class="btn-page-shortcut" data-page="604" aria-pressed="false">İhlâs - Felak - Nâs (604)</button>
+          </div>
+        </details>
+
+        <!-- BENİ BUL (Ayet Konumlandırıcı Paneli - Komut Paleti Kaplaması) -->
+        <div id="beniBulDeck" class="beni-bul-deck hidden" style="display: none;">
+          <div class="beni-bul-title">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span>Âyet bul</span>
+            </div>
+            <button id="btnCloseBeniBulDeck" type="button" class="btn btn-outline btn-sm" aria-label="Kapat" style="border-color: rgba(255,255,255,0.25); font-size: 0.8rem; padding: 3px 12px; border-radius: 99px; color: var(--text-soft);">✕ Kapat</button>
+          </div>
+          <div class="beni-bul-sub">
+            Bir kelime, meal parçası, sûre adı ya da <strong>2:255</strong> gibi bir numara yazın veya sesle okuyun; sizi Mushaf'taki yerine götürelim.
+          </div>
+
+          <!-- DOĞRUDAN SURE & ÂYET ARAMA VE SEÇİM ÇUBUĞU -->
+          <div class="beni-bul-direct-row" role="search" aria-label="Sure ve Ayet ile Arama">
+            <div class="beni-bul-field-group field-surah">
+              <label for="beniBulSurahSelect" class="beni-bul-field-label">Sûre</label>
+              <select id="beniBulSurahSelect" class="form-select beni-bul-surah-picker" aria-label="Sure Seç">
+                <!-- 114 Sure JS ile dinamik doldurulur -->
+              </select>
+            </div>
+            <div class="beni-bul-field-group field-ayah">
+              <label for="beniBulAyahInput" class="beni-bul-field-label">Âyet</label>
+              <div class="beni-bul-ayah-wrap">
+                <input type="number" id="beniBulAyahInput" class="form-input beni-bul-ayah-picker" placeholder="1" min="1" max="286" value="1" aria-label="Ayet Numarası">
+                <span id="beniBulAyahMaxLabel" class="beni-bul-ayah-max-label">/ 286 Âyet</span>
+              </div>
+            </div>
+            <button id="btnBeniBulDirectGo" type="button" class="btn btn-gold beni-bul-btn-go" title="Seçilen âyeti doğrudan Mushaf sayfasında aç ve seçili getir">
+              Âyete git
+            </button>
+          </div>
+
+          <div class="beni-bul-controls">
+            <button id="btnStartBeniBulVoice" class="btn btn-primary">
+              Sesle Oku &amp; Beni Bul
+            </button>
+            <button id="btnToggleBeniBulLang" class="btn btn-outline">
+              Dil: Türkçe (Fonetik)
+            </button>
+            <div class="beni-bul-input-wrap">
+              <input type="text" id="inputBeniBulText" class="form-input" placeholder="İhlâs, 2:255 veya meal parçası…">
+              <button id="btnClearBeniBulText" class="beni-bul-clear" aria-label="Temizle">✕</button>
+              <button id="btnExecuteBeniBulSearch" class="btn btn-gold">
+                Bul
+              </button>
+            </div>
+          </div>
+
+          <div id="beniBulStatus" class="beni-bul-status">
+            Aramak için okumaya başlayınız veya bir ayet yazınız.
+          </div>
+
+          <!-- Bulunan Ayetler Listesi -->
+          <div id="beniBulResultsContainer" style="display: none;">
+            <div id="beniBulResultsList" class="beni-bul-results"></div>
+          </div>
+        </div>
+
+        <!-- İKİLİ ÇALIŞMA ALANI: SOLDA GERÇEK MUSHAF SAYFASI | SAĞDA DENETÇİ SÜTUNU -->
+        <div class="mushaf-split-workspace">
+          
+          <!-- SOL TARAF: GERÇEK MUSHAF SAYFASI & TECVİD LEJANTI -->
+          <div class="mushaf-page-container">
+            <div id="realMushafPage" class="real-mushaf-page-frame" role="region" aria-label="Mushaf sayfası">
+              <!-- JavaScript ile geleneksel bordürler, cüz kurdelesi, ünvan ve 15 satırlık tecvidli hat basılacak -->
+            </div>
+
+            <!-- Sayfa Altı Tecvid Renk Anahtarı (Mürekkep Çipleri) -->
+            <div class="mushaf-legend-bar" role="group" aria-label="Tecvid renk anahtarı">
+              <span class="legend-chip" data-family="madd"><i></i>Madd</span>
+              <span class="legend-chip" data-family="ihfa"><i></i>İhfa / Gunne</span>
+              <span class="legend-chip" data-family="kalkale"><i></i>Kalkale</span>
+              <span class="legend-chip" data-family="vakif"><i></i>Vakıf</span>
+              <span class="legend-chip" data-family="iklab"><i></i>İklâb</span>
+              <span class="legend-chip" data-family="lafz"><i></i>Lafzatullâh</span>
+              <button id="btnToggleCvd" class="legend-toggle" type="button" aria-pressed="false">Renk dışı işaret</button>
+            </div>
+          </div>
+
+          <!-- SAĞ TARAF: ÇALIŞMA MASASI (COMPANION SIDEBAR) -->
+          <aside class="mushaf-companion-sidebar">
+            
+            <!-- Kart 1: Âyet & Tilavet Master Oynatıcı Barı -->
+            <div class="panel-card mushaf-compact-card mushaf-player-hero-card">
+              <div class="sidebar-header-row">
+                <span id="activeAyahTitle" class="sidebar-ayah-title">2. Bakara Suresi - 285. Âyet</span>
+                <span id="activeAyahJuzBadge" class="sidebar-juz-badge">3. CÜZ</span>
+              </div>
+
+              <!-- Master Tilavet Oynatıcı Butonu -->
+              <button id="btnPlayActiveAyah" class="btn-master-play" title="Âyeti Dinle / Durdur (Klavye Kısayolu: Boşluk Tuşu)">
+                <span class="master-play-icon">▶</span>
+                <div class="master-play-title-wrap">
+                  <span class="master-play-main-text">Âyeti Dinle</span>
+                  <span id="activeReciterSubText" class="master-play-sub-text">Kâbe İmamı Şeyh Yâsir ed-Devserî</span>
+                </div>
+                <span class="space-shortcut-pill"><kbd>Boşluk</kbd></span>
+              </button>
+
+              <!-- Bu Âyetin Derinlemesine İncelemesine Git Butonu -->
+              <button id="btnGoToAyahInceleme" class="btn btn-outline btn-block" style="margin-top: 10px; border-color: rgba(232,196,106,0.45); color: var(--accent-gold); font-size: 0.82rem; background: rgba(232,196,106,0.06);" title="Bu âyetin nüzul sebebi, hikayesi ve büyük âlimlerin tefsirlerine git">
+                Bu Âyetin Hikâye &amp; Tefsir İncelemesine Git
+              </button>
+
+              <!-- Alt Kontrol Satırı: Tüm Sayfa Oynatıcı & Akış Tercihi -->
+              <div class="sidebar-secondary-player-row" style="margin-top: 10px;">
+                <button id="btnPlayCurrentPage" class="btn btn-outline btn-play-page" title="Sayfadaki tüm ayetleri sırayla dinle">
+                  ▶ Tüm Sayfayı Oynat
+                </button>
+                <button id="btnTogglePlaybackFlow" class="btn btn-outline" title="Âyet / Sayfa Akış Tercihi: Tıklayarak Kesintisiz Akış veya Sabit Kal modu arasında geçiş yapın">
+                  <span id="flowModeText">Kesintisiz Akış</span>
+                </button>
+              </div>
+
+              <!-- Anlık Geri Bildirim Şeridi -->
+              <div id="liveFeedbackBanner" class="live-feedback-banner info" role="status" aria-live="polite">
+                Sayfadaki herhangi bir âyete tıklayarak dinleyebilir veya <strong>[Boşluk]</strong> tuşu ile oynatıp durdurabilirsiniz.
+              </div>
+            </div>
+
+            <!-- Kart 2: Birleşik Okuma & Tefekkür Kartı -->
+            <div class="panel-card mushaf-compact-card mushaf-reader-card">
+              <!-- Latin Harfli Fonetik Okunuşu -->
+              <div class="reader-section">
+                <div class="reader-header">
+                  <h2 class="reader-header-title">Fonetik Latin Okunuşu</h2>
+                  <span class="reader-header-tag">TELAFFUZ</span>
+                </div>
+                <div id="activeAyahLatin" class="active-ayah-latin-text">
+                  Âmener-rasûlü bimâ ünzile ileyhi mir-rabbihî vel-mü'minûn...
+                </div>
+              </div>
+
+              <!-- Türkçe Diyanet Meali -->
+              <div class="reader-section reader-section-meal">
+                <div class="reader-header">
+                  <h2 class="reader-header-title">Türkçe Diyanet Meali</h2>
+                  <span class="reader-header-tag">ANLAMI</span>
+                </div>
+                <div id="activeAyahMeal" class="active-ayah-meal-text">
+                  Peygamber ve inananlar, ona Rabbinden indirilene inandı...
+                </div>
+              </div>
+            </div>
+
+            <!-- Kart 3: Bu Âyetteki Tecvid Kuralları ve Eğitici Okuma Kılavuzu -->
+            <div class="panel-card mushaf-compact-card mushaf-tajweed-edu-card">
+              <div class="reader-header">
+                <h2 class="reader-header-title">Âyet Tecvid Analizi</h2>
+                <span class="reader-header-tag">EĞİTİCİ REHBER</span>
+              </div>
+              
+              <!-- Eğitici Kural Kartları Listesi -->
+              <div id="activeAyahTajweedRules" class="tajweed-edu-list">
+                <!-- Zengin ve açıklayıcı eğitici kartlar JavaScript ile dinamik basılacak -->
+              </div>
+              
+              <!-- Tecvid Kurallarının Açılımı Çekmecesi -->
+              <details class="tajweed-breakdown-collapsible">
+                <summary class="tajweed-legend-summary" title="Tecvid kurallarının detaylı açılımını göster / gizle">
+                  <span class="tajweed-legend-title">Kuralların açılımı</span>
+                  <span class="collapsible-chevron" aria-hidden="true">▾</span>
+                </summary>
+
+                <div class="tajweed-legend-breakdown-grid">
+                  <!-- 1. Madd Açılımı -->
+                  <div class="legend-breakdown-item item-madd">
+                    <strong>Madd (Uzatma · 4–6 elif)</strong>
+                    <div>Harfin üzerinde dalga işareti (ٓ) veya ardından hemze geldiğinde sesi 4 ila 6 elif kesintisiz uzatmaktır. <em>(Muttasıl, Munfasıl, Lâzım)</em></div>
+                  </div>
+
+                  <!-- 2. İhfa & Gunne Açılımı -->
+                  <div class="legend-breakdown-item item-ihfa">
+                    <strong>İhfa / Gunne (1,5 elif)</strong>
+                    <div>Sâkin Nûn veya tenvin sesini genze vererek tatlı bir nağmeyle 1.5 elif miktarı tutmaktır. <em>(İhfa, İdgam, Şeddeli Nûn/Mîm)</em></div>
+                  </div>
+
+                  <!-- 3. Kalkale Açılımı -->
+                  <div class="legend-breakdown-item item-kalkale">
+                    <strong>Kalkale (harfi sarsmak)</strong>
+                    <div><strong>ق ط ب ج د</strong> harfleri cezimli olduğunda mahrecine kuvvetle çarpıp sesi titreterek yankılandırmaktır.</div>
+                  </div>
+
+                  <!-- 4. Vakıf Açılımı -->
+                  <div class="legend-breakdown-item item-vakif">
+                    <strong>Vakıf (durak kuralları)</strong>
+                    <div><strong>(م)</strong> Kesin durulur. <strong>(لا)</strong> Durulmaz, geçilir. <strong>(ج)</strong> Durmak serbesttir. Ayet sonunda dururken son harf cezimli okunur.</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <!-- Çekmece 1: Canlı Tilavet & Mikrofon Denetimi -->
+            <details class="sidebar-collapsible">
+              <summary class="sidebar-collapsible-summary">
+                <div class="collapsible-title-wrap">
+                  <span class="collapsible-title">Canlı Mikrofon Denetimi &amp; Skor Karnesi</span>
+                </div>
+                <div class="collapsible-meta">
+                  <span id="tilavetLiveBadge" class="tilavet-live-tag hidden" style="display: none;"> CANLI</span>
+                  <span class="collapsible-chevron" aria-hidden="true">▾</span>
+                </div>
+              </summary>
+
+              <div class="sidebar-collapsible-body">
+                <button id="btnListenTilavet" class="btn btn-record btn-lg btn-block">
+                  Bu Âyeti Oku &amp; Tecvidimi Denetle
+                </button>
+
+                <!-- Canlı Algılanan Sözler -->
+                <div class="form-group mt-10">
+                  <div class="form-label">CANLI OKUNAN KELİME (SPEECH-TO-TEXT)</div>
+                  <div id="tilavetRecognizedWord" class="recognized-word-box">...</div>
+                </div>
+
+                <!-- Tilavet Karnesi -->
+                <div class="score-display-card">
+                  <div class="score-metric">
+                    <span>TECVİD PUANI</span>
+                    <span id="tilavetScoreVal" class="score-metric-val">%100</span>
+                  </div>
+                  <div class="score-divider"></div>
+                  <div class="score-metric">
+                    <span>HATA SAYISI</span>
+                    <span id="tilavetErrCount" class="score-metric-val text-red">0 Hata</span>
+                  </div>
+                </div>
+
+                <button id="btnResetTilavetScore" class="btn btn-outline btn-block">
+                   Karnemi Sıfırla
+                </button>
+
+                <!-- Hata Listesi -->
+                <div class="form-label mt-10">TESPİT EDİLEN HATALAR</div>
+                <div id="tilavetErrorList" class="tilavet-error-list">
+                  <div class="tilavet-error-empty">
+                    Henüz bir tilavet hatası tespit edilmedi. Okumaya devam edebilirsiniz.
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <!-- Çekmece 2: Hata Algılama Test Simülatörü -->
+            <details class="sidebar-collapsible">
+              <summary class="sidebar-collapsible-summary">
+                <div class="collapsible-title-wrap">
+                  <span class="collapsible-title">Hata Algılama Test Simülatörü</span>
+                </div>
+                <div class="collapsible-meta">
+                  <span class="collapsible-badge">5 Test Kuralı</span>
+                  <span class="collapsible-chevron" aria-hidden="true">▾</span>
+                </div>
+              </summary>
+
+              <div class="sidebar-collapsible-body">
+                <div class="simulator-button-grid">
+                  <button id="btnSimErrorMadd" class="btn btn-outline btn-sim-item sim-madd">
+                     Uzatma Hatası ("Uzatman lazım!")
+                  </button>
+                  <button id="btnSimErrorMaddShort" class="btn btn-outline btn-sim-item sim-short">
+                     Kısaltma Hatası ("Kısalt!")
+                  </button>
+                  <button id="btnSimErrorWaqfLa" class="btn btn-outline btn-sim-item sim-waqf-la">
+                    ⛔ Lâ Vakfında Durma ("Durmaman lazım!")
+                  </button>
+                  <button id="btnSimErrorWaqfMust" class="btn btn-outline btn-sim-item sim-waqf-must">
+                     Vakf-ı Lâzım ("Orada durman lazım!")
+                  </button>
+                  <button id="btnSimErrorIhfa" class="btn btn-outline btn-sim-item sim-ihfa">
+                     İhfa / Gunne ("1.5 Elif tutman lazım!")
+                  </button>
+                </div>
+              </div>
+            </details>
+
+          </aside>
+        </div>
+
+      </section> <!-- /#tab-tilavet -->
+
+      <!-- =================================================================
+           SEKME 2: ÂYET İNCELEME & ESBÂB-I NÜZÛL
+           ================================================================= -->
+      <section id="tab-inceleme" class="tab-content" role="tabpanel" aria-labelledby="tabBtnInceleme">
+        <header class="page-intro study-intro">
+          <div>
+            <span class="page-eyebrow">KUR’ÂN-I KERÎM · ARAŞTIRMA</span>
+            <h1>Âyetleri bağlamıyla inceleyin.</h1>
+            <p>Bir sûre veya âyet seçin; meâl, okunuş, nüzûl bilgisi ve mevcut kaynak notlarını birlikte değerlendirin.</p>
+          </div>
+          <div class="intro-context" aria-label="Seçili âyet">
+            <span>Şu an inceleniyor</span>
+            <strong id="studyIntroAyah">Bakara · 255</strong>
+          </div>
+        </header>
+        <div class="inceleme-workspace-wrap">
+          
+          <!-- 1. KONTROL, SEÇİM VE ARAMA GÜVERTESİ -->
+          <div class="inceleme-control-deck">
+            <div class="inceleme-deck-row">
+              
+              <!-- Sure & Ayet Seçicileri -->
+              <div class="inceleme-select-group">
+                <div class="inceleme-field">
+                  <label class="form-label" for="selectSurahInceleme">Sûre</label>
+                  <select id="selectSurahInceleme" class="inceleme-surah-select">
+                    <!-- 114 Sure JavaScript ile dinamik doldurulacak -->
+                  </select>
+                </div>
+
+                <div class="inceleme-field">
+                  <label class="form-label" for="selectAyahInceleme">Âyet</label>
+                  <select id="selectAyahInceleme" class="inceleme-ayah-select">
+                    <!-- Ayet numaraları dinamik gelecek -->
+                  </select>
+                </div>
+
+                <button id="btnPrevAyahInceleme" class="btn btn-outline btn-sm" title="Önceki Âyet (Klavye: Sol Ok)">
+                  ◀ Önceki
+                </button>
+                <button id="btnNextAyahInceleme" class="btn btn-outline btn-sm" title="Sonraki Âyet (Klavye: Sağ Ok)">
+                  Sonraki ▶
+                </button>
+                <button id="btnRandomAyahInceleme" class="btn btn-outline btn-sm" title="Rastgele Bir Hikmetli Âyet İncele">
+                  Rastgele Âyet
+                </button>
+              </div>
+
+              <!-- Arama Kutusu -->
+              <div class="inceleme-search-wrap">
+                <label class="sr-only" for="inputIncelemeSearch">Sûre, âyet numarası veya konu ara</label>
+                <input type="text" id="inputIncelemeSearch" class="inceleme-search-input" placeholder="Sure adı (İhlas), Ayet (2:255) veya konu (Kevser, Sabır)...">
+                <button id="btnExecIncelemeSearch" class="btn btn-gold btn-sm">
+                  Ara &amp; İncele
+                </button>
+              </div>
+            </div>
+
+            <!-- Hızlı Keşif Kısayolları (Popüler & Hikayeli Âyetler) -->
+            <details class="quick-shortcut-disclosure quick-discovery-disclosure">
+              <summary class="quick-shortcut-summary">Örnek âyetlere hızlı eriş</summary>
+              <div class="quick-discovery-strip" role="group" aria-label="Âyet keşif kısayolları">
+                <button class="quick-discovery-pill" data-surah="1" data-ayah="1">Fâtiha (1:1)</button>
+                <button class="quick-discovery-pill" data-surah="1" data-ayah="5">İyyâke Na'büdü (1:5)</button>
+                <button class="quick-discovery-pill" data-surah="2" data-ayah="255">Âyetü'l-Kürsî (2:255)</button>
+                <button class="quick-discovery-pill" data-surah="2" data-ayah="285">Âmenerrasûlü (2:285)</button>
+                <button class="quick-discovery-pill" data-surah="3" data-ayah="103">Vahdet &amp; İtilaf (3:103)</button>
+                <button class="quick-discovery-pill" data-surah="12" data-ayah="3">Yûsuf Kıssası (12:3)</button>
+                <button class="quick-discovery-pill" data-surah="18" data-ayah="10">Ashâb-ı Kehf (18:10)</button>
+                <button class="quick-discovery-pill" data-surah="36" data-ayah="20">Yâsîn / Habîb (36:20)</button>
+                <button class="quick-discovery-pill" data-surah="67" data-ayah="1">Mülk / Tebâreke (67:1)</button>
+                <button class="quick-discovery-pill" data-surah="93" data-ayah="1">Duhâ (93:1)</button>
+                <button class="quick-discovery-pill" data-surah="94" data-ayah="1">İnşirâh (94:1)</button>
+                <button class="quick-discovery-pill" data-surah="103" data-ayah="1">Asr (103:1)</button>
+                <button class="quick-discovery-pill" data-surah="108" data-ayah="1">Kevser (108:1)</button>
+                <button class="quick-discovery-pill" data-surah="112" data-ayah="1">İhlâs (112:1)</button>
+              </div>
+            </details>
+          </div>
+
+          <!-- 2. VİTRİN (HERO) ÂYET KARTI -->
+          <div id="heroCard" class="hero-ayah-card">
+            <div class="hero-ayah-header">
+              <div class="hero-ayah-title">
+                <span id="heroAyahHeading">Âyet Metni, Fonetik Okunuşu &amp; Meali</span>
+              </div>
+              <div class="hero-player-row">
+                <button id="btnPlayAyahAudio" class="btn-audio-hero" title="Kâbe İmamı Şeyh Yâsir ed-Devserî'den Dinle (Klavye: Boşluk)">
+                  ▶ Âyeti Dinle (Kâbe İmamı Şeyh Yâsir ed-Devserî)
+                </button>
+                <button id="btnReturnToMushaf" class="btn btn-outline btn-sm" style="border-color: var(--accent-gold); color: var(--accent-gold); font-weight: 700;">
+                  Bu Âyetin Mushaf Sayfasına Git
+                </button>
+              </div>
+            </div>
+
+            <!-- Arapça Uthmani Orijinal Hat -->
+            <div class="hero-arabic-frame">
+              <div id="heroAyahArabic" class="hero-arabic-text">
+                اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ
+              </div>
+            </div>
+
+            <!-- Latin Fonetik & Diyanet Meali -->
+            <div class="hero-translations-grid">
+              <div class="translation-box latin-box">
+                <span class="translation-label cyan"> Fonetik Latin Okunuşu (Transkripsiyon)</span>
+                <div id="heroAyahLatin" class="translation-text">
+                  Allâhu lâ ilâhe illâ hüve'l-hayyu'l-kayyûm...
+                </div>
+              </div>
+
+              <div class="translation-box meal-box">
+                <span class="translation-label green"> Türkçe Diyanet Meali</span>
+                <div id="heroAyahMeal" class="translation-text">
+                  Allah, kendisinden başka hiçbir ilâh bulunmayandır. O, diridir (hayy), her şeyi ayakta tutandır (kayyûm)...
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. ÂYETİN HİKAYESİ VE NÜZUL SEBEBİ (ESBÂB-I NÜZÛL) -->
+          <div class="section-panel-card kissa-card">
+            <div class="section-header">
+              <div class="section-title">
+                <span id="kissaTitle">Âyetin Hikayesi, Nüzul Sebebi &amp; Tarihi Arka Plan</span>
+              </div>
+              <span class="section-tag tag-gold">ESBÂB-I NÜZÛL &amp; KISSA</span>
+            </div>
+
+            <div id="kissaBody" class="kissa-body">
+              <!-- Dinamik olarak doldurulacak -->
+            </div>
+          </div>
+
+          <div class="section-panel-card" aria-labelledby="scholarsStatusTitle">
+            <div class="section-header">
+              <h2 id="scholarsStatusTitle" class="section-title">Tefsir Meclisi</h2>
+            </div>
+            <p role="status">
+              Âlimlere atfedilen yorumlar için kaynak ve uzman onayı doğrulanmış bir yayın
+              kaydı bulunmadığından bu bölüm henüz kullanıma açık değildir.
+            </p>
+          </div>
+
+        </div> <!-- /.inceleme-workspace-wrap -->
+      </section> <!-- /#tab-inceleme -->
+
+      <!-- =================================================================
+           SEKME 3: TİLAVET AKADEMİSİ (Makam Okulu, Şan & Sıfırdan Kur'an)
+           ================================================================= -->
+      <section id="tab-akademi" class="tab-content" role="tabpanel" aria-labelledby="tabBtnAkademi" style="display: none;">
+        <div class="akademi-container">
+          <header class="page-intro academy-intro">
+            <div>
+              <span class="page-eyebrow">ÖĞRENME ALANI</span>
+              <h1>Tilavet yolculuğunuz.</h1>
+              <p>Temel harflerden tecvid, makam ve ses çalışmalarına kadar öğrenme alanınızı seçin.</p>
+            </div>
+            <span class="academy-intro-note">Hoca rehberliğiyle desteklenen çalışma alanı</span>
+          </header>
+          
+          <!-- Akademi Yönetici Başlık & Hızlı Geçiş Barı (Yanal Kaydırma Olmayan Modern Tasarım) -->
+          <div class="akademi-executive-bar" role="toolbar" aria-label="Akademi Yönetim ve Modül Gezintisi">
+            <div class="exec-left-meta">
+              <div class="exec-title-group">
+                <span class="exec-kicker">TİLAVET AKADEMİSİ</span>
+                <div class="exec-breadcrumb" id="akademiBreadcrumb" aria-label="Aktif Konum">
+                  <span class="crumb-root">Akademi</span>
+                  <span class="crumb-separator">/</span>
+                  <span class="crumb-current" id="akademiCrumbCurrent">Yolculuğum</span>
+                  <span class="crumb-sub" id="akademiCrumbSub"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="exec-right-controls">
+              <!-- Hızlı Modül Seçici Açılır Liste -->
+              <div class="exec-select-wrapper" title="Modül Değiştir">
+                  <select id="akademiQuickModuleSelect" class="exec-module-select" aria-label="Akademi Modülü Seç">
+                  <option value="yolculuk" data-view="yolculuk">Yolculuğum (Seviye ve Rozetler)</option>
+                  <option value="elifba" data-view="elifba">Sıfırdan Kur'an (8 Alt Modül)</option>
+                  <option value="tecvid" data-view="tecvid">Tecvid Okulu (20 Kural ve Mushaf)</option>
+                  <option value="teknik" data-view="teknik">Tilavet Teknikleri (6 Alt Sekme)</option>
+                  <option value="makam" data-view="makam">Makam Okulu (10 Makam · Çoklu Hoca Örnekleri)</option>
+                  <option value="san" data-view="san">Şan ve Ses Eğitimi (3 Alt Çalışma)</option>
+                  <option value="studyo" data-view="studyo">Ses Laboratuvarı (4 Akustik İstasyon)</option>
+                  <option value="dinleme" data-view="dinleme">Dinleme Salonu (Master ve Ekoller)</option>
+                  <option value="qiraat" data-view="qiraat">Kıraat ve Rivayet (10 İmam)</option>
+                  <option value="asistan" data-view="asistan">Tilavet Asistanı</option>
+                  <option value="sozluk" data-view="sozluk">Terimler Sözlüğü</option>
+                  <option value="ayarlar" data-view="ayarlar">Ayarlar ve Akort Tercihleri</option>
+                </select>
+              </div>
+
+              <!-- Sağ Açılır Detaylı Menü Tetikleyicisi -->
+              <button type="button" id="btnOpenSideDrawer" class="exec-drawer-btn" title="Tilavet Akademisi bölümlerini aç (Kısayol: M)" aria-haspopup="dialog" aria-controls="sideNavDrawer" aria-expanded="false">
+                <span class="btn-drawer-text">Akademi bölümleri</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Alt Panel Konteynerleri -->
+          <div id="akademi-view-yolculuk" class="akademi-view-panel active"></div>
+          <div id="akademi-view-elifba" class="akademi-view-panel" style="display:none;"></div>
+          <div id="akademi-view-tecvid" class="akademi-view-panel" style="display:none;"></div>
+          <div id="akademi-view-teknik" class="akademi-view-panel" style="display:none;"></div>
+          <div id="akademi-view-makam" class="akademi-view-panel" style="display:none;"></div>
+          <div id="akademi-view-san" class="akademi-view-panel" style="display:none;"></div>
+          <div id="akademi-view-studyo" class="akademi-view-panel" style="display:none;"></div>
+          <div id="akademi-view-dinleme" class="akademi-view-panel" style="display:none;"></div>
+          <div id="akademi-view-qiraat" class="akademi-view-panel" style="display:none;"></div>
+          <div id="akademi-view-asistan" class="akademi-view-panel" style="display:none;"></div>
+          <div id="akademi-view-sozluk" class="akademi-view-panel" style="display:none;"></div>
+          <div id="akademi-view-ayarlar" class="akademi-view-panel" style="display:none;"></div>
+
+        </div>
+      </section> <!-- /#tab-akademi -->
+
+    </main> <!-- /.workspace -->
+
+  </div> <!-- /.app-shell -->
+
+  <!-- ===================================================================
+       4. SAĞ AÇILIR GEZİNTİ ÇEKMECESİ (RIGHT-SIDE SLIDE-OVER DRAWER)
+       =================================================================== -->
+  
+  <!-- Arka Plan Karartma Perdesi (Backdrop) -->
+  <div id="sideNavBackdrop" class="side-nav-backdrop" aria-hidden="true"></div>
+
+  <!-- Sağ Açılır Gezinti Çekmecesi -->
+  <aside id="sideNavDrawer" class="side-nav-drawer" role="dialog" aria-modal="true" aria-label="Tilavet Akademisi bölümleri" aria-hidden="true">
+    
+    <!-- Çekmece Başlık Alanı -->
+    <div class="drawer-header">
+      <div class="drawer-header-brand">
+        <div>
+          <h3 class="drawer-title">Tilavet Akademisi</h3>
+          <span class="drawer-subtitle">Bölümler ve ders başlıkları</span>
+        </div>
+      </div>
+      <button type="button" id="btnCloseSideDrawer" class="drawer-close-btn" aria-label="Menüyü Kapat (Esc)" title="Kapat (Esc)">
+        <span aria-hidden="true">✕</span>
+      </button>
+    </div>
+
+    <!-- Canlı Filtreleme ve Arama Çubuğu -->
+    <div class="drawer-search-wrap">
+      <input type="text" id="drawerSearchInput" class="drawer-search-input" placeholder="Bölüm veya ders ara..." autocomplete="off" spellcheck="false" aria-label="Akademi bölümlerinde ara">
+      <button type="button" id="drawerSearchClear" class="drawer-search-clear" style="display:none;" aria-label="Aramayı Temizle" title="Temizle">✕</button>
+    </div>
+
+    <!-- Kaydırılabilir İçerik Ağacı -->
+    <div class="drawer-scroll-body" id="drawerScrollBody">
+
+      <!-- Tilavet Akademisi bölümleri ve alt başlıkları -->
+      <div class="drawer-section" data-section-name="akademi-odalar">
+        <div class="drawer-section-heading">
+          <span class="sec-label">Bölümler</span>
+          <span class="sec-badge">12 bölüm</span>
+        </div>
+
+        <div class="drawer-accordion-tree" id="drawerAccordionTree">
+
+          <!-- 1. YOLCULUĞUM -->
+          <div class="drawer-acc-node" data-module="yolculuk">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn active" data-view="yolculuk">
+                <div class="node-text">
+                  <span class="node-title">Yolculuğum</span>
+                  <span class="node-desc">Müfredat Haritası, Rozetler &amp; İlerleme</span>
+                </div>
+              </button>
+              <button type="button" class="drawer-node-toggle" aria-expanded="false" title="Alt Menüyü Genişlet">
+                <span class="node-chevron" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div class="drawer-node-sub">
+              <button type="button" class="drawer-sub-btn" data-module="yolculuk" data-action="scroll-levels">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">10 Seviyeli Müfredat Haritası</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="yolculuk" data-action="scroll-badges">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Kazanılan Rozetler &amp; Başarılar</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="yolculuk" data-action="scroll-stats">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Tilavet İstatistikleri &amp; Seri</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. SIFIRDAN KUR'AN & MAHREÇ (ELİFBA) -->
+          <div class="drawer-acc-node" data-module="elifba">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn" data-view="elifba">
+                <div class="node-text">
+                  <span class="node-title">Sıfırdan Kur'an (Elifba)</span>
+                  <span class="node-desc">28 Harf, Mahreç Atlası, Harekeler &amp; Heceleme</span>
+                </div>
+              </button>
+              <button type="button" class="drawer-node-toggle" aria-expanded="false" title="Alt Menüyü Genişlet">
+                <span class="node-chevron" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div class="drawer-node-sub">
+              <button type="button" class="drawer-sub-btn" data-module="elifba" data-sub="harfler">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">1. Harfler &amp; Mahreç Atlası (28 Harf)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="elifba" data-sub="yazilis">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">2. Harflerin 4 Yazılış Hali</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="elifba" data-sub="harekeler">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">3. Harekeler (Üstün / Esre / Ötre)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="elifba" data-sub="cezm-sedde">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">4. Cezm (Sükûn) &amp; Şedde</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="elifba" data-sub="tenvin">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">5. Tenvin (-en / -in / -ün)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="elifba" data-sub="med">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">6. Med Harfleri (Elif, Vâv, Yâ)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="elifba" data-sub="heceleme">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">7. Kelime Heceleme Laboratuvarı</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="elifba" data-sub="kulak">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">8. Benzer Harfler Kulak Testi</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. TECVİD OKULU -->
+          <div class="drawer-acc-node" data-module="tecvid">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn" data-view="tecvid">
+                <div class="node-text">
+                  <span class="node-title">Tecvid Okulu</span>
+                  <span class="node-desc">20 Kapsamlı Kural, Sesli Örnekler &amp; Mushaf</span>
+                </div>
+              </button>
+              <button type="button" class="drawer-node-toggle" aria-expanded="false" title="Alt Menüyü Genişlet">
+                <span class="node-chevron" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div class="drawer-node-sub">
+              <button type="button" class="drawer-sub-btn" data-module="tecvid" data-tecvid-cat="all">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Tüm Tecvid Kuralları (20 Kural)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="tecvid" data-tecvid-cat="nun">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Sâkin Nûn &amp; Tenvin Kuralları</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="tecvid" data-tecvid-cat="mim">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Sâkin Mîm Hâlleri (3 Hal)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="tecvid" data-tecvid-cat="madd">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Medd Çeşitleri (Tabiî, Muttasıl...)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="tecvid" data-tecvid-cat="letter">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Harf Hükümleri (İdğamlar, Râ Hükmü)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="tecvid" data-action="toggle-mini-mushaf">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">İnteraktif Küçük Mushaf Penceresi</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. TİLAVET TEKNİKLERİ -->
+          <div class="drawer-acc-node" data-module="teknik">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn" data-view="teknik">
+                <div class="node-text">
+                  <span class="node-title">Tilavet Teknikleri</span>
+                  <span class="node-desc">Tempolar, Secavend, Lahn Atlası &amp; Vasl</span>
+                </div>
+              </button>
+              <button type="button" class="drawer-node-toggle" aria-expanded="false" title="Alt Menüyü Genişlet">
+                <span class="node-chevron" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div class="drawer-node-sub">
+              <button type="button" class="drawer-sub-btn" data-module="teknik" data-sub="tempolar">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">1. Tilavet Tempoları (Tahkîk, Tedvîr, Hadr)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="teknik" data-sub="secavend">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">2. Secavend Durak İşaretleri (Vakıf/İbtidâ)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="teknik" data-sub="lahn">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">3. Lahn Atlası (Celî &amp; Hafî Hatalar)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="teknik" data-sub="vasl">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">4. Vasl ve Hemze Kuralları</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="teknik" data-sub="ozel">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">5. Özel İmlâ ve Tilavet Durakları</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="teknik" data-sub="pratik">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">6. İnteraktif Pratik ve Egzersizler</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. MAKAM OKULU (10 MAKAMIN TAMAMI ALT MENÜDE) -->
+          <div class="drawer-acc-node" data-module="makam">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn" data-view="makam">
+                <div class="node-text">
+                  <span class="node-title">Makam Okulu</span>
+                  <span class="node-desc">10 Makam · Kaynaklı Nazariyat &amp; Çoklu Dinleme Örnekleri</span>
+                </div>
+              </button>
+              <button type="button" class="drawer-node-toggle" aria-expanded="false" title="Alt Menüyü Genişlet">
+                <span class="node-chevron" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div class="drawer-node-sub drawer-makam-sub-grid">
+              <button type="button" class="drawer-sub-btn makam-sub-card" data-module="makam" data-makam="rast">
+                <span class="makam-dot gold"></span>
+                <div class="makam-sub-info">
+                  <div class="makam-sub-title"><b>Rast Makamı</b> (رَاسْت)</div>
+                  <div class="makam-sub-desc">İkindi Vakti · Durak: Rast (195.6 Hz)</div>
+                </div>
+              </button>
+
+              <button type="button" class="drawer-sub-btn makam-sub-card" data-module="makam" data-makam="ussak">
+                <span class="makam-dot cyan"></span>
+                <div class="makam-sub-info">
+                  <div class="makam-sub-title"><b>Uşşak Makamı</b> (عُشَّاق)</div>
+                  <div class="makam-sub-desc">Öğle Vakti · Durak: Dügâh (220.0 Hz)</div>
+                </div>
+              </button>
+
+              <button type="button" class="drawer-sub-btn makam-sub-card" data-module="makam" data-makam="hicaz">
+                <span class="makam-dot purple"></span>
+                <div class="makam-sub-info">
+                  <div class="makam-sub-title"><b>Hicaz Makamı</b> (حِجَاز)</div>
+                  <div class="makam-sub-desc">Yatsı Vakti · Durak: Dügâh (220.0 Hz)</div>
+                </div>
+              </button>
+
+              <button type="button" class="drawer-sub-btn makam-sub-card" data-module="makam" data-makam="nihavend">
+                <span class="makam-dot gold"></span>
+                <div class="makam-sub-info">
+                  <div class="makam-sub-title"><b>Nihavend Makamı</b> (نَهَاوَنْد)</div>
+                  <div class="makam-sub-desc">İkindi Vakti · Durak: Rast (195.6 Hz)</div>
+                </div>
+              </button>
+
+              <button type="button" class="drawer-sub-btn makam-sub-card" data-module="makam" data-makam="saba">
+                <span class="makam-dot green"></span>
+                <div class="makam-sub-info">
+                  <div class="makam-sub-title"><b>Sabâ Makamı</b> (صَبَا)</div>
+                  <div class="makam-sub-desc">Sabah Vakti · Durak: Dügâh (220.0 Hz)</div>
+                </div>
+              </button>
+
+              <button type="button" class="drawer-sub-btn makam-sub-card" data-module="makam" data-makam="segah">
+                <span class="makam-dot orange"></span>
+                <div class="makam-sub-info">
+                  <div class="makam-sub-title"><b>Segâh Makamı</b> (سِيكَاه)</div>
+                  <div class="makam-sub-desc">Akşam Vakti · Durak: Segâh (244.3 Hz)</div>
+                </div>
+              </button>
+
+              <button type="button" class="drawer-sub-btn makam-sub-card" data-module="makam" data-makam="kurdi">
+                <span class="makam-dot cyan"></span>
+                <div class="makam-sub-info">
+                  <div class="makam-sub-title"><b>Kürdî Makamı</b> (كُرْدِي)</div>
+                  <div class="makam-sub-desc">Yatsı / Gece · Durak: Dügâh (220.0 Hz)</div>
+                </div>
+              </button>
+
+              <button type="button" class="drawer-sub-btn makam-sub-card" data-module="makam" data-makam="acem">
+                <span class="makam-dot blue"></span>
+                <div class="makam-sub-info">
+                  <div class="makam-sub-title"><b>Acem-Aşîran Makamı</b> (عَجَم)</div>
+                  <div class="makam-sub-desc">Cuma / Bayram · Durak: Acem-Aşîran</div>
+                </div>
+              </button>
+
+              <button type="button" class="drawer-sub-btn makam-sub-card" data-module="makam" data-makam="neva">
+                <span class="makam-dot purple"></span>
+                <div class="makam-sub-info">
+                  <div class="makam-sub-title"><b>Nevâ Makamı</b> (نَوَى)</div>
+                  <div class="makam-sub-desc">Gece / Teheccüd · Durak: Nevâ (293.3 Hz)</div>
+                </div>
+              </button>
+
+              <button type="button" class="drawer-sub-btn makam-sub-card" data-module="makam" data-makam="huzzam">
+                <span class="makam-dot gold"></span>
+                <div class="makam-sub-info">
+                  <div class="makam-sub-title"><b>Hüzzam Makamı</b> (هُزَّام)</div>
+                  <div class="makam-sub-desc">İkindi / Akşam · Durak: Segâh (244.3 Hz)</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- 6. ŞAN & SES EĞİTİMİ -->
+          <div class="drawer-acc-node" data-module="san">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn" data-view="san">
+                <div class="node-text">
+                  <span class="node-title">Şan &amp; Ses Eğitimi</span>
+                  <span class="node-desc">Nefes Rehberi, Ses Isınma &amp; Rezonans</span>
+                </div>
+              </button>
+              <button type="button" class="drawer-node-toggle" aria-expanded="false" title="Alt Menüyü Genişlet">
+                <span class="node-chevron" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div class="drawer-node-sub">
+              <button type="button" class="drawer-sub-btn" data-module="san" data-sub="diyafram">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">1. Nefes Gücü &amp; Ses Atölyesi</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="san" data-sub="vokal-isinma">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">2. Vokal Isınma, Siren &amp; Esnetme</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="san" data-sub="register-rezonans">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">3. Register, Falsetto &amp; Baş Rezonansı</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 7. SES LABORATUVARI -->
+          <div class="drawer-acc-node" data-module="studyo">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn" data-view="studyo">
+                <div class="node-text">
+                  <span class="node-title">Ses Laboratuvarı</span>
+                  <span class="node-desc">Drone Synth, 53-Koma Tuner &amp; Akustik İstasyonlar</span>
+                </div>
+              </button>
+              <button type="button" class="drawer-node-toggle" aria-expanded="false" title="Alt Menüyü Genişlet">
+                <span class="node-chevron" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div class="drawer-node-sub">
+              <button type="button" class="drawer-sub-btn" data-module="studyo" data-station="kurra">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">1. Kurrâ Mukayese &amp; Döngü Konsolu</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="studyo" data-station="tuner">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">2. 53-Koma Mikrotonal Canlı Tuner</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="studyo" data-station="medd">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">3. Medd Ölçer &amp; Zaman Kartları</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="studyo" data-station="spectrum">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">4. Canlı Spektrum &amp; F0 Pitch Konturu</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="san" data-sub="diyafram">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Nefes Rehberine Git</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 8. DİNLEME SALONU -->
+          <div class="drawer-acc-node" data-module="dinleme">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn" data-view="dinleme">
+                <div class="node-text">
+                  <span class="node-title">Dinleme Salonu</span>
+                  <span class="node-desc">114 Sûre Master Oynatıcı, Şaheser İcralar &amp; Ekoller</span>
+                </div>
+              </button>
+              <button type="button" class="drawer-node-toggle" aria-expanded="false" title="Alt Menüyü Genişlet">
+                <span class="node-chevron" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div class="drawer-node-sub">
+              <button type="button" class="drawer-sub-btn" data-module="dinleme" data-school="all">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Tüm Kâri ve İcralar (16 Üstat)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="dinleme" data-school="misir">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Mısır Ekolü (Mustafa İsmail, Minşâvî...)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="dinleme" data-school="haremeyn">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Haremeyn Ekolü (Ali Câbir, Südeys...)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="dinleme" data-school="modern">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">Modern &amp; Duygusal (Dossary, Afasy...)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 9. KIRAAT & RİVAYET -->
+          <div class="drawer-acc-node" data-module="qiraat">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn" data-view="qiraat">
+                <div class="node-text">
+                  <span class="node-title">Kıraat &amp; Rivayet</span>
+                  <span class="node-desc">Aşere Kıraati, 10 İmam &amp; 20 Râvî Tablosu</span>
+                </div>
+              </button>
+              <button type="button" class="drawer-node-toggle" aria-expanded="false" title="Alt Menüyü Genişlet">
+                <span class="node-chevron" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div class="drawer-node-sub">
+              <button type="button" class="drawer-sub-btn" data-module="qiraat" data-imam="asim">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">İmam Âsım (Hafs &amp; Şu'be Rivayetleri)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="qiraat" data-imam="nafi">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">İmam Nâfi' (Verş &amp; Kâlûn Rivayetleri)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="qiraat" data-imam="ibn-kethir">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">İmam İbn Kesîr (Bezzî &amp; Kunbül)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="qiraat" data-imam="ebu-amr">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">İmam Ebû Amr (Dûrî &amp; Sûsî)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="qiraat" data-imam="hamza">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">İmam Hamza (Halef &amp; Hallâd)</span>
+              </button>
+              <button type="button" class="drawer-sub-btn" data-module="qiraat" data-imam="kisai">
+                <span class="sub-bullet"></span>
+                <span class="sub-label">İmam Kisâî (Ebû'l-Hâris &amp; Dûrî)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 10. TİLAVET ASİSTANI -->
+          <div class="drawer-acc-node" data-module="asistan">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn" data-view="asistan">
+                <div class="node-text">
+                  <span class="node-title">Tilavet Asistanı</span>
+                  <span class="node-desc">Yapay Zekâ ile Tecvid &amp; Makam Danışmanı</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- 11. TERİMLER SÖZLÜĞÜ -->
+          <div class="drawer-acc-node" data-module="sozluk">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn" data-view="sozluk">
+                <div class="node-text">
+                  <span class="node-title">Terimler Sözlüğü</span>
+                  <span class="node-desc">Tecvid, Makam &amp; Musikî Istılahları</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- 12. AYARLAR & GİZLİLİK -->
+          <div class="drawer-acc-node" data-module="ayarlar">
+            <div class="drawer-node-header">
+              <button type="button" class="drawer-module-btn akademi-nav-btn" data-view="ayarlar">
+                <div class="node-text">
+                  <span class="node-title">Ayarlar &amp; Gizlilik</span>
+                  <span class="node-desc">53-Koma Akort Sistemi &amp; Ses Önbelleği</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+        </div> <!-- /#drawerAccordionTree -->
+      </div> <!-- /.drawer-section -->
+
+    </div> <!-- /.drawer-scroll-body -->
+
+    <!-- Çekmece Alt Bilgi -->
+    <div class="drawer-footer">
+      <div class="drawer-footer-info">
+        <span class="footer-title">Cymatique v3 · Atölye</span>
+        <span class="footer-hint">Kısayol: <kbd>M</kbd> ile aç/kapat, <kbd>Esc</kbd> ile çık</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- Toast Bildirim Kapsülü -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <nav class="mobile-primary-nav" aria-label="Hızlı gezinme">
+    <button type="button" class="mobile-nav-item active" data-tab="tab-tilavet" aria-current="page" aria-label="Mushaf ve tilavet">
+      <span>Mushaf</span>
+    </button>
+    <button type="button" class="mobile-nav-item" data-tab="tab-inceleme" aria-label="Âyet inceleme">
+      <span>İncele</span>
+    </button>
+    <button type="button" class="mobile-nav-item" data-action="open-beni-bul" aria-label="Âyet bul">
+      <span>Âyet bul</span>
+    </button>
+    <button type="button" class="mobile-nav-item" data-tab="tab-akademi" aria-label="Tilavet akademisi">
+      <span aria-hidden="true">◈</span><span>Akademi</span>
+    </button>
+  </nav>
+
+  <!-- Kur'an-ı Kerim Tilavet & Tecvid Motoru -->
+  <script src="tilavet_engine.js?v=20261021_1300"></script>
+  <!-- Âyet İnceleme, Esbâb-ı Nüzûl ve Büyük Âlimler Tefsir Motoru -->
+  <script src="inceleme_engine.js?v=20261021_1300"></script>
+  <!-- Tilavet Akademisi Ses Laboratuvarı & DSP Motoru -->
+  <script src="tilavet_audio_lab.js?v=20261020_1640"></script>
+  <!-- Makam Okulu 53-Koma Akort Motoru & Köprü -->
+  <script type="module" src="makam_okulu/audio/tuning.js"></script>
+  <script type="module" src="makam_okulu/compat/legacy_bridge.js"></script>
+  <!-- Tilavet Akademisi Kapsamlı Veri Havuzu -->
+  <script src="tilavet_akademi_data.js?v=20261021_1300"></script>
+  <!-- Tilavet Akademisi Ana Motoru -->
+  <script src="tilavet_akademi_engine.js?v=20261021_1300"></script>
+  <!-- UI / UX Orkestrasyon Katmanı (Erişilebilirlik, CVD, Sekme Senkronizasyonu, HUD) -->
+  <script src="ui.js?v=20261021_02"></script>
+  <script src="design-system.js?v=20261021_v5a"></script>
+  <script src="ui-v5.js?v=20261021_v5a"></script>
+  <!-- Ses Laboratuvarı v4.0.0 Modülleri & Okuma Penceresi Köprüsü -->
+  <script type="module">
+    import { readingModal } from './audio_lab/ui/reading_modal.js';
+    import { StudioUI } from './audio_lab/ui/studio_ui.js';
+    import { tuningCore } from './audio_lab/core/tuning_core.js';
+    import { micManager } from './audio_lab/core/mic_manager.js';
+    import { droneSynth } from './audio_lab/instruments/drone_v2.js';
+
+    window.ReadingModalV4 = readingModal;
+    window.StudioUIV4 = StudioUI;
+    window.TuningCoreV4 = tuningCore;
+    window.MicManagerV4 = micManager;
+    window.DroneSynthV4 = droneSynth;
+
+    window.openReadingFocusModal = function(data) {
+      const hasReference = data
+        && Array.isArray(data.samples)
+        && data.samples.length >= 5
+        && Number.isFinite(data.anchorHz)
+        && data.anchorHz > 0
+        && typeof data.audioUrl === 'string'
+        && data.audioUrl.length > 0;
+      if (!hasReference) {
+        const message = 'Odak penceresi için seçili âyetin doğrulanabilir ses konturu gerekli.';
+        if (window.showToast) window.showToast(message);
+        else console.error(message);
+        return;
+      }
+      return readingModal.open(data);
+    };
+  </script>
+</body>
+</html>

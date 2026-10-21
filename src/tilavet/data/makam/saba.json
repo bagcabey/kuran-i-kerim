@@ -1,0 +1,359 @@
+{
+  "id": "saba",
+  "names": {
+    "tr": "Sabâ",
+    "ar": "صَبَا",
+    "en": "Saba"
+  },
+  "durak": 9,
+  "guclu": 22,
+  "yeden": 0,
+  "seyir": "cikici",
+  "dizi": {
+    "cikici": [
+      9,
+      17,
+      22,
+      27,
+      31,
+      44,
+      53,
+      62
+    ],
+    "inici": null
+  },
+  "cesniler": [
+    {
+      "tur": "saba-dortlusu",
+      "baslangic": 9
+    },
+    {
+      "tur": "hicaz-dizisi",
+      "baslangic": 22
+    }
+  ],
+  "bend": [
+    {
+      "abs": 27,
+      "kosul": "seyir",
+      "komaOfset": 2,
+      "aciklama": "Hicaz perdesi seyir esnasında 2-2.5 koma dik basılır (TDV Sabâ)."
+    }
+  ],
+  "yarimKarar": [
+    22
+  ],
+  "asmaKararlar": [
+    27,
+    31
+  ],
+  "genisleme": {
+    "pest": 0,
+    "tiz": 62
+  },
+  "seyirBolumleri": {
+    "zemin": "Dügâh veya Çargâh civarından başlar; Segâh koması ve Hicaz aralığıyla Sabâ havası kurulur.",
+    "meyan": "Çargâh üzerinde Hicaz dizisiyle Nevâ, Acem ve Gerdâniye perdelerine yükselinir.",
+    "karar": "Hicaz ve Çargâh üzerinden Segâh kırılarak Dügâh perdesinde hüzünle karar verilir."
+  },
+  "school": [
+    "turk",
+    "misir",
+    "hicaz"
+  ],
+  "tags": [
+    "huzunlu",
+    "dokunakli",
+    "yakarici",
+    "sabah ezani",
+    "nedamet"
+  ],
+  "difficulty": 2,
+  "ruhiTesir": "Mûsiki nazariyatında hüznün en samimi ve saf hali sayılır. Kibri yıkar, ölümü ve haşri hatırlatarak gözyaşı döktürür.",
+  "gelenekNotu": [
+    "Ölüm ve can çekişme sahneleri",
+    "Pişmanlık, tevbe ve sığınma âyetleri",
+    "Âhiret mahkemesi ve hesap günleri",
+    "Geçmiş kavimlerin helaki"
+  ],
+  "ezanGelenegi": {
+    "metin": "Sabah Ezânı (Seher vaktinin derin sessizliğinde kalbi titreten yakarış)",
+    "kaynak": "Geleneksel Türk ve Mısır Ezanı",
+    "kesinlik": "gelenek"
+  },
+  "motifs": [
+    {
+      "id": "saba-m1",
+      "name": {
+        "tr": "Çargâh Üzerinde Sabâ Girişi",
+        "ar": "مدخل صبا على الجهاركاه",
+        "en": "Saba Opening on Chargah"
+      },
+      "type": "giris",
+      "path": [
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 17,
+          "beats": 1
+        },
+        {
+          "abs": 9,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "saba-m2",
+      "name": {
+        "tr": "Hicaz Aralığıyla Yükseliş",
+        "ar": "صعود بحركة الحجاز",
+        "en": "Hijaz Interval Ascent"
+      },
+      "type": "guclu",
+      "path": [
+        {
+          "abs": 9,
+          "beats": 1
+        },
+        {
+          "abs": 17,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 27,
+          "beats": 2
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "saba-m3",
+      "name": {
+        "tr": "Meyan Bölgesi Gerdâniye",
+        "ar": "ميانه كردانيه",
+        "en": "Meyan at Gerdaniye"
+      },
+      "type": "asma-karar",
+      "path": [
+        {
+          "abs": 31,
+          "beats": 1
+        },
+        {
+          "abs": 44,
+          "beats": 1
+        },
+        {
+          "abs": 53,
+          "beats": 2
+        },
+        {
+          "abs": 44,
+          "beats": 1
+        },
+        {
+          "abs": 31,
+          "beats": 2
+        }
+      ]
+    },
+    {
+      "id": "saba-m4",
+      "name": {
+        "tr": "Sabâ Kararına Hüzünlü İniş",
+        "ar": "هبوط صبا الحزين",
+        "en": "Melancholic Saba Cadence"
+      },
+      "type": "inis-karar",
+      "path": [
+        {
+          "abs": 27,
+          "beats": 1
+        },
+        {
+          "abs": 22,
+          "beats": 1
+        },
+        {
+          "abs": 17,
+          "beats": 2
+        },
+        {
+          "abs": 9,
+          "beats": 3
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "to": "ussak",
+      "via": "Dügâh",
+      "viaAbs": 9,
+      "path": [
+        {
+          "abs": 22
+        },
+        {
+          "abs": 17
+        },
+        {
+          "abs": 9
+        }
+      ],
+      "note": {
+        "tr": "Dügâh perdesinde Uşşak/Bayâtî kararına bağlanış."
+      }
+    },
+    {
+      "to": "hicaz",
+      "via": "Hicaz",
+      "viaAbs": 27,
+      "path": [
+        {
+          "abs": 22
+        },
+        {
+          "abs": 27
+        },
+        {
+          "abs": 31
+        }
+      ],
+      "note": {
+        "tr": "Hicaz perdesi genişletilerek doğrudan Hicaz makamına geçilir."
+      }
+    }
+  ],
+  "confidence": "high",
+  "needsReview": false,
+  "notlar": "Dügâh'ta Sabâ dörtlüsü + Çargâh'ta Hicaz dizisi (TDV Sabâ). Hicaz perdesinin seyirde 2 koma dik basılması bend alanında belgelendi.",
+  "kaynaklar": [
+    {
+      "baslik": "TDV İslâm Ansiklopedisi — Sabâ",
+      "yazar": "İsmail Hakkı Özkan",
+      "url": "https://islamansiklopedisi.org.tr/saba--musiki",
+      "erisimTarihi": "2026-10-20"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "log": [
+      {
+        "tarih": "2026-10-20",
+        "not": "Sabâ tam oktav dizisi TDV verileriyle tamamlandı."
+      }
+    ]
+  },
+  "characterTags": [
+    "huzunlu",
+    "dokunakli",
+    "yakarici",
+    "sabah ezani",
+    "nedamet"
+  ],
+  "kararName": "Dügâh",
+  "description": {
+    "tr": "Mûsiki nazariyatında hüznün en samimi ve saf hali sayılır. Kibri yıkar, ölümü ve haşri hatırlatarak gözyaşı döktürür."
+  },
+  "degrees": [
+    {
+      "name": {
+        "tr": "Dügâh",
+        "ar": "Dügâh",
+        "en": "Dügâh"
+      },
+      "komas": 0,
+      "arCents": 0,
+      "isMicro": false,
+      "abs": 9
+    },
+    {
+      "name": {
+        "tr": "Segâh",
+        "ar": "Segâh",
+        "en": "Segâh"
+      },
+      "komas": 8,
+      "arCents": 181,
+      "isMicro": false,
+      "abs": 17
+    },
+    {
+      "name": {
+        "tr": "Çargâh",
+        "ar": "Çargâh",
+        "en": "Çargâh"
+      },
+      "komas": 13,
+      "arCents": 294,
+      "isMicro": true,
+      "abs": 22
+    },
+    {
+      "name": {
+        "tr": "Hicaz",
+        "ar": "Hicaz",
+        "en": "Hicaz"
+      },
+      "komas": 18,
+      "arCents": 408,
+      "isMicro": false,
+      "abs": 27
+    },
+    {
+      "name": {
+        "tr": "Nevâ",
+        "ar": "Nevâ",
+        "en": "Nevâ"
+      },
+      "komas": 22,
+      "arCents": 498,
+      "isMicro": true,
+      "abs": 31
+    },
+    {
+      "name": {
+        "tr": "Acem",
+        "ar": "Acem",
+        "en": "Acem"
+      },
+      "komas": 35,
+      "arCents": 792,
+      "isMicro": true,
+      "abs": 44
+    },
+    {
+      "name": {
+        "tr": "Gerdâniye",
+        "ar": "Gerdâniye",
+        "en": "Gerdâniye"
+      },
+      "komas": 44,
+      "arCents": 996,
+      "isMicro": false,
+      "abs": 53
+    },
+    {
+      "name": {
+        "tr": "Muhayyer",
+        "ar": "Muhayyer",
+        "en": "Muhayyer"
+      },
+      "komas": 53,
+      "arCents": 1200,
+      "isMicro": true,
+      "abs": 62
+    }
+  ]
+}

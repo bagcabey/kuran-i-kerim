@@ -1,0 +1,152 @@
+{
+  "title": "Aşere-i Mütevâtire Kıraat ve Rivayet Kataloğu",
+  "description": "Sahabe-i kiramdan tevatür yoluyla günümüze ulaşan 10 sahih imam ve 20 meşhur râvisinin okuyuş hükümleri ve usûl kaideleri.",
+  "academicReferences": [
+    "İbnü'l-Cezerî, en-Neşr fi'l-Kırââti'l-Aşr",
+    "İmam eş-Şâtıbî, Hırzü'l-Emânî ve Vechü't-Tehânî (eş-Şâtıbiyye)",
+    "İbnü'l-Cezerî, Tayyibetü'n-Neşr fi'l-Kırââti'l-Aşr"
+  ],
+  "disclaimer": "Farklı kıraat ve rivayetler lehçe farklılıkları veya musiki/makam varyasyonları değil; Hz. Peygamber'e (s.a.v.) dayanan vahyî okuyuş biçimleridir. Kesinlikle ehil hoca (fem-i muhsin) denetimi olmadan kendi kendine kıraat tatbikatı yapılmamalıdır.",
+  "imams": [
+    {
+      "id": "asim",
+      "name": "İmam Âsım b. Behdele el-Kûfî (v. 127/745)",
+      "region": "Kûfe",
+      "rawis": [
+        {
+          "id": "hafs",
+          "name": "Hafs b. Süleyman (v. 180/796)",
+          "status": "Dünya genelinde (%90+) en yaygın okunan rivayet",
+          "rulesSummary": "Met ve harekelerde tahkik esas, imale sadece Hud 41'de (Mecrêhê), teshil Fussilet 44'te (E-a'cemiyyün)."
+        },
+        {
+          "id": "sube",
+          "name": "Şu'be b. Ayyâş (v. 193/809)",
+          "status": "İslam dünyasının kadim rivayetlerindendir",
+          "rulesSummary": "Bazı ferşî kelimelerde hemze ve sükûn farklılıkları, belirli kelimelerde imâle."
+        }
+      ]
+    },
+    {
+      "id": "nafi",
+      "name": "İmam Nâfi' b. Abdirrahmân el-Medenî (v. 169/785)",
+      "region": "Medîne",
+      "rawis": [
+        {
+          "id": "kalun",
+          "name": "Kālûn (İsâ b. Mînâ, v. 220/835)",
+          "status": "Libya, Tunus ve Batı Mısır'da yaygın",
+          "rulesSummary": "Sıla-i Mîm (mîm-i cem'i vâv ile uzatma caiz), hemze teshili, medd-i munfasıl kasr tercihi."
+        },
+        {
+          "id": "vers",
+          "name": "Verş (Osman b. Saîd el-Mısrî, v. 197/812)",
+          "status": "Fas, Cezayir, Moritanya ve Batı Afrika'da resmi rivayet",
+          "rulesSummary": "Nakl (sâkin harften sonraki hemzenin harekesini sâkine aktarıp hemzeyi düşürme), kalın râ'ların inceltilmesi (terkîk), medd-i bedel'in 2-4-6 vecihle uzatılması, kübrâ/suğrâ imâleler."
+        }
+      ]
+    },
+    {
+      "id": "ibn-kesir",
+      "name": "İmam İbn Kesîr el-Mekkî (v. 120/738)",
+      "region": "Mekke",
+      "rawis": [
+        { "id": "bezzi", "name": "el-Bezzî (v. 250/864)", "status": "Mekke kıraati", "rulesSummary": "Duha'dan itibaren her sure sonunda tekbir, sıla-i zamir ve mîm." },
+        { "id": "kunbul", "name": "Kunbül (v. 291/904)", "status": "Mekke kıraati", "rulesSummary": "Müfred hemzelerin ibdali ve sıla hükümleri." }
+      ]
+    },
+    {
+      "id": "ebu-amr",
+      "name": "İmam Ebû Amr b. el-Alâ el-Basrî (v. 154/770)",
+      "region": "Basra",
+      "rawis": [
+        { "id": "duri-ebu-amr", "name": "ed-Dûrî (v. 246/860)", "status": "Sudan, Somali ve Yemen'de yaygın", "rulesSummary": "İdğâm-ı Kebîr (iki harekeli harfin birbirine katılması), imâleler ve teshil." },
+        { "id": "susi", "name": "es-Sûsî (v. 261/874)", "status": "Basra kıraati", "rulesSummary": "Tüm harekeli mütekarib ve mütemasil harflerde idğam-ı kebir." }
+      ]
+    },
+    {
+      "id": "ibn-amir",
+      "name": "İmam İbn Âmir ed-Dımaşkî (v. 118/736)",
+      "region": "Şam",
+      "rawis": [
+        { "id": "hisam", "name": "Hişâm b. Ammâr (v. 245/859)", "status": "Şam kıraati", "rulesSummary": "Vakıf halinde hemzenin ibdali ve teshili." },
+        { "id": "ibn-zekvan", "name": "İbn Zekvân (v. 242/856)", "status": "Şam kıraati", "rulesSummary": "Bazı fiillerde sekte ve imale vecihleri." }
+      ]
+    },
+    {
+      "id": "hamza",
+      "name": "İmam Hamza ez-Zeyyât el-Kûfî (v. 156/773)",
+      "region": "Kûfe",
+      "rawis": [
+        { "id": "halef", "name": "Halef b. Hişâm (v. 229/844)", "status": "Kûfe kıraati", "rulesSummary": "Sâkin-i mefsûl ve hemzeli kelimelerde sekte (şahsî tahkik), vakıfta hemzenin tahfifi." },
+        { "id": "hallad", "name": "Hallâd b. Hâlid (v. 220/835)", "status": "Kûfe kıraati", "rulesSummary": "İşmâm (Sad harfini Za harfi kokusuyla okuma) ve vakıf tahfifleri." }
+      ]
+    },
+    {
+      "id": "kisai",
+      "name": "İmam el-Kisâî el-Kûfî (v. 189/805)",
+      "region": "Kûfe",
+      "rawis": [
+        { "id": "ebul-haris", "name": "Ebü'l-Hâris el-Leys (v. 240/854)", "status": "Kûfe kıraati", "rulesSummary": "Vakıf halinde müenneslik te'sinden önceki harfte imâle." },
+        { "id": "duri-kisai", "name": "ed-Dûrî (v. 246/860)", "status": "Kûfe kıraati", "rulesSummary": "Geniş imâle usulü ve idğam hükümleri." }
+      ]
+    },
+    {
+      "id": "ebu-cafer",
+      "name": "İmam Ebû Ca'fer Yezîd b. el-Ka'kā' (v. 130/747)",
+      "region": "Medîne",
+      "rawis": [
+        { "id": "ibn-verdan", "name": "İbn Vardân (v. 160/777)", "status": "Medine 3 imam kıraati", "rulesSummary": "Müfred sâkin hemzelerin tam ibdali." },
+        { "id": "ibn-cemmaz", "name": "İbn Cemmâz (v. 170/786)", "status": "Medine 3 imam kıraati", "rulesSummary": "İhfâ-yı şefevî ve hemze kolaylaştırmaları." }
+      ]
+    },
+    {
+      "id": "yakub",
+      "name": "İmam Ya'kūb el-Hadramî (v. 205/820)",
+      "region": "Basra",
+      "rawis": [
+        { "id": "ruveys", "name": "Ruveys (v. 238/852)", "status": "Basra 3 imam kıraati", "rulesSummary": "He-i sekte ile vakıf ve tenvin idğamları." },
+        { "id": "ravh", "name": "Ravh b. Abdilmü'min (v. 234/848)", "status": "Basra 3 imam kıraati", "rulesSummary": "He-i kinâye ve lafzatullah hükümleri." }
+      ]
+    },
+    {
+      "id": "haleful-asir",
+      "name": "İmam Halefü'l-Âşir (v. 229/844)",
+      "region": "Kûfe",
+      "rawis": [
+        { "id": "ishak", "name": "İshâk b. İbrâhîm el-Verrâk (v. 286/899)", "status": "Kûfe 10. imam kıraati", "rulesSummary": "Hamza usulüne yakın; gunnesiz idğam ve imâle vecihleri." },
+        { "id": "idris", "name": "İdrîs b. Abdilkerîm el-Haddâd (v. 292/905)", "status": "Kûfe 10. imam kıraati", "rulesSummary": "Sekte ve tahkik hükümleri." }
+      ]
+    }
+  ],
+  "usulDifferences": [
+    {
+      "rule": "İmâle (İnklinasyon)",
+      "description": "Fetha (üstün) harekesini kesreye (esreye), elifi de yâ harfine meylettirerek okumak.",
+      "hafs": "Sadece 11:41 (Mecrêhê)",
+      "vers": "Bütün zâtü'l-yâ kelimelerde taklîl (küçük imâle)",
+      "hamzaKisai": "Geniş kübrâ imâle tatbikatı"
+    },
+    {
+      "rule": "Nakil (Aktarma)",
+      "description": "Sâkin harften sonra gelen hemzenin harekesini sâkin harfe aktarıp hemzeyi تلفz etmeden düşürmek.",
+      "hafs": "Sadece 49:11 (Bi'sel-ismu)",
+      "vers": "Bütün Kur'an'da sâkin harf + hemze durumunda genel kural (Örn: Kud efleha -> Kudeffleha)",
+      "hamzaKisai": "Vakıf durumunda nakil ve tahfif"
+    },
+    {
+      "rule": "İdğâm-ı Kebîr (Büyük Kaynaştırma)",
+      "description": "Her ikisi de harekeli olan mütemâsil veya mütekârib iki harfin birincisini sâkin kılıp ikincisine katmak.",
+      "hafs": "Uygulanmaz (tahkik)",
+      "ebuAmrSusi": "Tüm Kur'an'da genel kural (Örn: er-Rahmâni'r-Rahîm / Mâliki -> er-Rahîm-mâliki)",
+      "diger": "İstisnai yerlerde"
+    },
+    {
+      "rule": "Sıla-i Mîm-i Cem'",
+      "description": "Çoğul mîm'inden sonra gelen zamiri küçük bir vâv ile uzatarak okumak.",
+      "hafs": "Yalnızca kendisinden sonra hemze-i vasl geldiğinde değil, normalde sükûnla okunur.",
+      "kalunIbnKesir": "Aleyhimū, Entehumū şeklinde sıla ile okumak caizdir.",
+      "vers": "Sadece hemze-i kat' öncesinde medd-i munfasıl hükmünde uzatır."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "sozluk": [
+    {
+      "terim": "Durak (Karar)",
+      "ar": "قرار",
+      "tanim": "Bir makamın seyrinin tamamlandığı, melodik hareketin son bulup sükûnete erdiği ana temel ses/perdedir."
+    },
+    {
+      "terim": "Güçlü",
+      "ar": "غماز / مهيمن",
+      "tanim": "Makamı oluşturan çeşnilerin (dörtlü ve beşlilerin) birleşme noktası; yarım kararın yapıldığı ve melodiye yön veren en baskın ara durak perdesidir."
+    },
+    {
+      "terim": "Yeden",
+      "ar": "حساس / مرشد",
+      "tanim": "Durağın (karar sesinin) hemen altındaki çekici perdedir. Karara geçiş hissini kuvvetlendirir."
+    },
+    {
+      "terim": "Çeşni",
+      "ar": "جنس",
+      "tanim": "Üçlü, dörtlü veya beşli ses gruplarından oluşan, makamın lezzet ve kimliğini belirleyen yapıtaşı melodi çekirdeğidir (Uşşak dörtlüsü, Hicaz dörtlüsü, Rast beşlisi vb.)."
+    },
+    {
+      "terim": "Seyir",
+      "ar": "سير",
+      "tanim": "Bir makamın icrası esnasında perdelerin melodik gezinti mantığı ve yönüdür (Çıkıcı, İnici veya İnici-Çıkıcı)."
+    },
+    {
+      "terim": "Asma Karar",
+      "ar": "استقرار مؤقت",
+      "tanim": "Seyir esnasında güçlü veya durak haricinde geçici bir dinlenme hissi vermek amacıyla belirli perdelerde yapılan geçici duraklamadır."
+    },
+    {
+      "terim": "Perde",
+      "ar": "نغمة / بردة",
+      "tanim": "Türk ve Şark mûsikisinde her bir frekans noktasına ve notaya verilen özel tarihi isimdir (Rast, Dügâh, Segâh, Çargâh, Nevâ, Hüseynî, Eviç, Gerdâniye vb.)."
+    },
+    {
+      "terim": "Koma (53-TET)",
+      "ar": "كومة",
+      "tanim": "Türk mûsikisi nazariyatında bir tam oktavın (1200 cent) 53 eşit parçaya bölünmesiyle elde edilen en küçük mikrotonal aralık birimidir (1 koma ≈ 22.64 cent)."
+    }
+  ]
+}

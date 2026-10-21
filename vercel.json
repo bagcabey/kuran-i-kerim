@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "kimatik_lab",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/inceleme",
+      "destination": "/inceleme.html"
+    }
+  ]
+}

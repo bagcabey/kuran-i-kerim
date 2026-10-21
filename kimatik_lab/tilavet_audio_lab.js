@@ -708,17 +708,23 @@
         if (rawPoints.length < 5) throw new Error('Bu kayıtta güvenilir F0 konturu çıkarılamadı.');
 
         const sortedPitches = rawPoints.map(point => point.hz).sort((a, b) => a - b);
-        const anchorHz = sortedPitches[Math.floor((sortedPitches.length - 1) * 0.2)];
-        const points = rawPoints.map(point => ({
-          ...point,
-          cents: 1200 * Math.log2(point.hz / anchorHz)
-        }));
+        // Robust 35th percentile anchor calculation
+        const anchorHz = sortedPitches[Math.floor((sortedPitches.length - 1) * 0.35)] || 160;
+        const points = rawPoints.map(point => {
+          let cents = 1200 * Math.log2(point.hz / anchorHz);
+          // Safeguard within realistic vocal bounds (-800 to +1600 cents)
+          cents = Math.max(-800, Math.min(1600, cents));
+          return {
+            ...point,
+            cents: Math.round(cents * 10) / 10
+          };
+        });
         const reference = {
           ayahKey,
           qariKey,
           audioUrl,
           durationMs: Math.round(audioBuffer.duration * 1000),
-          anchorHz,
+          anchorHz: Math.round(anchorHz * 10) / 10,
           points,
           sampleCount: points.length,
           source: 'audio-f0'
@@ -758,23 +764,39 @@
         mono[outputIndex] = total / ((end - start) * channelCount);
       }
 
+      // 1. Dinamik Tepe Enerji ve Sessizlik Tabanı
+      let peakRms = 0;
+      const rmsChunk = 512;
+      for (let i = 0; i + rmsChunk <= mono.length; i += rmsChunk) {
+        let e = 0;
+        for (let j = 0; j < rmsChunk; j++) e += mono[i + j] * mono[i + j];
+        const r = Math.sqrt(e / rmsChunk);
+        if (r > peakRms) peakRms = r;
+      }
+      const silenceThreshold = Math.max(0.010, peakRms * 0.038);
+
       const frameSize = 1024;
-      const hopSize = Math.max(1, Math.round(sampleRate * 0.04));
-      const minHz = 65;
-      const maxHz = 750;
+      const hopSize = Math.max(1, Math.round(sampleRate * 0.03)); // 30ms adımı
+      const minHz = 75;
+      const maxHz = 550; // Kur'an tilaveti için bilimsel vokal aralığı
       const minLag = Math.max(2, Math.floor(sampleRate / maxHz));
       const maxLag = Math.min(frameSize - 2, Math.ceil(sampleRate / minHz));
       const normalizedDifference = new Float32Array(maxLag + 1);
-      const points = [];
+      const candidatePoints = [];
+
+      let runningMedianHz = 0;
+      const recentValidHz = [];
 
       for (let frameStart = 0; frameStart + frameSize <= mono.length; frameStart += hopSize) {
         let energy = 0;
         for (let index = frameStart; index < frameStart + frameSize; index++) {
           energy += mono[index] * mono[index];
         }
-        if (Math.sqrt(energy / frameSize) < 0.008) continue;
+        const frameRms = Math.sqrt(energy / frameSize);
+        if (frameRms < silenceThreshold) continue;
 
         let cumulativeDifference = 0;
+        normalizedDifference[0] = 1;
         for (let lag = 1; lag <= maxLag; lag++) {
           let sum = 0;
           const limit = frameStart + frameSize - lag;
@@ -786,39 +808,86 @@
           normalizedDifference[lag] = cumulativeDifference === 0 ? 1 : (sum * lag) / cumulativeDifference;
         }
 
+        // 2. YIN Dip Eşiği: 0.18 (Gürültülü sürtünmeli ünsüz zıplamalarını engeller)
         let bestLag = -1;
         for (let lag = minLag; lag <= maxLag; lag++) {
-          if (normalizedDifference[lag] < 0.15) {
+          if (normalizedDifference[lag] < 0.18) {
             while (lag < maxLag && normalizedDifference[lag + 1] < normalizedDifference[lag]) lag++;
             bestLag = lag;
             break;
           }
         }
-        if (bestLag < 0) {
-          let bestDifference = 0.35;
+        // Eğer 0.18 altında dip yoksa sadece güçlü enerjide dar eşik (0.24) ile kabul et
+        if (bestLag < 0 && frameRms > silenceThreshold * 1.5) {
+          let minVal = 0.24;
           for (let lag = minLag; lag <= maxLag; lag++) {
-            if (normalizedDifference[lag] < bestDifference) {
-              bestDifference = normalizedDifference[lag];
+            if (normalizedDifference[lag] < minVal) {
+              minVal = normalizedDifference[lag];
               bestLag = lag;
             }
           }
         }
         if (bestLag < 0) continue;
 
+        // 3. Parabolik Enterpolasyon (Alt-örnek hassasiyeti)
         const left = normalizedDifference[Math.max(1, bestLag - 1)];
         const center = normalizedDifference[bestLag];
         const right = normalizedDifference[Math.min(maxLag, bestLag + 1)];
         const denominator = left - 2 * center + right;
-        const offset = denominator === 0 ? 0 : Math.max(-0.5, Math.min(0.5, 0.5 * (left - right) / denominator));
-        const hz = sampleRate / (bestLag + offset);
+        const offset = Math.abs(denominator) > 1e-6 ? Math.max(-0.5, Math.min(0.5, 0.5 * (left - right) / denominator)) : 0;
+        let hz = sampleRate / (bestLag + offset);
         if (hz < minHz || hz > maxHz) continue;
 
-        points.push({
+        // 4. Oktav Zıplama Düzelticisi (Harmonik katlanmalarını temel frekansa indirir)
+        if (recentValidHz.length >= 3) {
+          const sortedRecent = [...recentValidHz].sort((a, b) => a - b);
+          runningMedianHz = sortedRecent[Math.floor(sortedRecent.length / 2)];
+          if (runningMedianHz > 60) {
+            const ratio = hz / runningMedianHz;
+            if (ratio > 1.82 && ratio < 2.18) hz /= 2.0;
+            else if (ratio > 0.45 && ratio < 0.55) hz *= 2.0;
+            else if (ratio > 2.75 && ratio < 3.25) hz /= 3.0;
+          }
+        }
+
+        recentValidHz.push(hz);
+        if (recentValidHz.length > 7) recentValidHz.shift();
+
+        candidatePoints.push({
           t: ((frameStart + frameSize / 2) * decimation / sourceRate) * 1000,
           hz
         });
       }
-      return points;
+
+      if (candidatePoints.length < 3) return candidatePoints;
+
+      // 5. Zamansal 5-Noktalı Medyan Filtresi: Tekil darbe gürültülerini ve +2000c sıçramalarını yok eder
+      const smoothedPoints = [];
+      const windowRadius = 2;
+      for (let i = 0; i < candidatePoints.length; i++) {
+        const currentT = candidatePoints[i].t;
+        const neighborhood = [];
+        for (let j = Math.max(0, i - windowRadius); j <= Math.min(candidatePoints.length - 1, i + windowRadius); j++) {
+          if (Math.abs(candidatePoints[j].t - currentT) <= 160) {
+            neighborhood.push(candidatePoints[j].hz);
+          }
+        }
+        if (neighborhood.length === 0) continue;
+        neighborhood.sort((a, b) => a - b);
+        const medHz = neighborhood[Math.floor(neighborhood.length / 2)];
+
+        // 100ms içinde komşusu olmayan izole gürültü patlamalarını at
+        const hasCloseNeighbor = (i > 0 && Math.abs(candidatePoints[i].t - candidatePoints[i - 1].t) <= 100) ||
+                                 (i < candidatePoints.length - 1 && Math.abs(candidatePoints[i + 1].t - candidatePoints[i].t) <= 100);
+        if (!hasCloseNeighbor && candidatePoints.length > 5) continue;
+
+        smoothedPoints.push({
+          t: Math.round(candidatePoints[i].t),
+          hz: Math.round(medHz * 10) / 10
+        });
+      }
+
+      return smoothedPoints;
     }
 
     getReference(ayahKey, qariKey = 'dossary') {
@@ -830,10 +899,11 @@
 
     convertFreqToContourCents(freq, anchorHz) {
       if (!Number.isFinite(freq) || freq <= 0 || !Number.isFinite(anchorHz) || anchorHz <= 0) return null;
-      return 1200 * Math.log2(freq / anchorHz);
+      let cents = 1200 * Math.log2(freq / anchorHz);
+      return Math.max(-900, Math.min(1800, Math.round(cents * 10) / 10));
     }
 
-    resamplePoints(points, targetCount = 50) {
+    resamplePoints(points, targetCount = 64) {
       if (!points || points.length === 0) return new Array(targetCount).fill(0);
       if (points.length === 1) return new Array(targetCount).fill(points[0].cents || 0);
 
@@ -856,7 +926,32 @@
       return resampled;
     }
 
-    calculateDTW(userPoints, refPoints) {
+    resamplePointsWithHz(points, targetCount = 64) {
+      if (!points || points.length === 0) {
+        return Array.from({ length: targetCount }, () => ({ t: 0, cents: 0, hz: 0 }));
+      }
+      if (points.length === 1) {
+        return Array.from({ length: targetCount }, () => ({ t: points[0].t, cents: points[0].cents || 0, hz: points[0].hz || 0 }));
+      }
+      const totalT = points[points.length - 1].t || 1;
+      const resampled = [];
+      let j = 0;
+
+      for (let i = 0; i < targetCount; i++) {
+        const targetT = (i / (targetCount - 1)) * totalT;
+        while (j < points.length - 2 && points[j + 1].t < targetT) j++;
+        const p1 = points[j];
+        const p2 = points[Math.min(j + 1, points.length - 1)];
+        const dt = p2.t - p1.t;
+        const ratio = dt === 0 ? 0 : Math.max(0, Math.min(1, (targetT - p1.t) / dt));
+        const cents = p1.cents + (p2.cents - p1.cents) * ratio;
+        const hz = p1.hz && p2.hz ? p1.hz + (p2.hz - p1.hz) * ratio : (p1.hz || p2.hz || 0);
+        resampled.push({ t: targetT, cents, hz });
+      }
+      return resampled;
+    }
+
+    calculateDTW(userPoints, refPoints, options = {}) {
       if (!userPoints || userPoints.length < 5) {
         return {
           noAudio: true,
@@ -882,72 +977,140 @@
         };
       }
 
-      const N = 50;
-      const u = this.resamplePoints(userPoints, N);
-      const r = this.resamplePoints(refPoints, N);
+      // Kullanıcı ve Referans Karar Perdesi (Tessitura) Tespiti
+      const userPitches = userPoints.filter(p => p.hz > 50).map(p => p.hz).sort((a, b) => a - b);
+      const userAnchorHz = userPitches.length > 0
+        ? userPitches[Math.floor(userPitches.length * 0.35)]
+        : 150;
 
-      // Sakoe-Chiba bant kısıtlamalı DTW algoritması
-      const band = Math.max(4, Math.floor(N * 0.25));
+      const refPitches = refPoints.filter(p => p.hz > 50).map(p => p.hz).sort((a, b) => a - b);
+      const refAnchorHz = refPitches.length > 0
+        ? refPitches[Math.floor(refPitches.length * 0.35)]
+        : 170;
+
+      const tonicShiftCents = (userAnchorHz > 0 && refAnchorHz > 0)
+        ? Math.round(1200 * Math.log2(userAnchorHz / refAnchorHz))
+        : 0;
+
+      // N=64 Noktalı Sakoe-Chiba DTW Matrisi
+      const N = 64;
+      const uRes = this.resamplePointsWithHz(userPoints, N);
+      const rRes = this.resamplePointsWithHz(refPoints, N);
+
+      // Göreli Seyir Modu (Varsayılan): Kullanıcı kendi ses genişliğinde okuduğunda nağme aralıklarını doğru ölçer
+      const relativeMode = options.relativeMode !== false;
+      const uCents = uRes.map(p => relativeMode ? (p.cents - tonicShiftCents) : p.cents);
+      const rCents = rRes.map(p => p.cents);
+
+      const band = Math.max(5, Math.floor(N * 0.20));
       const INF = 1e9;
-      const D = Array.from({ length: N + 1 }, () => new Array(N + 1).fill(INF));
-      const L = Array.from({ length: N + 1 }, () => new Array(N + 1).fill(0));
+      const D = Array.from({ length: N + 1 }, () => new Float32Array(N + 1).fill(INF));
       D[0][0] = 0;
-
-      let inCorridorCount = 0;
-      const corridorThresholdCents = 40;
 
       for (let i = 1; i <= N; i++) {
         const jMin = Math.max(1, i - band);
         const jMax = Math.min(N, i + band);
-
-        if (Math.abs(u[i - 1] - r[i - 1]) <= corridorThresholdCents) {
-          inCorridorCount++;
-        }
-
         for (let j = jMin; j <= jMax; j++) {
-          const cost = Math.abs(u[i - 1] - r[j - 1]);
+          const cost = Math.abs(uCents[i - 1] - rCents[j - 1]);
           const prev = Math.min(D[i - 1][j], D[i][j - 1], D[i - 1][j - 1]);
-          const stepCount = prev === D[i - 1][j - 1] ? L[i - 1][j - 1] : (prev === D[i - 1][j] ? L[i - 1][j] : L[i][j - 1]);
           D[i][j] = cost + prev;
-          L[i][j] = stepCount + 1;
         }
       }
 
-      const totalDist = D[N][N];
-      const steps = Math.max(1, L[N][N]);
-      const meanCentsDiff = totalDist >= INF ? 150 : (totalDist / steps);
-
-      // 1. Perde Uyumu (0 - 100): Ortalama cent farkına göre hesaplanır
-      const pitchScore = Math.max(0, Math.min(100, Math.round(100 - (meanCentsDiff / 1.4))));
-
-      // 2. Kontur / Seyir Uyumu (Eğrinin iniş-çıkış türev benzerliği):
-      let directionMatches = 0;
-      for (let i = 1; i < N; i++) {
-        const du = u[i] - u[i - 1];
-        const dr = r[i] - r[i - 1];
-        if ((du >= 0 && dr >= 0) || (du <= 0 && dr <= 0)) {
-          directionMatches++;
+      // Optimal DTW Warping Yolunu Geri Çıkar (Backtracking)
+      let i = N;
+      let j = N;
+      const path = [[i, j]];
+      while (i > 1 || j > 1) {
+        if (i === 1) j--;
+        else if (j === 1) i--;
+        else {
+          const dDiag = D[i - 1][j - 1];
+          const dLeft = D[i][j - 1];
+          const dUp = D[i - 1][j];
+          if (dDiag <= dLeft && dDiag <= dUp) { i--; j--; }
+          else if (dLeft <= dUp) { j--; }
+          else { i--; }
         }
+        path.push([i, j]);
       }
-      const contourScore = Math.max(0, Math.min(100, Math.round((directionMatches / (N - 1)) * 100)));
+      path.reverse();
 
-      // 3. Zamanlama & Medd Uyumu:
-      const timingScore = Math.max(0, Math.min(100, Math.round(100 - (meanCentsDiff * 0.4))));
+      // 1. PERDE UYUMU (Eşleştirilmiş cent farkı)
+      let totalWarpedDiff = 0;
+      let inCorridorCount = 0;
+      const corridorThreshold = 45; // ±45 cent (~2 koma pedagojik tolerans bandı)
 
-      // 4. Tolerans Koridoru İçi Nokta Yüzdesi:
-      const corridorScore = Math.max(0, Math.min(100, Math.round((inCorridorCount / N) * 100)));
+      for (const [ui, rj] of path) {
+        const diff = Math.abs(uCents[ui - 1] - rCents[rj - 1]);
+        totalWarpedDiff += diff;
+        if (diff <= corridorThreshold) inCorridorCount++;
+      }
+      const meanCentsDiff = totalWarpedDiff / path.length;
+      const pitchScore = Math.max(0, Math.min(100, Math.round(100 - (meanCentsDiff / 1.25))));
 
-      // Genel Değerlendirme & Pedagojik Hüküm
-      const avgScore = Math.round((pitchScore + contourScore + timingScore + corridorScore) / 4);
+      // 2. KONTUR / SEYİR UYUMU (Türev ve iniş-çıkış yön benzerliği)
+      let matchedSlopes = 0;
+      let validTransitions = 0;
+      for (let k = 1; k < N; k++) {
+        const du = uCents[k] - uCents[k - 1];
+        const dr = rCents[k] - rCents[k - 1];
+        const uFlat = Math.abs(du) <= 12;
+        const rFlat = Math.abs(dr) <= 12;
+        if (uFlat && rFlat) {
+          matchedSlopes += 1.0;
+        } else if ((du > 12 && dr > 12) || (du < -12 && dr < -12)) {
+          matchedSlopes += 1.0;
+        } else if (uFlat || rFlat) {
+          matchedSlopes += 0.5;
+        }
+        validTransitions++;
+      }
+      const contourScore = validTransitions > 0
+        ? Math.max(0, Math.min(100, Math.round((matchedSlopes / validTransitions) * 100)))
+        : 75;
+
+      // 3. ZAMANLAMA & TEMPO UYUMU (Köşegen sapması ve süre oranı)
+      let totalDiagDev = 0;
+      for (const [ui, rj] of path) {
+        const idealJ = (ui * N) / N;
+        const normDev = Math.abs(rj - idealJ) / N;
+        totalDiagDev += normDev * normDev;
+      }
+      const rmseDiag = Math.sqrt(totalDiagDev / path.length);
+      const userTotalT = userPoints[userPoints.length - 1].t - userPoints[0].t;
+      const refTotalT = refPoints[refPoints.length - 1].t - refPoints[0].t;
+      const durRatio = refTotalT > 0 ? (userTotalT / refTotalT) : 1;
+      const durPenalty = Math.min(25, Math.abs(1 - durRatio) * 40);
+      const timingScore = Math.max(0, Math.min(100, Math.round(100 - (rmseDiag * 260) - durPenalty)));
+
+      // 4. TOLERANS KORİDORU İÇİ NOKTA YÜZDESİ
+      const corridorScore = Math.max(0, Math.min(100, Math.round((inCorridorCount / path.length) * 100)));
+
+      // Birleşik Ağırlıklı Pedagojik Skor
+      const avgScore = Math.round(
+        (0.35 * pitchScore) +
+        (0.35 * contourScore) +
+        (0.15 * timingScore) +
+        (0.15 * corridorScore)
+      );
+
+      // Transpoze ve Perde Karar Etiketi
+      const semitones = (tonicShiftCents / 100).toFixed(1);
+      const tonicLabel = Math.abs(tonicShiftCents) <= 35
+        ? "Kâri ile aynı karar perdesi (±35 cent)"
+        : (tonicShiftCents < 0 ? `${Math.abs(semitones)} yarım ton pest (Kendi kararınız)` : `${semitones} yarım ton tiz (Kendi kararınız)`);
+
+      // Bilimsel & Pedagojik Hüküm
       let verdict = '';
       if (avgScore >= 88) {
-        verdict = "Referans kayda göre perde seyri ve zamanlama benzerliği yüksek.";
+        verdict = `Mükemmel akustik uyum! Perde seyriniz, tecvid süresi ve nağme geçişleriniz referans kâriye çok yakın (${tonicLabel}).`;
       } else if (avgScore >= 75) {
-        verdict = "Referansla genel akustik uyum iyi; perde geçişlerini tekrar dinleyerek çalışın.";
+        verdict = `Başarılı tilavet. Genel perde seyriniz ve makam dengeniz iyi (${tonicLabel}); bazı geçişlerde kâriyi tekrar dinleyiniz.`;
       } else if (avgScore >= 60) {
-        verdict = "Referansla perde ve zamanlama farkları var; yavaş okuyup yeniden deneyin.";
+        verdict = `Gelişmeye açık. Perde eğrinizde iniş-çıkışlar modelden ayrılıyor (${tonicLabel}); yavaşlatılmış hızda dinleyip tekrar deneyiniz.`;
       } else {
-        verdict = "Konturlar belirgin biçimde farklı. Bu sonuç yalnızca akustik karşılaştırmadır.";
+        verdict = `Akustik seyir kâriden belirgin şekilde farklı. Bu sonuç icazet veya hüküm değildir; makam seyrini çalışıp yeniden deneyiniz.`;
       }
 
       return {
@@ -957,6 +1120,10 @@
         timingScore,
         corridorScore,
         avgScore,
+        tonicShiftCents,
+        tonicLabel,
+        userAnchorHz: Math.round(userAnchorHz * 10) / 10,
+        refAnchorHz: Math.round(refAnchorHz * 10) / 10,
         verdict
       };
     }

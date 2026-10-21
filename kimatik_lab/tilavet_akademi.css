@@ -1446,42 +1446,66 @@
 .vocal-zones-layout {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 .vocal-zone-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.65rem 0.95rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 8px;
-  font-size: 0.82rem;
-  color: #a0aec0;
+  gap: 1rem;
+  padding: 0.85rem 1.15rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  font-size: 0.88rem;
+  color: #cbd5e1;
   transition: all 0.25s ease;
+  cursor: pointer;
+}
+.vocal-zone-item:hover {
+  background: rgba(229, 184, 105, 0.07);
+  border-color: rgba(229, 184, 105, 0.4);
+}
+.vocal-zone-item .zone-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 .vocal-zone-item .zone-name {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-weight: 700;
+  font-weight: 750;
+  font-size: 0.95rem;
+  color: #f1f5f9;
 }
-.vocal-zone-item .zone-letters {
-  font-size: 0.72rem;
-  color: #718096;
+.vocal-zone-item .zone-desc {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+.vocal-zone-item .zone-letters-ar {
+  font-family: 'Amiri', 'Traditional Arabic', serif !important;
+  font-size: 1.55rem !important;
+  line-height: 1.35;
+  color: var(--accent-gold, #e5b869) !important;
+  letter-spacing: 0.18rem;
+  direction: rtl;
+  text-align: right;
+  white-space: nowrap;
 }
 .vocal-zone-item.active {
   background: linear-gradient(90deg, rgba(229, 184, 105, 0.2) 0%, rgba(229, 184, 105, 0.04) 100%);
   border-color: var(--accent-gold, #e5b869);
   color: #f0f3fa;
-  box-shadow: 0 2px 10px rgba(229, 184, 105, 0.2);
+  box-shadow: 0 4px 16px rgba(229, 184, 105, 0.18);
 }
 .vocal-zone-item.active .zone-name {
   color: var(--accent-gold, #e5b869);
 }
-.vocal-zone-item.active .zone-letters {
-  color: var(--accent-gold, #e5b869);
-  font-weight: 700;
+.vocal-zone-item.active .zone-letters-ar {
+  color: #fff !important;
+  text-shadow: 0 0 12px rgba(229, 184, 105, 0.6);
 }
 
 /* =============================================================================
@@ -6774,7 +6798,7 @@
   color: #aeb9c9;
   background: rgba(255, 255, 255, 0.045);
   border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 999px;
+  border-radius: 8px;
   font: inherit;
   font-size: 0.78rem;
   font-weight: 650;
@@ -6940,28 +6964,64 @@
 
 .ear-choice-example {
   display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.45rem;
+  flex-direction: column;
+  gap: 0.35rem;
   width: 100%;
   margin-top: auto;
-  padding-top: 0.55rem;
-  color: #8d9bad;
-  border-top: 1px dashed rgba(255, 255, 255, 0.1);
-  font-size: 0.7rem;
+  padding-top: 0.65rem;
+  color: #a0aec0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+}
+
+.ear-choice-example-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.5rem;
 }
 
 .ear-choice-example strong {
-  color: #eac878;
-  font-family: 'Amiri', serif;
-  font-size: 1.05rem;
+  color: #f6d37d;
+  font-family: 'Amiri', serif !important;
+  font-size: 1.75rem !important;
   font-weight: 700;
+  line-height: 1.3;
 }
 
 .ear-choice-meaning {
-  margin-left: auto;
-  color: #95a2b4;
+  color: #cbd5e1;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.ear-recited-ayah-card {
+  margin: 0.85rem 0 1.15rem 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(229, 184, 105, 0.08) 0%, rgba(14, 20, 32, 0.7) 100%);
+  border: 1px solid rgba(229, 184, 105, 0.3);
+  border-radius: 12px;
+}
+
+.ear-recited-ayah-arabic {
+  font-family: 'Amiri', 'Traditional Arabic', serif !important;
+  font-size: 1.85rem !important;
+  line-height: 1.6;
+  color: #fff;
   text-align: right;
+  direction: rtl;
+  margin-bottom: 0.4rem;
+}
+
+.ear-recited-ayah-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #94a3b8;
 }
 
 .ear-preview-button {

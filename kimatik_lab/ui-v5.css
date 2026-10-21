@@ -1307,9 +1307,9 @@
 
 /* Bölüm çubuğu: başlık + bölüm seçici + tüm bölümler */
 #v5 .akademi-executive-bar {
-  position: sticky; top: calc(var(--v5-header-h) + 8px); z-index: 30;
+  position: static !important; top: auto !important; z-index: 10;
   display: flex !important; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-  margin: 0 !important; padding: 10px 10px 10px 18px !important;
+  margin: 0 0 18px 0 !important; padding: 10px 10px 10px 18px !important;
   background: color-mix(in srgb, var(--v5-surface) 94%, transparent) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
 #v5 .exec-left-meta, #v5 .exec-title-group { min-width: 0; margin: 0 !important; padding: 0 !important; background: none !important; border: 0 !important; }
@@ -1513,7 +1513,7 @@
 
 /* Akademi: tablet ve telefon */
 @media (max-width: 1023px) {
-  #v5 .akademi-executive-bar { top: calc(var(--v5-header-h) + 6px); }
+  #v5 .akademi-executive-bar { position: static !important; top: auto !important; }
   #v5 .exec-module-select { min-width: 0; max-width: none; }
 }
 @media (max-width: 767px) {
@@ -1631,7 +1631,7 @@
 #v5 #tab-akademi .tecvid-rules-grid { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px !important; }
 #v5 #tab-akademi .rule-example { padding: 12px 14px !important; }
 #v5 #tab-akademi .rule-action-row { display: grid !important; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: auto; }
-#v5 #tab-akademi .zone-letters { font-family: var(--v5-sans), var(--v5-arabic-ui) !important; }
+#v5 #tab-akademi .zone-letters-ar { font-family: 'Amiri', serif !important; font-size: 1.55rem !important; color: var(--v5-gold) !important; }
 #v5 #miniMushafWidget .mini-mushaf-page-frame, #v5 #miniMushafWidget .mini-mushaf-page-frame::before, #v5 #miniMushafWidget .mini-mushaf-page-frame::after { border: 0 !important; outline: 0 !important; }
 #v5 #miniMushafWidget .mini-mushaf-page-frame::before, #v5 #miniMushafWidget .mini-mushaf-page-frame::after { display: none !important; }
 #v5 #miniMushafWidget { border: 0 !important; outline: 0 !important; }
@@ -1739,7 +1739,7 @@
 #v5 #tab-akademi .secavend-explanation-box { background: var(--v5-surface-2) !important; color: var(--v5-text-2) !important; border: 0 !important; border-radius: var(--v5-r-md) !important; box-shadow: none !important; }
 #v5 #tab-akademi .secavend-explanation-box * { color: inherit !important; }
 #v5 #tab-akademi .secavend-explanation-box strong { color: var(--v5-text) !important; }
-#v5 #tab-akademi .ear-metric-pill { background: var(--v5-surface-2) !important; color: var(--v5-text-2) !important; border: 0 !important; border-radius: var(--v5-r-pill) !important; }
+#v5 #tab-akademi .ear-metric-pill { background: var(--v5-surface-2) !important; color: var(--v5-text-2) !important; border: 0 !important; border-radius: 10px !important; }
 #v5 #tab-akademi :is(h2, h3, h4) { color: var(--v5-text) !important; text-shadow: none !important; -webkit-text-fill-color: currentColor !important; background-clip: border-box !important; }
 #v5 #tab-akademi :is(.spectrum-canvas-wrap, .pitch-canvas-wrap) { border-radius: var(--v5-r-lg) !important; overflow: hidden; }
 

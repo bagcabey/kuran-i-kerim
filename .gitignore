@@ -5,7 +5,6 @@ temp_chrome_profile_verify/
 __probe__.ts
 __pycache__/
 *.pyc
-kimatik_lab/makam_okulu
 /audio
 /tools
 /data/makamlar.json

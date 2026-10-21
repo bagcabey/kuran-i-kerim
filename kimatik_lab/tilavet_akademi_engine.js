@@ -1067,26 +1067,25 @@
 
           <!-- Sağ Kolon: Seçili Harf Tahlil Paneli -->
           <div class="akademi-card letter-detail-panel" id="letterDetailPanel">
-            <div class="detail-header">
+            <div class="detail-header" style="display:flex; align-items:center; gap:1.15rem; flex-wrap:wrap;">
               <div class="detail-large-glyph" id="detailGlyph" lang="ar">${selectedItem.char}</div>
-              <div class="detail-names">
-                <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-                  <h3 class="detail-title" id="detailName" style="margin:0;">${selectedItem.name}</h3>
+              <div class="detail-names" style="flex:1 1 240px;">
+                <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.35rem;">
+                  <h3 class="detail-title" id="detailName" style="margin:0; font-size:1.45rem;">${selectedItem.name}</h3>
                   <span class="card-badge ${selectedItem.type === 'kalin' ? 'alert' : (selectedItem.type === 'bogaz' ? 'gold' : 'cyan')}">${selectedItem.type.toUpperCase()}</span>
                   ${selectedItem.nonConnector ? `<span class="card-badge" style="background:rgba(255,160,0,0.18); color:#ffa000; border:1px solid rgba(255,160,0,0.4);">Bitişmeyen 6 Harf</span>` : ''}
                 </div>
-                <div class="detail-sound" id="detailSound">Ses: <strong>${selectedItem.sound}</strong> · Örnek: <strong lang="ar" style="font-family:'Amiri', serif; font-size:1.3rem; color:var(--accent-gold);">${selectedItem.example || ''}</strong></div>
+                <div class="detail-sound" id="detailSound" style="font-size:0.92rem; color:#cbd5e1;">
+                  Fonetik Ses: <strong style="color:#fff;">${selectedItem.sound}</strong> · Âyet Örneği: <strong lang="ar" style="font-family:'Amiri', serif; font-size:1.65rem; color:var(--accent-gold); margin-left:0.35rem;">${selectedItem.example || ''}</strong>
+                </div>
               </div>
-              <button type="button" class="btn-play-letter-sound" id="btnPlayLetterAudio" title="Bu harf için doğrulanmış ses kaydı yok">
-                <span></span> Ses kaydı yok
-              </button>
             </div>
 
             <!-- 4 Yazılış Formu -->
             <div class="forms-showcase-box">
               <div class="forms-showcase-title">
                 <span>4 Yazılış Biçimi</span>
-                <span style="font-size:0.68rem; color:#8a94a6; font-weight:500;">Sağdan Sola Yazım Sırası</span>
+                <span style="font-size:0.72rem; color:#8a94a6; font-weight:500;">Sağdan Sola Kelime İçi Pozisyonu</span>
               </div>
               <div class="forms-showcase-grid">
                 <div class="form-cell">
@@ -1110,36 +1109,58 @@
 
             <!-- Mahreç Açıklaması -->
             <div class="mahrec-box">
-              <div class="mahrec-title"> Mahreç (Ses Çıkış Noktası &amp; Fonetik İlke):</div>
-              <p class="mahrec-desc" id="detailMahrec">${selectedItem.mahrec}</p>
+              <div class="mahrec-title" style="color:var(--accent-gold); font-size:0.95rem; font-weight:750; margin-bottom:0.35rem;">
+                Mahreç (Ses Çıkış Noktası &amp; Fonetik İlke):
+              </div>
+              <p class="mahrec-desc" id="detailMahrec" style="font-size:0.92rem; line-height:1.6; color:#e2e8f0; margin:0;">${selectedItem.mahrec}</p>
             </div>
 
             <!-- İnteraktif Fonetik Vokal Atlası -->
             <div class="vocal-tract-atlas">
-              <div class="vocal-atlas-header">
-                <span class="vocal-atlas-title"> 5 Ana Mahreç Bölgesi (Mahâric-i Âmme)</span>
-                <span class="card-badge gold" style="font-size:0.68rem;">ANATOMİK ATLAS</span>
+              <div class="vocal-atlas-header" style="margin-bottom:0.85rem;">
+                <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.4rem;">
+                  <h4 class="vocal-atlas-title" style="margin:0; font-size:1.1rem; color:#f0f3fa; font-weight:750;">5 Ana Mahreç Bölgesi (Mahâric-i Âmme)</h4>
+                  <span class="card-badge gold" style="font-size:0.7rem;">ANATOMİK İLİM</span>
+                </div>
+                <p style="color:#94a3b8; font-size:0.84rem; line-height:1.55; margin:0;">
+                  <strong>Mahreç</strong>, harfin ses organlarından ayrışıp kimlik kazandığı yerdir. Kur'an'daki 28 harf, baş ve göğüsteki bu 5 ana merkezden neşet eder. Seçili harfin ait olduğu bölge aşağıda vurgulanmıştır.
+                </p>
               </div>
               <div class="vocal-zones-layout">
-                <div class="vocal-zone-item ${selectedItem.zone === 'haysum' ? 'active' : ''}">
-                  <span class="zone-name"> Hayşûm (Geniz / Burun Boşluğu)</span>
-                  <span class="zone-letters">Gunne (Mîm, Nûn)</span>
+                <div class="vocal-zone-item ${selectedItem.zone === 'cevf' ? 'active' : ''}" data-zone="cevf">
+                  <div class="zone-info">
+                    <span class="zone-name"> Cevf (Ağız ve Göğüs Boşluğu)</span>
+                    <span class="zone-desc">Ses hiçbir engele takılmadan 1 elif miktarı uzayarak akar.</span>
+                  </div>
+                  <span class="zone-letters-ar" lang="ar">ا · و · ي</span>
                 </div>
-                <div class="vocal-zone-item ${selectedItem.zone === 'sefeteyn' ? 'active' : ''}">
-                  <span class="zone-name"> Şefeteyn (Dudaklar)</span>
-                  <span class="zone-letters">ب · م · و · ف (4 Harf)</span>
+                <div class="vocal-zone-item ${selectedItem.zone === 'halk' ? 'active' : ''}" data-zone="halk">
+                  <div class="zone-info">
+                    <span class="zone-name"> Halk (Boğaz Bölgesi)</span>
+                    <span class="zone-desc">Gırtlak dibi, boğaz ortası ve üstünden çıkan 6 duru boğaz harfi.</span>
+                  </div>
+                  <span class="zone-letters-ar" lang="ar">ء · هـ · ع · ح · غ · خ</span>
                 </div>
-                <div class="vocal-zone-item ${selectedItem.zone === 'lisan' ? 'active' : ''}">
-                  <span class="zone-name"> Lisân (Dil ve Damak)</span>
-                  <span class="zone-letters">Dil ucu, yanları, kökü (18 Harf)</span>
+                <div class="vocal-zone-item ${selectedItem.zone === 'lisan' ? 'active' : ''}" data-zone="lisan">
+                  <div class="zone-info">
+                    <span class="zone-name"> Lisân (Dil ve Damak)</span>
+                    <span class="zone-desc">Dil kökü, sırtı, kenarları ve ucunun damağa temasıyla 18 harf doğar.</span>
+                  </div>
+                  <span class="zone-letters-ar" lang="ar">ق ك ج ش ي ض ل ن ر ط د ت ص ز س ظ ذ ث</span>
                 </div>
-                <div class="vocal-zone-item ${selectedItem.zone === 'halk' ? 'active' : ''}">
-                  <span class="zone-name"> Halk (Boğaz)</span>
-                  <span class="zone-letters">ء · هـ · ع · ح · غ · خ (6 Harf)</span>
+                <div class="vocal-zone-item ${selectedItem.zone === 'sefeteyn' ? 'active' : ''}" data-zone="sefeteyn">
+                  <div class="zone-info">
+                    <span class="zone-name"> Şefeteyn (Dudaklar)</span>
+                    <span class="zone-desc">İki dudağın kapanması, yuvarlanması veya dişin alt dudağa basması.</span>
+                  </div>
+                  <span class="zone-letters-ar" lang="ar">ب · م · و · ف</span>
                 </div>
-                <div class="vocal-zone-item ${selectedItem.zone === 'cevf' ? 'active' : ''}">
-                  <span class="zone-name"> Cevf (Ağız ve Göğüs Boşluğu)</span>
-                  <span class="zone-letters">Med Harfleri (ا · و · ي)</span>
+                <div class="vocal-zone-item ${selectedItem.zone === 'haysum' ? 'active' : ''}" data-zone="haysum">
+                  <div class="zone-info">
+                    <span class="zone-name"> Hayşûm (Geniz / Burun Boşluğu)</span>
+                    <span class="zone-desc">Sesin geniz kovuğunda 1.5 elif miktarı tınlamasıdır (Gunne mahreci).</span>
+                  </div>
+                  <span class="zone-letters-ar" lang="ar">Gunne (نْ · مْ)</span>
                 </div>
               </div>
             </div>
@@ -1184,7 +1205,6 @@
                   <th>Ortada</th>
                   <th>Sonda</th>
                   <th>Örnek Kelime</th>
-                  <th>Dinle</th>
                 </tr>
               </thead>
               <tbody>
@@ -1196,9 +1216,6 @@
                     <td><span class="yazilis-glyph" lang="ar">${item.forms ? item.forms[2] : item.char}</span></td>
                     <td><span class="yazilis-glyph" lang="ar">${item.forms ? item.forms[3] : item.char}</span></td>
                     <td><span style="font-family:'Amiri', serif; font-size:1.6rem; color:var(--accent-gold);" lang="ar">${item.example || ''}</span></td>
-                    <td>
-                      <button type="button" class="btn-sm-action btn-listen-letter" data-idx="${idx}" title="${item.name} için doğrulanmış ses kaydı yok"> Ses yok</button>
-                    </td>
                   </tr>
                 `).join('')}
               </tbody>
@@ -1240,7 +1257,7 @@
             <div>
               <span class="card-badge ${harekeMeta.badgeColor}">SEVİYE 2 · HAREKELER</span>
               <h2 class="card-title">Harekeler Okulu (Sesli Okumaya Giriş)</h2>
-              <p class="card-desc">Arapçada harfler sessizdir; üç temel harekeyi inceleyin. Bu ekranda doğrulanmış hareke ses kayıtları bulunmuyor.</p>
+              <p class="card-desc">Arapçada harfler sessizdir; harekeler harfleri seslendirir ve Kur'an tilavetinin akışını sağlar.</p>
             </div>
           </div>
 
@@ -1275,7 +1292,7 @@
           <!-- 28 Harfin Harekeli Matrisi -->
           <div class="harekeler-grid">
             ${activeHarekeList.map((item, idx) => `
-              <div class="hareke-card" data-idx="${idx}" data-sound="${item.sound}" data-name="${item.name}" title="${item.name} için doğrulanmış ses kaydı yok">
+              <div class="hareke-card" data-idx="${idx}" data-sound="${item.sound}" data-name="${item.name}">
                 <span class="hareke-glyph" lang="ar">${item.char || item.glyph}</span>
                 <span class="hareke-sound">${item.sound}</span>
                 <span class="hareke-name">${item.name}</span>
@@ -1305,7 +1322,7 @@
 
           <div class="cezm-grid">
             ${cezmList.map(item => `
-              <div class="cezm-card" data-sound="${item.sound}" data-glyph="${item.glyph || item.char}" title="Doğrulanmış ses kaydı mevcut değil">
+              <div class="cezm-card" data-sound="${item.sound}" data-glyph="${item.glyph || item.char}">
                 <div class="cezm-glyph" lang="ar">${item.glyph || item.char}</div>
                 <div style="font-size:1.05rem; font-weight:800; color:#f0f3fa;">${item.sound}</div>
                 <div style="font-size:0.78rem; color:#8a94a6; margin-top:0.3rem;">${item.desc || ''}</div>
@@ -1325,7 +1342,7 @@
 
           <div class="sedde-grid">
             ${seddeList.map(item => `
-              <div class="sedde-card" data-sound="${item.sound}" data-glyph="${item.glyph || item.char}" title="Doğrulanmış ses kaydı mevcut değil">
+              <div class="sedde-card" data-sound="${item.sound}" data-glyph="${item.glyph || item.char}">
                 <div class="sedde-glyph" lang="ar">${item.glyph || item.char}</div>
                 <div style="font-size:1.1rem; font-weight:800; color:#f0f3fa;">${item.sound}</div>
                 ${item.breakdown ? `<div style="font-size:0.82rem; color:var(--accent-gold); margin-top:0.35rem; font-weight:600;">Açılımı: <span lang="ar" style="font-family:'Amiri', serif; font-size:1.15rem;">${item.breakdown}</span></div>` : ''}
@@ -1354,9 +1371,8 @@
           <div class="tenvin-grid">
             ${TENVIN.map(item => `
               <div class="tenvin-card">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span class="card-badge ${item.type === 'İki Üstün' ? 'gold' : (item.type === 'İki Esre' ? 'cyan' : 'green')}" style="font-size:0.72rem;">${item.type}</span>
-                  <button type="button" class="btn-sm-action btn-play-sample" data-glyph="${item.glyph}" data-sound="${item.sound}" title="Doğrulanmış ses kaydı mevcut değil"> Ses yok</button>
+                <div style="display:flex; justify-content:center; align-items:center;">
+                  <span class="card-badge ${item.type === 'İki Üstün' ? 'gold' : (item.type === 'İki Esre' ? 'cyan' : 'green')}" style="font-size:0.75rem;">${item.type}</span>
                 </div>
                 <div class="tenvin-glyph" lang="ar">${item.glyph}</div>
                 <div style="text-align:center;">
@@ -1393,6 +1409,11 @@
             <p style="color:#cbd5e1; font-size:0.92rem; max-width:680px; margin:0.6rem auto 0 auto; line-height:1.6;">
               Bu mübarek kelimede 3 med harfinin tamamı sırasıyla yer alır: Öncesi ötreli Vâv (<span lang="ar" style="color:#00e676; font-family:'Amiri'; font-size:1.3rem;">نُو</span>), öncesi esreli Yâ (<span lang="ar" style="color:#00e5ff; font-family:'Amiri'; font-size:1.3rem;">حِي</span>) ve öncesi üstünlü Elif (<span lang="ar" style="color:var(--accent-gold); font-family:'Amiri'; font-size:1.3rem;">هَا</span>).
             </p>
+            <div style="margin-top:0.9rem;">
+              <button type="button" class="btn-akademi-primary btn-play-nuhiha" id="btnPlayNuhiha" style="padding:0.6rem 1.4rem; display:inline-flex; align-items:center; gap:0.5rem; border-radius:10px;">
+                <span class="play-icon">▶</span> نُوحِيهَا Âyetini Dinle (Hûd 49 · Şeyh El-Husarî)
+              </button>
+            </div>
           </div>
 
           <!-- 10 Med Kartı -->
@@ -1403,7 +1424,6 @@
                 <div style="font-size:1.15rem; font-weight:800; color:#f0f3fa;">${item.sound}</div>
                 <div style="font-size:0.78rem; color:var(--accent-gold); margin-top:0.25rem; font-weight:700;">${item.type}</div>
                 <div style="font-size:0.76rem; color:#8a94a6; margin-top:0.25rem;">${item.desc}</div>
-                <button type="button" class="btn-sm-action btn-play-sample" data-glyph="${item.glyph}" data-sound="${item.sound}" title="Doğrulanmış ses kaydı mevcut değil" style="margin-top:0.8rem; width:100%;"> Ses kaydı yok</button>
               </div>
             `).join('')}
           </div>
@@ -2545,7 +2565,9 @@
       targetWord: "كُفُوًا أَحَدٌ",
       html: `وَلَمْ يَكُن لَّهُۥ <span class="tajweed-highlight-target"><span class="tj-izhar">كُفُوًا</span> <span class="tj-izhar">أَحَدٌۢ</span></span> <span class="flower-medallion">۝٤</span>`,
       ruleExplanation: "Tenvinden sonra 6 boğaz harfinden biri olan Hemze (أ) gelmiştir. Nûn sesi gunnesiz, duraksamadan net okunur.",
-      meal: "Hiçbir şey O'na denk ve benzer değildir."
+      meal: "Hiçbir şey O'na denk ve benzer değildir.",
+      audioStart: 1.2,
+      audioEnd: 3.8
     },
     "idgam-maalgunne": {
       id: "idgam-maalgunne",
@@ -2560,7 +2582,9 @@
       targetWord: "لَهَبٍ وَتَبَّ",
       html: `تَبَّتْ يَدَآ أَبِى <span class="tajweed-highlight-target"><span class="tj-ihfa">لَهَبٍۢ</span> <span class="tj-ihfa">وَتَبَّ</span></span> <span class="flower-medallion">۝١</span>`,
       ruleExplanation: "Tenvinden sonra 'Yemnu' harflerinden Vâv (و) gelmiştir. Nûn sesi genizden 1.5 elif gunne ile tutularak kaynaştırılır.",
-      meal: "Ebû Leheb'in iki eli kurusun; kurudu da!"
+      meal: "Ebû Leheb'in iki eli kurusun; kurudu da!",
+      audioStart: 1.8,
+      audioEnd: 4.6
     },
     "idgam-bilagunne": {
       id: "idgam-bilagunne",
@@ -2575,7 +2599,9 @@
       targetWord: "مِنْ رَبِّهِمْ",
       html: `أُو۟لَٰٓئِكَ عَلَىٰ هُدًۭى <span class="tajweed-highlight-target"><span class="tj-ihfa">مِّن رَّبِّهِمْ</span></span> ۖ وَأُو۟لَٰٓئِكَ هُمُ ٱلْمُفْلِحُونَ <span class="flower-medallion">۝٥</span>`,
       ruleExplanation: "Sâkin Nûn'dan sonra Râ (ر) harfi gelmiştir. Nûn sesi tamamen Râ'ya dönüştürülüp gunnesiz tam idğam yapılır.",
-      meal: "İşte onlar, Rablerinden gelen bir hidayet üzeredirler..."
+      meal: "İşte onlar, Rablerinden gelen bir hidayet üzeredirler...",
+      audioStart: 1.8,
+      audioEnd: 5.6
     },
     "iklab": {
       id: "iklab",
@@ -2590,7 +2616,9 @@
       targetWord: "صُمٌّ بُكْمٌ",
       html: `<span class="tajweed-highlight-target"><span class="tj-iklab">صُمٌّۢ</span> <span class="tj-iklab">بُكْمٌ</span></span> عُمْىٌۭ فَهُمْ لَا يَرْجِعُونَ <span class="flower-medallion">۝١٨</span>`,
       ruleExplanation: "Tenvinden sonra Bâ (ب) harfi geldiği için tenvinin nûnu dudaklar hafifçe kapatılarak 1.5 elif gunneli Mîm'e çevrilir.",
-      meal: "Onlar sağırdırlar, dilsizdirler, kördürler; artık geri dönemezler."
+      meal: "Onlar sağırdırlar, dilsizdirler, kördürler; artık geri dönemezler.",
+      audioStart: 0.0,
+      audioEnd: 3.6
     },
     "ihfa": {
       id: "ihfa",
@@ -2605,7 +2633,9 @@
       targetWord: "مِنْ قَبْلِكَ",
       html: `وَٱلَّذِينَ يُؤْمِنُونَ بِمَآ أُنزِلَ إِلَيْكَ وَمَآ أُنزِلَ <span class="tajweed-highlight-target"><span class="tj-ihfa">مِن قَبْلِكَ</span></span> وَبِٱلْـَٔاخِرَةِ هُمْ يُوقِنُونَ <span class="flower-medallion">۝٤</span>`,
       ruleExplanation: "Sâkin Nûn'dan sonra 15 ihfâ harfinden Kaaf (ق) gelmiştir. Dil üst damağa basılmadan ses genizde 1.5 elif gizlenir.",
-      meal: "Sana indirilene ve senden önce indirilenlere iman ederler..."
+      meal: "Sana indirilene ve senden önce indirilenlere iman ederler...",
+      audioStart: 5.4,
+      audioEnd: 9.3
     },
     "dudak-ihfasi": {
       id: "dudak-ihfasi",
@@ -2620,22 +2650,26 @@
       targetWord: "تَرْمِيهِمْ بِحِجَارَةٍ",
       html: `<span class="tajweed-highlight-target"><span class="tj-ihfa">تَرْمِيهِم بِحِجَارَةٍۢ</span></span> مِّن سِجِّيلٍۢ <span class="flower-medallion">۝٤</span>`,
       ruleExplanation: "Sâkin Mîm'den sonra Bâ (ب) harfi gelmiştir. Dudaklar hafif temasla 1.5 elif gunne ile gizlenir.",
-      meal: "Onların üzerine pişirilmiş çamurdan taşlar atıyorlardı."
+      meal: "Onların üzerine pişirilmiş çamurdan taşlar atıyorlardı.",
+      audioStart: 0.0,
+      audioEnd: 3.2
     },
     "idgam-misleyn-mim": {
       id: "idgam-misleyn-mim",
-      surah: 2,
-      ayah: 25,
-      surahName: "Bakara",
-      surahArabic: "سُورَةُ البَقَرَةِ",
-      juz: 1,
-      page: 4,
-      ruleName: "İdğâm-ı Misl-i Maalgunne",
+      surah: 50,
+      ayah: 35,
+      surahName: "Kâf",
+      surahArabic: "سُورَةُ ق",
+      juz: 26,
+      page: 519,
+      ruleName: "İdğâm-ı Misl-i Maalgunne (Sâkin Mîm)",
       ruleFamily: "ihfa",
-      targetWord: "لَهُمْ مَا",
-      html: `وَبَشِّرِ ٱلَّذِينَ ءَامَنُوا۟ ... <span class="tajweed-highlight-target"><span class="tj-ihfa">لَهُم مَّا</span></span> يَشَآءُونَ <span class="flower-medallion">۝٢٥</span>`,
+      targetWord: "لَهُمْ مَا يَشَاءُونَ",
+      html: `<span class="tajweed-highlight-target"><span class="tj-ihfa">لَهُم مَّا يَشَآءُونَ</span></span> فِيهَا وَلَدَيْنَا مَزِيدٌ <span class="flower-medallion">۝٣٥</span>`,
       ruleExplanation: "Sâkin Mîm'den sonra harekeli Mîm gelmiştir. İki mîm birbirine katılarak 1.5 elif gunne tutulur.",
-      meal: "İman edip salih ameller işleyenlere müjdele..."
+      meal: "Orada kendileri için diledikleri her şey vardır; katımızda fazlası da mevcuttur.",
+      audioStart: 0.0,
+      audioEnd: 3.6
     },
     "mim-izhari": {
       id: "mim-izhari",
@@ -2650,7 +2684,9 @@
       targetWord: "عَلَيْهِمْ وَلَا",
       html: `صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ <span class="tajweed-highlight-target"><span class="tj-izhar">عَلَيْهِمْ وَلَا</span></span> ٱلضَّآلِّينَ <span class="flower-medallion">۝٧</span>`,
       ruleExplanation: "Sâkin Mîm'den sonra Vâv harfi gelmiştir. Mîm sesi net ve gunnesiz okunur.",
-      meal: "Gazaba uğramışların ve sapmışların yoluna değil!"
+      meal: "Gazaba uğramışların ve sapmışların yoluna değil!",
+      audioStart: 5.0,
+      audioEnd: 9.5
     },
     "medd-i-tabii": {
       id: "medd-i-tabii",
@@ -2665,7 +2701,9 @@
       targetWord: "قَالُوا",
       html: `وَإِذَا قِيلَ لَهُمْ لَا تُفْسِدُوا۟ فِى ٱلْأَرْضِ <span class="tajweed-highlight-target"><span class="tj-madd">قَالُوٓا۟</span></span> إِنَّمَا نَحْنُ مُصْلِحُونَ <span class="flower-medallion">۝١١</span>`,
       ruleExplanation: "Med harfinden sonra sebeb-i med yoktur. 1 elif miktarı tabii uzatılır.",
-      meal: "Onlar: 'Biz ancak ıslah edicileriz' derler."
+      meal: "Onlar: 'Biz ancak ıslah edicileriz' derler.",
+      audioStart: 5.8,
+      audioEnd: 10.4
     },
     "medd-i-muttasil": {
       id: "medd-i-muttasil",
@@ -2680,7 +2718,9 @@
       targetWord: "إِذَا جَاءَ",
       html: `إِذَا <span class="tajweed-highlight-target"><span class="tj-madd">جَآءَ</span></span> نَصْرُ ٱللَّهِ وَٱلْفَتْحُ <span class="flower-medallion">۝١</span>`,
       ruleExplanation: "Med harfi ile hemze aynı kelimede bitişiktir; sesi 4 elif uzatmak vaciptir.",
-      meal: "Allah'ın yardımı ve fetih geldiği zaman..."
+      meal: "Allah'ın yardımı ve fetih geldiği zaman...",
+      audioStart: 0.0,
+      audioEnd: 3.6
     },
     "medd-i-munfasil": {
       id: "medd-i-munfasil",
@@ -2695,7 +2735,9 @@
       targetWord: "إِنَّا أَعْطَيْنَاكَ",
       html: `<span class="tajweed-highlight-target"><span class="tj-madd">إِنَّآ أَعْطَيْنَٰكَ</span></span> ٱلْكَوْثَرَ <span class="flower-medallion">۝١</span>`,
       ruleExplanation: "Med harfi kelime sonunda, hemze takip eden kelimenin başındadır; 4 elif uzatılır.",
-      meal: "Şüphesiz biz sana Kevser'i verdik."
+      meal: "Şüphesiz biz sana Kevser'i verdik.",
+      audioStart: 0.0,
+      audioEnd: 3.5
     },
     "medd-i-lazim": {
       id: "medd-i-lazim",
@@ -2710,7 +2752,9 @@
       targetWord: "وَلَا الضَّالِّينَ",
       html: `غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ <span class="tajweed-highlight-target"><span class="tj-madd">وَلَا ٱلضَّآلِّينَ</span></span> <span class="flower-medallion">۝٧</span>`,
       ruleExplanation: "Med harfinden sonra şeddeli harf (sükûn-ı lâzım) gelmiştir; 4-6 elif vacip uzatılır.",
-      meal: "...ve sapmışların yoluna değil!"
+      meal: "...ve sapmışların yoluna değil!",
+      audioStart: 7.0,
+      audioEnd: 13.0
     },
     "medd-i-ariz": {
       id: "medd-i-ariz",
@@ -2725,7 +2769,9 @@
       targetWord: "الرَّحِيمِ",
       html: `بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ <span class="tajweed-highlight-target"><span class="tj-madd">ٱلرَّحِيمِ</span></span> <span class="flower-medallion">۝١</span>`,
       ruleExplanation: "Âyet sonunda durulduğunda sükûn-ı ârız oluşur; 2 ila 4 elif uzatılabilir.",
-      meal: "Rahmân ve Rahîm olan Allah'ın adıyla."
+      meal: "Rahmân ve Rahîm olan Allah'ın adıyla.",
+      audioStart: 2.2,
+      audioEnd: 5.6
     },
     "medd-i-lin": {
       id: "medd-i-lin",
@@ -2740,7 +2786,9 @@
       targetWord: "قُرَيْشٍ",
       html: `لِإِيلَٰفِ <span class="tajweed-highlight-target"><span class="tj-madd">قُرَيْشٍ</span></span> <span class="flower-medallion">۝١</span>`,
       ruleExplanation: "Lîn harfinden (cezimli Yâ) sonra vakıf hali; yumuşakça 2 ila 4 elif uzatılır.",
-      meal: "Kureyş'in güven ve uzlaşması için..."
+      meal: "Kureyş'in güven ve uzlaşması için...",
+      audioStart: 0.0,
+      audioEnd: 3.6
     },
     "kalkale": {
       id: "kalkale",
@@ -2755,7 +2803,9 @@
       targetWord: "قُلْ هُوَ اللَّهُ أَحَدٌ",
       html: `قُلْ هُوَ ٱللَّهُ <span class="tajweed-highlight-target"><span class="tj-kalkale">أَحَدٌ</span></span> <span class="flower-medallion">۝١</span>`,
       ruleExplanation: "Dâl harfi cezimli durulduğunda mahrece kuvvetle çarpılıp ses yankılandırılır.",
-      meal: "De ki: O Allah tektir."
+      meal: "De ki: O Allah tektir.",
+      audioStart: 0.0,
+      audioEnd: 3.4
     },
     "hukmur-ra": {
       id: "hukmur-ra",
@@ -2770,7 +2820,9 @@
       targetWord: "رَبِّ الْعَالَمِينَ",
       html: `ٱلْحَمْدُ لِلَّهِ <span class="tajweed-highlight-target"><span class="tj-ra">رَبِّ</span></span> ٱلْعَٰلَمِينَ <span class="flower-medallion">۝٢</span>`,
       ruleExplanation: "Râ harfi üstünlü olduğunda ağız içi dolgun ve kalın (tefhim) okunur.",
-      meal: "Hamd, âlemlerin Rabbi olan Allah'a mahsustur."
+      meal: "Hamd, âlemlerin Rabbi olan Allah'a mahsustur.",
+      audioStart: 0.0,
+      audioEnd: 4.2
     },
     "lam-i-tarif": {
       id: "lam-i-tarif",
@@ -2785,7 +2837,9 @@
       targetWord: "وَالشَّمْسِ وَضُحَاهَا",
       html: `<span class="tajweed-highlight-target"><span class="tj-ihfa">وَٱلشَّمْسِ</span></span> وَضُحَىٰهَا <span class="flower-medallion">۝١</span>`,
       ruleExplanation: "El takısından sonra şemsî harf (Şîn) gelmiştir; Lâm okunmaz, Şîn şeddelenir.",
-      meal: "Güneşe ve onun aydınlığına andolsun."
+      meal: "Güneşe ve onun aydınlığına andolsun.",
+      audioStart: 0.0,
+      audioEnd: 3.8
     },
     "zamir": {
       id: "zamir",
@@ -2800,7 +2854,9 @@
       targetWord: "إِنَّهُ كَانَ تَوَّابًا",
       html: `فَسَبِّحْ بِحَمْدِ رَبِّكَ وَٱسْتَغْفِرْهُ ۚ <span class="tajweed-highlight-target"><span class="tj-madd">إِنَّهُۥ</span></span> كَانَ تَوَّابًۢا <span class="flower-medallion">۝٣</span>`,
       ruleExplanation: "Öncesi harekeli olduğu için Hû zamiri 1 elif uzatılır.",
-      meal: "Rabbini hamd ile tesbih et; şüphesiz O, tevbeleri kabul edendir."
+      meal: "Rabbini hamd ile tesbih et; şüphesiz O, tevbeleri kabul edendir.",
+      audioStart: 4.2,
+      audioEnd: 8.6
     },
     "vakif-isaretleri": {
       id: "vakif-isaretleri",
@@ -2815,7 +2871,9 @@
       targetWord: "لَا رَيْبَ ۛ فِيهِ ۛ",
       html: `ذَٰلِكَ ٱلْكِتَٰبُ <span class="tajweed-highlight-target"><span class="tj-vakif">لَا رَيْبَ ۛ</span> <span class="tj-vakif">فِيهِ ۛ</span></span> هُدًۭى لِّلْمُتَّقِينَ <span class="flower-medallion">۝٢</span>`,
       ruleExplanation: "Muânaka vakfı: Üçer noktalı işaretlerin birincisinde durulursa ikincisinde geçilir.",
-      meal: "Bu, kendisinde şüphe olmayan kitaptır; muttakiler için yol göstericidir."
+      meal: "Bu, kendisinde şüphe olmayan kitaptır; muttakiler için yol göstericidir.",
+      audioStart: 1.6,
+      audioEnd: 5.4
     }
   };
 
@@ -2859,19 +2917,18 @@
     widget.innerHTML = `
       <div class="mini-mushaf-drag-header" id="miniMushafHeader" title="Başlıktan tutarak ekranın istediğiniz yerine serbestçe taşıyabilirsiniz">
         <div class="mini-mushaf-title-group">
-          <span class="mini-mushaf-icon"></span>
-          <div>
-            <div class="mini-mushaf-title" id="miniMushafHeaderTitle">Kayan Mushaf &amp; Tecvid Takip Ekranı</div>
-            <div class="mini-mushaf-sub" id="miniMushafSubtitle">⋮⋮ Buradan tutarak sürükleyebilirsiniz</div>
+          <span class="mini-mushaf-icon">📖</span>
+          <div class="mini-mushaf-title-wrap">
+            <div class="mini-mushaf-title" id="miniMushafHeaderTitle">Kayan Mushaf &amp; Tecvid</div>
+            <div class="mini-mushaf-sub" id="miniMushafSubtitle">Canlı Takip Ekranı</div>
           </div>
         </div>
         <div class="mini-mushaf-controls">
-          <button type="button" class="mini-mushaf-btn" id="btnMiniMushafTajweedToggle" title="Tecvid Renklerini Aç/Kapat ()"></button>
+          <button type="button" class="mini-mushaf-btn" id="btnMiniMushafTajweedToggle" title="Tecvid Renklerini Aç/Kapat">🎨</button>
           <button type="button" class="mini-mushaf-btn" id="btnMiniMushafFontDec" title="Yazıyı Küçült (A-)">A−</button>
           <button type="button" class="mini-mushaf-btn" id="btnMiniMushafFontInc" title="Yazıyı Büyüt (A+)">A+</button>
           <button type="button" class="mini-mushaf-btn" id="btnMiniMushafExpand" title="Pencereyi Tam Genişlet / Varsayılan Boyuta Dön (⛶)">⛶</button>
           <button type="button" class="mini-mushaf-btn" id="btnMiniMushafReset" title="Varsayılan Boyut ve Sağ Üst Konuma Sıfırla (↺)">↺</button>
-          <button type="button" class="mini-mushaf-btn" id="btnMiniMushafMin" title="Küçült / Genişlet">−</button>
           <button type="button" class="mini-mushaf-btn btn-close" id="btnMiniMushafClose" title="Kapat">×</button>
         </div>
       </div>
@@ -2893,13 +2950,12 @@
           <div class="mini-mushaf-meal-box" id="miniMushafMealBox">
             <div class="mini-mushaf-latin-bar">
               <div class="mini-mushaf-rule-tag" id="miniMushafRuleTag">
-                <span></span> <span id="miniMushafRuleTitle">İzhâr (Nûn-ı Sâkin &amp; Tenvin)</span>
+                <span>✨</span> <span id="miniMushafRuleTitle">İzhâr (Nûn-ı Sâkin &amp; Tenvin)</span>
               </div>
               <div class="mini-mushaf-latin-actions">
-                <span class="mini-latin-label"> Meâl:</span>
-                <button type="button" class="mini-latin-btn" id="btnMiniLatinDec" title="Latin meâl ve açıklamayı küçült (A-)">A−</button>
-                <button type="button" class="mini-latin-btn" id="btnMiniLatinInc" title="Latin meâl ve açıklamayı büyüt (A+)">A+</button>
-                <button type="button" class="mini-latin-btn" id="btnMiniLatinExpand" title="Meâl alanını genişlet / daralt (↕)">↕</button>
+                <span class="mini-latin-label">Meâl:</span>
+                <button type="button" class="mini-latin-btn" id="btnMiniLatinDec" title="Yazıyı küçült">A−</button>
+                <button type="button" class="mini-latin-btn" id="btnMiniLatinInc" title="Yazıyı büyüt">A+</button>
               </div>
             </div>
             <div class="mini-mushaf-latin-content" id="miniMushafLatinContent">
@@ -2910,29 +2966,28 @@
                 "Hiçbir şey O'na denk ve benzer değildir."
               </div>
             </div>
-            <div class="mini-mushaf-meal-resizer" id="miniMushafMealResizer" title="Meâl alanını aşağı doğru çekerek büyütün">⋯</div>
           </div>
 
           <div class="mini-mushaf-legend">
-            <span class="legend-dot dot-madd" data-rule="tj-madd" title="Medd-i Muttasıl, Munfasıl ve Lâzım"> Medd</span>
-            <span class="legend-dot dot-ihfa" data-rule="tj-ihfa" title="İhfâ: 1.5 - 2 Elif"> İhfâ</span>
-            <span class="legend-dot dot-kalkale" data-rule="tj-kalkale" title="Kalkale: Kutbu Cedin"> Kalkale</span>
-            <span class="legend-dot dot-iklab" data-rule="tj-iklab" title="İklâb: B Harfine Dönüşüm"> İklâb</span>
-            <span class="legend-dot" data-rule="tj-idgam" style="color:#26a69a;" title="Gunneli İdgam"> İdgam</span>
-            <span class="legend-dot" data-rule="tj-kalin" style="color:#ffb300;" title="Kalın Harfler ve Ra"> Kalın/Ra</span>
+            <span class="legend-dot dot-madd" data-rule="tj-madd" title="Medd-i Muttasıl, Munfasıl ve Lâzım">Medd</span>
+            <span class="legend-dot dot-ihfa" data-rule="tj-ihfa" title="İhfâ: 1.5 - 2 Elif">İhfâ</span>
+            <span class="legend-dot dot-kalkale" data-rule="tj-kalkale" title="Kalkale: Kutbu Cedin">Kalkale</span>
+            <span class="legend-dot dot-iklab" data-rule="tj-iklab" title="İklâb: B Harfine Dönüşüm">İklâb</span>
+            <span class="legend-dot" data-rule="tj-idgam" style="color:#26a69a;" title="Gunneli İdgam">İdgam</span>
+            <span class="legend-dot" data-rule="tj-kalin" style="color:#ffb300;" title="Kalın Harfler ve Ra">Kalın/Ra</span>
           </div>
 
           <div class="mini-mushaf-audio-bar">
-            <button type="button" class="mini-audio-play-btn" id="btnMiniMushafPlay">
+            <button type="button" class="mini-audio-play-btn" id="btnMiniMushafPlay" title="Sadece bu kuralın geçtiği örneği (kısa meşk) dinleyin">
               <span id="miniPlayIcon">▶</span>
               <span id="miniPlayText">Örneği Dinle</span>
             </button>
-            <div class="mini-audio-status" id="miniAudioStatus">Hazır</div>
-            <button type="button" class="mini-action-btn" id="btnMiniMushafMetronome" title="Bu kıraat hızının metronom ritmini başlat">
-              <span>⏱</span> Metronom
+            <button type="button" class="mini-audio-full-btn" id="btnMiniMushafPlayFullAyah" title="Âyetin tamamını dinleyin">
+              <span>📜</span> Tüm Âyet
             </button>
+            <div class="mini-audio-status" id="miniAudioStatus">Hazır</div>
             <button type="button" class="mini-action-btn" id="btnMiniMushafFullView" title="15 Satırlık Tam Sayfa Mushaf'a Git">
-              <span></span> Tam Mushaf
+              <span>📖</span> Tam Mushaf
             </button>
           </div>
         </div>
@@ -3312,13 +3367,22 @@
       });
     });
 
-    // 6. Mini Oynatıcı Dinleyicisi
+    // 6. Mini Oynatıcı Dinleyicileri (Kısa Meşk vs Tüm Âyet)
     document.getElementById('btnMiniMushafPlay')?.addEventListener('click', () => {
       if (!activeMiniMushafRule) return;
       if (isMiniMushafPlaying) {
         stopMiniMushafAudio();
       } else {
-        playMiniMushafRuleAudio(activeMiniMushafRule);
+        playMiniMushafRuleAudio(activeMiniMushafRule, false);
+      }
+    });
+
+    document.getElementById('btnMiniMushafPlayFullAyah')?.addEventListener('click', () => {
+      if (!activeMiniMushafRule) return;
+      if (isMiniMushafPlaying) {
+        stopMiniMushafAudio();
+      } else {
+        playMiniMushafRuleAudio(activeMiniMushafRule, true);
       }
     });
 
@@ -3358,7 +3422,7 @@
       playBtn?.classList.add('is-playing');
       if (playIcon) playIcon.textContent = '⏹';
       if (playText) playText.textContent = 'Durdur';
-      if (statusText) statusText.textContent = 'Tilavet Dinleniyor...';
+      if (statusText) statusText.textContent = 'Örnek Dinleniyor...';
       arabicCont?.classList.add('tajweed-live-reading');
     } else {
       playBtn?.classList.remove('is-playing');
@@ -3369,7 +3433,7 @@
     }
   }
 
-  function playMiniMushafRuleAudio(ruleData) {
+  function playMiniMushafRuleAudio(ruleData, fullAyah = false) {
     if (isMiniMushafPlaying) {
       stopMiniMushafAudio();
       return;
@@ -3382,65 +3446,72 @@
     }
 
     const surah = ruleData.surah || 1;
-    const startAyah = ruleData.ayah || 1;
-    const endAyah = ruleData.endAyah || startAyah;
+    const ayah = ruleData.ayah || 1;
     const reciterKey = ruleData.reciterKey || 'husary';
+    const targetUrl = getEveryAyahAudioUrl(surah, ayah, reciterKey);
 
-    currentMiniMushafChainItem = {
-      surah,
-      startAyah,
-      endAyah,
-      currentAyah: startAyah,
-      reciterKey,
-      ruleData
-    };
+    const startSec = (!fullAyah && typeof ruleData.audioStart === 'number') ? ruleData.audioStart : 0;
+    const endSec = (!fullAyah && typeof ruleData.audioEnd === 'number') ? ruleData.audioEnd : 0;
 
-    function playCurrentChainedAyah() {
-      if (!currentMiniMushafChainItem) return;
-      const { surah, currentAyah, endAyah, reciterKey } = currentMiniMushafChainItem;
-      const targetUrl = getEveryAyahAudioUrl(surah, currentAyah, reciterKey);
+    const audio = new Audio(targetUrl);
+    miniMushafChainedAudio = audio;
+    setMiniMushafPlayState(true);
 
-      if (miniMushafChainedAudio) {
-        try { miniMushafChainedAudio.pause(); miniMushafChainedAudio.src = ''; } catch (_) {}
+    const statusText = document.getElementById('miniAudioStatus');
+    if (statusText) {
+      if (fullAyah) {
+        statusText.innerHTML = `Tüm Âyet: ${ruleData.surahName || ''} ${ayah}. Âyet`;
+      } else {
+        const wordLabel = ruleData.targetWord || ruleData.ruleName || 'Örnek';
+        statusText.innerHTML = `<span class="audio-spinner">●</span> Hedef Meşk: <strong>${escapeMarkup(wordLabel)}</strong>`;
       }
-
-      miniMushafChainedAudio = new Audio(targetUrl);
-      setMiniMushafPlayState(true);
-
-      const statusText = document.getElementById('miniAudioStatus');
-      if (statusText) {
-        const ayahPart = endAyah > startAyah ? ` [${currentAyah}/${endAyah}. Âyet]` : '';
-        statusText.textContent = `Çalıyor: ${currentAyah}. Âyet${ayahPart}`;
-      }
-
-      miniMushafChainedAudio.onended = () => {
-        if (currentMiniMushafChainItem && currentMiniMushafChainItem.currentAyah < currentMiniMushafChainItem.endAyah) {
-          currentMiniMushafChainItem.currentAyah++;
-          playCurrentChainedAyah();
-        } else {
-          stopMiniMushafAudio();
-          if (window.showToast) window.showToast("Örnek tilavet tamamlandı.");
-        }
-      };
-
-      miniMushafChainedAudio.onerror = () => {
-        console.warn('Mini Mushaf ses yükleme hatası:', targetUrl);
-        if (currentMiniMushafChainItem && currentMiniMushafChainItem.currentAyah < currentMiniMushafChainItem.endAyah) {
-          currentMiniMushafChainItem.currentAyah++;
-          playCurrentChainedAyah();
-        } else {
-          stopMiniMushafAudio();
-          if (window.showToast) window.showToast(`⚠ Ses dosyasına ulaşılamadı (${surah}:${currentAyah}).`);
-        }
-      };
-
-      miniMushafChainedAudio.play().catch(e => {
-        console.warn('Mini Mushaf ses çalma hatası:', e);
-        stopMiniMushafAudio();
-      });
     }
 
-    playCurrentChainedAyah();
+    let hasSeeked = false;
+    const seekToStart = () => {
+      if (!hasSeeked && startSec > 0) {
+        hasSeeked = true;
+        try {
+          audio.currentTime = startSec;
+        } catch (_) {}
+      }
+    };
+
+    audio.addEventListener('loadedmetadata', seekToStart);
+    audio.addEventListener('canplay', seekToStart);
+
+    audio.addEventListener('timeupdate', () => {
+      if (!hasSeeked && startSec > 0 && audio.currentTime < startSec - 0.2) {
+        seekToStart();
+      }
+      if (!fullAyah && endSec > 0 && audio.currentTime >= endSec) {
+        stopMiniMushafAudio();
+        if (statusText) statusText.textContent = 'Örnek dinlendi';
+        if (window.showToast) window.showToast('✓ İlgili tecvid örneği dinlendi.');
+      }
+    });
+
+    audio.onended = () => {
+      stopMiniMushafAudio();
+      if (statusText) statusText.textContent = 'Tilavet tamamlandı';
+    };
+
+    audio.onerror = () => {
+      console.warn('Mini Mushaf ses yükleme hatası:', targetUrl);
+      stopMiniMushafAudio();
+      if (statusText) statusText.textContent = 'Ses açılamadı';
+      if (window.showToast) window.showToast(`⚠ Ses dosyasına ulaşılamadı (${surah}:${ayah}).`);
+    };
+
+    audio.play().then(() => {
+      if (!hasSeeked && startSec > 0) {
+        audio.currentTime = startSec;
+        hasSeeked = true;
+      }
+    }).catch(e => {
+      console.warn('Mini Mushaf ses çalma hatası:', e);
+      stopMiniMushafAudio();
+    });
   }
 
   function updateMiniMushafView(ruleData) {
@@ -3952,61 +4023,70 @@
                 <div class="tempo-card-rich ${t.id}">
                   <div class="tempo-card-header">
                     <div class="tempo-title-group">
-                      <span class="tempo-badge ${t.id === 'tahkik' ? 'gold' : t.id === 'tertil' ? 'emerald' : t.id === 'tedvir' ? 'cyan' : 'amber'}">${t.speed}</span>
+                      <span class="tempo-badge ${t.id === 'tahkik' ? 'gold' : t.id === 'tertil' ? 'emerald' : t.id === 'tedvir' ? 'cyan' : 'amber'}">${t.speed} · ${curEx.bpm || t.bpm} BPM</span>
                       <h3>${t.name}</h3>
                     </div>
                   </div>
 
                   <p class="tempo-p">${t.desc}</p>
 
-                  <div class="tempo-meta-box">
-                    <div>⏱ <strong>Metronom:</strong> ${t.bpmRange} (Referans: ${curEx.bpm || t.bpm} BPM)</div>
-                    <div> <strong>Hız Çarpanı:</strong> ${t.multiplier}</div>
-                    <div> <strong>Temsilci Kâri:</strong> ${curEx.reciter || t.idealReciter} ${curEx.reciterTitle ? `<span style="font-size:0.75rem; color:#94a3b8;">(${curEx.reciterTitle})</span>` : ''}</div>
-                    <div style="font-size:0.75rem; color:#cbd5e1; margin-top:0.2rem;"> <em>${t.meddRules}</em></div>
-                    ${curEx.speedNote ? `<div style="font-size:0.77rem; color:#fde68a; margin-top:0.35rem; line-height:1.45;"> <strong>İcra Notu:</strong> ${curEx.speedNote}</div>` : ''}
+                  <div class="tempo-essence-strip">
+                    <div class="essence-chip">
+                      <span class="essence-icon">👤</span>
+                      <span class="essence-text"><strong>${curEx.reciter || t.idealReciter}</strong></span>
+                    </div>
+                    <div class="essence-chip">
+                      <span class="essence-icon">📏</span>
+                      <span class="essence-text">${t.meddRules ? t.meddRules.split('·')[0].trim() : 'Med ve gunne tam ölçülü'}</span>
+                    </div>
+                    ${curEx.speedNote ? `
+                    <div class="essence-chip note">
+                      <span class="essence-icon">💡</span>
+                      <span class="essence-text">${curEx.speedNote}</span>
+                    </div>` : ''}
                   </div>
 
                   <!-- 4 Doğrulanmış Örnek İcra Seçici Butonları -->
                   <div class="tempo-example-selector-strip">
-                    <span style="font-size:0.72rem; color:var(--accent-gold); font-weight:700; width:100%; display:block; margin-bottom:0.15rem;"> 4 Doğrulanmış Tilavet İcrası:</span>
-                    ${exList.map((ex, idx) => `
-                      <button type="button" class="tempo-ex-chip ${idx === curIdx ? 'active' : ''}" data-tempo-id="${t.id}" data-ex-idx="${idx}" title="${exampleLabel(ex)} (${ex.bpm} BPM)">
-                        <span>${idx + 1}.</span> ${exampleLabel(ex)}
-                      </button>
-                    `).join('')}
+                    <span class="selector-strip-label">Tilavet İcrası Seçin:</span>
+                    <div class="tempo-ex-pills-row">
+                      ${exList.map((ex, idx) => `
+                        <button type="button" class="tempo-ex-chip ${idx === curIdx ? 'active' : ''}" data-tempo-id="${t.id}" data-ex-idx="${idx}" title="${exampleLabel(ex)} (${ex.bpm} BPM)">
+                          <span>${idx + 1}</span> ${exampleLabel(ex)}
+                        </button>
+                      `).join('')}
+                    </div>
                   </div>
 
                   <!-- Seçili Âyetin Önizlemesi & Tecvid Vurguları -->
                   <div class="tempo-sample-ayah-box">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
-                      <span class="ayah-ref-tag"> AKTİF ÖRNEK: ${exampleLabel(curEx)}</span>
-                      <span style="font-size:0.74rem; font-weight:700; color:var(--accent-gold);">${curEx.bpm || t.bpm} BPM</span>
+                    <div class="ayah-preview-header">
+                      <span class="ayah-source-badge">📖 ${surahLabel} Sûresi · ${ayahRangeStr}</span>
+                      <span class="tempo-bpm-pill">⏱ ${curEx.bpm || t.bpm} BPM</span>
                     </div>
-                    <div style="font-size:0.84rem; font-weight:700; color:#fff; margin-bottom:0.35rem;">${surahLabel} Sûresi · ${ayahRangeStr}</div>
-                    <div class="tempo-arabic-preview" style="font-size:0.95rem; font-family:'Amiri Quran', serif; direction:rtl; text-align:right; color:#f8fafc; line-height:2.0; max-height:90px; overflow-y:auto; padding:0.4rem 0.6rem; background:rgba(0,0,0,0.3); border-radius:6px; border:1px solid rgba(229,184,105,0.15);">
+                    <div class="tempo-arabic-preview" lang="ar" dir="rtl">
                       ${curEx.textAr}
                     </div>
                     ${curEx.tajweedHighlights && curEx.tajweedHighlights.length > 0 ? `
-                      <div style="display:flex; flex-wrap:wrap; gap:0.25rem; margin-top:0.4rem;">
-                        ${curEx.tajweedHighlights.map(th => `<span style="font-size:0.7rem; background:rgba(229,184,105,0.12); color:#fef3c7; border:1px solid rgba(229,184,105,0.25); padding:0.1rem 0.4rem; border-radius:4px;">${highlightLabel(th)}</span>`).join('')}
+                      <div class="tempo-tajweed-tags">
+                        ${curEx.tajweedHighlights.map(th => `<span class="tajweed-tag-chip">${highlightLabel(th)}</span>`).join('')}
                       </div>
                     ` : ''}
                   </div>
 
                   <!-- Aksiyon Butonları -->
                   <div class="tempo-actions-row">
-                    <button type="button" class="btn-teknik-action btn-metronome btn-play-tempo-metronome" data-bpm="${curEx.bpm || t.bpm}" data-name="${t.name}">
-                      <span>⏱</span> Ritmi Dinle (${curEx.bpm || t.bpm} BPM)
-                    </button>
                     <button type="button" class="btn-teknik-action btn-audio btn-play-sample-audio" data-tempo-id="${t.id}" data-ex-idx="${curIdx}" data-surah="${curEx.surah || t.sampleSurah}" data-ayah="${curEx.ayah || t.sampleAyah}" data-end-ayah="${curEx.endAyah || curEx.ayah || t.sampleAyah}" data-reciter="${curEx.reciterKey || t.reciterKey}" data-title="${t.name} (${exampleLabel(curEx)})">
-                      <span>▶</span> Örnek Dinle
+                      <span>▶</span> Örneği Dinle
+                    </button>
+                    <button type="button" class="btn-teknik-action btn-metronome btn-play-tempo-metronome" data-bpm="${curEx.bpm || t.bpm}" data-name="${t.name}">
+                      <span>⏱</span> Ritim Dinle (${curEx.bpm || t.bpm} BPM)
                     </button>
                     <button type="button" class="btn-teknik-action btn-inspect btn-open-mini-mushaf" data-tempo-id="${t.id}" data-ex-idx="${curIdx}" title="Sürüklenebilir Kayan Mushaf'ta tecvid kurallarıyla incele">
-                      <span></span> Tecvidle Takip
+                      <span>🎨</span> Tecvid Takip
                     </button>
                     <button type="button" class="btn-teknik-action btn-goto-secavend-ayah" data-surah="${curEx.surah || t.sampleSurah}" data-ayah="${curEx.ayah || t.sampleAyah}" title="Tam Mushaf'ta bu ayeti aç">
-                      <span></span> Mushaf
+                      <span>📖</span> Mushaf
                     </button>
                   </div>
                 </div>
@@ -6923,6 +7003,9 @@
   let studioPlayheadAnimId = null;
   let studioRecPitchListener = null;
   let studioContourRequestId = 0;
+  let studioPlaybackRate = 1.0;
+  let studioRelativeMode = true;
+  let currentAyahWords = [];
 
   function renderStudyoView() {
     if (activeStudioStation === 'nefes') {
@@ -7121,10 +7204,10 @@
       surah: currentModelAyah.surah,
       ayah: currentModelAyah.ayah,
       label: `${allSurahsList.find(s => s.no === currentModelAyah.surah)?.name || `Sûre ${currentModelAyah.surah}`} Sûresi ${currentModelAyah.key}`,
-      makam: 'Uzman doğrulaması yok',
+      makam: currentModelAyah.makam || 'Nihâvend',
       qari: selectedStudioQariKey,
-      text: 'Âyet metni kaynaktan yükleniyor…',
-      meal: ''
+      text: currentModelAyah.text || 'Âyet metni kaynaktan yükleniyor…',
+      meal: currentModelAyah.meal || ''
     };
 
     // Üst İstasyon Seçici Gezinti Şeridi
@@ -7502,21 +7585,24 @@
             </div>
           </div>
 
-          <!-- Seçili Âyetin Metin Vitrini & Telemetri Çubuğu -->
-          <div style="text-align:center; padding:1.25rem 1.25rem; background:rgba(229,184,105,0.06); border:1px solid rgba(229,184,105,0.25); border-radius:12px; margin-bottom:1.25rem; position:relative;">
+          <!-- Seçili Âyetin Metin Vitrini, Kelime Senkronizasyonu & Telemetri Çubuğu -->
+          <div class="studio-ayah-showcase" style="text-align:center; padding:1.25rem 1.25rem; background:rgba(229,184,105,0.06); border:1px solid rgba(229,184,105,0.25); border-radius:12px; margin-bottom:1.25rem; position:relative;">
             <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); margin-bottom:0.4rem;" id="studioAyahTitle">
               ${activeAyahMeta.label}
             </div>
+            
+            <!-- Kelime Kelime İnteraktif ve Senkronize Arapça Metin Sahnesi -->
             <div id="studioAyahArabic" style="font-family:'Amiri', 'Scheherazade New', serif; font-size:2.35rem; color:var(--accent-gold); line-height:1.45; direction:rtl; unicode-bidi:isolate;" lang="ar">
               ${activeAyahMeta.text}
             </div>
+
             <div id="studioAyahMeal" style="font-size:0.88rem; color:#cbd5e1; margin-top:0.65rem; line-height:1.55; max-width:850px; margin-left:auto; margin-right:auto; font-style:italic;">
               "${activeAyahMeta.meal}"
             </div>
 
-            <div class="studio-telemetry-strip" style="justify-content:center;">
+            <div class="studio-telemetry-strip" style="justify-content:center; gap:0.65rem; flex-wrap:wrap; margin-top:0.85rem;">
               <span class="studio-telemetry-pill gold" id="studioMakamBadge">
-                 Makam: Uzman etiketlemesi yok
+                 Makam: ${activeAyahMeta.makam || 'Uzman etiketlemesi yok'}
               </span>
               <span class="studio-telemetry-pill cyan" id="studioAudioDurationBadge">
                 ⏱ Gerçek ses süresi: ${studioAudioRealDurationMs ? (studioAudioRealDurationMs / 1000).toFixed(1) + 's' : 'Ses analiz ediliyor…'}
@@ -7530,17 +7616,50 @@
             </div>
           </div>
 
-          <!-- HTML5 Canvas Çift Konturlu Görselleştirici -->
+          <!-- HTML5 Canvas Çift Konturlu Görselleştirici & Dinamik Araç Çubuğu -->
           <div class="pitch-canvas-wrap">
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1.25rem; background:rgba(0,0,0,0.4); font-size:0.78rem; border-bottom:1px solid rgba(255,255,255,0.08); flex-wrap:wrap; gap:0.5rem;">
-              <div style="display:flex; gap:1.25rem; flex-wrap:wrap;">
-                <span style="color:var(--accent-gold); font-weight:700;">● Kaynak kayıttan çıkarılan F0 konturu</span>
-                <span style="color:var(--accent-green); font-weight:700;">● Sizin F0 konturunuz</span>
+            <div class="studio-canvas-toolbar" style="display:flex; justify-content:space-between; align-items:center; padding:0.65rem 1.25rem; background:rgba(0,0,0,0.5); font-size:0.78rem; border-bottom:1px solid rgba(255,255,255,0.08); flex-wrap:wrap; gap:0.65rem;">
+              <div style="display:flex; gap:1.15rem; align-items:center; flex-wrap:wrap;">
+                <span style="color:var(--accent-gold); font-weight:700; display:inline-flex; align-items:center; gap:0.35rem;">
+                  <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#e5b869; box-shadow:0 0 6px #e5b869;"></span>
+                  Kaynak Kâri F0 (Altın Seyir)
+                </span>
+                <span style="color:var(--accent-green); font-weight:700; display:inline-flex; align-items:center; gap:0.35rem;">
+                  <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#00e676; box-shadow:0 0 6px #00e676;"></span>
+                  Sizin F0 Sesiniz (Zümrüt Kayıt)
+                </span>
+                <span style="color:rgba(229,184,105,0.85); font-size:0.74rem; display:inline-flex; align-items:center; gap:0.25rem;">
+                  <span style="display:inline-block; width:12px; height:6px; background:rgba(229,184,105,0.25); border:1px solid rgba(229,184,105,0.6); border-radius:2px;"></span>
+                  Tolerans Koridoru (±45 cent / 2 koma)
+                </span>
               </div>
-              <span style="color:var(--text-muted); font-family:'JetBrains Mono', monospace;" id="studioCanvasTimeScale">Zaman vs göreli F0 (cent)</span>
+
+              <!-- Çalışma Alanı Dinamik Hız ve Makam Modu Kontrolleri -->
+              <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+                <div class="studio-btn-group" style="display:inline-flex; background:rgba(255,255,255,0.06); border-radius:6px; padding:2px; border:1px solid rgba(255,255,255,0.12);">
+                  <button type="button" class="studio-ctrl-btn ${studioPlaybackRate === 1.0 ? 'active' : ''}" id="btnSpeedNormal" title="Normal Oynatma Hızı (1.0x)">1.0x</button>
+                  <button type="button" class="studio-ctrl-btn ${studioPlaybackRate === 0.75 ? 'active' : ''}" id="btnSpeedSlow" title="Talim ve Meşk İçin Yavaşlatılmış Hız (0.75x)">0.75x Talim</button>
+                </div>
+
+                <div class="studio-btn-group" style="display:inline-flex; background:rgba(255,255,255,0.06); border-radius:6px; padding:2px; border:1px solid rgba(255,255,255,0.12);">
+                  <button type="button" class="studio-ctrl-btn ${studioRelativeMode ? 'active' : ''}" id="btnToggleRelativeMode" title="Makam seyrini kendi ses genişliğinize (karar perdenize) göre bilimsel değerlendirin">
+                    ${studioRelativeMode ? '🎯 Göreli Seyir' : ' Mutlak Perde'}
+                  </button>
+                </div>
+
+                <span style="color:var(--text-muted); font-family:'JetBrains Mono', monospace; font-size:0.75rem;" id="studioCanvasTimeScale">Zaman vs Göreli F0 (cent)</span>
+              </div>
             </div>
-            <canvas id="studioPitchCanvas" class="pitch-canvas" width="800" height="230"></canvas>
-            <div id="studioContourStatus" role="status" aria-live="polite" style="padding:0.5rem 1rem; color:var(--text-muted); font-size:0.78rem;">Kaynak ses analiz ediliyor…</div>
+
+            <div style="position:relative; width:100%; overflow:hidden;">
+              <canvas id="studioPitchCanvas" class="pitch-canvas" width="800" height="250" style="cursor:crosshair;"></canvas>
+              <div id="studioCanvasTooltip" class="studio-canvas-tooltip" style="display:none;"></div>
+            </div>
+
+            <div id="studioContourStatus" role="status" aria-live="polite" style="padding:0.6rem 1.25rem; color:var(--text-muted); font-size:0.78rem; border-top:1px solid rgba(255,255,255,0.06); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+              <span>Kaynak ses analiz ediliyor…</span>
+              <span style="color:var(--accent-gold); font-size:0.74rem;">🖱 Tıklayarak istediğiniz kelime ve saniyeye atlayabilirsiniz</span>
+            </div>
           </div>
 
           <!-- Gerçek DTW 4-Metrik Karnesi -->
@@ -7549,9 +7668,10 @@
               <div>
                 <span class="card-badge gold">TİLAVET VE SEYİR KARNESİ</span>
                 <span style="font-size:0.8rem; color:var(--text-muted); margin-left:0.5rem;">Sakoe-Chiba DTW Hesaplama Sonucu</span>
+                ${dtwEvaluationResult?.tonicLabel ? `<span class="card-badge cyan" style="margin-left:0.5rem;">${dtwEvaluationResult.tonicLabel}</span>` : ''}
               </div>
-              <span class="card-badge ${dtwEvaluationResult ? 'green' : 'cyan'}" id="studioVerdictBadge">
-                ${dtwEvaluationResult ? `Ortalama Sapma: ±${dtwEvaluationResult.meanCentsDiff} cent` : 'Henüz kayıt alınmadı'}
+              <span class="card-badge ${dtwEvaluationResult ? (dtwEvaluationResult.avgScore >= 75 ? 'green' : (dtwEvaluationResult.avgScore >= 60 ? 'gold' : 'alert')) : 'cyan'}" id="studioVerdictBadge">
+                ${dtwEvaluationResult ? `Ortalama Sapma: ±${dtwEvaluationResult.meanCentsDiff} cent · Başarı: %${dtwEvaluationResult.avgScore}` : 'Henüz kayıt alınmadı'}
               </span>
             </div>
 
@@ -7561,7 +7681,7 @@
                 <div style="font-size:1.35rem; font-weight:800; color:var(--accent-green); margin-top:0.2rem;" id="studioScorePitch">
                   ${dtwEvaluationResult ? `%${dtwEvaluationResult.pitchScore}` : '—'}
                 </div>
-                <div style="font-size:0.72rem; color:var(--text-muted);">Cent sapması</div>
+                <div style="font-size:0.72rem; color:var(--text-muted);">Makam basamak doğruluğu</div>
               </div>
 
               <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.75rem; border-radius:8px;">
@@ -7569,7 +7689,7 @@
                 <div style="font-size:1.35rem; font-weight:800; color:var(--accent-gold); margin-top:0.2rem;" id="studioScoreContour">
                   ${dtwEvaluationResult ? `%${dtwEvaluationResult.contourScore}` : '—'}
                 </div>
-                <div style="font-size:0.72rem; color:var(--text-muted);">Makam seyr-i dengesi</div>
+                <div style="font-size:0.72rem; color:var(--text-muted);">Suûd &amp; Hubût (İniş-çıkış)</div>
               </div>
 
               <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.75rem; border-radius:8px;">
@@ -7577,7 +7697,7 @@
                 <div style="font-size:1.35rem; font-weight:800; color:var(--accent-cyan); margin-top:0.2rem;" id="studioScoreTiming">
                   ${dtwEvaluationResult ? `%${dtwEvaluationResult.timingScore}` : '—'}
                 </div>
-                <div style="font-size:0.72rem; color:var(--text-muted);">DTW yol uyumu</div>
+                <div style="font-size:0.72rem; color:var(--text-muted);">Medd ve durak süresi</div>
               </div>
 
               <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.75rem; border-radius:8px;">
@@ -7585,11 +7705,11 @@
                 <div style="font-size:1.35rem; font-weight:800; color:#b388ff; margin-top:0.2rem;" id="studioScoreCorridor">
                   ${dtwEvaluationResult ? `%${dtwEvaluationResult.corridorScore}` : '—'}
                 </div>
-                <div style="font-size:0.72rem; color:var(--text-muted);">Yazılım eşiği: ±40 cent</div>
+                <div style="font-size:0.72rem; color:var(--text-muted);">±45 cent (~2 koma) bandı</div>
               </div>
             </div>
 
-            <div style="font-size:0.85rem; color:#cbd5e1; border-top:1px solid rgba(255,255,255,0.06); padding-top:0.6rem;" id="studioVerdictText">
+            <div style="font-size:0.85rem; color:#cbd5e1; border-top:1px solid rgba(255,255,255,0.06); padding-top:0.6rem; line-height:1.55;" id="studioVerdictText">
               ${dtwEvaluationResult ? dtwEvaluationResult.verdict : 'Referans sesini dinleyin; âyeti mikrofona okuyun ve okuyuş tamamlanınca kaydı durdurup karşılaştırın.'}
             </div>
           </div>

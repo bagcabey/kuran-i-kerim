@@ -3470,6 +3470,149 @@
   font-weight: 700;
 }
 
+/* -----------------------------------------------------------------------------
+   SES LABORATUVARI KURRÂ MUKAYESE & KELİME SENKRONİZASYONU GELİŞMİŞ STİLLERİ
+   ----------------------------------------------------------------------------- */
+.studio-bismillah-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.45rem 1rem;
+  background: rgba(229, 184, 105, 0.08);
+  border: 1px solid rgba(229, 184, 105, 0.2);
+  border-radius: 8px;
+  margin-bottom: 0.85rem;
+  font-family: 'Amiri', 'Scheherazade New', serif;
+}
+
+.studio-bismillah-bar .bism-txt {
+  font-size: 1.55rem;
+  color: var(--accent-gold, #e5b869);
+  line-height: 1.2;
+}
+
+.studio-bismillah-bar .bism-tag {
+  font-size: 0.74rem;
+  color: var(--text-muted, #8a94a6);
+  font-family: var(--font-sans, sans-serif);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.studio-words-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem 0.85rem;
+  direction: rtl;
+  unicode-bidi: isolate;
+  padding: 0.5rem 0;
+}
+
+.studio-word-token {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  position: relative;
+}
+
+.studio-word-token:hover {
+  background: rgba(229, 184, 105, 0.12);
+  border-color: rgba(229, 184, 105, 0.35);
+  transform: translateY(-2px);
+}
+
+.studio-word-token .word-text {
+  font-family: 'Amiri', 'Scheherazade New', serif;
+  font-size: 2.25rem;
+  line-height: 1.35;
+  color: #f0f3fa;
+  transition: color 0.2s ease;
+}
+
+.studio-word-token .word-num {
+  font-size: 0.68rem;
+  color: var(--text-muted, #8a94a6);
+  font-family: var(--font-mono, monospace);
+  font-weight: 600;
+  margin-top: 0.15rem;
+}
+
+.studio-word-token.is-active-word {
+  background: linear-gradient(135deg, rgba(229, 184, 105, 0.25), rgba(0, 229, 255, 0.2));
+  border-color: var(--accent-gold, #e5b869);
+  box-shadow: 0 0 20px rgba(229, 184, 105, 0.45), 0 4px 12px rgba(0, 0, 0, 0.5);
+  transform: scale(1.08);
+}
+
+.studio-word-token.is-active-word .word-text {
+  color: #ffd700;
+  text-shadow: 0 0 16px rgba(255, 215, 0, 0.65);
+}
+
+.studio-word-token.is-active-word .word-num {
+  color: #ffd700;
+  font-weight: 800;
+}
+
+.studio-word-token.is-past-word {
+  opacity: 0.82;
+}
+
+.studio-word-token.is-past-word .word-text {
+  color: var(--accent-gold, #e5b869);
+}
+
+.studio-ctrl-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted, #8a94a6);
+  padding: 0.35rem 0.65rem;
+  border-radius: 5px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.studio-ctrl-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.studio-ctrl-btn.active {
+  background: var(--accent-gold, #e5b869);
+  color: #07090e;
+  box-shadow: 0 0 8px rgba(229, 184, 105, 0.4);
+}
+
+.studio-canvas-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(13, 19, 33, 0.92);
+  border: 1px solid rgba(229, 184, 105, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.74rem;
+  color: #cbd5e1;
+  font-family: var(--font-mono, monospace);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  white-space: nowrap;
+}
+
 /* =============================================================================
    13. SINAV & DİJİTAL SERTİFİKA STİLLERİ
    ============================================================================= */
@@ -5614,12 +5757,13 @@
 
 /* Üst Başlık ve Sürükleme Kolu */
 .mini-mushaf-drag-header {
-  padding: 0.7rem 0.9rem;
-  background: linear-gradient(135deg, rgba(229, 184, 105, 0.16) 0%, rgba(14, 18, 26, 0.96) 100%);
-  border-bottom: 1px solid rgba(229, 184, 105, 0.25);
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, rgba(229, 184, 105, 0.18) 0%, rgba(14, 18, 26, 0.98) 100%);
+  border-bottom: 1.5px solid rgba(229, 184, 105, 0.3);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.6rem;
   cursor: grab;
   user-select: none;
 }
@@ -5632,10 +5776,19 @@
   display: flex;
   align-items: center;
   gap: 0.55rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.mini-mushaf-title-wrap {
+  min-width: 0;
+  overflow: hidden;
+  flex: 1 1 auto;
 }
 
 .mini-mushaf-icon {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
+  flex-shrink: 0;
   filter: drop-shadow(0 0 6px rgba(229, 184, 105, 0.4));
 }
 
@@ -5644,37 +5797,47 @@
   font-weight: 800;
   color: var(--accent-gold, #e5b869);
   letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mini-mushaf-sub {
   font-size: 0.72rem;
   color: #94a3b8;
   margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mini-mushaf-controls {
   display: flex;
   align-items: center;
   gap: 0.35rem;
+  flex-shrink: 0;
 }
 
 .mini-mushaf-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: #cbd5e1;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .mini-mushaf-btn:hover {
-  background: rgba(229, 184, 105, 0.25);
+  background: rgba(229, 184, 105, 0.3);
+  border-color: var(--accent-gold, #e5b869);
+  color: #fff;
+}
   border-color: var(--accent-gold, #e5b869);
   color: #fff;
 }
@@ -6030,6 +6193,27 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.mini-audio-full-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(229, 184, 105, 0.35);
+  color: #f1f5f9;
+  border-radius: 6px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.mini-audio-full-btn:hover {
+  background: rgba(229, 184, 105, 0.25);
+  color: var(--accent-gold, #e5b869);
+  border-color: var(--accent-gold, #e5b869);
 }
 
 .mini-action-btn {
@@ -7315,4 +7499,678 @@
   top: calc(var(--header-h, 64px) + 20px) !important;
   max-height: calc(100vh - var(--header-h, 64px) - 40px) !important;
   max-height: calc(100dvh - var(--header-h, 64px) - 40px) !important;
+}
+
+/* =============================================================================
+   YENİ TİLAVET TEKNİKLERİ & TEMPOLAR KART TASARIMI
+   ============================================================================= */
+.tempo-essence-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.essence-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.essence-chip.note {
+  background: rgba(229, 184, 105, 0.08);
+  border-color: rgba(229, 184, 105, 0.25);
+  color: #fde68a;
+}
+
+.tempo-ex-pills-row {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.selector-strip-label {
+  font-size: 0.72rem;
+  color: var(--accent-gold, #e5b869);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.ayah-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px dashed rgba(229, 184, 105, 0.25);
+}
+
+.ayah-source-badge {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.tempo-bpm-pill {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--accent-gold, #e5b869);
+  background: rgba(229, 184, 105, 0.12);
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(229, 184, 105, 0.3);
+}
+
+.tempo-arabic-preview {
+  font-size: 1.48rem !important;
+  line-height: 2.2 !important;
+  font-family: 'Amiri Quran', 'Scheherazade New', 'Amiri', serif !important;
+  direction: rtl;
+  text-align: right;
+  color: #f8fafc;
+  padding: 0.85rem 1.1rem;
+  background: rgba(8, 12, 19, 0.75);
+  border-radius: 8px;
+  border: 1px solid rgba(229, 184, 105, 0.25);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+  max-height: 280px;
+  overflow-y: auto;
+  word-spacing: 3px;
+}
+
+.tempo-tajweed-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.tajweed-tag-chip {
+  font-size: 0.72rem;
+  background: rgba(229, 184, 105, 0.12);
+  color: #fef3c7;
+  border: 1px solid rgba(229, 184, 105, 0.25);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+/* =============================================================================
+   YENİ MAKAM OKULU & GEZİNME ŞERİDİ PRESTİJ TASARIMI
+   ============================================================================= */
+.makam-nav-ribbon {
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+}
+
+.makam-nav-track {
+  display: flex;
+  gap: 0.75rem;
+  min-width: max-content;
+}
+
+.makam-nav-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.15rem;
+  min-width: 105px;
+  background: linear-gradient(180deg, rgba(18, 24, 38, 0.9) 0%, rgba(11, 16, 26, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.makam-nav-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(229, 184, 105, 0.4);
+  background: linear-gradient(180deg, rgba(26, 34, 52, 0.9) 0%, rgba(14, 20, 32, 0.95) 100%);
+}
+
+.makam-nav-card.active {
+  border-color: var(--accent-gold, #e5b869);
+  background: linear-gradient(180deg, rgba(38, 48, 70, 0.95) 0%, rgba(18, 24, 38, 0.98) 100%);
+  box-shadow: 0 0 20px rgba(229, 184, 105, 0.25), inset 0 1px 0 rgba(229, 184, 105, 0.4);
+}
+
+.makam-nav-ar {
+  font-family: 'Amiri', 'Traditional Arabic', serif;
+  font-size: 1.35rem;
+  color: var(--accent-gold, #e5b869);
+  line-height: 1.2;
+}
+
+.makam-nav-tr {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-top: 0.15rem;
+}
+
+.makam-nav-mood {
+  font-size: 0.68rem;
+  color: #94a3b8;
+  margin-top: 2px;
+  text-transform: capitalize;
+}
+
+/* Seçili Makam İstasyonu & Hero */
+.makam-hero-main {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  align-items: center;
+  padding: 1.75rem 2rem;
+  background: linear-gradient(135deg, rgba(22, 30, 46, 0.85) 0%, rgba(12, 17, 28, 0.92) 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(229, 184, 105, 0.25);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 960px) {
+  .makam-hero-main {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+}
+
+.makam-hero-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.makam-badge-gold {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #07090e;
+  background: var(--accent-gold, #e5b869);
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.makam-badge-accent {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #67e8f9;
+  background: rgba(6, 182, 212, 0.14);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.makam-badge-subtle {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.makam-hero-name {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin: 0.35rem 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.makam-name-main {
+  font-size: 2.15rem;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.01em;
+}
+
+.makam-name-calligraphy {
+  font-family: 'Amiri', 'Traditional Arabic', serif;
+  font-size: 2.4rem;
+  color: var(--accent-gold, #e5b869);
+}
+
+.makam-hero-summary {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin: 0 0 1.25rem 0;
+}
+
+.makam-spec-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.spec-label {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.spec-val {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.spec-val.gold { color: var(--accent-gold, #e5b869); }
+.spec-val.cyan { color: #67e8f9; }
+
+/* Entegre Drone Kutusu */
+.makam-drone-dock {
+  background: rgba(9, 13, 21, 0.85);
+  border: 1.5px solid rgba(229, 184, 105, 0.35);
+  border-radius: 14px;
+  padding: 1.25rem 1.15rem;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.drone-dock-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-bottom: 0.25rem;
+}
+
+.drone-pulse-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #64748b;
+  transition: all 0.25s ease;
+}
+
+.drone-pulse-indicator.active {
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: pulseReadingGlow 1.2s infinite ease-in-out;
+}
+
+.drone-dock-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent-gold, #e5b869);
+}
+
+.drone-dock-instrument {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.drone-dock-pitch {
+  font-size: 1.05rem;
+  color: #f8fafc;
+  margin: 0.4rem 0 0.85rem 0;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.btn-makam-drone-toggle {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, rgba(229, 184, 105, 0.2), rgba(184, 145, 58, 0.15));
+  color: var(--accent-gold, #e5b869);
+  border: 1.5px solid var(--accent-gold, #e5b869);
+  padding: 0.65rem 1.15rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-makam-drone-toggle:hover {
+  background: var(--accent-gold, #e5b869);
+  color: #07090e;
+  transform: translateY(-1px);
+}
+
+.btn-makam-drone-toggle.playing {
+  background: #ff3366 !important;
+  border-color: #ff3366 !important;
+  color: #fff !important;
+  box-shadow: 0 0 20px rgba(255, 51, 102, 0.5) !important;
+}
+
+.drone-dock-tip {
+  font-size: 0.68rem;
+  color: #64748b;
+  margin-top: 0.55rem;
+  display: block;
+  line-height: 1.35;
+}
+
+/* 3 Ruh & Gelenek Sütunu */
+.makam-triptych-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.triptych-card {
+  background: linear-gradient(180deg, rgba(16, 22, 34, 0.85) 0%, rgba(11, 16, 25, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.triptych-card:hover {
+  border-color: rgba(229, 184, 105, 0.35);
+  transform: translateY(-2px);
+}
+
+.triptych-card.ezan-card {
+  border-left: 3px solid var(--accent-gold, #e5b869);
+}
+
+.triptych-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.triptych-icon {
+  font-size: 1.35rem;
+}
+
+.triptych-header h4 {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.triptych-card p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #94a3b8;
+  line-height: 1.55;
+}
+
+/* 53-Koma İnteraktif Makam Merdiveni (Fretboard) */
+.makam-scale-fretboard {
+  background: rgba(11, 16, 25, 0.85);
+  border: 1px solid rgba(229, 184, 105, 0.2);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.fretboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.15rem;
+}
+
+.fretboard-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.fretboard-icon {
+  font-size: 1.4rem;
+}
+
+.fretboard-title-group h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.fretboard-sub {
+  font-size: 0.74rem;
+  color: #94a3b8;
+}
+
+.fretboard-system-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-gold, #e5b869);
+  background: rgba(229, 184, 105, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(229, 184, 105, 0.25);
+}
+
+.fretboard-keys-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+  gap: 0.6rem;
+}
+
+.fret-key {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.85rem 0.4rem 0.65rem 0.4rem;
+  background: linear-gradient(180deg, #182234 0%, #0d1420 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.fret-key:hover {
+  border-color: var(--accent-gold, #e5b869);
+  background: linear-gradient(180deg, #24324c 0%, #121c2c 100%);
+  transform: translateY(-2px);
+}
+
+.fret-key.key-active-pulse {
+  background: var(--accent-gold, #e5b869) !important;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--accent-gold, #e5b869);
+}
+
+.fret-key.key-active-pulse * {
+  color: #07090e !important;
+}
+
+.fret-key.is-durak {
+  border-color: var(--accent-gold, #e5b869);
+  box-shadow: 0 0 12px rgba(229, 184, 105, 0.3);
+}
+
+.fret-key.is-guclu {
+  border-color: #06b6d4;
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
+}
+
+.fret-step-num {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.fret-role-tag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 3px;
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+
+.fret-role-tag.durak {
+  background: var(--accent-gold, #e5b869);
+  color: #07090e;
+}
+
+.fret-role-tag.guclu {
+  background: #06b6d4;
+  color: #07090e;
+}
+
+.fret-name {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin-top: 0.35rem;
+}
+
+.fret-note {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #67e8f9;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.fret-koma {
+  font-size: 0.66rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* Karakteristik Seyir Motifleri */
+.makam-seyir-motifs-section {
+  background: rgba(11, 16, 25, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.seyir-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
+}
+
+.seyir-icon {
+  font-size: 1.35rem;
+  color: var(--accent-gold, #e5b869);
+}
+
+.seyir-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.seyir-sub {
+  font-size: 0.74rem;
+  color: #94a3b8;
+}
+
+.seyir-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.seyir-motif-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.15rem;
+  background: linear-gradient(180deg, rgba(20, 27, 40, 0.8) 0%, rgba(13, 18, 28, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.seyir-motif-card:hover {
+  border-color: rgba(229, 184, 105, 0.35);
+  transform: translateY(-2px);
+}
+
+.motif-stage-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--accent-gold, #e5b869);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.motif-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.motif-path-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 0.65rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.path-arrow-icon {
+  color: var(--accent-gold, #e5b869);
+  font-weight: 700;
+}
+
+.path-sequence {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.seyir-motif-card .btn-play-motif {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  background: rgba(229, 184, 105, 0.14);
+  border: 1px solid rgba(229, 184, 105, 0.35);
+  color: var(--accent-gold, #e5b869);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.seyir-motif-card .btn-play-motif:hover {
+  background: var(--accent-gold, #e5b869);
+  color: #07090e;
 }

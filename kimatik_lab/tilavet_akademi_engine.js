@@ -1485,15 +1485,16 @@
           id: 1,
           category: "harf",
           badge: "PELTEK vs KESKİN vs KALIN",
-          prompt: "Peltek ve yumuşak şekilde, dil ucunun üst ön dişlerin arasından hafifçe sızmasıyla çıkan harfi tespit edin:",
+          prompt: "Kevser Sûresi'ndeki 'el-Kevser' lafzında geçen peltek, ince ve yumuşak harfi tespit edin:",
           targetChar: "ث",
-          soundType: "fricative",
-          freq: 4600,
-          f0: 220,
-          explanation: "ث (Peltek Sâ) harfinde dil ucu iki diş arasına hafifçe sıkışarak yumuşakça sızar. س keskin ve ıslıklı, ص ise dili damağa yapıştırarak dolgun ve kalındır.",
+          surah: 108,
+          ayah: 1,
+          ayahRef: "Kevser Sûresi, 1. Âyet",
+          recitedAyahText: "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ",
+          explanation: "ث (Peltek Sâ) harfinde dil ucu iki diş arasına hafifçe sıkışarak yumuşakça sızar (الْكَوْثَرَ). س keskin ve ıslıklı, ص ise dili damağa yapıştırarak dolgun ve kalındır.",
           options: [
             { char: "س", label: "س (Keskin Sîn)", desc: "Dil ucunun alt dişlerin arkasına basmasıyla çıkan ıslıklı ve ince s.", sampleWord: "سَبِيل", sampleMeaning: "Yol / İstikamet" },
-            { char: "ث", label: "ث (Peltek Sâ)", desc: "Dil ucunun ön dişler arasından hafif çıkmasıyla ince ve yumuşak se.", sampleWord: "ثَوَاب", sampleMeaning: "Mükâfat / Sevap" },
+            { char: "ث", label: "ث (Peltek Sâ)", desc: "Dil ucunun ön dişler arasından hafif çıkmasıyla ince ve yumuşak se.", sampleWord: "الْكَوْثَر", sampleMeaning: "Tükenmez Hayır / Kevser" },
             { char: "ص", label: "ص (Kalın Sâd)", desc: "Dili damağa yapıştırarak (ıtbâk) çıkarılan dolgun ve kalın s.", sampleWord: "صِرَاط", sampleMeaning: "Cadde / Sırat" }
           ]
         },
@@ -1501,30 +1502,32 @@
           id: 2,
           category: "harf",
           badge: "BOĞAZ KATMANLARI",
-          prompt: "Boğazın tam ortasının sıkılmasıyla çıkan, hırıltısız ve buharlı saf boğaz sesini seçin:",
+          prompt: "Fâtiha Sûresi 2. âyette 'el-Hamd' lafzındaki boğazın tam ortasından buharlı çıkan harfi seçin:",
           targetChar: "ح",
-          soundType: "pharyngeal",
-          freq: 1400,
-          f0: 293,
-          explanation: "ح (Boğaz Hâ) boğazın tam ortasından yakıcı bir buhar gibi çıkar. ه göğüsten rahatça sızar, خ ise boğazın üstünden hırıltıyla dökülür.",
+          surah: 1,
+          ayah: 2,
+          ayahRef: "Fâtiha Sûresi, 2. Âyet",
+          recitedAyahText: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+          explanation: "ح (Boğaz Hâ) boğazın tam ortasından yakıcı bir buhar gibi duru çıkar (الْحَمْدُ). ه göğüsten rahatça sızar, خ ise boğazın üstünden hırıltıyla dökülür.",
           options: [
             { char: "ه", label: "ه (Göğüs Hê)", desc: "Boğazın en altından, göğse en yakın yerden serbestçe çıkan yumuşak he.", sampleWord: "هُدًى", sampleMeaning: "Hidayet Rehberi" },
             { char: "خ", label: "خ (Hırıltılı Hı)", desc: "Boğazın ağza en yakın üst kısmından hırıltılı çıkan kalın ses.", sampleWord: "خَيْر", sampleMeaning: "Hayırlı Olan" },
-            { char: "ح", label: "ح (Boğaz Hâ)", desc: "Boğazın tam ortasının sıkılmasıyla çıkan buharlı duru ses.", sampleWord: "حَمْد", sampleMeaning: "Övgü ve Şükür" }
+            { char: "ح", label: "ح (Boğaz Hâ)", desc: "Boğazın tam ortasının sıkılmasıyla çıkan buharlı duru ses.", sampleWord: "الْحَمْد", sampleMeaning: "Övgü ve Şükür" }
           ]
         },
         {
           id: 3,
           category: "harf",
           badge: "GIRTLAK SIKIŞMASI",
-          prompt: "Gırtlağın (boğaz ortası) kuvvetle sıkılmasıyla çıkan tok ve derin sesi tespit edin:",
+          prompt: "Fâtiha Sûresi'ndeki 'el-Âlemîn' lafzında boğazın ortasının sıkılmasıyla çıkan tok harfi tespit edin:",
           targetChar: "ع",
-          soundType: "pharyngeal",
-          freq: 950,
-          f0: 175,
-          explanation: "ع (Ayn) boğaz ortasının adeta boğulurcasına sıkılmasıyla çıkar. ء (Hemze) ise ses tellerinin birden kapanıp açılmasıyla patlayan sert bir sestir.",
+          surah: 1,
+          ayah: 2,
+          ayahRef: "Fâtiha Sûresi, 2. Âyet",
+          recitedAyahText: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+          explanation: "ع (Ayn) boğaz ortasının sıkılmasıyla çıkan tok gırtlak sesidir (الْعَالَمِينَ). ء (Hemze) ses tellerinin kapanıp açılmasıyla patlar, ح ise buharlıdır.",
           options: [
-            { char: "ع", label: "ع (Ayn)", desc: "Boğazın tam ortasının sıkılmasıyla çıkan tok gırtlak sesi.", sampleWord: "عَلِيم", sampleMeaning: "Hakkıyla Bilen" },
+            { char: "ع", label: "ع (Ayn)", desc: "Boğazın tam ortasının sıkılmasıyla çıkan tok gırtlak sesi.", sampleWord: "الْعَالَمِين", sampleMeaning: "Bütün Âlemler" },
             { char: "ء", label: "ء (Hemze)", desc: "Ses tellerinin aniden kapanıp açılmasıyla çıkan patlamalı ses.", sampleWord: "أَلِيم", sampleMeaning: "Elem Verici" },
             { char: "ح", label: "ح (Hâ)", desc: "Boğazın ortasından nefesle buharlı çıkan harf.", sampleWord: "حَكِيم", sampleMeaning: "Hikmet Sahibi" }
           ]
@@ -1533,15 +1536,16 @@
           id: 4,
           category: "harf",
           badge: "DİL KÖKÜ vs DAMAK",
-          prompt: "Dil kökünün küçük dil karşısındaki yumuşak damağa kuvvetle çarpmasıyla çıkan kalın harfi seçin:",
+          prompt: "İhlâs Sûresi 1. âyette 'Kul' emrindeki dil kökünün yumuşak damağa kilitlenmesiyle çıkan kalın harfi seçin:",
           targetChar: "ق",
-          soundType: "plosive",
-          freq: 850,
-          f0: 196,
-          explanation: "ق (Kalın Kâf) dil kökünün yumuşak damağa kilitlenmesiyle çıkar ve kalkalelidir. ك (İnce Kef) ise sert damağa vurur ve nefes akıntısı (hems) barındırır.",
+          surah: 112,
+          ayah: 1,
+          ayahRef: "İhlâs Sûresi, 1. Âyet",
+          recitedAyahText: "قُلْ هُوَ اللَّهُ أَحَدٌ",
+          explanation: "ق (Kalın Kâf) dil kökünün yumuşak damağa kilitlenmesiyle çıkar ve kalkalelidir (قُلْ). ك (İnce Kef) ise sert damağa vurur ve ince nefes akıntısı barındırır.",
           options: [
-            { char: "ك", label: "ك (İnce Kef)", desc: "Dil kökünün biraz ön tarafının sert damağa vurmasıyla çıkan ince ke.", sampleWord: "كِتَاب", sampleMeaning: "İlahî Kitap" },
-            { char: "ق", label: "ق (Kalın Kâf)", desc: "Dil kökünün yumuşak damağa kilitlenmesiyle çıkan kuvvetli kalın ses.", sampleWord: "قُرْآن", sampleMeaning: "Kur'ân-ı Kerîm" },
+            { char: "ك", label: "ك (İnce Kef)", desc: "Dil kökünün ön kısmının sert damağa vurmasıyla çıkan ince ke.", sampleWord: "كِتَاب", sampleMeaning: "İlahî Kitap" },
+            { char: "ق", label: "ق (Kalın Kâf)", desc: "Dil kökünün yumuşak damağa kilitlenmesiyle çıkan kuvvetli kalın ses.", sampleWord: "قُلْ", sampleMeaning: "De ki / Söyle" },
             { char: "غ", label: "غ (Ğayn)", desc: "Boğazın üst kısmından kaynayan yumuşak kalın ses.", sampleWord: "غَفُور", sampleMeaning: "Bağışlayıcı" }
           ]
         },
@@ -1549,14 +1553,15 @@
           id: 5,
           category: "harf",
           badge: "DAMAK BASKISI (ITBÂK)",
-          prompt: "Dil ucunun üst ön diş köklerine yapışması ve dil sırtının tamamen damağa kalkmasıyla (ıtbâk) en tok çıkan harf:",
+          prompt: "Fâtiha Sûresi 6. âyette 'es-Sırât' lafzında dil sırtının tamamen damağa yapışmasıyla çıkan harf:",
           targetChar: "ط",
-          soundType: "emphatic",
-          freq: 750,
-          f0: 261,
-          explanation: "ط (Kalın Tâ) harfinde hem kalınlık hem de ıtbâk (damağa yapışma) vardır; Kur'an'daki en kuvvetli harftir. ت ise son derece ince ve zariftir.",
+          surah: 1,
+          ayah: 6,
+          ayahRef: "Fâtiha Sûresi, 6. Âyet",
+          recitedAyahText: "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+          explanation: "ط (Kalın Tâ) harfinde hem kalınlık hem de ıtbâk (damağa yapışma) vardır (الصِّرَاطَ). Kur'an'daki en kuvvetli harftir. ت ise son derece ince ve zariftir.",
           options: [
-            { char: "ط", label: "ط (Kalın Tâ)", desc: "Dilin üst damağa tamamen yapışmasıyla çıkan en tok kalın ses.", sampleWord: "طَيِّب", sampleMeaning: "Tertemiz / Hoş" },
+            { char: "ط", label: "ط (Kalın Tâ)", desc: "Dilin üst damağa tamamen yapışmasıyla çıkan en tok kalın ses.", sampleWord: "الصِّرَاط", sampleMeaning: "Doğru Yol / Sırat" },
             { char: "ت", label: "ت (İnce Tê)", desc: "Dil ucunun diş etlerine hafif dokunmasıyla çıkan ince te.", sampleWord: "تَوْبَة", sampleMeaning: "Tövbe ve Dönüş" },
             { char: "د", label: "د (İnce Dâl)", desc: "Dil ucunun ön diş diplerine hafifçe değmesiyle çıkan ince de.", sampleWord: "دِين", sampleMeaning: "Din ve Düzen" }
           ]
@@ -1565,30 +1570,32 @@
           id: 6,
           category: "harf",
           badge: "Z HARFLERİ AYRIMI",
-          prompt: "Dil ucunun üst ön dişlerin arasından dışarı sızmasıyla peltek, ince ve yumuşak çıkan z sesini seçin:",
+          prompt: "Felak Sûresi 1. âyette 'E'ûzu' fiilindeki peltek, ince ve yumuşak z sesini seçin:",
           targetChar: "ذ",
-          soundType: "fricative",
-          freq: 3800,
-          f0: 233,
-          explanation: "ذ ince peltektir. ز keskin arı vızıltısı gibi öter. ظ ise peltek olmakla birlikte dil sırtı damağa kalktığı için çok kalındır.",
+          surah: 113,
+          ayah: 1,
+          ayahRef: "Felak Sûresi, 1. Âyet",
+          recitedAyahText: "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",
+          explanation: "ذ ince peltektir (أَعُوذُ). ز keskin arı vızıltısı gibi öter. ظ ise peltek olmakla birlikte dil sırtı damağa kalktığı için çok kalındır.",
           options: [
             { char: "ز", label: "ز (Keskin Zê)", desc: "Dil ucunun alt dişlere yaklaşmasıyla çıkan keskin arı vızıltısı.", sampleWord: "زَكَاة", sampleMeaning: "Zekât" },
             { char: "ظ", label: "ظ (Kalın Peltek Zâ)", desc: "Dil ucunun dışarı çıkmasıyla dil kökünün damağa kalktığı dolgun peltek.", sampleWord: "ظَالِم", sampleMeaning: "Zulmeden" },
-            { char: "ذ", label: "ذ (İnce Peltek Zâl)", desc: "Dil ucunun üst dişler arasından yumuşakça sızdığı zarif ince peltek.", sampleWord: "ذِكْر", sampleMeaning: "Öğüt ve Zikir" }
+            { char: "ذ", label: "ذ (İnce Peltek Zâl)", desc: "Dil ucunun üst dişler arasından yumuşakça sızdığı zarif ince peltek.", sampleWord: "أَعُوذُ", sampleMeaning: "Sığınırım" }
           ]
         },
         {
           id: 7,
           category: "harf",
           badge: "KUR'AN'A HAS HARF (İSTİTÂLE)",
-          prompt: "Dil yanının üst azı dişlerine teması ve sesin uzayarak akmasıyla (istitâle) çıkan harfi tespit edin:",
+          prompt: "Fâtiha Sûresi 7. âyette 'ed-Dâllîn' lafzında dil yanının üst azı dişlerine temasıyla uzayarak akan harf:",
           targetChar: "ض",
-          soundType: "emphatic",
-          freq: 650,
-          f0: 185,
-          explanation: "ض (Dâd) dili üst yan azı dişlerine yaslayarak çıkan ve Arapçaya has en zor mahreçtir. Asla düz 'd' veya 'z' gibi okunamaz.",
+          surah: 1,
+          ayah: 7,
+          ayahRef: "Fâtiha Sûresi, 7. Âyet",
+          recitedAyahText: "غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
+          explanation: "ض (Dâd) dili üst yan azı dişlerine yaslayarak çıkan ve Arapçaya has en hususi mahreçtir (الضَّالِّينَ). Asla düz 'd' veya 'z' gibi okunamaz.",
           options: [
-            { char: "ض", label: "ض (Dâd)", desc: "Dil yanının üst azı dişlerine uzayıp yapışmasıyla (istitâle) çıkan en hususi ses.", sampleWord: "ضِيَاء", sampleMeaning: "Kuvvetli Işık" },
+            { char: "ض", label: "ض (Dâd)", desc: "Dil yanının üst azı dişlerine uzayıp yapışmasıyla çıkan en hususi ses.", sampleWord: "الضَّالِّين", sampleMeaning: "Sapıtanlar" },
             { char: "د", label: "د (İnce Dâl)", desc: "Dil ucunun üst diş diplerine değmesiyle çıkan ince ve sakin d.", sampleWord: "دُعَاء", sampleMeaning: "Yakarış ve Dua" },
             { char: "ظ", label: "ظ (Kalın Zâ)", desc: "Dil ucunun ön dişlerden dışarı taşmasıyla çıkan peltek kalın ses.", sampleWord: "ظِلّ", sampleMeaning: "Gölge" }
           ]
@@ -1597,15 +1604,16 @@
           id: 8,
           category: "harf",
           badge: "BOĞAZ ÜSTÜ AKINTISI",
-          prompt: "Boğazın ağza en yakın üst kısmından hırıltısız, kaynar su gibi yumuşakça akan kalın sesi seçin:",
+          prompt: "Fâtiha Sûresi 7. âyette 'Gayri' ve 'el-Mağdûbi' kelimelerinde boğaz üstünden yumuşakça kaynayan harf:",
           targetChar: "غ",
-          soundType: "pharyngeal",
-          freq: 1100,
-          f0: 207,
-          explanation: "غ (Ğayn) boğazın üstünden kaynar gibi hırıltısız akar. خ ise aynı bölgeden sürtünmeli hırıltıyla çıkar.",
+          surah: 1,
+          ayah: 7,
+          ayahRef: "Fâtiha Sûresi, 7. Âyet",
+          recitedAyahText: "غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
+          explanation: "غ (Ğayn) boğazın üstünden hırıltısız, kaynar su gibi akar (غَيْرِ · الْمَغْضُوبِ). خ ise aynı bölgeden sürtünmeli hırıltıyla çıkar.",
           options: [
             { char: "خ", label: "خ (Hırıltılı Hı)", desc: "Boğazın üst kısmından nefesin hırıltıyla sürtünerek çıkması.", sampleWord: "خَلْق", sampleMeaning: "Yaratılış" },
-            { char: "غ", label: "غ (Ğayn)", desc: "Boğazın üst kısmından kaynar su gibi akan yumuşak dolgun ses.", sampleWord: "غَيْب", sampleMeaning: "Görünmeyen Âlem" },
+            { char: "غ", label: "غ (Ğayn)", desc: "Boğazın üst kısmından kaynar gibi akan yumuşak dolgun ses.", sampleWord: "غَيْرِ", sampleMeaning: "Başka / Gayrı" },
             { char: "ق", label: "ق (Kâf)", desc: "Dil kökünün yumuşak damağa vurmasıyla çıkan sert patlamalı ses.", sampleWord: "قَدِير", sampleMeaning: "Her Şeye Gücü Yeten" }
           ]
         },
@@ -1613,31 +1621,33 @@
           id: 9,
           category: "harf",
           badge: "DUDAK MAHREÇLERİ",
-          prompt: "Dudakların yuvarlanarak öne doğru uzatılmasıyla çıkan yumuşak harfi seçin:",
+          prompt: "İhlâs Sûresi 1. âyette 'Hüve' zamirinde dudakların yuvarlanarak öne büzülmesiyle çıkan harfi seçin:",
           targetChar: "و",
-          soundType: "voiced",
-          freq: 800,
-          f0: 220,
-          explanation: "و (Vâv) iki dudağın yuvarlanıp büzülmesiyle çıkar; dişler temas etmez. ف ise üst ön dişlerin alt dudağın ıslak kısmına basmasıyla çıkar.",
+          surah: 112,
+          ayah: 1,
+          ayahRef: "İhlâs Sûresi, 1. Âyet",
+          recitedAyahText: "قُلْ هُوَ اللَّهُ أَحَدٌ",
+          explanation: "و (Vâv) iki dudağın yuvarlanıp büzülmesiyle çıkar (هُوَ); dişler temas etmez. ف ise üst ön dişlerin alt dudağın ıslak kısmına basmasıyla çıkar.",
           options: [
             { char: "ف", label: "ف (Fê)", desc: "Üst ön dişlerin alt dudağın ıslak yerine basmasıyla çıkan hava akıntısı.", sampleWord: "فَتْح", sampleMeaning: "Zafer ve Açılış" },
             { char: "ب", label: "ب (Bâ)", desc: "İki dudağın ıslak kısımlarının birbirine kuvvetle kapanıp açılması.", sampleWord: "بَرَكَة", sampleMeaning: "Bereket ve Bolluk" },
-            { char: "و", label: "و (Vâv)", desc: "Dudakların yuvarlanarak öne doğru büzülmesiyle çıkan akıcı ses.", sampleWord: "وَاحِد", sampleMeaning: "Bir ve Tek Olan" }
+            { char: "و", label: "و (Vâv)", desc: "Dudakların yuvarlanarak öne doğru büzülmesiyle çıkan akıcı ses.", sampleWord: "هُوَ", sampleMeaning: "O (Allah)" }
           ]
         },
         {
           id: 10,
           category: "harf",
           badge: "TİTREŞİM VE TEFHÎM",
-          prompt: "Dil ucunun ön damak tavanına vurup titreşmesiyle (tekrîr) çıkan, yerine göre kalın veya ince okunan harf:",
+          prompt: "Besmele-i Şerîfe'de 'er-Rahmân' ve 'er-Rahîm' isimlerinde dil ucunun damağa vurup titreşmesiyle çıkan harf:",
           targetChar: "ر",
-          soundType: "voiced",
-          freq: 1350,
-          f0: 245,
-          explanation: "ر (Râ) harfi dil ucunun kıvrılıp damağa değmesiyle çıkar. Üstün ve ötrede kalın (tefhîm), esrede ise ince (terkîk) okunur.",
+          surah: 1,
+          ayah: 1,
+          ayahRef: "Fâtiha Sûresi, 1. Âyet",
+          recitedAyahText: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+          explanation: "ر (Râ) harfi dil ucunun kıvrılıp damağa değmesiyle çıkar (الرَّحْمَٰنِ الرَّحِيمِ). Üstün ve ötrede kalın (tefhîm), esrede ise ince (terkîk) okunur.",
           options: [
             { char: "ل", label: "ل (Lâm)", desc: "Dil ucunun geniş kısmının ön üst diş etlerine yapışması.", sampleWord: "لَيْل", sampleMeaning: "Gece Vakti" },
-            { char: "ر", label: "ر (Râ)", desc: "Dil ucunun damağa vurup hafifçe titreşmesiyle çıkan asil ses.", sampleWord: "رَحْمَة", sampleMeaning: "Sonsuz Merhamet" },
+            { char: "ر", label: "ر (Râ)", desc: "Dil ucunun damağa vurup hafifçe titreşmesiyle çıkan asil ses.", sampleWord: "الرَّحْمَٰن", sampleMeaning: "Sonsuz Merhamet Sahibi" },
             { char: "ن", label: "ن (Nûn)", desc: "Dil ucunun damağa basıp sesin genizden (gunne) gelmesi.", sampleWord: "نُور", sampleMeaning: "İlahî Aydınlık" }
           ]
         },
@@ -1647,16 +1657,15 @@
           id: 11,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: ق vs ك",
-          prompt: "Kur'an'da 'Yürek / İman Kalbi' anlamına gelen kelimeyi doğru harfle seçin (Yanlış okunursa 'Köpek' anlamına döner!):",
+          prompt: "Şuarâ Sûresi 89. âyette 'Arınmış bir kalp' mânâsındaki lafzı tespit edin (Kef ile okunursa köpek mânâsına gelir!):",
           targetChar: "قَلْب",
-          soundType: "plosive",
-          freq: 850,
-          f0: 196,
-          sampleWord: "قَلْب",
-          ayahRef: "Şuarâ 89 (إِلَّا مَنْ أَتَى اللَّهَ بِقَلْبٍ سَلِيمٍ)",
+          surah: 26,
+          ayah: 89,
+          ayahRef: "Şuarâ Sûresi, 89. Âyet",
+          recitedAyahText: "إِلَّا مَنْ أَتَى اللَّهَ بِقَلْبٍ سَلِيمٍ",
           explanation: "ق (Kâf) ile 'قَلْب' = Yürek, Gönül demektir. Eğer ince ك ile okunursa 'كَلْب' (Kelb) olur ve 'Köpek' mânâsına gelir. Bu bir lahn-ı celîdir (büyük hata)!",
           options: [
-            { char: "قَلْب", label: "قَلْب (Kalp)", desc: "Yürek, gönül, imanın mahalli. Kalın Kâf ile okunur.", sampleWord: "قَلْبٍ سَلِيم", sampleMeaning: "Tertemiz bir kalp ile" },
+            { char: "قَلْب", label: "قَلْب (Kalp)", desc: "Yürek, gönül, imanın mahalli. Kalın Kâf ile okunur.", sampleWord: "بِقَلْبٍ سَلِيم", sampleMeaning: "Tertemiz bir kalp ile" },
             { char: "كَلْب", label: "كَلْب (Kelb)", desc: "Köpek anlamına gelir; ince Kef ile okunur.", sampleWord: "كَمَثَلِ الْكَلْبِ", sampleMeaning: "Köpeğin durumu gibi (A'râf 176)" },
             { char: "غَلْب", label: "غَلْب (Ğalb)", desc: "Galip gelmek, üstünlük kökü.", sampleWord: "غَلَبَتِ الرُّومُ", sampleMeaning: "Rumlar mağlup oldu" }
           ]
@@ -1665,17 +1674,16 @@
           id: 12,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: خ vs ح",
-          prompt: "İlk inen âyetteki 'Yarattı' fiilini tespit edin (Harfi yanlış okursanız 'Tıraş etti' anlamına döner!):",
+          prompt: "Alak Sûresi ilk âyetindeki 'Yarattı' fiilini tespit edin (Hâ ile okunursa saç tıraş etmek olur!):",
           targetChar: "خَلَقَ",
-          soundType: "pharyngeal",
-          freq: 1250,
-          f0: 215,
-          sampleWord: "خَلَقَ",
-          ayahRef: "Alak 1 (خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ)",
+          surah: 96,
+          ayah: 1,
+          ayahRef: "Alak Sûresi, 1. Âyet",
+          recitedAyahText: "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ",
           explanation: "خ (Hı) ile 'خَلَقَ' = Yoktan Yarattı demektir. ح (Hâ) ile 'حَلَقَ' denirse saç tıraş etmek anlamına döner!",
           options: [
             { char: "حَلَقَ", label: "حَلَقَ (Halaka)", desc: "Tıraş etti, saçını kesti anlamına gelir.", sampleWord: "مُحَلِّقِينَ رُءُوسَكُمْ", sampleMeaning: "Başlarınızı tıraş etmiş olarak (Feth 27)" },
-            { char: "خَلَقَ", label: "خَلَقَ (Halaka)", desc: "Yarattı, var etti demektir. Hırıltılı Hı ile okunur.", sampleWord: "خَلَقَ الْإِنسَانَ", sampleMeaning: "İnsanı yarattı (Alak 1)" },
+            { char: "خَلَقَ", label: "خَلَقَ (Halaka)", desc: "Yarattı, var etti demektir. Hırıltılı Hı ile okunur.", sampleWord: "الَّذِي خَلَقَ", sampleMeaning: "O yaratan Rabbin (Alak 1)" },
             { char: "عَلَقَ", label: "عَلَقَ ('Alaka)", desc: "Tutundu, asıldı kökü.", sampleWord: "مِنْ عَلَقٍ", sampleMeaning: "Bir aşılanmış yumurtadan" }
           ]
         },
@@ -1683,13 +1691,12 @@
           id: 13,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: ع vs ء",
-          prompt: "Allah'ın 'Hakkıyla Bilen' ism-i şerîfini seçin (Yanlış harfle okunursa 'Şiddetli elem verici azap' anlamına döner!):",
+          prompt: "Bakara Sûresi 115. âyette Allah'ın 'Hakkıyla Bilen' ismini seçin (Hemze ile okunursa elem verici azap olur!):",
           targetChar: "عَلِيمٌ",
-          soundType: "pharyngeal",
-          freq: 950,
-          f0: 180,
-          sampleWord: "عَلِيمٌ",
-          ayahRef: "Bakara 115 (إِنَّ اللَّهَ وَاسِعٌ عَلِيمٌ)",
+          surah: 2,
+          ayah: 115,
+          ayahRef: "Bakara Sûresi, 115. Âyet",
+          recitedAyahText: "وَلِلَّهِ الْمَشْرِقُ وَالْمَغْرِبُ ۚ فَأَيْنَمَا تُوَلُّوا فَثَمَّ وَجْهُ اللَّهِ ۚ إِنَّ اللَّهَ وَاسِعٌ عَلِيمٌ",
           explanation: "ع ile 'عَلِيمٌ' = Her şeyi en ince ayrıntısıyla bilen Allah. ء ile 'أَلِيمٌ' = Şiddetli acı ve elem verici azaptır.",
           options: [
             { char: "أَلِيمٌ", label: "أَلِيمٌ (Elîm)", desc: "Can yakıcı acı ve elem. Hemze ile okunur.", sampleWord: "عَذَابٌ أَلِيمٌ", sampleMeaning: "Elem verici bir azap (Bakara 10)" },
@@ -1701,14 +1708,13 @@
           id: 14,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: ص vs س",
-          prompt: "Âyette 'İsyan etti' anlamına gelen kelimeyi seçin (İnce s ile okunursa 'Umulur ki / Belki' anlamına döner!):",
+          prompt: "Tâhâ Sûresi 121. âyette 'İsyan etti' mânâsındaki fiili seçin (İnce s ile okunursa belki/umulur ki olur!):",
           targetChar: "عَصَى",
-          soundType: "emphatic",
-          freq: 750,
-          f0: 210,
-          sampleWord: "عَصَى",
-          ayahRef: "Tâhâ 121 (وَعَصَىٰ آدَمُ رَبَّهُ فَغَوَىٰ)",
-          explanation: "ص ile 'عَصَى' = İsyan etti, karşı geldi demektir. س ile 'عَسَى' denirse 'Umulur ki, umulur' anlamına dönüşür.",
+          surah: 20,
+          ayah: 121,
+          ayahRef: "Tâhâ Sûresi, 121. Âyet",
+          recitedAyahText: "فَأَكَلَا مِنْهَا فَبَدَتْ لَهُمَا سَوْآتُهُمَا وَطَفِقَا يَخْصِفَانِ عَلَيْهِمَا مِن وَرَقِ الْجَنَّةِ ۚ وَعَصَىٰ آدَمُ رَبَّهُ فَغَوَىٰ",
+          explanation: "ص ile 'عَصَى' = İsyan etti, emre uymadı demektir. س ile 'عَسَى' denirse 'Umulur ki' temenni edatına dönüşür.",
           options: [
             { char: "عَسَى", label: "عَسَى ('Asâ)", desc: "Umulur ki, belki anlamına gelen temenni edatı.", sampleWord: "عَسَىٰ أَن تَكْرَهُوا", sampleMeaning: "Olur ki hoşlanmazsınız (Bakara 216)" },
             { char: "عَصَى", label: "عَصَى ('Asâ)", desc: "İsyan etti, emre uymadı. Kalın Sâd ile okunur.", sampleWord: "وَعَصَىٰ آدَمُ", sampleMeaning: "Âdem Rabbine isyan etti (Tâhâ 121)" },
@@ -1719,14 +1725,13 @@
           id: 15,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: ذ vs ظ",
-          prompt: "Kur'an'da 'Alçakgönüllülük / Tevazu kanatları' bağlamındaki kelime (Kalın okunursa 'Koyu gölge' olur!):",
+          prompt: "İsrâ Sûresi 24. âyette 'Tevazu ve alçakgönüllülük kanadı' mânâsındaki kelimeyi seçin:",
           targetChar: "ذَلِيل",
-          soundType: "fricative",
-          freq: 3600,
-          f0: 225,
-          sampleWord: "ذَلِيل",
-          ayahRef: "İsrâ 24 (وَاخْفِضْ لَهُمَا جَنَاحَ الذُّلِّ)",
-          explanation: "ذ ile 'ذَلِيل' = Tevazu gösteren, boyun büken demektir. ظ ile 'ظَلِيل' = Koyu gölge demektir (Örn: 'Zıllen Zalîlâ').",
+          surah: 17,
+          ayah: 24,
+          ayahRef: "İsrâ Sûresi, 24. Âyet",
+          recitedAyahText: "وَاخْفِضْ لَهُمَا جَنَاحَ الذُّلِّ مِنَ الرَّحْمَةِ وَقُل رَّبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا",
+          explanation: "ذ ile 'ذَلِيل / الذُّل' = Tevazu gösteren, boyun büken demektir. ظ ile 'ظَلِيل' = Koyu gölge demektir (Örn: 'Zıllen Zalîlâ').",
           options: [
             { char: "ذَلِيل", label: "ذَلِيل (Zelîl)", desc: "Alçakgönüllü, mütevazı. İnce Peltek Zâl iledir.", sampleWord: "جَنَاحَ الذُّلِّ", sampleMeaning: "Tevazu kanadını indir (İsrâ 24)" },
             { char: "ظَلِيل", label: "ظَلِيل (Zalîl)", desc: "Koyu, serinletici gölge. Kalın Peltek Zâ iledir.", sampleWord: "ظِلًّا ظَلِيلًا", sampleMeaning: "Koyu ve ferah gölge (Nisâ 57)" },
@@ -1739,29 +1744,27 @@
           badge: "ANLAM DEĞİŞİMİ: ذ vs ظ",
           prompt: "İsrâ Sûresi 57. âyette geçen 'Korkulup sakınılması gereken azap' mânâsındaki lafzı seçin:",
           targetChar: "مَحْذُورًا",
-          soundType: "fricative",
-          freq: 3800,
-          f0: 230,
-          sampleWord: "مَحْذُورًا",
-          ayahRef: "İsrâ 57 (إِنَّ عَذَابَ رَبِّكَ كَانَ مَحْذُورًا)",
-          explanation: "ذ ile 'مَحْذُور' = Çekinilip sakınılan demektir. ظ ile 'مَحْظُور' = Yasaklanmış/engellenmiş demektir (İsrâ 20). İkisi de Kur'an'da geçer fakat zıt anlam taşır!",
+          surah: 17,
+          ayah: 57,
+          ayahRef: "İsrâ Sûresi, 57. Âyet",
+          recitedAyahText: "أُولَٰئِكَ الَّذِينَ يَدْعُونَ يَبْتَغُونَ إِلَىٰ رَبِّهِمُ الْوَسِيلَةَ أَيُّهُمْ أَقْرَبُ وَيَرْجُونَ رَحْمَتَهُ وَيَخَافُونَ عَذَابَهُ ۚ إِنَّ عَذَابَ رَبِّكَ كَانَ مَحْذُورًا",
+          explanation: "ذ ile 'مَحْذُور' = Çekinilip sakınılan demektir. ظ ile 'مَحْظُور' = Yasaklanmış/engellenmiş demektir (İsrâ 20).",
           options: [
             { char: "مَحْظُورًا", label: "مَحْظُورًا (Mahzûr)", desc: "Yasaklanmış, men edilmiş demektir. Kalın Zâ iledir.", sampleWord: "مَا كَانَ مَحْظُورًا", sampleMeaning: "Kısıtlanmış değildir (İsrâ 20)" },
             { char: "مَقْدُورًا", label: "مَقْدُورًا (Makdûr)", desc: "Takdir edilmiş, ölçüsü konmuş.", sampleWord: "قَدَرًا مَقْدُورًا", sampleMeaning: "Takdir edilen kader" },
-            { char: "مَحْذُورًا", label: "مَحْذُورًا (Mahzûr)", desc: "Korkulup sakınılan. İnce Peltek Zâl iledir.", sampleWord: "عَذَابَ رَبِّكَ كَانَ مَحْذُورًا", sampleMeaning: "Rabbinin azabı sakınılmalıdır (İsrâ 57)" }
+            { char: "مَحْذُورًا", label: "مَحْذُورًا (Mahzûr)", desc: "Korkulup sakınılan. İnce Peltek Zâl iledir.", sampleWord: "كَانَ مَحْذُورًا", sampleMeaning: "Sakınılmalıdır (İsrâ 57)" }
           ]
         },
         {
           id: 17,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: ت vs ط",
-          prompt: "Kur'an'da 'Tövbe edip Hakk'a yöneldi' anlamına gelen kelime (Kalın okunursa 'Hoş ve helal oldu' olur!):",
+          prompt: "Bakara Sûresi 37. âyette 'Tövbesini kabul etti' mânâsındaki lafzı seçin (ط ile okunursa helal oldu anlamına döner!):",
           targetChar: "تَابَ",
-          soundType: "plosive",
-          freq: 2200,
-          f0: 240,
-          sampleWord: "تَابَ",
-          ayahRef: "Bakara 37 (فَتَابَ عَلَيْهِ ۚ إِنَّهُ هُوَ التَّوَّابُ الرَّحِيمُ)",
+          surah: 2,
+          ayah: 37,
+          ayahRef: "Bakara Sûresi, 37. Âyet",
+          recitedAyahText: "فَتَلَقَّىٰ آدَمُ مِن رَّبِّهِ كَلِمَاتٍ فَتَابَ عَلَيْهِ ۚ إِنَّهُ هُوَ التَّوَّابُ الرَّحِيمُ",
           explanation: "ت ile 'تَابَ' = Tövbe etti demektir. ط ile 'طَابَ' = Hoşuna gitti, temiz ve helal oldu mânâsına gelir.",
           options: [
             { char: "طَابَ", label: "طَابَ (Tâbe)", desc: "Gönlünüze hoş geldi, helal oldu. Kalın Tâ iledir.", sampleWord: "فَانكِحُوا مَا طَابَ لَكُم", sampleMeaning: "Size hoş gelen kadınlardan (Nisâ 3)" },
@@ -1773,13 +1776,12 @@
           id: 18,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: ض vs ظ",
-          prompt: "Fâtiha Sûresi sonundaki 'Doğru yoldan sapanlar' mânâsındaki kelimeyi seçin (ظ ile okunursa 'Kalanlar' olur!):",
+          prompt: "Fâtiha Sûresi sonundaki 'Doğru yoldan sapanlar' mânâsındaki lafzı seçin:",
           targetChar: "الضَّالِّينَ",
-          soundType: "emphatic",
-          freq: 650,
-          f0: 180,
-          sampleWord: "الضَّالِّينَ",
-          ayahRef: "Fâtiha 7 (غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ)",
+          surah: 1,
+          ayah: 7,
+          ayahRef: "Fâtiha Sûresi, 7. Âyet",
+          recitedAyahText: "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
           explanation: "ض ile 'ضَلَّ' = Haktan saptı, dalalete düştü demektir. ظ ile 'ظَلَّ' = Devam etti, gün boyu kaldı mânâsındadır.",
           options: [
             { char: "الضَّالِّينَ", label: "الضَّالِّينَ (Ed-Dâllîn)", desc: "Haktan sapanlar demektir. Dâd harfiyle okunur.", sampleWord: "وَلَا الضَّالِّينَ", sampleMeaning: "Ve sapıtanların yoluna değil (Fâtiha 7)" },
@@ -1791,13 +1793,12 @@
           id: 19,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: ح vs ه",
-          prompt: "Kâbe-i Muazzama ve Mekke için kullanılan 'Hürmetli ve güvenli kutsal belde' kelimesini seçin:",
+          prompt: "Kasas Sûresi 57. âyette Mekke için kullanılan 'Güvenli ve mukaddes Harem yurdu' kelimesini seçin:",
           targetChar: "حَرَمًا",
-          soundType: "pharyngeal",
-          freq: 1350,
-          f0: 280,
-          sampleWord: "حَرَمًا",
-          ayahRef: "Kasas 57 (أَوَلَمْ نُمَكِّن لَّهُمْ حَرَمًا آمِنًا)",
+          surah: 28,
+          ayah: 57,
+          ayahRef: "Kasas Sûresi, 57. Âyet",
+          recitedAyahText: "أَوَلَمْ نُمَكِّن لَّهُمْ حَرَمًا آمِنًا يُجْبَىٰ إِلَيْهِ ثَمَرَاتُ كُلِّ شَيْءٍ",
           explanation: "ح ile 'حَرَم' = Kutsal, hürmetli, dokunulmaz kılınan yer demektir. ه ile 'هَرَم' = İhtiyarlık, zeval ve güçten düşmektir.",
           options: [
             { char: "هَرَمًا", label: "هَرَمًا (Heramâ)", desc: "İhtiyarlık, dermansızlık, çöküş mânâsına gelir.", sampleWord: "مِنْ شَرِّ الْهَرَمِ", sampleMeaning: "İhtiyarlığın şerrinden (Hadis)" },
@@ -1809,14 +1810,13 @@
           id: 20,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: ص vs س",
-          prompt: "Kur'an'da 'Haktan yüz çevirip engellemek' mânâsındaki lafız (İnce s ile okunursa 'Sed çekip kapatmak' olur!):",
+          prompt: "Nisâ Sûresi 61. âyette 'Haktan yüz çevirip alıkoymak' mânâsındaki lafız (İnce s ile set çekmek olur!):",
           targetChar: "صَدَّ",
-          soundType: "emphatic",
-          freq: 750,
-          f0: 210,
-          sampleWord: "صَدَّ",
-          ayahRef: "Nisâ 61 (رَأَيْتَ الْمُنَافِقِينَ يَصُدُّونَ عَنكَ صُدُودًا)",
-          explanation: "ص ile 'صَدَّ' = Engelledi, yüz çevirdi demektir. س ile 'سَدَّ' = Önüne set çekti, kapattı (Zülkarneyn kıssasındaki Sed gibi) demektir.",
+          surah: 4,
+          ayah: 61,
+          ayahRef: "Nisâ Sûresi, 61. Âyet",
+          recitedAyahText: "وَإِذَا قِيلَ لَهُمْ تَعَالَوْا إِلَىٰ مَا أَنزَلَ اللَّهُ وَإِلَى الرَّسُولِ رَأَيْتَ الْمُنَافِقِينَ يَصُدُّونَ عَنكَ صُدُودًا",
+          explanation: "ص ile 'صَدَّ' = Engelledi, yüz çevirdi demektir. س ile 'سَدَّ' = Önüne set çekti, kapattı demektir.",
           options: [
             { char: "سَدَّ", label: "سَدَّ (Sedde)", desc: "Önüne set çekip kapattı. İnce Sîn iledir.", sampleWord: "بَيْنَ السَّدَّيْنِ", sampleMeaning: "İki set arasında (Kehf 93)" },
             { char: "صَدَّ", label: "صَدَّ (Sadde)", desc: "Yüz çevirdi ve alıkoydu. Kalın Sâd iledir.", sampleWord: "يَصُدُّونَ عَنكَ", sampleMeaning: "Senden yüz çevirip engellerler (Nisâ 61)" },
@@ -1827,15 +1827,16 @@
           id: 21,
           category: "harf",
           badge: "DİL UCU vs DUDAK (NÛN / MÎM)",
-          prompt: "Dudakların kapanmasıyla başlayan ve geniz tınısı taşıyan harfi seçin:",
+          prompt: "Fâtiha Sûresi 2. âyette dudakların kapanmasıyla başlayan ve geniz tınısı (gunne) taşıyan harfi seçin:",
           targetChar: "م",
-          soundType: "voiced",
-          freq: 900,
-          f0: 220,
-          explanation: "م (Mîm) iki dudağın kapanmasıyla çıkar ve gunne taşır. ن (Nûn) dil ucunun üst ön diş etlerine yaklaşmasıyla çıkar; gunne iki harfte de duyulur ancak mahreçleri farklıdır.",
+          surah: 1,
+          ayah: 2,
+          ayahRef: "Fâtiha Sûresi, 2. Âyet",
+          recitedAyahText: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+          explanation: "م (Mîm) iki dudağın kapanmasıyla çıkar ve gunne taşır. ن (Nûn) dil ucunun diş etlerine temas etmesiyle çıkar.",
           options: [
             { char: "ن", label: "ن (Nûn)", desc: "Dil ucunun diş etlerine temas ettiği, geniz tınılı harf.", sampleWord: "نُور", sampleMeaning: "Işık" },
-            { char: "م", label: "م (Mîm)", desc: "İki dudağın kapanmasıyla çıkan, geniz tınılı harf.", sampleWord: "مَاء", sampleMeaning: "Su" },
+            { char: "م", label: "م (Mîm)", desc: "İki dudağın kapanmasıyla çıkan, geniz tınılı harf.", sampleWord: "الْحَمْدُ", sampleMeaning: "Övgü ve Şükür" },
             { char: "ب", label: "ب (Bâ)", desc: "İki dudağın kapanıp açılmasıyla çıkan patlamalı harf.", sampleWord: "بَاب", sampleMeaning: "Kapı" }
           ]
         },
@@ -1843,15 +1844,16 @@
           id: 22,
           category: "harf",
           badge: "ALT DUDAK vs İKİ DUDAK",
-          prompt: "Üst ön dişlerin alt dudağa hafifçe değmesiyle çıkan harfi belirleyin:",
+          prompt: "Nasr Sûresi 1. âyette 'el-Feth' lafzında üst ön dişlerin alt dudağa değmesiyle çıkan harfi belirleyin:",
           targetChar: "ف",
-          soundType: "fricative",
-          freq: 2500,
-          f0: 220,
-          explanation: "ف (Fâ) üst ön dişlerin alt dudağa temasıyla çıkar. ب (Bâ) iki dudağın kapanmasıyla, و (Vâv) ise dudakların yuvarlanmasıyla oluşur.",
+          surah: 110,
+          ayah: 1,
+          ayahRef: "Nasr Sûresi, 1. Âyet",
+          recitedAyahText: "إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ",
+          explanation: "ف (Fâ) üst ön dişlerin alt dudağa temasıyla çıkar (وَالْفَتْحُ). ب iki dudağın kapanmasıyla, و ise dudakların yuvarlanmasıyla oluşur.",
           options: [
             { char: "و", label: "و (Vâv)", desc: "Dudakların yuvarlanıp öne uzamasıyla çıkan akıcı ses.", sampleWord: "وَاحِد", sampleMeaning: "Bir" },
-            { char: "ف", label: "ف (Fâ)", desc: "Üst ön dişlerin alt dudağa değmesiyle çıkan sürtünmeli ses.", sampleWord: "فَتْح", sampleMeaning: "Açılış / fetih" },
+            { char: "ف", label: "ف (Fâ)", desc: "Üst ön dişlerin alt dudağa değmesiyle çıkan sürtünmeli ses.", sampleWord: "وَالْفَتْحُ", sampleMeaning: "Zafer / Fetih" },
             { char: "ب", label: "ب (Bâ)", desc: "İki dudağın kapanıp açılmasıyla çıkan patlamalı ses.", sampleWord: "بَرَكَة", sampleMeaning: "Bereket" }
           ]
         },
@@ -1859,47 +1861,50 @@
           id: 23,
           category: "harf",
           badge: "PELTEK SESLER: ث / ذ",
-          prompt: "Dil ucunun dişler arasından hafifçe görünmesiyle çıkan, titreşimsiz ince sesi seçin:",
+          prompt: "Kevser Sûresi'nde dil ucunun dişler arasından hafifçe görünmesiyle çıkan titreşimsiz ince peltek sesi seçin:",
           targetChar: "ث",
-          soundType: "fricative",
-          freq: 4600,
-          f0: 220,
-          explanation: "ث (Peltek Sâ) titreşimsiz, ince bir sürtünme sesidir. ذ aynı mahreçte ses tellerinin titreşmesiyle; س ise dil ucu dişlerin arasına çıkmadan oluşur.",
+          surah: 108,
+          ayah: 1,
+          ayahRef: "Kevser Sûresi, 1. Âyet",
+          recitedAyahText: "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ",
+          explanation: "ث (Peltek Sâ) titreşimsiz ince sürtünme sesidir (الْكَوْثَرَ). ذ aynı mahreçte ses tellerinin titreşmesiyle; س ise dil ucu dışarı çıkmadan oluşur.",
           options: [
             { char: "ذ", label: "ذ (Zâl)", desc: "Dişler arasından çıkan, ses telleri titreşen peltek ses.", sampleWord: "ذِكْر", sampleMeaning: "Zikir / öğüt" },
             { char: "س", label: "س (Sîn)", desc: "Dişler arasına çıkmadan oluşan ince ve ıslıklı ses.", sampleWord: "سَبِيل", sampleMeaning: "Yol" },
-            { char: "ث", label: "ث (Sâ)", desc: "Dişler arasından çıkan, titreşimsiz ve ince peltek ses.", sampleWord: "ثَوَاب", sampleMeaning: "Karşılık / sevap" }
+            { char: "ث", label: "ث (Sâ)", desc: "Dişler arasından çıkan, titreşimsiz ve ince peltek ses.", sampleWord: "الْكَوْثَر", sampleMeaning: "Kevser" }
           ]
         },
         {
           id: 24,
           category: "harf",
           badge: "BOĞAZ ORTASI: ع / ح",
-          prompt: "Boğazın orta kısmından ses telleri titreşerek çıkan harfi seçin:",
+          prompt: "Fâtiha Sûresi 2. âyette 'el-Âlemîn' lafzında boğaz ortasından ses telleri titreşerek çıkan harfi seçin:",
           targetChar: "ع",
-          soundType: "pharyngeal",
-          freq: 950,
-          f0: 175,
-          explanation: "ع (Ayn) boğazın orta kısmından sesli ve sıkı bir çıkışla gelir. ح aynı bölgede nefesli ve titreşimsizdir; ء (Hemze) ise gırtlaktan çıkan kısa bir kapanma sesidir.",
+          surah: 1,
+          ayah: 2,
+          ayahRef: "Fâtiha Sûresi, 2. Âyet",
+          recitedAyahText: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+          explanation: "ع (Ayn) boğazın orta kısmından sesli ve sıkı bir çıkışla gelir. ح aynı bölgede nefesli ve buharlıdır; ء ise gırtlaktan çıkan kısa bir kapanma sesidir.",
           options: [
-            { char: "ح", label: "ح (Hâ)", desc: "Boğaz ortasından nefesle çıkan titreşimsiz ses.", sampleWord: "حَمْد", sampleMeaning: "Övgü" },
+            { char: "ح", label: "ح (Hâ)", desc: "Boğaz ortasından nefesle çıkan titreşimsiz ses.", sampleWord: "الْحَمْدُ", sampleMeaning: "Övgü" },
             { char: "ء", label: "ء (Hemze)", desc: "Gırtlakta kısa bir kapanma ve açılmayla çıkan ses.", sampleWord: "أَمْر", sampleMeaning: "İş / buyruk" },
-            { char: "ع", label: "ع (Ayn)", desc: "Boğaz ortasından ses telleri titreşerek çıkan ses.", sampleWord: "عِلْم", sampleMeaning: "Bilgi" }
+            { char: "ع", label: "ع (Ayn)", desc: "Boğaz ortasından ses telleri titreşerek çıkan ses.", sampleWord: "الْعَالَمِينَ", sampleMeaning: "Âlemler" }
           ]
         },
         {
           id: 25,
           category: "harf",
           badge: "KALINLIK: ص / س",
-          prompt: "Dil sırtının yükselmesiyle kalın ve dolgun duyulan ıslıklı harfi belirleyin:",
+          prompt: "Asr Sûresi 3. âyette 'es-Sâlihât' ve 'es-Sabr' lafızlarında dil sırtının yükselmesiyle dolgun duyulan harfi belirleyin:",
           targetChar: "ص",
-          soundType: "emphatic",
-          freq: 750,
-          f0: 210,
-          explanation: "ص (Sâd) isti‘lâ ve ıtbâk sıfatları sebebiyle kalın ve dolgun okunur. س (Sîn) aynı bölgede ince ve ıslıklı çıkar; ز (Zây) ise ses telleri titreşen ince bir sestir.",
+          surah: 103,
+          ayah: 3,
+          ayahRef: "Asr Sûresi, 3. Âyet",
+          recitedAyahText: "إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ",
+          explanation: "ص (Sâd) isti‘lâ ve ıtbâk sıfatları sebebiyle kalın ve dolgun okunur (الصَّالِحَاتِ · بِالصَّبْرِ). س ise aynı bölgede ince ve ıslıklı çıkar.",
           options: [
             { char: "س", label: "س (Sîn)", desc: "İnce, titreşimsiz ve ıslıklı s sesi.", sampleWord: "سَلَام", sampleMeaning: "Esenlik" },
-            { char: "ص", label: "ص (Sâd)", desc: "Dil sırtı yükselerek çıkan kalın ve dolgun s sesi.", sampleWord: "صَبْر", sampleMeaning: "Sabır" },
+            { char: "ص", label: "ص (Sâd)", desc: "Dil sırtı yükselerek çıkan kalın ve dolgun s sesi.", sampleWord: "بِالصَّبْرِ", sampleMeaning: "Sabır ile" },
             { char: "ز", label: "ز (Zây)", desc: "Ses telleri titreşen ince ve ıslıklı z sesi.", sampleWord: "زَيْت", sampleMeaning: "Zeytin yağı" }
           ]
         },
@@ -1907,14 +1912,13 @@
           id: 26,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: ت vs ط",
-          prompt: "Tîn Sûresi'nde adına yemin edilen meyveyi gösteren kelimeyi seçin:",
+          prompt: "Tîn Sûresi 1. âyette adına yemin edilen incir meyvesini gösteren kelimeyi seçin (ط ile çamur olur!):",
           targetChar: "التِّين",
-          soundType: "plosive",
-          freq: 2200,
-          f0: 240,
-          sampleWord: "التِّين",
-          ayahRef: "Tîn 1 (وَالتِّينِ وَالزَّيْتُونِ)",
-          explanation: "تِين (tîn) incir, طِين (tîn) ise çamur anlamındadır. İnce ت ile kalın ط arasındaki fark, kelimenin anlamını değiştirir.",
+          surah: 95,
+          ayah: 1,
+          ayahRef: "Tîn Sûresi, 1. Âyet",
+          recitedAyahText: "وَالتِّينِ وَالزَّيْتُونِ",
+          explanation: "تِين (tîn) incir, طِين (tîn) ise çamur anlamındadır. İnce ت ile kalın ط arasındaki fark mânâyı bütünüyle değiştirir.",
           options: [
             { char: "الطِّين", label: "الطِّين (et-Tîn)", desc: "Çamur anlamındaki kelime; kalın Tâ ile başlar.", sampleWord: "مِنْ طِينٍ", sampleMeaning: "Çamurdan (Sâd 71)" },
             { char: "الدِّين", label: "الدِّين (ed-Dîn)", desc: "Din ve karşılık anlamındaki kelime; Dâl ile başlar.", sampleWord: "يَوْمِ الدِّين", sampleMeaning: "Karşılık günü" },
@@ -1925,13 +1929,13 @@
           id: 27,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: خ vs ح",
-          prompt: "Arapçada 'yaratmak' anlamına gelen ve Kur'an'da sıkça geçen fiili seçin:",
+          prompt: "Alak Sûresi 2. âyette 'İnsanı yarattı' cümlesindeki doğru fiili seçin:",
           targetChar: "خَلَقَ",
-          soundType: "pharyngeal",
-          freq: 1200,
-          f0: 210,
-          sampleWord: "خَلَقَ",
-          explanation: "خَلَقَ (khalaqa) 'yarattı' demektir. حَلَقَ (ḥalaqa) saçını tıraş etti; غَلَقَ (ghalaqa) ise kapattı anlamına gelir. Boğaz harfinin mahreci fiilin anlamını değiştirir.",
+          surah: 96,
+          ayah: 2,
+          ayahRef: "Alak Sûresi, 2. Âyet",
+          recitedAyahText: "خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ",
+          explanation: "خَلَقَ (khalaqa) 'yarattı' demektir. حَلَقَ (ḥalaqa) saçını tıraş etti; غَلَقَ (ghalaqa) ise kapattı anlamına gelir.",
           options: [
             { char: "حَلَقَ", label: "حَلَقَ (Ḥalaqa)", desc: "Saçını tıraş etti; boğaz ortasından ح ile başlar.", sampleWord: "حَلَقَ شَعْرَهُ", sampleMeaning: "Saçını tıraş etti" },
             { char: "خَلَقَ", label: "خَلَقَ (Khalaqa)", desc: "Yarattı; boğazın üst kısmından خ ile başlar.", sampleWord: "خَلَقَ الْإِنسَانَ", sampleMeaning: "İnsanı yarattı" },
@@ -1942,32 +1946,30 @@
           id: 28,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: غ vs ك",
-          prompt: "Kur'an'da Allah'ın bağışlayıcılığını bildiren kelimeyi seçin:",
+          prompt: "Nisâ Sûresi 23. âyette Allah'ın 'Çok Bağışlayıcı' olduğunu bildiren kelimeyi seçin (Kef ile çok nankör olur!):",
           targetChar: "غَفُور",
-          soundType: "pharyngeal",
-          freq: 1100,
-          f0: 207,
-          sampleWord: "غَفُور",
-          ayahRef: "Nisâ 23 (إِنَّ اللَّهَ كَانَ غَفُورًا رَّحِيمًا)",
-          explanation: "غَفُور (Ğafûr) çok bağışlayan demektir; كَفُور (Kefûr) ise çok nankör anlamına gelir. İlk harfin boğaz mahreci ile dil kökü mahreci birbirinden ayrılır.",
+          surah: 4,
+          ayah: 23,
+          ayahRef: "Nisâ Sûresi, 23. Âyet",
+          recitedAyahText: "إِنَّ اللَّهَ كَانَ غَفُورًا رَّحِيمًا",
+          explanation: "غَفُور (Ğafûr) çok bağışlayan demektir; كَفُور (Kefûr) ise çok nankör anlamına gelir. Boğaz mahreci ile dil kökü mahreci birbirinden ayrılır.",
           options: [
             { char: "كَفُور", label: "كَفُور (Kefûr)", desc: "Çok nankör; dil kökünden ince ك ile başlar.", sampleWord: "إِنَّ الْإِنسَانَ لَكَفُورٌ", sampleMeaning: "İnsan çok nankördür (Zuhruf 15)" },
-            { char: "غَفُور", label: "غَفُور (Ğafûr)", desc: "Çok bağışlayan; boğazın üst kısmından غ ile başlar.", sampleWord: "غَفُورًا رَّحِيمًا", sampleMeaning: "Çok bağışlayan, merhamet eden (Nisâ 23)" },
-            { char: "عَفُوّ", label: "عَفُوّ (Afuvv)", desc: "Çok affeden; boğaz ortasından ع ile başlar.", sampleWord: "عَفُوًّا غَفُورًا", sampleMeaning: "Çok affedici, bağışlayıcı (Nisâ 99)" }
+            { char: "غَفُور", label: "غَفُور (Ğafûr)", desc: "Çok bağışlayan; boğazın üst kısmından غ ile başlar.", sampleWord: "غَفُورًا رَّحِيمًا", sampleMeaning: "Çok bağışlayandır (Nisâ 23)" },
+            { char: "عَفُوّ", label: "عَفُوّ (Afuvv)", desc: "Çok affeden; boğaz ortasından ع ile başlar.", sampleWord: "عَفُوًّا غَفُورًا", sampleMeaning: "Çok affedicidir (Nisâ 99)" }
           ]
         },
         {
           id: 29,
           category: "kelime",
           badge: "ANLAM DEĞİŞİMİ: ع vs ء",
-          prompt: "Kur'an'da 'bilgi' ve 'ilim' anlamına gelen kelimeyi seçin:",
+          prompt: "Bakara Sûresi 32. âyette 'Bizim bilgimiz yoktur' ifadesindeki 'İlim / Bilgi' kelimesini seçin:",
           targetChar: "عِلْم",
-          soundType: "pharyngeal",
-          freq: 950,
-          f0: 175,
-          sampleWord: "عِلْم",
-          ayahRef: "Bakara 32 (لَا عِلْمَ لَنَا إِلَّا مَا عَلَّمْتَنَا)",
-          explanation: "عِلْم ('ilm) bilgi demektir; أَلَم (alam) ise acı anlamına gelir. ع boğaz ortasından çıkar, ء ise gırtlaktan kısa bir kapanmayla başlar.",
+          surah: 2,
+          ayah: 32,
+          ayahRef: "Bakara Sûresi, 32. Âyet",
+          recitedAyahText: "قَالُوا سُبْحَانَكَ لَا عِلْمَ لَنَا إِلَّا مَا عَلَّمْتَنَا ۖ إِنَّكَ أَنتَ الْعَلِيمُ الْحَكِيمُ",
+          explanation: "عِلْم ('ilm) bilgi demektir; أَلَم (alam) ise elem ve acı anlamına gelir. ع boğaz ortasından çıkar, ء ise gırtlaktan başlar.",
           options: [
             { char: "أَلَم", label: "أَلَم (Alam)", desc: "Acı ve ağrı; gırtlaktan hemze ile başlar.", sampleWord: "أَلِيم", sampleMeaning: "Acı veren" },
             { char: "حِلْم", label: "حِلْم (Ḥilm)", desc: "Yumuşak huyluluk; boğaz ortasından nefesli ح ile başlar.", sampleWord: "حَلِيم", sampleMeaning: "Yumuşak huylu" },
@@ -1978,18 +1980,17 @@
           id: 30,
           category: "kelime",
           badge: "SON SESİ AYIRT ET: ب / ث / ظ",
-          prompt: "Aşağıdaki kelimelerden 'gayb / görünmeyen âlem' anlamına geleni seçin:",
+          prompt: "Bakara Sûresi 3. âyette 'Gayb âlemine inanırlar' ifadesindeki kelimeyi seçin:",
           targetChar: "غَيْب",
-          soundType: "plosive",
-          freq: 1800,
-          f0: 210,
-          sampleWord: "غَيْب",
-          ayahRef: "Bakara 3 (الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ)",
-          explanation: "غَيْب (ğayb) görünmeyen âlem; غَيْث (ğays) yağmur; غَيْظ (ğayz) ise öfke demektir. Son sesteki ب, ث ve ظ ayrımı kelimeyi ve anlamını değiştirir.",
+          surah: 2,
+          ayah: 3,
+          ayahRef: "Bakara Sûresi, 3. Âyet",
+          recitedAyahText: "الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ",
+          explanation: "غَيْب (ğayb) görünmeyen âlem; غَيْث (ğays) yağmur; غَيْظ (ğayz) ise öfke demektir. Son sesteki dudak harfi ب kelimeyi belirler.",
           options: [
-            { char: "غَيْث", label: "غَيْث (Ğays)", desc: "Yağmur; dil ucu dişler arasından titreşimsiz ث ile biter.", sampleWord: "وَهُوَ الَّذِي يُنَزِّلُ الْغَيْثَ", sampleMeaning: "O yağmuru indirendir (Şûrâ 28)" },
+            { char: "غَيْث", label: "غَيْث (Ğays)", desc: "Yağmur; dil ucu dişler arasından titreşimsiz ث ile biter.", sampleWord: "يُنَزِّلُ الْغَيْثَ", sampleMeaning: "O yağmuru indirendir (Şûrâ 28)" },
             { char: "غَيْظ", label: "غَيْظ (Ğayz)", desc: "Öfke; dil ucu dişler arasından kalın ظ ile biter.", sampleWord: "الْكَاظِمِينَ الْغَيْظَ", sampleMeaning: "Öfkelerini yutanlar (Âl-i İmrân 134)" },
-            { char: "غَيْب", label: "غَيْب (Ğayb)", desc: "Görünmeyen âlem; iki dudağın kapanmasıyla ب ile biter.", sampleWord: "بِالْغَيْبِ", sampleMeaning: "Gayba (Bakara 3)" }
+            { char: "غَيْب", label: "غَيْب (Ğayb)", desc: "Görünmeyen âlem; iki dudağın kapanmasıyla ب ile biter.", sampleWord: "بِالْغَيْبِ", sampleMeaning: "Gayba inanırlar (Bakara 3)" }
           ]
         }
       ];
@@ -2081,38 +2082,48 @@
           <!-- Soru Listesi -->
           <div class="ear-questions-flow">
             ${processedEarQuestions.map(q => `
-              <article class="ear-question-box" data-cat="${q.category}" data-target="${q.targetChar}" data-freq="${q.freq}" data-f0="${q.f0}" data-type="${q.soundType}" data-word="${q.sampleWord || ''}">
+              <article class="ear-question-box" data-cat="${q.category}" data-target="${q.targetChar}" data-surah="${q.surah || 1}" data-ayah="${q.ayah || 1}" data-word="${q.sampleWord || ''}">
                 <!-- Soru Başlığı & Sesi Dinle Barı -->
-                <header class="ear-question-head">
+                <header class="ear-question-head" style="align-items:flex-start;">
                   <div class="ear-question-heading">
                     <div class="ear-question-meta">
                       <span class="badge-number">#${q.id}</span>
                       <span class="badge-cat">${q.badge}</span>
                       ${q.ayahRef ? `<span class="badge-ayah">${q.ayahRef}</span>` : ''}
                     </div>
-                    <h3 class="ear-question-prompt">${q.prompt}</h3>
+                    <h3 class="ear-question-prompt" style="font-size:1.05rem; line-height:1.6; margin:0.4rem 0 0.2rem 0;">${q.prompt}</h3>
                   </div>
-                  <button type="button" class="btn-akademi-primary btn-play-ear-q ear-audio-button" data-char="${q.targetChar}" data-freq="${q.freq}" data-f0="${q.f0}" data-type="${q.soundType}" data-word="${q.sampleWord || ''}">
-                    <span></span> Soru Sesini Dinle
+                  <button type="button" class="btn-akademi-primary btn-play-ear-q ear-audio-button" data-surah="${q.surah || 1}" data-ayah="${q.ayah || 1}" title="Âyetin orijinal tilavetini dinle">
+                    <span class="ear-play-icon">▶</span> Âyeti Dinle (Şeyh El-Husarî)
                   </button>
                 </header>
 
-                <!-- Şıklar Tablosu (Doğru cevaplar alt alta değil, tamamen karılmıştır!) -->
+                <!-- Okunan Âyet Metni Vitrini -->
+                <div class="ear-recited-ayah-card">
+                  <div class="ear-recited-ayah-arabic" lang="ar">${q.recitedAyahText || ''}</div>
+                  <div class="ear-recited-ayah-meta">
+                    <span>${q.ayahRef || "Kur'ân-ı Kerîm Tilaveti"}</span>
+                    <span>Doğru telaffuzu dinleyip aşağıdaki seçeneklerden eşleşeni bulunuz.</span>
+                  </div>
+                </div>
+
+                <!-- Şıklar Tablosu -->
                 <div class="ear-options-grid">
                   ${q.options.map(opt => `
                     <div class="ear-option-card-wrapper">
-                      <button type="button" class="btn-akademi-secondary btn-ear-choice" data-char="${opt.char}" data-target="${q.targetChar}" data-desc="${opt.desc}" aria-pressed="false">
+                      <button type="button" class="btn-ear-choice" data-char="${opt.char}" data-target="${q.targetChar}" data-desc="${opt.desc}" aria-pressed="false">
                         <span class="ear-choice-label" lang="ar">${opt.label}</span>
                         <span class="ear-choice-desc">${opt.desc}</span>
                         ${opt.sampleWord ? `
-                          <span class="ear-choice-example">
-                            <span>Örnek</span>
-                            <strong lang="ar">${opt.sampleWord}</strong>
+                          <div class="ear-choice-example">
+                            <div class="ear-choice-example-row">
+                              <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent-gold);">Kelime Örneği:</span>
+                              <strong lang="ar">${opt.sampleWord}</strong>
+                            </div>
                             <span class="ear-choice-meaning">${opt.sampleMeaning || ''}</span>
-                          </span>
+                          </div>
                         ` : ''}
                       </button>
-                      <button type="button" class="btn-play-opt-preview ear-preview-button" data-char="${opt.char}" data-word="${opt.sampleWord || ''}" aria-label="${opt.label} seçeneğinin sesini dinle" title="Bu şıkkın sesini ayrı dinle (A/B Karşılaştırması)"></button>
                     </div>
                   `).join('')}
                 </div>
@@ -2153,12 +2164,6 @@
       });
     });
 
-    function reportElifbaAudioUnavailable(label) {
-      if (typeof window.showToast === 'function') {
-        window.showToast(`${label}: doğrulanmış ses kaydı mevcut değil.`);
-      }
-    }
-
     // SEKME 1 DİNLEYİCİLERİ: Harf seçimi ve filtreler
     if (activeElifbaTab === 'harfler') {
       container.querySelectorAll('.btn-filter-chip, .btn-filter-pill').forEach(btn => {
@@ -2172,31 +2177,23 @@
         card.addEventListener('click', () => {
           selectedLetterIdx = parseInt(card.getAttribute('data-idx'), 10) || 0;
           renderElifbaView();
-
-          const curLetter = ARABIC_LETTERS[selectedLetterIdx];
-          if (curLetter) reportElifbaAudioUnavailable(curLetter.name || curLetter.char || 'Harf');
         });
       });
 
-      document.getElementById('btnPlayLetterAudio')?.addEventListener('click', () => {
-        const curLetter = ARABIC_LETTERS[selectedLetterIdx];
-        if (curLetter) reportElifbaAudioUnavailable(curLetter.name || curLetter.char || 'Harf');
-      });
-    }
-
-    // SEKME 2 DİNLEYİCİLERİ: Yazılış tablosunda harf dinleme
-    if (activeElifbaTab === 'yazilis') {
-      container.querySelectorAll('.btn-listen-letter').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const idx = parseInt(btn.getAttribute('data-idx'), 10) || 0;
-          const curLetter = ARABIC_LETTERS[idx];
-          if (curLetter) reportElifbaAudioUnavailable(curLetter.name || curLetter.char || 'Harf');
+      // 5 Ana Mahreç Bölgesi kartlarına tıklama: İlgili harfe geçiş
+      container.querySelectorAll('.vocal-zone-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const zKey = item.getAttribute('data-zone');
+          const foundIdx = ARABIC_LETTERS.findIndex(x => x.zone === zKey);
+          if (foundIdx !== -1) {
+            selectedLetterIdx = foundIdx;
+            renderElifbaView();
+          }
         });
       });
     }
 
-    // SEKME 3 DİNLEYİCİLERİ: Hareke seçimi ve kart dinleme
+    // SEKME 3 DİNLEYİCİLERİ: Hareke seçimi
     if (activeElifbaTab === 'harekeler') {
       container.querySelectorAll('.btn-hareke-mode').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -2204,38 +2201,35 @@
           renderElifbaView();
         });
       });
-
-      container.querySelectorAll('.hareke-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const name = card.getAttribute('data-name');
-          reportElifbaAudioUnavailable(name || 'Hareke');
-        });
-      });
     }
 
-    // SEKME 4 DİNLEYİCİLERİ: Cezm ve Şedde kartları
-    if (activeElifbaTab === 'cezm-sedde') {
-      container.querySelectorAll('.cezm-card, .sedde-card, .cezm-item-card, .sedde-item-card').forEach(card => {
-        card.addEventListener('click', () => {
-        reportElifbaAudioUnavailable(card.getAttribute('data-sound') || 'Cezm/şedde');
+    // SEKME 6 DİNLEYİCİLERİ: Nûhîhâ Âyeti Tilaveti (Hûd 49)
+    if (activeElifbaTab === 'med') {
+      let activeNuhihaAudio = null;
+      document.getElementById('btnPlayNuhiha')?.addEventListener('click', function() {
+        const btn = this;
+        if (activeNuhihaAudio && !activeNuhihaAudio.paused) {
+          activeNuhihaAudio.pause();
+          activeNuhihaAudio.currentTime = 0;
+          activeNuhihaAudio = null;
+          btn.innerHTML = '<span class="play-icon">▶</span> نُوحِيهَا Âyetini Dinle (Hûd 49 · Şeyh El-Husarî)';
+          return;
+        }
+        if (typeof window.TilavetAudioManager !== 'undefined') {
+          window.TilavetAudioManager.notifyPlay('med');
+        }
+        const audioUrl = getEveryAyahAudioUrl(11, 49, 'husary');
+        const audio = new Audio(audioUrl);
+        activeNuhihaAudio = audio;
+        btn.innerHTML = '<span class="play-icon">⏹</span> Durdur (Hûd 49 Çalıyor...)';
+        audio.play().catch(e => {
+          console.warn('Nûhîhâ sesi çalınamadı:', e);
+          btn.innerHTML = '<span class="play-icon">▶</span> نُوحِيهَا Âyetini Dinle (Hûd 49 · Şeyh El-Husarî)';
         });
-      });
-    }
-
-    // SEKME 5 VE 6 DİNLEYİCİLERİ: Tenvin & Med dinleme
-    if (activeElifbaTab === 'tenvin' || activeElifbaTab === 'med') {
-      container.querySelectorAll('.btn-play-sample').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          reportElifbaAudioUnavailable(btn.getAttribute('data-sound') || 'Tenvin/med');
-        });
-      });
-
-      container.querySelectorAll('.tenvin-card, .med-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-          if (e.target.closest('.btn-play-sample')) return;
-          reportElifbaAudioUnavailable(card.querySelector('.btn-play-sample')?.getAttribute('data-sound') || 'Tenvin/med');
-        });
+        audio.onended = () => {
+          btn.innerHTML = '<span class="play-icon">▶</span> نُوحِيهَا Âyetini Dinle (Hûd 49 · Şeyh El-Husarî)';
+          activeNuhihaAudio = null;
+        };
       });
     }
 
@@ -2262,7 +2256,6 @@
               feedback.innerHTML = `✅ <strong>Tamamlandı:</strong> "${targetItem.word}" (${targetItem.latin}) hecelerinin tümü seçildi.`;
               feedback.style.color = "var(--accent-green)";
             }
-            if (window.showToast) window.showToast(`"${targetItem.word}" kelimesinin tüm heceleri seçildi.`);
           } else {
             if (feedback) {
               feedback.innerHTML = `Seçilen hece: <strong>${syl}</strong>. Kalan heceleri seçin.`;
@@ -2275,113 +2268,21 @@
 
     // SEKME 8 DİNLEYİCİLERİ: Kulak Testi & Anlam Değişimi İstasyonu
     if (activeElifbaTab === 'kulak') {
-      // Fonetik Arapça Mahreç Sentezleme & Vokal Akustik Motoru
-      function playPhoneticAcoustics(char, soundType, filterHz, f0, word = '') {
-        try {
-          if (typeof window.TilavetAudioManager !== 'undefined') {
-            window.TilavetAudioManager.notifyPlay('kulak-testi');
-          }
+      let activeEarAudio = null;
+      let activeEarBtn = null;
 
-          const AudioCtx = window.AudioContext || window.webkitAudioContext;
-          if (!AudioCtx) return;
-          if (!window._akademiAudioCtx) {
-            window._akademiAudioCtx = new AudioCtx();
-          }
-          const ctx = window._akademiAudioCtx;
-          if (ctx.state === 'suspended') {
-            ctx.resume();
-          }
-
-          const now = ctx.currentTime;
-          const masterGain = ctx.createGain();
-          masterGain.gain.setValueAtTime(0.28, now);
-          masterGain.connect(ctx.destination);
-
-          const dur = 0.75;
-          const baseF0 = f0 || 220;
-
-          if (soundType === 'fricative') {
-            // Islıklı / Peltek Sürtünme ve Hava Akıntısı (Sîn, Sâd, Se, Zel, Zâ)
-            const bufferSize = Math.floor(ctx.sampleRate * dur);
-            const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-            const data = buffer.getChannelData(0);
-            for (let i = 0; i < bufferSize; i++) {
-              data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * dur * 0.7));
-            }
-            const noise = ctx.createBufferSource();
-            noise.buffer = buffer;
-
-            const bandFilter = ctx.createBiquadFilter();
-            bandFilter.type = 'bandpass';
-            bandFilter.frequency.setValueAtTime(filterHz || 4500, now);
-            bandFilter.Q.setValueAtTime(3.5, now);
-
-            const gain = ctx.createGain();
-            gain.gain.setValueAtTime(0.01, now);
-            gain.gain.linearRampToValueAtTime(0.35, now + 0.08);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + dur);
-
-            noise.connect(bandFilter);
-            bandFilter.connect(gain);
-            gain.connect(masterGain);
-
-            noise.start(now);
-            noise.stop(now + dur);
-          } else if (soundType === 'plosive' || soundType === 'emphatic') {
-            // Patlamalı ve Kalın Harfler (Kâf, Kef, Tâ, Dâd vb.)
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-
-            osc.type = (soundType === 'emphatic') ? 'sawtooth' : 'triangle';
-            osc.frequency.setValueAtTime(baseF0, now);
-            osc.frequency.exponentialRampToValueAtTime(baseF0 * 0.7, now + dur);
-
-            const formant = ctx.createBiquadFilter();
-            formant.type = 'bandpass';
-            formant.frequency.setValueAtTime(filterHz || 850, now);
-            formant.Q.setValueAtTime(4.2, now);
-
-            gain.gain.setValueAtTime(0.01, now);
-            gain.gain.linearRampToValueAtTime(0.38, now + 0.04);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + dur);
-
-            osc.connect(formant);
-            formant.connect(gain);
-            gain.connect(masterGain);
-
-            osc.start(now);
-            osc.stop(now + dur);
-          } else {
-            // Boğaz ve Duru Harfler (Hâ, Ayn, Ğayn, Vâv, Râ vb.)
-            const osc1 = ctx.createOscillator();
-            const osc2 = ctx.createOscillator();
-            const gain = ctx.createGain();
-
-            osc1.type = 'sine';
-            osc2.type = 'triangle';
-            osc1.frequency.setValueAtTime(baseF0, now);
-            osc2.frequency.setValueAtTime(baseF0 * 1.5, now);
-
-            const lowFilter = ctx.createBiquadFilter();
-            lowFilter.type = 'lowpass';
-            lowFilter.frequency.setValueAtTime(filterHz || 1350, now);
-
-            gain.gain.setValueAtTime(0.01, now);
-            gain.gain.linearRampToValueAtTime(0.32, now + 0.06);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + dur);
-
-            osc1.connect(lowFilter);
-            osc2.connect(lowFilter);
-            lowFilter.connect(gain);
-            gain.connect(masterGain);
-
-            osc1.start(now);
-            osc2.start(now);
-            osc1.stop(now + dur);
-            osc2.stop(now + dur);
-          }
-        } catch(e) {
-          console.warn('[Fonetik Sentez] Ses çalınamadı:', e);
+      function stopActiveEarAudio() {
+        if (activeEarAudio) {
+          try {
+            activeEarAudio.pause();
+            activeEarAudio.currentTime = 0;
+          } catch(e) {}
+          activeEarAudio = null;
+        }
+        if (activeEarBtn) {
+          activeEarBtn.classList.remove('is-playing');
+          activeEarBtn.innerHTML = '<span class="ear-play-icon">▶</span> Âyeti Dinle (Şeyh El-Husarî)';
+          activeEarBtn = null;
         }
       }
 
@@ -2412,33 +2313,42 @@
         if (progressFill) progressFill.style.width = `${total > 0 ? (answered / total) * 100 : 0}%`;
       }
 
-      // Soru Sesi Dinleme Butonları (Master Target Sound)
+      // Soru Âyet Sesi Dinleme Butonları (EveryAyah CDN Tilavet Oynatıcısı)
       container.querySelectorAll('.btn-play-ear-q').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const char = btn.getAttribute('data-char') || '';
-          const soundType = btn.getAttribute('data-type') || 'voiced';
-          const freq = parseFloat(btn.getAttribute('data-freq')) || 1000;
-          const f0 = parseFloat(btn.getAttribute('data-f0')) || 220;
-          const word = btn.getAttribute('data-word') || '';
-
-          playPhoneticAcoustics(char, soundType, freq, f0, word);
-          if (window.showToast) window.showToast(` "${char || word}" hedef sesi dinletiliyor...`);
-        });
-      });
-
-      // Şık Dinleme Butonları (A/B Karşılaştırma Testi)
-      container.querySelectorAll('.btn-play-opt-preview').forEach(previewBtn => {
-        previewBtn.addEventListener('click', (e) => {
+        btn.addEventListener('click', (e) => {
           e.stopPropagation();
-          const char = previewBtn.getAttribute('data-char') || '';
-          const word = previewBtn.getAttribute('data-word') || '';
-          const parentBox = previewBtn.closest('.ear-question-box');
-          const soundType = parentBox ? parentBox.getAttribute('data-type') : 'voiced';
-          const freq = parentBox ? parseFloat(parentBox.getAttribute('data-freq')) : 1200;
-          const f0 = parentBox ? parseFloat(parentBox.getAttribute('data-f0')) : 220;
+          const surah = parseInt(btn.getAttribute('data-surah'), 10) || 1;
+          const ayah = parseInt(btn.getAttribute('data-ayah'), 10) || 1;
 
-          playPhoneticAcoustics(char, soundType, freq, f0, word);
-          if (window.showToast) window.showToast(` Seçenek Sesi: "${char}" (${word || 'Mahreç'})`);
+          if (activeEarBtn === btn && activeEarAudio && !activeEarAudio.paused) {
+            stopActiveEarAudio();
+            return;
+          }
+
+          stopActiveEarAudio();
+
+          const audioUrl = getEveryAyahAudioUrl(surah, ayah, 'husary');
+          if (typeof window.TilavetAudioManager !== 'undefined') {
+            window.TilavetAudioManager.notifyPlay('kulak-testi');
+          }
+
+          const audio = new Audio(audioUrl);
+          activeEarAudio = audio;
+          activeEarBtn = btn;
+          btn.classList.add('is-playing');
+          btn.innerHTML = '<span class="ear-play-icon">⏹</span> Durdur (Çalıyor...)';
+
+          audio.play().catch(err => {
+            console.warn('[Kulak Testi Audio] Oynatma hatası:', err);
+            stopActiveEarAudio();
+          });
+
+          audio.onended = () => {
+            stopActiveEarAudio();
+          };
+          audio.onerror = () => {
+            stopActiveEarAudio();
+          };
         });
       });
 
@@ -2477,7 +2387,6 @@
               resultEl.innerHTML = `✅ <strong>Tebrikler, Doğru Teşhis!</strong> Doğru lafız: <strong>${chosenChar}</strong>. Mahreç ve sıfat özellikleri tam örtüşüyor.`;
             }
             if (expEl) expEl.style.display = 'block';
-            if (window.showToast) window.showToast("Mükemmel! Doğru harfi/kelimeyi tespit ettiniz.");
           } else {
             wrongAnswers.add(qId);
             correctAnswers.delete(qId);
@@ -2493,7 +2402,6 @@
               resultEl.innerHTML = `❌ <strong>Hatalı Seçim.</strong> Hedeflenen asıl lafız <strong>${targetChar}</strong> idi. Seçtiğiniz <strong>${chosenChar}</strong> lafzı mânâyı tahrif edebilir.`;
             }
             if (expEl) expEl.style.display = 'block';
-            if (window.showToast) window.showToast("Yanlış seçim. Lütfen aşağıdaki mahreç tahlilini inceleyiniz.");
           }
 
           updateTelemetryUI();
@@ -2525,7 +2433,6 @@
             grid.appendChild(cards[j]);
           }
         });
-        if (window.showToast) window.showToast(" Tüm seçenekler ve şıklar rastgele karıştırıldı!");
       });
 
       // Sıfırlama Butonu
@@ -2534,6 +2441,7 @@
         correctAnswers.clear();
         wrongAnswers.clear();
         updateTelemetryUI();
+        stopActiveEarAudio();
 
         container.querySelectorAll('.btn-ear-choice').forEach(c => {
           c.style.borderColor = 'rgba(255,255,255,0.1)';
@@ -2543,7 +2451,6 @@
         container.querySelectorAll('.ear-q-result, .ear-q-explanation').forEach(el => {
           el.style.display = 'none';
         });
-        if (window.showToast) window.showToast(" Antrenman karneniz sıfırlandı.");
       });
     }
   }
@@ -5030,112 +4937,126 @@
 
     container.innerHTML = `
       <div class="makam-layout-wrap">
-        <section class="makam-learning-guide" aria-label="Makam Okulu nasıl kullanılır">
-          <div>
-            <strong>Makamları karşılaştırarak öğren</strong>
-            <p>Bir makam seç, farklı kârilerin örneklerini dinle; dizi ve seyir notlarını incele, ardından geçki kartından ilişkili makama ilerle.</p>
-            <p class="makam-example-review-note">Ses bağlantıları ve ayet aralıkları kontrol edilmiştir. Kayıtların makam aidiyeti, uzman dinlemesiyle ayrıca teyit edilene kadar kesin sınıflandırma sayılmamalıdır.</p>
+        <!-- 10 Klasik Makam Gezinme Şeridi -->
+        <div class="makam-nav-ribbon" role="tablist" aria-label="10 Klasik Türk Musikisi &amp; Tilavet Makamı">
+          <div class="makam-nav-track">
+            ${MAKAMLAR.map(m => `
+              <button type="button" class="makam-nav-card ${m.id === currentMakam.id ? 'active' : ''}" data-makam="${m.id}" role="tab" aria-selected="${m.id === currentMakam.id}">
+                <div class="makam-nav-glow"></div>
+                <span class="makam-nav-ar" lang="ar">${m.names.ar}</span>
+                <span class="makam-nav-tr">${m.names.tr}</span>
+                <span class="makam-nav-mood">${(m.tags && m.tags[0]) || 'Makam'}</span>
+              </button>
+            `).join('')}
           </div>
-          <ol>
-            <li><span>1</span> Makamı seç</li>
-            <li><span>2</span> Hocaları karşılaştır</li>
-            <li><span>3</span> Geçkiyi takip et</li>
-          </ol>
-        </section>
-
-        <!-- Makam Seçim Kartları Şeridi -->
-        <div class="makam-selector-strip" role="group" aria-label="10 Klasik Makam">
-          ${MAKAMLAR.map(m => `
-            <button type="button" class="makam-chip ${m.id === currentMakam.id ? 'active' : ''}" data-makam="${m.id}" aria-pressed="${m.id === currentMakam.id}" aria-controls="makamDetail-${m.id}">
-              <span class="makam-name-tr">${m.names.tr}</span>
-              <span class="makam-name-ar" lang="ar">${m.names.ar}</span>
-            </button>
-          `).join('')}
         </div>
 
-        <!-- Seçili Makam Detay İstasyonu -->
+        <!-- Seçili Makam Prestij İstasyonu -->
         <div class="akademi-card makam-station-card" id="makamDetail-${currentMakam.id}">
-          <div class="makam-header-row">
-            <div class="makam-header-main">
-              <div class="makam-header-copy">
-                <div class="badge-row">
-                  <span class="card-badge gold">MAKAM NAZARİYATI &amp; DİNLEME</span>
-                  <span class="card-badge cyan">10 MAKAM • ${totalExampleCount} SES ÖRNEĞİ</span>
-                  ${currentMakam.ezanGelenegi?.metin || currentMakam.ezanVakti ? `<span class="card-badge purple"> ${(currentMakam.ezanGelenegi?.metin || currentMakam.ezanVakti).split('(')[0].trim()}</span>` : ''}
-                </div>
-                <h2 class="makam-headline">${currentMakam.names.tr} Makamı — <span lang="ar">${currentMakam.names.ar}</span></h2>
-                <div class="makam-tags">
-                  ${(currentMakam.tags || currentMakam.characterTags || []).map(t => `<span class="tag-pill">${t}</span>`).join('')}
-                  <span class="tag-pill cyan">Seyir: ${{ cikici: 'Çıkıcı', 'inici-cikici': 'İnici-Çıkıcı' }[currentMakam.seyir] || currentMakam.seyir}</span>
-                  <span class="tag-pill gold">Karar: ${kararName}</span>
-                  <span class="tag-pill green">Güçlü: ${gucluName}</span>
-                </div>
+          <div class="makam-hero-main">
+            <div class="makam-hero-title-area">
+              <div class="makam-hero-badges">
+                <span class="makam-badge-gold">✦ MAKAM MEŞK İSTASYONU</span>
+                <span class="makam-badge-accent">${currentMakam.ezanGelenegi?.metin ? currentMakam.ezanGelenegi.metin.split('(')[0].trim() : (currentMakam.ezanVakti || 'Geleneksel Makam')}</span>
+                <span class="makam-badge-subtle">${examples.length} Doğrulanmış Tilavet</span>
               </div>
-
-              <!-- Drone (Karar Sesi) Kontrol Kutusu -->
-              <div class="drone-control-box">
-                <div class="drone-title">KARAR REFERANS DRONE (TANBUR / NEY)</div>
-                <div class="drone-freq-info">${kararName} (${kararHz.toFixed(1)} Hz)</div>
-                <button type="button" class="btn-drone-toggle" id="btnToggleDrone">
-                  <span class="drone-icon"></span>
-                  <span id="droneBtnText">Drone Başlat</span>
-                </button>
+              <h2 class="makam-hero-name">
+                <span class="makam-name-main">${currentMakam.names.tr} Makamı</span>
+                <span class="makam-name-calligraphy" lang="ar">${currentMakam.names.ar}</span>
+              </h2>
+              <p class="makam-hero-summary">${currentMakam.ruhiTesir || 'Kalbe ferahlık ve derin huşû bahşeden klasik tilavet makamı.'}</p>
+              
+              <div class="makam-spec-strip">
+                <div class="spec-item">
+                  <span class="spec-label">Karar (Durak):</span>
+                  <span class="spec-val gold">● ${kararName} (${kararHz.toFixed(1)} Hz)</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Güçlü (Meyan):</span>
+                  <span class="spec-val cyan">◆ ${gucluName}</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Seyir Karakteri:</span>
+                  <span class="spec-val">${{ cikici: '↗ Çıkıcı', 'inici-cikici': '↕ İnici-Çıkıcı', inici: '↘ İnici' }[currentMakam.seyir] || currentMakam.seyir}</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Karakter Hissi:</span>
+                  <span class="spec-val">${(currentMakam.tags || currentMakam.characterTags || []).slice(0, 3).join(', ')}</span>
+                </div>
               </div>
             </div>
 
-            <section class="makam-validation-panel" aria-labelledby="makamValidationTitle">
-              <div class="makam-validation-heading">
+            <!-- Drone Karar Kutusu (Hero içine tam entegre modern audio-dock) -->
+            <div class="makam-drone-dock">
+              <div class="drone-dock-header">
+                <span class="drone-pulse-indicator" id="dronePulseDot"></span>
+                <span class="drone-dock-label">KARAR REFERANS DRONE</span>
+              </div>
+              <div class="drone-dock-instrument">Tanbur &amp; Ney Eşliği</div>
+              <div class="drone-dock-pitch">${kararName} · <strong>${kararHz.toFixed(1)} Hz</strong></div>
+              <button type="button" class="btn-makam-drone-toggle" id="btnToggleDrone">
+                <span class="drone-btn-icon">🎵</span>
+                <span id="droneBtnText">Drone Başlat</span>
+              </button>
+              <span class="drone-dock-tip">Kendi ses tonunuzu makamın karar perdesine akortlayın.</span>
+            </div>
+          </div>
+
+          <!-- 3 Ruh & Gelenek Sütunu -->
+          <div class="makam-triptych-grid">
+            <div class="triptych-card ezan-card">
+              <div class="triptych-header">
+                <span class="triptych-icon">🕌</span>
+                <h4>Ezan &amp; Osmanlı Vakit Geleneği</h4>
+              </div>
+              <p>${currentMakam.ezanGelenegi?.metin || currentMakam.ezanVakti || 'Vakit ezanlarında ve geleneksel meşklerde icra edilir.'}</p>
+            </div>
+            <div class="triptych-card ruhi-card">
+              <div class="triptych-header">
+                <span class="triptych-icon">🕊️</span>
+                <h4>Rûhî Mizaç &amp; Manevi Tesir</h4>
+              </div>
+              <p>${currentMakam.ruhiTesir || 'Kalbe sükûnet, ilahi vecd ve huşû kazandırır.'}</p>
+            </div>
+            <div class="triptych-card ayet-card">
+              <div class="triptych-header">
+                <span class="triptych-icon">📜</span>
+                <h4>Uyumlu Âyet Temaları (İlahi Nida)</h4>
+              </div>
+              <p>${(currentMakam.gelenekNotu || currentMakam.uyumluTemalar || ['İlahi azamet', 'Rahmet müjdesi', 'Dua ve yalvarış']).join(' • ')}</p>
+            </div>
+          </div>
+
+          <!-- 53-Koma İnteraktif Makam Merdiveni (Fretboard) -->
+          <div class="makam-scale-fretboard">
+            <div class="fretboard-header">
+              <div class="fretboard-title-group">
+                <span class="fretboard-icon">🎼</span>
                 <div>
-                  <h3 id="makamValidationTitle">Kaynak ve inceleme durumu</h3>
-                  <p>${reviewLabel} · Nazariyat güven düzeyi: ${confidenceLabel.toLocaleLowerCase('tr-TR')}</p>
+                  <h3>Makamın Ses Merdiveni (53-Koma Perdeleri)</h3>
+                  <span class="fretboard-sub">Perdelere tıklayarak mikrotonal Türk Musikisi seslerini ve koma değerlerini dinleyin</span>
                 </div>
-                <span class="makam-validation-count">${sources.length} kaynak</span>
               </div>
-              ${sources.length
-                ? `<ul class="makam-source-list">${sources.map(source => {
-                    const url = new URL(source.url).href.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
-                    return `<li><a href="${url}" target="_blank" rel="noopener noreferrer">${escapeMarkup(source.baslik || source.yazar || url)} <span aria-hidden="true">↗</span></a></li>`;
-                  }).join('')}</ul>`
-                : '<p class="makam-source-empty">Bu makam için henüz kaynak bağlantısı eklenmemiş.</p>'}
-              <p class="makam-validation-note">Kayıtlar dinleme örneğidir; makam tahlil notları eğitim amaçlıdır ve canlı hoca değerlendirmesinin yerine geçmez.</p>
-            </section>
-
-          </div>
-
-          <!-- Makamın Mizaç, Ezan ve Ruh Rehberi -->
-          <div class="makam-meta-grid">
-            <div class="makam-meta-card gold-border">
-              <div class="makam-meta-title"><span></span> Ezan Vakti &amp; Osmanlı Geleneği</div>
-              <div class="makam-meta-desc">${currentMakam.ezanGelenegi?.metin || currentMakam.ezanVakti || 'Geleneksel tilavet ve ezan makamı.'}</div>
+              <span class="fretboard-system-badge">Arel-Ezgi &amp; 53-Koma</span>
             </div>
-            <div class="makam-meta-card">
-              <div class="makam-meta-title"><span></span> Rûhî Tesir &amp; Mizaç</div>
-              <div class="makam-meta-desc">${currentMakam.ruhiTesir || 'Kalbe ferahlık ve huşû aşılar.'}</div>
-            </div>
-            <div class="makam-meta-card">
-              <div class="makam-meta-title"><span></span> Uyumlu Âyet Temaları (Gelenek)</div>
-              <div class="makam-meta-desc">${(currentMakam.gelenekNotu || currentMakam.uyumluTemalar || ['İlahi azamet', 'Rahmet', 'Dua']).join(' • ')}</div>
-            </div>
-          </div>
-
-          <!-- İnteraktif 53-Koma Dizi / Piyano Şeridi -->
-          <div class="makam-scale-box" style="margin-top:1.25rem;">
-            <div class="scale-header">
-              <span class="scale-title">Makamın Perdeleri (Tıklayarak Dinleyin):</span>
-              <span class="scale-note-hint">Mikrotonal aralıklar Arel-Ezgi ve 53-koma Türk Musikisi koma/cent değerlerindedir.</span>
-            </div>
-            <div class="piano-scale-strip">
+            
+            <div class="fretboard-keys-grid">
               ${cikiciDizi.map((abs, i) => {
                 const pHz = T ? T.hzOfDegree(abs, durakVal, kararHz) : kararHz * Math.pow(2, (abs - durakVal)/53);
                 const pName = T ? (T.perdeAdi(abs) || ('Perde ' + abs)) : ('Perde ' + abs);
                 const pNote = T ? T.approxNote(abs) : { name: '', octave: 3 };
                 const komas = abs - durakVal;
                 const cents = Math.round(T ? T.komaToCents(komas) : komas * (1200 / 53));
+                const isDurak = (abs === durakVal);
+                const isGuclu = (abs === gucluVal);
+                const roleTag = isDurak ? 'KARAR' : (isGuclu ? 'GÜÇLÜ' : (i === 0 ? 'GİRİŞ' : (i === cikiciDizi.length - 1 ? 'TİZ' : '')));
                 return `
-                  <button type="button" class="piano-key" data-abs="${abs}" data-freq="${pHz}" title="${pName} (${pNote.name}${pNote.octave}) — ${komas} koma (${cents} cent)">
-                    <span class="key-degree">${i + 1}</span>
-                    <span class="key-name">${pName}</span>
-                    <span class="key-note">${pNote.name}${pNote.octave}</span>
+                  <button type="button" class="fret-key ${isDurak ? 'is-durak' : ''} ${isGuclu ? 'is-guclu' : ''}" data-abs="${abs}" data-freq="${pHz}" title="${pName} (${pNote.name}${pNote.octave}) — ${komas} koma (${cents} cent)">
+                    <span class="fret-step-num">${i + 1}</span>
+                    ${roleTag ? `<span class="fret-role-tag ${isDurak ? 'durak' : (isGuclu ? 'guclu' : '')}">${roleTag}</span>` : ''}
+                    <span class="fret-name">${pName}</span>
+                    <span class="fret-note">${pNote.name}${pNote.octave}</span>
+                    <span class="fret-koma">${komas > 0 ? '+' + komas : komas}k</span>
                   </button>
                 `;
               }).join('')}
@@ -5143,19 +5064,30 @@
           </div>
 
           <!-- Karakteristik Seyir Motifleri -->
-          <div class="makam-motifs-box">
-            <h3 class="motifs-heading">Karakteristik Seyir Motifleri</h3>
-            <div class="motifs-grid">
-              ${(currentMakam.motifs || []).map(motif => {
+          <div class="makam-seyir-motifs-section">
+            <div class="seyir-header">
+              <span class="seyir-icon">↗</span>
+              <div>
+                <h3>Karakteristik Seyir Motifleri (Melodik Rota)</h3>
+                <span class="seyir-sub">Makamın açılış, gelişme ve karar cümlelerinin adım adım icra şeması</span>
+              </div>
+            </div>
+
+            <div class="seyir-cards-grid">
+              ${(currentMakam.motifs || []).map((motif, mIdx) => {
                 const title = motif.name?.tr || motif.title || motif.id;
+                const stageLabels = ['Giriş Cümlesi', 'Meyan & Gelişme', 'Tiz Seyir & Zirve', 'Karar İnişi'];
+                const stageLabel = stageLabels[mIdx] || 'Seyir Deseni';
                 const patText = Array.isArray(motif.path)
-                  ? motif.path.map(p => (T ? (T.perdeAdi(p.abs) || p.abs) : p.abs)).join(' → ')
+                  ? motif.path.map(p => (T ? (T.perdeAdi(p.abs) || p.abs) : p.abs)).join(' ➔ ')
                   : (motif.pattern || '');
                 return `
-                  <div class="motif-card">
-                    <div class="motif-info">
-                      <span class="motif-title">${title}</span>
-                      <span class="motif-pattern">${patText}</span>
+                  <div class="seyir-motif-card">
+                    <div class="motif-stage-tag">${stageLabel}</div>
+                    <h4 class="motif-title">${title}</h4>
+                    <div class="motif-path-box">
+                      <span class="path-arrow-icon">↳</span>
+                      <span class="path-sequence">${patText}</span>
                     </div>
                     <button type="button" class="btn-play-motif" data-motif-id="${motif.id}">
                       <span>▶</span> Dinle
@@ -5163,6 +5095,8 @@
                   </div>
                 `;
               }).join('')}
+            </div>
+          </div>
             </div>
           </div>
 
@@ -5315,7 +5249,7 @@
     };
 
     // 1. Makam Seçim Butonları
-    container.querySelectorAll('.makam-chip').forEach(chip => {
+    container.querySelectorAll('.makam-nav-card, .makam-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         selectMakam(chip.getAttribute('data-makam'));
       });
@@ -5343,26 +5277,33 @@
 
     // 2. Drone Butonu
     const droneBtn = document.getElementById('btnToggleDrone');
+    const dronePulseDot = document.getElementById('dronePulseDot');
     let isDronePlaying = false;
     droneBtn?.addEventListener('click', () => {
       if (!isDronePlaying) {
         window.TilavetAudioLab?.drone.start(kararHz, 'tanbur');
         isDronePlaying = true;
         droneBtn.classList.add('playing');
-        document.getElementById('droneBtnText').textContent = "Drone Durdur";
+        dronePulseDot?.classList.add('active');
+        const txt = document.getElementById('droneBtnText');
+        if (txt) txt.textContent = "Drone Durdur";
         if (window.showToast) window.showToast(`${currentMakam.names.tr} Karar Sesi (${kararHz.toFixed(1)} Hz) çalıyor...`);
       } else {
         window.TilavetAudioLab?.drone.stop();
         isDronePlaying = false;
         droneBtn.classList.remove('playing');
-        document.getElementById('droneBtnText').textContent = "Drone Başlat";
+        dronePulseDot?.classList.remove('active');
+        const txt = document.getElementById('droneBtnText');
+        if (txt) txt.textContent = "Drone Başlat";
       }
     });
 
-    // 3. 53-Koma Piyano Tuşları
-    container.querySelectorAll('.piano-key').forEach(key => {
+    // 3. 53-Koma Piyano & Fretboard Tuşları
+    container.querySelectorAll('.fret-key, .piano-key').forEach(key => {
       key.addEventListener('click', () => {
         const freq = parseFloat(key.getAttribute('data-freq')) || 220;
+        key.classList.add('key-active-pulse');
+        setTimeout(() => key.classList.remove('key-active-pulse'), 400);
         window.TilavetAudioLab?.drone.playSingleNote(freq, 1.2);
       });
     });
@@ -8109,13 +8050,128 @@
     if (activeStudioStation === 'kurra') {
       const pitchCanvas = document.getElementById('studioPitchCanvas');
       const pCtx = (pitchCanvas && typeof pitchCanvas.getContext === 'function') ? pitchCanvas.getContext('2d') : null;
+      const canvasTooltip = document.getElementById('studioCanvasTooltip');
+
+      // Kelimelerin fonetik / hece ağırlıklarına göre tahmini zaman dilimlerini hesaplar
+      function estimateAyahWordTimings(words, totalDurationMs) {
+        if (!words || words.length === 0) return [];
+        if (words.length === 1) return [{ word: words[0], index: 0, startMs: 0, endMs: totalDurationMs }];
+
+        const weights = words.map(w => {
+          let weight = w.length;
+          for (const ch of w) {
+            if (['ا', 'و', 'ي', 'آ', 'ـٰ', 'ى'].includes(ch)) weight += 1.6;
+            if (ch === 'ّ') weight += 1.4;
+          }
+          return Math.max(2, weight);
+        });
+
+        const totalWeight = weights.reduce((a, b) => a + b, 0);
+        const leadIn = Math.min(120, totalDurationMs * 0.03);
+        const leadOut = Math.min(180, totalDurationMs * 0.05);
+        const effectiveMs = Math.max(100, totalDurationMs - leadIn - leadOut);
+
+        let cur = leadIn;
+        return words.map((w, idx) => {
+          const span = (weights[idx] / totalWeight) * effectiveMs;
+          const item = {
+            word: w,
+            index: idx,
+            startMs: Math.round(cur),
+            endMs: Math.round(cur + span)
+          };
+          cur += span;
+          return item;
+        });
+      }
+
+      function updateScorecardDom() {
+        const pScore = document.getElementById('studioScorePitch');
+        const cScore = document.getElementById('studioScoreContour');
+        const tScore = document.getElementById('studioScoreTiming');
+        const kScore = document.getElementById('studioScoreCorridor');
+        const vBadge = document.getElementById('studioVerdictBadge');
+        const vText = document.getElementById('studioVerdictText');
+
+        if (!dtwEvaluationResult) return;
+
+        if (pScore) pScore.textContent = `%${dtwEvaluationResult.pitchScore}`;
+        if (cScore) cScore.textContent = `%${dtwEvaluationResult.contourScore}`;
+        if (tScore) tScore.textContent = `%${dtwEvaluationResult.timingScore}`;
+        if (kScore) kScore.textContent = `%${dtwEvaluationResult.corridorScore}`;
+
+        if (vBadge) {
+          if (dtwEvaluationResult.noAudio || dtwEvaluationResult.noReference) {
+            vBadge.textContent = "Ses Algılanamadı";
+            vBadge.className = "card-badge alert";
+          } else {
+            vBadge.textContent = `Ortalama Sapma: ±${dtwEvaluationResult.meanCentsDiff} cent · Başarı: %${dtwEvaluationResult.avgScore}`;
+            vBadge.className = `card-badge ${dtwEvaluationResult.avgScore >= 75 ? 'green' : (dtwEvaluationResult.avgScore >= 60 ? 'gold' : 'alert')}`;
+          }
+        }
+
+        if (vText) {
+          vText.textContent = dtwEvaluationResult.verdict;
+          vText.style.color = (dtwEvaluationResult.noAudio || dtwEvaluationResult.noReference) ? "#ff3366" : "#cbd5e1";
+        }
+      }
+
+      // Arapça Metni İnteraktif Kelimeler Halinde Vitrine Basar
+      function renderWordsInBox(rawText, surah, ayah) {
+        const arabicEl = document.getElementById('studioAyahArabic');
+        if (!arabicEl) return;
+        const words = rawText.trim().split(/\s+/).filter(Boolean);
+        currentAyahWords = words.map((w, idx) => ({ word: w, index: idx, startMs: 0, endMs: 0 }));
+
+        const isSurahFirstAyah = (surah !== 1 && ayah === 1);
+        const bismillahBanner = isSurahFirstAyah ? `
+          <div class="studio-bismillah-bar" dir="rtl" lang="ar">
+            <span class="bism-txt">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</span>
+            <span class="bism-tag">Sûre Başı Besmelesi (Model tilavet doğrudan âyetle başlar)</span>
+          </div>
+        ` : '';
+
+        const wordsHtml = words.map((w, idx) => `
+          <span class="studio-word-token" data-word-idx="${idx}" title="${idx + 1}. Kelime: ${w} (Dinlemek veya atlamak için dokunun)">
+            <span class="word-text">${w}</span>
+            <span class="word-num">${idx + 1}</span>
+          </span>
+        `).join(' ');
+
+        arabicEl.innerHTML = `
+          ${bismillahBanner}
+          <div class="studio-words-strip" id="studioWordsContainer" dir="rtl" lang="ar">
+            ${wordsHtml}
+          </div>
+        `;
+
+        arabicEl.querySelectorAll('.studio-word-token').forEach(tok => {
+          tok.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const wIdx = parseInt(tok.getAttribute('data-word-idx'), 10);
+            const wItem = currentAyahWords[wIdx];
+            if (wItem && wItem.startMs >= 0) {
+              const targetSec = wItem.startMs / 1000;
+              const player = window.TilavetState?.audioPlayer;
+              if (player) {
+                player.currentTime = targetSec;
+                if (player.paused && !isStudioPlayingRef) {
+                  document.getElementById('btnStudioPlayRef')?.click();
+                }
+              }
+              renderPitchContourCanvas(wItem.startMs, true);
+              if (window.showToast) window.showToast(`🎯 Kelimeye atlandı: "${wItem.word}" (${targetSec.toFixed(2)}s)`);
+            }
+          });
+        });
+      }
 
       function renderPitchContourCanvas(playheadMs = null, isPlayingRef = false) {
         if (!pCtx || !pitchCanvas) return;
         const dpr = window.devicePixelRatio || 1;
         const rect = pitchCanvas.getBoundingClientRect();
         const displayWidth = rect.width > 0 ? Math.floor(rect.width) : 800;
-        const displayHeight = 230;
+        const displayHeight = 250;
 
         if (pitchCanvas.width !== displayWidth * dpr || pitchCanvas.height !== displayHeight * dpr) {
           pitchCanvas.width = displayWidth * dpr;
@@ -8127,32 +8183,38 @@
         const w = displayWidth;
         const h = displayHeight;
 
-        // Arka Plan
-        pCtx.fillStyle = "#0c1017";
+        // 1. Zengin Koyu Arka Plan (Akustik Konsol Gradyanı)
+        const bgGrad = pCtx.createLinearGradient(0, 0, 0, h);
+        bgGrad.addColorStop(0, "#080c14");
+        bgGrad.addColorStop(1, "#0d1322");
+        pCtx.fillStyle = bgGrad;
         pCtx.fillRect(0, 0, w, h);
 
-        const padLeft = 70;
-        const padRight = 25;
-        const padTop = 25;
-        const padBottom = 30;
+        const padLeft = 76;
+        const padRight = 115;
+        const padTop = 22;
+        const padBottom = 34;
         const plotW = Math.max(10, w - padLeft - padRight);
         const plotH = Math.max(10, h - padTop - padBottom);
 
         const refData = window.TilavetAudioLab?.contourAnalyzer?.getReference(selectedStudioAyahKey, selectedStudioQariKey) || null;
         const lastUserSample = userStudioPitchSamples[userStudioPitchSamples.length - 1];
         const maxT = Math.max(refData?.durationMs || 0, lastUserSample?.t || 0, 1000);
+
+        // Değer aralığını belirleme (Makul müzikal çerçeve: -400 ila +800 cent standart sınır)
         const values = [];
         (refData?.points || []).forEach(point => values.push(point.cents));
         userStudioPitchSamples.forEach(point => values.push(point.cents));
-        let minValue = values.length ? values[0] : -200;
-        let maxValue = values.length ? values[0] : 800;
-        values.forEach(value => {
-          minValue = Math.min(minValue, value);
-          maxValue = Math.max(maxValue, value);
-        });
-        let minCents = Math.floor((minValue - 100) / 200) * 200;
-        let maxCents = Math.ceil((maxValue + 100) / 200) * 200;
-        if (maxCents - minCents < 400) {
+
+        let minValue = values.length ? Math.min(...values) : -200;
+        let maxValue = values.length ? Math.max(...values) : 600;
+        let minCents = Math.min(-200, Math.floor((minValue - 100) / 200) * 200);
+        let maxCents = Math.max(600, Math.ceil((maxValue + 100) / 200) * 200);
+
+        // Aralık güvenliği: -600 ile +1400 cent arasında dengeli tut
+        minCents = Math.max(-800, minCents);
+        maxCents = Math.min(1600, maxCents);
+        if (maxCents - minCents < 600) {
           minCents -= 200;
           maxCents += 200;
         }
@@ -8160,65 +8222,185 @@
         const tToX = (t) => padLeft + (Math.max(0, Math.min(maxT, t)) / maxT) * plotW;
         const centsToY = (c) => padTop + plotH - ((c - minCents) / (maxCents - minCents)) * plotH;
 
+        // 2. Makam Aralık & Koma Referans Kılavuzları
+        const MAKAM_GUIDES = [
+          { cents: 1200, name: "Gerdâniye (8li)" },
+          { cents: 700, name: "Nevâ (Güçlü)" },
+          { cents: 500, name: "Çargâh (4lü)" },
+          { cents: 400, name: "Segâh" },
+          { cents: 200, name: "Rast (Tanini)" },
+          { cents: 0, name: "Karar (Tonic)" },
+          { cents: -200, name: "Irak" },
+          { cents: -500, name: "Yegâh (Pest)" }
+        ];
+
         for (let cents = minCents; cents <= maxCents; cents += 200) {
           const y = centsToY(cents);
-          pCtx.strokeStyle = cents === 0 ? "rgba(229, 184, 105, 0.4)" : "rgba(255, 255, 255, 0.08)";
-          pCtx.lineWidth = cents === 0 ? 1.5 : 1;
-          pCtx.setLineDash(cents === 0 ? [] : [3, 4]);
+          const isZero = (cents === 0);
+          const guide = MAKAM_GUIDES.find(g => g.cents === cents);
+
+          // Kılavuz çizgisi
+          pCtx.strokeStyle = isZero ? "rgba(229, 184, 105, 0.65)" : "rgba(255, 255, 255, 0.07)";
+          pCtx.lineWidth = isZero ? 1.8 : 1;
+          pCtx.setLineDash(isZero ? [] : [3, 4]);
           pCtx.beginPath();
           pCtx.moveTo(padLeft, y);
           pCtx.lineTo(w - padRight, y);
           pCtx.stroke();
           pCtx.setLineDash([]);
-          pCtx.fillStyle = cents === 0 ? "#e5b869" : "rgba(255, 255, 255, 0.4)";
-          pCtx.font = "10px Inter, sans-serif";
+
+          // Sol etiket (Cent değeri)
+          pCtx.fillStyle = isZero ? "#e5b869" : "rgba(255, 255, 255, 0.45)";
+          pCtx.font = isZero ? "bold 10px 'JetBrains Mono', monospace" : "10px 'JetBrains Mono', monospace";
           pCtx.textAlign = "right";
-          pCtx.fillText(`${cents > 0 ? "+" : ""}${cents} c`, padLeft - 6, y + 3);
+          pCtx.fillText(`${cents > 0 ? "+" : ""}${cents} c`, padLeft - 8, y + 3);
+
+          // Sağ etiket (Makam perdesi adı)
+          if (guide) {
+            pCtx.fillStyle = isZero ? "rgba(229, 184, 105, 0.9)" : "rgba(255, 255, 255, 0.28)";
+            pCtx.font = isZero ? "bold 9px 'Inter', sans-serif" : "9px 'Inter', sans-serif";
+            pCtx.textAlign = "left";
+            pCtx.fillText(guide.name, w - padRight + 8, y + 3);
+          }
         }
 
-        // 2. Zaman Eksen Çizgileri
+        // 3. Zaman Eksen Çizgileri ve Saniye Etiketleri
         const timeStep = maxT > 6000 ? 2000 : 1000;
         for (let t = 0; t <= maxT; t += timeStep) {
           const x = tToX(t);
-          pCtx.strokeStyle = "rgba(255, 255, 255, 0.05)";
+          pCtx.strokeStyle = "rgba(255, 255, 255, 0.06)";
           pCtx.beginPath();
           pCtx.moveTo(x, padTop);
           pCtx.lineTo(x, padTop + plotH);
           pCtx.stroke();
 
-          pCtx.fillStyle = "rgba(255, 255, 255, 0.45)";
+          pCtx.fillStyle = "rgba(255, 255, 255, 0.5)";
           pCtx.font = "10px 'JetBrains Mono', monospace";
           pCtx.textAlign = "center";
-          pCtx.fillText(`${(t / 1000).toFixed(1)}s`, x, h - 10);
+          pCtx.fillText(`${(t / 1000).toFixed(1)}s`, x, h - 8);
         }
 
-        const drawContour = (points, color, width) => {
+        // 4. Kelime Senkronizasyon Kılavuzları ve Alt Çubuk Etiketleri
+        if (currentAyahWords && currentAyahWords.length > 0 && maxT > 0) {
+          currentAyahWords.forEach((item) => {
+            if (item.startMs <= 0 && item.endMs <= 0) return;
+            const xStart = tToX(item.startMs);
+            const xEnd = tToX(item.endMs);
+            const xCenter = (xStart + xEnd) / 2;
+
+            // Kelime sınır çizgisi
+            pCtx.strokeStyle = "rgba(229, 184, 105, 0.16)";
+            pCtx.lineWidth = 1;
+            pCtx.setLineDash([2, 3]);
+            pCtx.beginPath();
+            pCtx.moveTo(xStart, padTop);
+            pCtx.lineTo(xStart, padTop + plotH);
+            pCtx.stroke();
+            pCtx.setLineDash([]);
+
+            // O anki kelime aktifse arka planına yumuşak altın aydınlatma ver
+            const isActive = (playheadMs !== null && playheadMs >= item.startMs && playheadMs <= item.endMs);
+            if (isActive) {
+              pCtx.fillStyle = "rgba(229, 184, 105, 0.15)";
+              pCtx.fillRect(xStart, padTop, Math.max(2, xEnd - xStart), plotH);
+
+              pCtx.fillStyle = "rgba(229, 184, 105, 0.35)";
+              pCtx.fillRect(xStart, padTop + plotH - 22, Math.max(2, xEnd - xStart), 20);
+            }
+
+            pCtx.font = isActive ? "bold 13px 'Amiri', serif" : "11px 'Amiri', serif";
+            pCtx.textAlign = "center";
+            pCtx.fillStyle = isActive ? "#ffd700" : "rgba(255, 255, 255, 0.55)";
+            pCtx.fillText(item.word, xCenter, padTop + plotH - 7);
+          });
+        }
+
+        // 5. Tolerans Koridoru Poligonu (±45 cent / ~2 koma pedagojik koridor)
+        if (refData?.points && refData.points.length > 2) {
+          pCtx.save();
+          pCtx.fillStyle = "rgba(229, 184, 105, 0.09)";
+          pCtx.beginPath();
+          for (let i = 0; i < refData.points.length; i++) {
+            const pt = refData.points[i];
+            const x = tToX(pt.t);
+            const y = centsToY(pt.cents + 45);
+            if (i === 0) pCtx.moveTo(x, y);
+            else pCtx.lineTo(x, y);
+          }
+          for (let i = refData.points.length - 1; i >= 0; i--) {
+            const pt = refData.points[i];
+            const x = tToX(pt.t);
+            const y = centsToY(pt.cents - 45);
+            pCtx.lineTo(x, y);
+          }
+          pCtx.closePath();
+          pCtx.fill();
+          pCtx.restore();
+        }
+
+        // 6. Akıcı Catmull-Rom Bezier Spline Çizim Fonksiyonu
+        const drawSmoothSpline = (points, strokeColor, lineWidth, shadowColor = null) => {
           if (!points || points.length < 2) return;
-          pCtx.strokeStyle = color;
-          pCtx.lineWidth = width;
+          pCtx.save();
+          if (shadowColor) {
+            pCtx.shadowColor = shadowColor;
+            pCtx.shadowBlur = 10;
+          }
+          pCtx.strokeStyle = strokeColor;
+          pCtx.lineWidth = lineWidth;
           pCtx.lineCap = "round";
           pCtx.lineJoin = "round";
-          pCtx.beginPath();
-          let previousPoint = null;
-          points.forEach(point => {
-            if (!Number.isFinite(point.cents)) return;
-            const x = tToX(point.t);
-            const y = centsToY(point.cents);
-            if (!previousPoint || point.t - previousPoint.t > 160) pCtx.moveTo(x, y);
-            else pCtx.lineTo(x, y);
-            previousPoint = point;
-          });
-          pCtx.stroke();
+
+          // 180ms üzerindeki sessizliklerde eğriyi zarifçe ayır
+          const chunks = [];
+          let curChunk = [];
+          for (let i = 0; i < points.length; i++) {
+            const p = points[i];
+            if (!Number.isFinite(p.cents)) continue;
+            if (curChunk.length > 0 && p.t - curChunk[curChunk.length - 1].t > 180) {
+              if (curChunk.length > 1) chunks.push(curChunk);
+              curChunk = [];
+            }
+            curChunk.push(p);
+          }
+          if (curChunk.length > 1) chunks.push(curChunk);
+
+          for (const chunk of chunks) {
+            pCtx.beginPath();
+            pCtx.moveTo(tToX(chunk[0].t), centsToY(chunk[0].cents));
+            if (chunk.length === 2) {
+              pCtx.lineTo(tToX(chunk[1].t), centsToY(chunk[1].cents));
+            } else {
+              for (let i = 0; i < chunk.length - 1; i++) {
+                const p0 = i > 0 ? chunk[i - 1] : chunk[i];
+                const p1 = chunk[i];
+                const p2 = chunk[i + 1];
+                const p3 = i < chunk.length - 2 ? chunk[i + 2] : p2;
+
+                const x1 = tToX(p1.t), y1 = centsToY(p1.cents);
+                const x2 = tToX(p2.t), y2 = centsToY(p2.cents);
+                const x0 = tToX(p0.t), y0 = centsToY(p0.cents);
+                const x3 = tToX(p3.t), y3 = centsToY(p3.cents);
+
+                const cp1x = x1 + (x2 - x0) / 6;
+                const cp1y = y1 + (y2 - y0) / 6;
+                const cp2x = x2 - (x3 - x1) / 6;
+                const cp2y = y2 - (y3 - y1) / 6;
+
+                pCtx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x2, y2);
+              }
+            }
+            pCtx.stroke();
+          }
+          pCtx.restore();
         };
 
-        drawContour(refData?.points, "#e5b869", 3);
+        // Model Kâri Konturunu Çiz (Altın Işıltı)
+        drawSmoothSpline(refData?.points, "#e5b869", 3.2, "rgba(229, 184, 105, 0.45)");
 
-        // Kullanıcı F0 konturu
+        // Kullanıcı Konturunu Çiz (Zümrüt Yeşil Işıltı)
         if (userStudioPitchSamples && userStudioPitchSamples.length > 0) {
-          pCtx.shadowColor = "rgba(0, 230, 118, 0.5)";
-          pCtx.shadowBlur = 8;
-          drawContour(userStudioPitchSamples, "#00e676", 3.5);
-          pCtx.shadowBlur = 0;
+          drawSmoothSpline(userStudioPitchSamples, "#00e676", 3.5, "rgba(0, 230, 118, 0.55)");
 
           const lastPt = userStudioPitchSamples[userStudioPitchSamples.length - 1];
           pCtx.fillStyle = "#ffffff";
@@ -8226,37 +8408,143 @@
           pCtx.arc(tToX(lastPt.t), centsToY(lastPt.cents), 5, 0, Math.PI * 2);
           pCtx.fill();
           pCtx.strokeStyle = "#00e676";
-          pCtx.lineWidth = 2;
+          pCtx.lineWidth = 2.5;
           pCtx.stroke();
         } else if (!refData && !isStudioRecording) {
-          pCtx.fillStyle = "rgba(255, 255, 255, 0.25)";
+          pCtx.fillStyle = "rgba(255, 255, 255, 0.35)";
           pCtx.font = "12px Inter, sans-serif";
           pCtx.textAlign = "center";
-          pCtx.fillText("Gerçek kaynak ses yüklenmeden kontur gösterilmez", w / 2, h / 2 + 10);
+          pCtx.fillText("Gerçek kaynak ses konturu çözümleniyor…", w / 2, h / 2 + 5);
         }
 
-        // 6. Oynatma veya Kayıt İmleci (Playhead)
+        // 7. Canlı Oynatma / Kayıt Lazer İmleci (Playhead)
         if (playheadMs !== null && playheadMs >= 0) {
           const curX = tToX(playheadMs);
-          pCtx.strokeStyle = isPlayingRef ? "#ffd700" : "#ff3366";
+          const headColor = isPlayingRef ? "#ffd700" : "#ff3366";
+
+          pCtx.save();
+          pCtx.shadowColor = headColor;
+          pCtx.shadowBlur = 8;
+          pCtx.strokeStyle = headColor;
           pCtx.lineWidth = 2;
-          pCtx.setLineDash([4, 4]);
           pCtx.beginPath();
           pCtx.moveTo(curX, padTop);
           pCtx.lineTo(curX, padTop + plotH);
           pCtx.stroke();
-          pCtx.setLineDash([]);
 
-          pCtx.fillStyle = isPlayingRef ? "#ffd700" : "#ff3366";
+          // Üst Tepe Işıltı Rozeti
+          pCtx.fillStyle = headColor;
           pCtx.beginPath();
-          pCtx.arc(curX, padTop, 5, 0, Math.PI * 2);
+          pCtx.arc(curX, padTop + 2, 5, 0, Math.PI * 2);
           pCtx.fill();
+          pCtx.restore();
         }
 
         pCtx.restore();
       }
 
       renderPitchContourCanvas();
+
+      // Tuval Üzerinde Gezinme & Tıklayarak Atlayış (Scrubbing & Tooltip)
+      pitchCanvas?.addEventListener('mousemove', (e) => {
+        const rect = pitchCanvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const padLeft = 76;
+        const padRight = 115;
+        const plotW = rect.width - padLeft - padRight;
+        if (mouseX >= padLeft && mouseX <= rect.width - padRight && plotW > 0) {
+          const refData = window.TilavetAudioLab?.contourAnalyzer?.getReference(selectedStudioAyahKey, selectedStudioQariKey);
+          const maxT = Math.max(refData?.durationMs || 0, 1000);
+          const ratio = (mouseX - padLeft) / plotW;
+          const hoverMs = Math.round(ratio * maxT);
+          const refPt = refData?.points?.find(p => Math.abs(p.t - hoverMs) <= 90);
+          const activeW = currentAyahWords.find(w => hoverMs >= w.startMs && hoverMs <= w.endMs);
+
+          if (canvasTooltip) {
+            canvasTooltip.style.display = 'block';
+            canvasTooltip.style.left = `${Math.min(rect.width - 200, Math.max(padLeft, mouseX - 60))}px`;
+            canvasTooltip.style.top = '8px';
+            canvasTooltip.innerHTML = `
+              ⏱ <strong>${(hoverMs / 1000).toFixed(2)}s</strong>
+              ${refPt ? `· <span style="color:#e5b869;">${refPt.cents > 0 ? '+' : ''}${Math.round(refPt.cents)} cent</span> (${refPt.hz ? refPt.hz.toFixed(0) + ' Hz' : ''})` : ''}
+              ${activeW ? `· <span style="color:#ffd700; font-family:'Amiri', serif; font-size:1.05rem;">${activeW.word}</span>` : ''}
+            `;
+          }
+        } else if (canvasTooltip) {
+          canvasTooltip.style.display = 'none';
+        }
+      });
+
+      pitchCanvas?.addEventListener('mouseleave', () => {
+        if (canvasTooltip) canvasTooltip.style.display = 'none';
+      });
+
+      pitchCanvas?.addEventListener('click', (e) => {
+        const rect = pitchCanvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const padLeft = 76;
+        const padRight = 115;
+        const plotW = rect.width - padLeft - padRight;
+        if (mouseX >= padLeft && mouseX <= rect.width - padRight && plotW > 0) {
+          const refData = window.TilavetAudioLab?.contourAnalyzer?.getReference(selectedStudioAyahKey, selectedStudioQariKey);
+          const maxT = Math.max(refData?.durationMs || 0, 1000);
+          const ratio = (mouseX - padLeft) / plotW;
+          const seekMs = Math.round(ratio * maxT);
+          const seekSec = seekMs / 1000;
+
+          const player = window.TilavetState?.audioPlayer;
+          if (player) {
+            player.currentTime = seekSec;
+            if (player.paused && !isStudioPlayingRef) {
+              document.getElementById('btnStudioPlayRef')?.click();
+            }
+          }
+          renderPitchContourCanvas(seekMs, isStudioPlayingRef);
+        }
+      });
+
+      // Çalışma Alanı Dinamik Hız Düğmeleri (1.0x vs 0.75x Talim Hızı)
+      document.getElementById('btnSpeedNormal')?.addEventListener('click', () => {
+        studioPlaybackRate = 1.0;
+        document.getElementById('btnSpeedNormal')?.classList.add('active');
+        document.getElementById('btnSpeedSlow')?.classList.remove('active');
+        const player = window.TilavetState?.audioPlayer;
+        if (player) player.playbackRate = 1.0;
+        if (window.showToast) window.showToast("Oynatma hızı: 1.0x (Normal)");
+      });
+
+      document.getElementById('btnSpeedSlow')?.addEventListener('click', () => {
+        studioPlaybackRate = 0.75;
+        document.getElementById('btnSpeedSlow')?.classList.add('active');
+        document.getElementById('btnSpeedNormal')?.classList.remove('active');
+        const player = window.TilavetState?.audioPlayer;
+        if (player) player.playbackRate = 0.75;
+        if (window.showToast) window.showToast("🐢 Talim ve Meşk Hızı devrede (0.75x)");
+      });
+
+      // Göreli Seyir vs Mutlak Perde Düğmesi
+      document.getElementById('btnToggleRelativeMode')?.addEventListener('click', () => {
+        studioRelativeMode = !studioRelativeMode;
+        const btn = document.getElementById('btnToggleRelativeMode');
+        if (btn) {
+          btn.innerHTML = studioRelativeMode ? '🎯 Göreli Seyir' : ' Mutlak Perde';
+          btn.classList.toggle('active', studioRelativeMode);
+        }
+        if (userStudioPitchSamples && userStudioPitchSamples.length > 5) {
+          const refContour = window.TilavetAudioLab?.contourAnalyzer?.getReference(selectedStudioAyahKey, selectedStudioQariKey);
+          if (refContour) {
+            dtwEvaluationResult = window.TilavetAudioLab.contourAnalyzer.calculateDTW(
+              userStudioPitchSamples,
+              refContour.points,
+              { relativeMode: studioRelativeMode }
+            );
+            updateScorecardDom();
+          }
+        }
+        if (window.showToast) {
+          window.showToast(studioRelativeMode ? "🎯 Göreli Seyir Modu: Makam aralıkları kendi ses kararınıza göre değerlendirilir." : " Mutlak Perde Modu: Kâri frekansıyla birebir değerlendirilir.");
+        }
+      });
 
       async function loadStudioAyahSource() {
         const key = selectedStudioAyahKey;
@@ -8269,15 +8557,28 @@
         const titleEl = document.getElementById('studioAyahTitle');
         const arabicEl = document.getElementById('studioAyahArabic');
         const mealEl = document.getElementById('studioAyahMeal');
+        const makamBadgeEl = document.getElementById('studioMakamBadge');
         const audioUrl = window.getAyahAudioUrl?.(surah, ayah, selectedStudioQariKey);
+
+        const currentPreset = MODEL_AYAHS.find(a => a.key === key);
+        if (currentPreset && makamBadgeEl) {
+          makamBadgeEl.textContent = `Makam: ${currentPreset.makam || 'Nihâvend'}`;
+        }
 
         studioAudioRealDurationMs = null;
         if (durationEl) durationEl.textContent = '⏱ Gerçek ses süresi: yükleniyor…';
         if (pitchEl) pitchEl.textContent = ' Alt-perde referansı: kaynak ses çözümleniyor…';
         if (titleEl) titleEl.textContent = `${window.SURAH_LIST?.find(item => item.no === surah)?.name || `Sûre ${surah}`} Sûresi ${key}`;
-        if (arabicEl) arabicEl.textContent = 'Âyet metni kaynaktan yükleniyor…';
-        if (mealEl) mealEl.textContent = '';
-        if (statusEl) statusEl.textContent = 'Seçilen âyetin ses kaydı indiriliyor ve gerçek F0 konturu çıkarılıyor…';
+
+        // Bilinen doğrulanmış metni beklemeden ekrana yerleştir
+        if (currentPreset && currentPreset.text) {
+          renderWordsInBox(currentPreset.text, surah, ayah);
+          if (mealEl) mealEl.textContent = `“${currentPreset.meal}”`;
+        } else if (arabicEl) {
+          arabicEl.innerHTML = '<span style="color:var(--text-muted); font-size:1.2rem;">Âyet metni kaynaktan yükleniyor…</span>';
+        }
+
+        if (statusEl) statusEl.innerHTML = '<span>Seçilen âyetin ses kaydı indiriliyor ve gerçek F0 konturu çıkarılıyor…</span>';
         renderPitchContourCanvas();
 
         const textRequest = fetch(`https://api.alquran.cloud/v1/ayah/${surah}:${ayah}/editions/quran-uthmani,tr.diyanet`)
@@ -8291,8 +8592,16 @@
               throw new Error('Âyet metni kaynağından beklenen Arapça metin ve meal alınamadı.');
             }
             if (requestId !== studioContourRequestId) return;
-            if (arabicEl) arabicEl.textContent = json.data[0].text;
-            if (mealEl) mealEl.textContent = `“${json.data[1].text}”`;
+            let arText = json.data[0].text;
+            let trMeal = json.data[1].text;
+
+            // Fatiha (1) dışındaki sûrelerin 1. âyetindeki yapışık Besmeleyi ayıkla
+            if (surah !== 1 && ayah === 1) {
+              arText = arText.replace(/^بِسْمِ\s+ٱ?للَّهِ\s+ٱ?لرَّحْمَٰ?نِ\s+ٱ?لرَّحِيمِ\s*/u, '').trim();
+            }
+
+            renderWordsInBox(arText, surah, ayah);
+            if (mealEl) mealEl.textContent = `“${trMeal}”`;
           });
 
         const analyzer = window.TilavetAudioLab?.contourAnalyzer;
@@ -8303,14 +8612,14 @@
         const [textResult, contourResult] = await Promise.allSettled([textRequest, contourRequest]);
         if (requestId !== studioContourRequestId) return;
 
-        if (textResult.status === 'rejected') {
+        if (textResult.status === 'rejected' && (!currentPreset || !currentPreset.text)) {
           console.error('Stüdyo âyet metni yüklenemedi:', textResult.reason);
-          if (arabicEl) arabicEl.textContent = 'Âyet metni yüklenemedi.';
+          if (arabicEl) arabicEl.innerHTML = '<span style="color:#ff5555; font-size:1.1rem;">Âyet metni yüklenemedi.</span>';
           if (mealEl) mealEl.textContent = 'Kaynak metne şu anda erişilemiyor.';
         }
         if (contourResult.status === 'rejected') {
           console.error('Referans ses konturu yüklenemedi:', contourResult.reason);
-          if (statusEl) statusEl.textContent = `Kontur oluşturulamadı: ${contourResult.reason?.message || 'Ses kaynağına erişilemiyor.'} Referans çizgi ve DTW puanı gösterilmez; tilavet oynatımı yine kullanılabilir.`;
+          if (statusEl) statusEl.innerHTML = `<span>Kontur oluşturulamadı: ${contourResult.reason?.message || 'Ses kaynağına erişilemiyor.'}</span>`;
           renderPitchContourCanvas();
           return;
         }
@@ -8320,8 +8629,14 @@
         if (durationEl) durationEl.textContent = `⏱ Gerçek ses süresi: ${(reference.durationMs / 1000).toFixed(2)} s`;
         if (pitchEl) pitchEl.textContent = ` Ses alt-perde referansı: ${reference.anchorHz.toFixed(1)} Hz`;
         if (statusEl) {
-          statusEl.textContent = `${reference.qariKey} · ${key} · ${reference.sampleCount} F0 örneği · alt %20 ses aralığı referans alınmıştır. Grafik makam etiketi veya uzman hükmü değildir.`;
+          statusEl.innerHTML = `<span>${reference.qariKey} · ${key} · ${reference.sampleCount} F0 örneği · Karar: ${reference.anchorHz.toFixed(1)} Hz. Tolerans koridoru: ±45c.</span><span style="color:var(--accent-gold); font-size:0.74rem;">🖱 Tıklayarak istediğiniz kelime ve saniyeye atlayabilirsiniz</span>`;
         }
+
+        // Kelime zaman aralıklarını sesin tam uzunluğuna göre senkronize et
+        if (currentAyahWords.length > 0) {
+          currentAyahWords = estimateAyahWordTimings(currentAyahWords.map(w => w.word), reference.durationMs);
+        }
+
         renderPitchContourCanvas();
       }
 
@@ -8434,6 +8749,7 @@
           if (studioPlayheadAnimId) cancelAnimationFrame(studioPlayheadAnimId);
           if (btnPlayRef) btnPlayRef.innerHTML = "<span>▶</span> Seçilen Kâriyi Dinle";
           renderPitchContourCanvas(null, false);
+          document.querySelectorAll('.studio-word-token').forEach(t => t.classList.remove('is-active-word'));
           if (window.showToast) window.showToast("Tilavet durduruldu.");
           return;
         }
@@ -8455,6 +8771,10 @@
             const status = document.getElementById('studioStatusBadge');
             if (status) status.textContent = '✅ Âyet kaydı tamamlandı';
             renderPitchContourCanvas(studioAudioRealDurationMs, true);
+            document.querySelectorAll('.studio-word-token').forEach(t => {
+              t.classList.remove('is-active-word');
+              t.classList.add('is-past-word');
+            });
             if (window.showToast) window.showToast("Model tilavet tamamlandı.");
           };
 
@@ -8477,9 +8797,10 @@
             onPlaybackError();
             return;
           }
+          if (player) player.playbackRate = studioPlaybackRate;
           if (window.showToast) window.showToast(`▶ ${surah}:${ayah} âyeti çalınıyor...`);
 
-          // Ses oynatılırken sarı imleci canvas üzerinde hareket ettir
+          // Ses oynatılırken sarı imleci canvas üzerinde hareket ettir ve kelimeleri senkronize yak
           function trackPlayhead() {
             if (!isStudioPlayingRef) return;
             if (player.error) {
@@ -8493,6 +8814,19 @@
             if (!player.paused) {
               const currentMs = (player.currentTime || 0) * 1000;
               renderPitchContourCanvas(currentMs, true);
+
+              // Kelime parlama senkronizasyonu
+              if (currentAyahWords && currentAyahWords.length > 0) {
+                const activeWord = currentAyahWords.find(w => currentMs >= w.startMs && currentMs < w.endMs);
+                const aIdx = activeWord ? activeWord.index : -1;
+                const tokens = document.querySelectorAll('.studio-word-token');
+                tokens.forEach((t, i) => {
+                  if (i === aIdx) t.classList.add('is-active-word');
+                  else t.classList.remove('is-active-word');
+                  if (aIdx >= 0 && i < aIdx) t.classList.add('is-past-word');
+                  else t.classList.remove('is-past-word');
+                });
+              }
             }
             studioPlayheadAnimId = requestAnimationFrame(trackPlayhead);
           }
@@ -8540,7 +8874,7 @@
             userStudioPitchSamples = [];
             dtwEvaluationResult = null;
 
-            // Mikrofonu ve PitchDetector'ı başlat (çalışmıyorsa)
+            // Mikrofonu ve PitchDetector'ı başlat
             if (window.TilavetAudioLab?.pitchDetector) {
               if (!window.TilavetAudioLab.pitchDetector.isListening) {
                 await window.TilavetAudioLab.pitchDetector.start();
@@ -8561,37 +8895,56 @@
             if (recordBtnText) recordBtnText.textContent = "⏹ Kaydı Bitir & Karşılaştır";
             btnRecord.classList.add('alert');
 
-            // Kayıt esnasında gerçek zamanlı F0 perde dinleyicisi
+            // Kayıt esnasında gerçek zamanlı F0 perde dinleyicisi (Yumuşatılmış filtre)
             if (studioRecPitchListener && window.TilavetAudioLab?.pitchDetector) {
               window.TilavetAudioLab.pitchDetector.removeListener(studioRecPitchListener);
             }
 
+            let lastValidHz = 0;
             studioRecPitchListener = (data) => {
               if (!isStudioRecording) return;
               const elapsedMs = Math.round(performance.now() - recStartTime);
               const ref = window.TilavetAudioLab?.contourAnalyzer?.getReference(selectedStudioAyahKey, selectedStudioQariKey);
-              if (data && data.detected && data.freq > 50) {
-                const userCents = window.TilavetAudioLab.contourAnalyzer.convertFreqToContourCents(data.freq, ref?.anchorHz || 0);
+              if (data && data.detected && data.freq > 65) {
+                let freq = data.freq;
+                // Anlık oktav koruması
+                if (lastValidHz > 60) {
+                  const r = freq / lastValidHz;
+                  if (r > 1.85 && r < 2.15) freq /= 2;
+                  else if (r > 0.46 && r < 0.54) freq *= 2;
+                }
+                lastValidHz = freq;
+
+                const userCents = window.TilavetAudioLab.contourAnalyzer.convertFreqToContourCents(freq, ref?.anchorHz || 0);
                 if (Number.isFinite(userCents)) {
                   userStudioPitchSamples.push({
                     t: elapsedMs,
                     cents: userCents,
-                    hz: Math.round(data.freq * 10) / 10
+                    hz: Math.round(freq * 10) / 10
                   });
                 }
               }
 
               // Her ses karesinde canvas'ı zümrüt yeşili çizgiyle canlı güncelle
               renderPitchContourCanvas(elapsedMs, false);
+
+              // Kayıt esnasında tahmini kelime vurgusunu güncelle
+              if (currentAyahWords && currentAyahWords.length > 0) {
+                const activeWord = currentAyahWords.find(w => elapsedMs >= w.startMs && elapsedMs < w.endMs);
+                const aIdx = activeWord ? activeWord.index : -1;
+                const tokens = document.querySelectorAll('.studio-word-token');
+                tokens.forEach((t, i) => {
+                  if (i === aIdx) t.classList.add('is-active-word');
+                  else t.classList.remove('is-active-word');
+                });
+              }
             };
 
             window.TilavetAudioLab.pitchDetector.addListener(studioRecPitchListener);
-
-            // Başlangıç çizimini güncelle (boş kullanıcı çizgisi, imleç 0'da)
             renderPitchContourCanvas(0, false);
 
             if (window.showToast) {
-              window.showToast("⏺ Canlı kayıt başladı! Âyeti mikrofona okuyunuz; ses eğriniz ekranda anlık çizilecektir.");
+              window.showToast("⏺ Canlı kayıt başladı! Âyeti mikrofona okuyunuz; ses eğriniz anlık çizilmektedir.");
             }
           } catch (err) {
             console.error("Kayıt başlatılamadı:", err);
@@ -8612,50 +8965,24 @@
           if (recordBtnText) recordBtnText.textContent = "Kayıt Al & Karşılaştır";
           btnRecord.classList.remove('alert');
 
-          // Gerçek DTW Hesaplamasını Çalıştır
+          // Gerçek Sakoe-Chiba DTW Hesaplamasını Çalıştır
           const refContour = window.TilavetAudioLab?.contourAnalyzer?.getReference(selectedStudioAyahKey, selectedStudioQariKey);
           if (refContour && window.TilavetAudioLab?.contourAnalyzer) {
-            dtwEvaluationResult = window.TilavetAudioLab.contourAnalyzer.calculateDTW(userStudioPitchSamples, refContour.points);
+            dtwEvaluationResult = window.TilavetAudioLab.contourAnalyzer.calculateDTW(
+              userStudioPitchSamples,
+              refContour.points,
+              { relativeMode: studioRelativeMode }
+            );
           }
 
-          // DOM Metriklerini Anında Güncelle
-          const pScore = document.getElementById('studioScorePitch');
-          const cScore = document.getElementById('studioScoreContour');
-          const tScore = document.getElementById('studioScoreTiming');
-          const kScore = document.getElementById('studioScoreCorridor');
-          const vBadge = document.getElementById('studioVerdictBadge');
-          const vText = document.getElementById('studioVerdictText');
-
-          if (dtwEvaluationResult) {
-            if (pScore) pScore.textContent = `%${dtwEvaluationResult.pitchScore}`;
-            if (cScore) cScore.textContent = `%${dtwEvaluationResult.contourScore}`;
-            if (tScore) tScore.textContent = `%${dtwEvaluationResult.timingScore}`;
-            if (kScore) kScore.textContent = `%${dtwEvaluationResult.corridorScore}`;
-
-            if (vBadge) {
-              if (dtwEvaluationResult.noAudio || dtwEvaluationResult.noReference) {
-                vBadge.textContent = "Ses Algılanamadı";
-                vBadge.className = "card-badge alert";
-              } else {
-                vBadge.textContent = `Ortalama Sapma: ±${dtwEvaluationResult.meanCentsDiff} cent`;
-                vBadge.className = `card-badge ${dtwEvaluationResult.avgScore >= 75 ? 'green' : (dtwEvaluationResult.avgScore >= 60 ? 'gold' : 'alert')}`;
-              }
-            }
-
-            if (vText) {
-              vText.textContent = dtwEvaluationResult.verdict;
-              vText.style.color = (dtwEvaluationResult.noAudio || dtwEvaluationResult.noReference) ? "#ff3366" : "#cbd5e1";
-            }
-          }
-
-          // Son eğriyi imleçsiz netleştirerek çiz
+          updateScorecardDom();
           renderPitchContourCanvas(null, false);
 
           if (window.showToast) {
             if (dtwEvaluationResult?.noAudio || dtwEvaluationResult?.noReference) {
               window.showToast(dtwEvaluationResult.verdict);
             } else {
-              window.showToast(`✅ Mukayese tamamlandı! Başarı: %${dtwEvaluationResult?.avgScore || 0} · Sapma: ±${dtwEvaluationResult?.meanCentsDiff || 0} cent`);
+              window.showToast(`✅ Mukayese tamamlandı! Başarı: %${dtwEvaluationResult?.avgScore || 0} · Sapma: ±${dtwEvaluationResult?.meanCentsDiff || 0} cent (${dtwEvaluationResult?.tonicLabel || ''})`);
             }
           }
         }

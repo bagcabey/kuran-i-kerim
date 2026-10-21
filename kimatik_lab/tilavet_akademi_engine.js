@@ -9210,12 +9210,20 @@
   // ===========================================================================
   // 5.9 TİLAVET ÖĞRENME ASİSTANI (GUARDRAILS & KNOWLEDGE BASE)
   // ===========================================================================
+  let asistanInfoOpen = false;
+  let asistanTopicsOpen = false;
+
+  function getAsistanNowTime() {
+    const d = new Date();
+    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+
   let asistanChatHistory = [
     {
       id: 'init',
       sender: 'assistant',
       text: "Esselâmü aleyküm ve rahmetullāh. Ben Tilavet Öğrenme Asistanınızım. Tecvid kuralları (İzhâr, İhfâ, İdğâm, Medler), makamlar (Rast, Uşşak, Hicaz vb.), diyafram-nefes egzersizleri veya dengeli çalışma programları hakkında sorularınızı yanıtlayabilirim.",
-      time: "Şimdi",
+      time: getAsistanNowTime(),
       references: ["İbnü'l-Cezerî, el-Mukaddimetü'l-Cezeriyye", "Tilavet Akademisi Öğretim Tasarımı"]
     }
   ];
@@ -9552,6 +9560,475 @@
     })[character]);
   }
 
+  // ===========================================================================
+  // 5.9.1 GÜNDELİK KONUŞMALAR & GENİŞLETİLMİŞ DİYALOG MOTORU (20.000+ KOMBİNASYON)
+  // ===========================================================================
+  const ASISTAN_DAILY_CHATS = [
+    {
+      type: 'greeting',
+      regex: /\b(selam|selamun|selamunaleykum|selamun aleykum|esselamu|selamun aleykum|merhaba|merhabalar|gunaydin|hayirli sabahlar|iyi gunler|iyi aksamlar|hayirli aksamlar|hayirli geceler|hayirli cumalar|hayirli ramazanlar|hayirli kandiller|hos geldin|hosbulduk)\b/,
+      text: "Ve aleykümüsselâm ve rahmetullāhi ve berekâtüh! Hoş geldiniz. Kur'ân-ı Kerîm tilaveti, tecvid incelikleri, Türk tilavet makamları, nefes/diyafram sağlığı veya günlük çalışma planınızla ilgili size nasıl yardımcı olabilirim?",
+      references: ["İslâm Âdâbı — Selâm ve Tahiyyet"],
+      options: [
+        { label: "Tecvid kuralları", query: "Tecvid kurallarına nereden başlamalıyım?" },
+        { label: "Rast makamı", query: "Rast makamı özellikleri" },
+        { label: "20 dk çalışma planı", query: "20 dakikalık çalışma planı" },
+        { label: "Nefes & Ses rehberi", query: "Güvenli nefes ve ses çalışması" }
+      ]
+    },
+    {
+      type: 'inquiry',
+      regex: /\b(nasilsin|naber|ne haber|iyi misin|nasil gidiyor|keyifler nasil|halin hatirin|ne var ne yok|durumlar nasil)\b/,
+      text: "Elhamdülillâh, çok iyiyim; Kur'ân-ı Kerîm tilavetini güzelleştirme ve ilim yolculuğunuzda size yardımcı olmak için her zaman hazırım. Siz nasılsınız? Bugün hangi sûre, tecvid kuralı veya makam üzerinde çalışmak istersiniz?",
+      references: ["Tilavet Akademisi Pedagojik Rehber"],
+      options: [
+        { label: "Bir sûre seçmek istiyorum", query: "Fâtiha sûresi özellikleri" },
+        { label: "Tecvid kuralları", query: "İzhâr kuralı nedir?" },
+        { label: "Sesimi ısıtmak istiyorum", query: "Tilavet öncesi ses ısınması nasıl yapılır?" }
+      ]
+    },
+    {
+      type: 'thanks',
+      regex: /\b(tesekkur|tesekkurler|tesekkur ederim|sag ol|sagol|cok sagol|allah razi olsun|eyvallah|eline saglik|harikasin|supersin|cok guzel|helal olsun|minnettarim)\b/,
+      text: "Cümlemizden Allah razı olsun. İlminizi, nefesinizi ve Kur'an tilavetinizi bereketli kılsın. Rabbim Kur'ân-ı Kerîm'i hayatımıza rehber ve kalplerimize inşirah eylesin. Merak ettiğiniz başka bir konu veya pratik yapmak istediğiniz bir âyet var mı?",
+      references: ["Hadîs-i Şerîf: 'İnsanlara teşekkür etmeyen, Allah'a da şükretmez' (Tirmizî)"],
+      options: [
+        { label: "Yeni bir soru sor", query: "yardım" },
+        { label: "20 dk çalışma planı", query: "20 dakikalık çalışma planı" },
+        { label: "Makamları incele", query: "Makamlar tilavette nasıl kullanılır?" }
+      ]
+    },
+    {
+      type: 'farewell',
+      regex: /\b(hoscakal|hosca kal|gorusuruz|gorusmek uzere|allaha emanet|kolay gelsin|iyi calismalar|ben cikiyorum|selametle|hadi eyvallah|bay bay)\b/,
+      text: "Fî emânillâh (Allah'a emanet olunuz). Günlük virdinizi ve tilavet meşkinizi aksatmayın; her zaman buradayım. Hayırlı, huzurlu ve feyizli vakitler dilerim.",
+      references: ["Tilavet Akademisi"],
+      options: [
+        { label: "Sohbeti sıfırla", query: "yardım" }
+      ]
+    },
+    {
+      type: 'identity',
+      regex: /\b(sen kimsin|necisin|ne yapabilirsin|yapay zeka|bot musun|robot musun|seni kim yapti|amacin ne|nasil calisirsin)\b/,
+      text: "Ben Tilavet Akademisi'nin yapay zekâ destekli öğrenme asistanıyım.\n\n📚 Görev Alanlarım:\n1. Tecvid kuralları (İzhâr, İhfâ, İdğâm, Medler, Sekte vb.)\n2. 28 Arapça harfin mahreç ve sıfatları\n3. Kur'an tilavetinde 10 Türk mûsikîsi makamı (Rast, Uşşak, Hicaz, Segâh vb.)\n4. Doğru diyafram nefesi, ses sağlığı ve vokal hijyen ilkeleri\n5. Kişiye özel 5-60 dakikalık dengeli günlük çalışma planları\n\n⚠ Önemli İlke: Ben pedagojik bir dijital rehberim; bir hocanın (fem-i muhsin) canlı denetiminin yerini tutamam ve dinî fetva veremem.",
+      references: ["Tilavet Akademisi Öğretim Tasarımı"],
+      options: [
+        { label: "Tecvid rehberi", query: "Tecvid kurallarına nereden başlamalıyım?" },
+        { label: "Makam rehberi", query: "Makamlar tilavette nasıl kullanılır?" },
+        { label: "Nefes rehberi", query: "Güvenli nefes ve ses çalışması" }
+      ]
+    },
+    {
+      type: 'spiritual_comfort',
+      regex: /\b(dua et|dua oku|motivasyonum|ezber yapamiyorum|unutuyorum|cok zorlaniyorum|pes etmek|umitsizim|canim sikkin|icim sikiliyor|nasihat)\b/,
+      text: "Kur'ân-ı Kerîm yolu meşakkatli gibi görünse de her harfinde sonsuz ecir ve kalbî inşirah barındırır. Peygamber Efendimiz (s.a.v.) şöyle müjdelemiştir:\n\n'Kur'ân'ı maharetle okuyan kimse, kerîm ve itaatkâr meleklerle beraberdir. Zorlanarak ve dili tutularak okuyana ise iki kat mükâfat vardır.' (Buhârî, Tevhîd, 52).\n\n💡 Tavsiyeler:\n- Asla acele etmeyin; günde sadece 15-20 dakika zihninizin en dingin olduğu vakitlerde çalışın.\n- Zorlandığınız âyetleri önce heceleyip dinleyin, sonra sesinizi zorlamadan tekrar edin.\n- Rabbim zihninizi açsın, nefesinizi bereketli kılsın. Hangi âyette takıldıysanız birlikte adım adım bakalım.",
+      references: ["Sahîh-i Buhârî, Kitâbü't-Tevhîd", "İhyâu Ulûmi'd-Dîn"],
+      options: [
+        { label: "20 dk çalışma planı", query: "20 dakikalık çalışma planı" },
+        { label: "Nefes & Ses rehberi", query: "Güvenli nefes ve ses çalışması" },
+        { label: "Özel kelimeler", query: "Kur'an'daki 4 sekte" }
+      ]
+    },
+    {
+      type: 'praise',
+      regex: /\b(harika uygulama|cok begendim|cok faydali|muhtesem|cok basarili|tebrikler|helal)\b/,
+      text: "İstifade etmenize ve Kur'an yolculuğunuza ışık tutmasına çok sevindim. Kelâmullâh'ı tertîl ve hüsn-i sadâ ile okumak en mübarek amellerdendir. Birlikte çalışmak istediğiniz yeni bir konu var mı?",
+      references: ["Tilavet Akademisi"],
+      options: [
+        { label: "Makamları incele", query: "Makamlar tilavette nasıl kullanılır?" },
+        { label: "Tecvid alıştırması", query: "İzhâr kuralı nedir?" }
+      ]
+    }
+  ];
+
+  function matchDailyDialogue(q, rawQuery) {
+    for (const item of ASISTAN_DAILY_CHATS) {
+      if (item.regex.test(q)) {
+        return {
+          text: item.text,
+          references: item.references,
+          options: item.options
+        };
+      }
+    }
+    return null;
+  }
+
+  // ===========================================================================
+  // 5.9.2 TÜM 114 SÛRE KÜTÜPHANESİ & TİLAVET KARAKTERİSTİKLERİ
+  // ===========================================================================
+  const ASISTAN_SURAHS = [
+    { no: 1, name: "Fatiha", ar: "الفاتحة", type: "Mekki", ayet: 7, makam: "Rast / Uşşak", desc: "Ümmü'l-Kitâb, namazların esası, Seb'u'l-Mesânî.", tecvid: "Medd-i Lâzım (ed-Dâllîn), İzhâr-ı Kameriyye" },
+    { no: 2, name: "Bakara", ar: "البقرة", type: "Medeni", ayet: 286, makam: "Hicaz / Rast / Uşşak", desc: "Kur'an'ın en uzun sûresi; Âyetü'l-Kürsî ve Âmenerrasûlü barındırır.", tecvid: "Her türlü medd, ihfâ, idğâm ve vakıf zenginliği" },
+    { no: 3, name: "Al-i Imran", ar: "آل عمران", type: "Medeni", ayet: 200, makam: "Hicaz / Bayati", desc: "Tevhid ve sabır sûresi.", tecvid: "Mîm-i sâkin hükümleri, Medd-i Muttasıl" },
+    { no: 4, name: "Nisa", ar: "النساء", type: "Medeni", ayet: 176, makam: "Bayati / Uşşak", desc: "Adalet, aile ve hak sûresi.", tecvid: "Kalkale, İhfâ, Lâzım duraklar" },
+    { no: 5, name: "Maide", ar: "المائدة", type: "Medeni", ayet: 120, makam: "Rast / Uşşak", desc: "Ahitler ve helal-haram hükümleri.", tecvid: "İdğâm-ı Maal-Gunne, Vakıf işaretleri" },
+    { no: 6, name: "En'am", ar: "الأنعام", type: "Mekki", ayet: 165, makam: "Hicaz / Rast", desc: "Tevhid ve peygamberler delilleri.", tecvid: "İsti'lâ harfleri, Hükmü'r-Râ" },
+    { no: 7, name: "A'raf", ar: "الأعراف", type: "Mekki", ayet: 206, makam: "Segah / Bayati", desc: "Geçmiş kavimlerin kıssaları ve ibretler.", tecvid: "Medd-i Munfasıl, İklâb" },
+    { no: 8, name: "Enfal", ar: "الأنفال", type: "Medeni", ayet: 75, makam: "Rast / Uşşak", desc: "Cihad, tevekkül ve zafer.", tecvid: "Kalkale, İdğâm-ı Misleyn" },
+    { no: 9, name: "Tevbe", ar: "التوبة", type: "Medeni", ayet: 129, makam: "Hicaz / Saba", desc: "Başında Besmele bulunmayan tek sûre.", tecvid: "İbtidâda Besmelesiz başlama ilkesi" },
+    { no: 10, name: "Yunus", ar: "يونس", type: "Mekki", ayet: 109, makam: "Segah / Rast", desc: "Peygamber kıssaları ve tevhid.", tecvid: "Medd-i Muttasıl, İzhâr" },
+    { no: 11, name: "Hud", ar: "هود", type: "Mekki", ayet: 123, makam: "Hicaz / Saba", desc: "41. âyette 'Mecrâhê' kelimesinde İmâle kuralı bulunur.", tecvid: "İmâle (41. Âyet: Mecrâhê), İsti'lâ" },
+    { no: 12, name: "Yusuf", ar: "يوسف", type: "Mekki", ayet: 111, makam: "Segah / Nihavend", desc: "Ahsenü'l-Kakas; 11. âyette İşmâm/Revm (Lâ te'mennâ) bulunur.", tecvid: "İşmâm / Revm (11. Âyet: Lâ te'mennâ)" },
+    { no: 13, name: "Ra'd", ar: "الرعد", type: "Medeni", ayet: 43, makam: "Hicaz / Rast", desc: "Gök gürültüsü ve kâinat âyetleri.", tecvid: "Tilavet secdesi (15. âyet), Kalkale" },
+    { no: 14, name: "Ibrahim", ar: "إبراهيم", type: "Mekki", ayet: 52, makam: "Segah / Rast", desc: "Hz. İbrahim'in duası ve tevhid.", tecvid: "İklâb, Medd-i Munfasıl" },
+    { no: 15, name: "Hicr", ar: "الحجر", type: "Mekki", ayet: 99, makam: "Bayati / Uşşak", desc: "Kur'an'ın korunmuşluğu âyeti.", tecvid: "İdğâm-ı Maal-Gunne" },
+    { no: 16, name: "Nahl", ar: "النحل", type: "Mekki", ayet: 128, makam: "Rast / Uşşak", desc: "Nimetler sûresi, tilavet secdesi barındırır.", tecvid: "Tilavet secdesi (49. âyet)" },
+    { no: 17, name: "Isra", ar: "الإسراء", type: "Mekki", ayet: 111, makam: "Segah / Rast", desc: "İsrâ ve Mi'rac hâdisesi, tilavet secdesi.", tecvid: "Tilavet secdesi (107. âyet)" },
+    { no: 18, name: "Kehf", ar: "الكهف", type: "Mekki", ayet: 110, makam: "Rast / Segah / Bayati", desc: "Ashâb-ı Kehf; 1-2. âyette (İveca-Kayyima) vâcip sekte bulunur.", tecvid: "1. Vâcip Sekte (Kehf 1-2: عِوَجًا ۜ قَيِّمًا)" },
+    { no: 19, name: "Meryem", ar: "مريم", type: "Mekki", ayet: 98, makam: "Segah / Saba", desc: "Hz. Meryem ve Hz. İsa; tilavet secdesi (58. âyet).", tecvid: "Mukatta'a harfleri (Kêf-Hê-Yê-Ayn-Sâd)" },
+    { no: 20, name: "Taha", ar: "طه", type: "Mekki", ayet: 135, makam: "Segah / Uşşak", desc: "Hz. Musa kıssası ve gönle inşirah veren tilavet.", tecvid: "Fâsıla harfleri ve medd-i tabiîler" },
+    { no: 21, name: "Enbiya", ar: "الأنبياء", type: "Mekki", ayet: 112, makam: "Hicaz / Bayati", desc: "Peygamberlerin niyazları ve duaları.", tecvid: "İdğâm-ı Bilâ-Gunne, Kalkale" },
+    { no: 22, name: "Hac", ar: "الحج", type: "Medeni", ayet: 78, makam: "Rast / Hicaz", desc: "2 tilavet secdesi (18 ve 77. âyetler) barındırır.", tecvid: "2 Tilavet secdesi, İhfâ" },
+    { no: 23, name: "Mu'minun", ar: "المؤمنون", type: "Mekki", ayet: 118, makam: "Rast / Uşşak", desc: "Müminlerin kurtuluş sıfatları.", tecvid: "Gunne ve nûn-ı sâkin kuralları" },
+    { no: 24, name: "Nur", ar: "النور", type: "Medeni", ayet: 64, makam: "Segah / Rast", desc: "Âyetü'n-Nûr (35. âyet) meşhurdur.", tecvid: "Medd-i Muttasıl, Lâzım duraklar" },
+    { no: 25, name: "Furkan", ar: "الفرقان", type: "Mekki", ayet: 77, makam: "Bayati / Uşşak", desc: "Hak ile bâtılı ayıran ölçü, tilavet secdesi (60).", tecvid: "Tilavet secdesi, Hükmü'r-Râ" },
+    { no: 26, name: "Suara", ar: "الشعراء", type: "Mekki", ayet: 227, makam: "Hicaz / Bayati", desc: "Peygamberler ve kavimlerin tevhid mücadelesi.", tecvid: "Şuarâ durağı ve fâsılalar" },
+    { no: 27, name: "Neml", ar: "النمل", type: "Mekki", ayet: 93, makam: "Rast / Segah", desc: "Hz. Süleyman ve Belkıs; içinde Besmele geçen âyet (30).", tecvid: "Tilavet secdesi (25), Besmele-i dâhiliyye" },
+    { no: 28, name: "Kasas", ar: "القصص", type: "Mekki", ayet: 88, makam: "Bayati / Segah", desc: "Hz. Musa'nın çocukluk ve risalet kıssası.", tecvid: "İdğâm-ı Mütecâniseyn" },
+    { no: 29, name: "Ankebut", ar: "العنكبوت", type: "Mekki", ayet: 69, makam: "Uşşak / Saba", desc: "İmtihan, sabır ve samimiyet.", tecvid: "İhfâ ve gunne tutuşları" },
+    { no: 30, name: "Rum", ar: "الروم", type: "Mekki", ayet: 60, makam: "Rast / Hicaz", desc: "Kâinat âyetleri ve fıtrat delilleri.", tecvid: "54. âyette 'Da'f' kelimesi zammeli de okunabilir" },
+    { no: 31, name: "Lokman", ar: "لقمان", type: "Mekki", ayet: 34, makam: "Segah / Rast", desc: "Hz. Lokman'ın oğluna hikmetli nasihatleri.", tecvid: "Medd-i Lîn, İzhâr" },
+    { no: 32, name: "Secde", ar: "السجدة", type: "Mekki", ayet: 30, makam: "Bayati / Hicaz", desc: "Cuma sabah namazında okunması sünnettir; tilavet secdesi (15).", tecvid: "Tilavet secdesi (15. Âyet)" },
+    { no: 33, name: "Ahzab", ar: "الأحزاب", type: "Medeni", ayet: 73, makam: "Hicaz / Rast", desc: "Hendek gazvesi ve Peygamber sevgisi.", tecvid: "Salavât âyeti (56), İdğâm" },
+    { no: 34, name: "Sebe", ar: "سبإ", type: "Mekki", ayet: 54, makam: "Rast / Bayati", desc: "Şükür ve nankörlük kıssaları.", tecvid: "Kalkale ve medd-i ârız" },
+    { no: 35, name: "Fatir", ar: "فاطر", type: "Mekki", ayet: 45, makam: "Segah / Rast", desc: "Melekler ve Allah'ın yaratıcı kudreti.", tecvid: "İzhâr-ı Kameriyye" },
+    { no: 36, name: "Yasin", ar: "يس", type: "Mekki", ayet: 83, makam: "Hüseyni / Rast / Bayati", desc: "Kur'an'ın kalbi; 52. âyette (Merkadinâ-Hêzâ) vâcip sekte bulunur.", tecvid: "2. Vâcip Sekte (Yâsîn 52: مَرْقَدِنَا ۜ هَذَا)" },
+    { no: 37, name: "Saffat", ar: "الصافات", type: "Mekki", ayet: 182, makam: "Hicaz / Rast", desc: "Melek safları ve peygamberler tevhidi.", tecvid: "Fâsıla harfleri, Medd-i Muttasıl" },
+    { no: 38, name: "Sad", ar: "ص", type: "Mekki", ayet: 88, makam: "Hicaz / Uşşak", desc: "Hz. Davud ve Hz. Süleyman; tilavet secdesi (24).", tecvid: "Tilavet secdesi (24. Âyet)" },
+    { no: 39, name: "Zumer", ar: "الزمر", type: "Mekki", ayet: 75, makam: "Segah / Saba", desc: "İhlas ve rahmet müjdesi (53. âyet).", tecvid: "İhfâ ve kalkale zenginliği" },
+    { no: 40, name: "Mu'min (Gafir)", ar: "غافر", type: "Mekki", ayet: 85, makam: "Rast / Bayati", desc: "Hâ-Mîm ailesinin ilk sûresi; tevbe ve af.", tecvid: "Hâ-Mîm medd-i lâzımları" },
+    { no: 41, name: "Fussilet", ar: "فصلت", type: "Mekki", ayet: 54, makam: "Hicaz / Segah", desc: "44. âyette 'Ea'cemiyyün' kelimesinde Teshîl kuralı bulunur.", tecvid: "Teshîl (44. Âyet: ءَاَعْجَمِيٌّ), Tilavet secdesi (38)" },
+    { no: 42, name: "Sura", ar: "الشورى", type: "Mekki", ayet: 53, makam: "Bayati / Rast", desc: "İstişare ve vahiy hakikati.", tecvid: "Ayn-Sîn-Kaaf medd-i lâzımları" },
+    { no: 43, name: "Zuhruf", ar: "الزخرف", type: "Mekki", ayet: 89, makam: "Rast / Uşşak", desc: "Dünya ziyneti ve ahiret saadeti.", tecvid: "İdğâm-ı Maal-Gunne" },
+    { no: 44, name: "Duhan", ar: "الدخان", type: "Mekki", ayet: 59, makam: "Hicaz / Saba", desc: "Kadir gecesi ve duman uyarısı.", tecvid: "Kalkale ve medd-i ârız" },
+    { no: 45, name: "Casiye", ar: "الجاثية", type: "Mekki", ayet: 37, makam: "Bayati / Uşşak", desc: "Kıyamet günü diz çöken ümmetler.", tecvid: "İhfâ ve medd-i muttasıl" },
+    { no: 46, name: "Ahkaf", ar: "الأحقاف", type: "Mekki", ayet: 35, makam: "Hicaz / Saba", desc: "Kum tepeleri ve Âd kavmi uyarısı.", tecvid: "Hükmü'r-Râ (kalın ve ince)" },
+    { no: 47, name: "Muhammed", ar: "محمد", type: "Medeni", ayet: 38, makam: "Rast / Uşşak", desc: "Hak ile bâtılın mücadelesi.", tecvid: "Mîm-i Müşeddede gunneleri" },
+    { no: 48, name: "Fetih", ar: "الفتح", type: "Medeni", ayet: 29, makam: "Rast / Hicaz / Uşşak", desc: "Hudeybiye zaferi ve feth-i mübîn müjdesi.", tecvid: "Medd-i Munfasıl ve kalkale" },
+    { no: 49, name: "Hucurat", ar: "الحجرات", type: "Medeni", ayet: 18, makam: "Segah / Rast", desc: "İslâm ahlâkı, edep ve kardeşlik yasaları.", tecvid: "11. âyette 'Bi'se'l-ismu' nakil/isneyn kıraati" },
+    { no: 50, name: "Kaf", ar: "ق", type: "Mekki", ayet: 45, makam: "Hicaz / Bayati", desc: "Ölüm, diriliş ve insanın yaratılışı.", tecvid: "Kâf harfi kalkaleleri ve medd-i lâzım" },
+    { no: 51, name: "Zariyat", ar: "الذاريات", type: "Mekki", ayet: 60, makam: "Bayati / Segah", desc: "Rızık ve kulluk gayesi.", tecvid: "Fâsıla harflerinde medd-i ârız" },
+    { no: 52, name: "Tur", ar: "الطور", type: "Mekki", ayet: 49, makam: "Rast / Uşşak", desc: "Tûr dağı ve cennet nimetleri.", tecvid: "Kalkale ve idğâm" },
+    { no: 53, name: "Necm", ar: "النجم", type: "Mekki", ayet: 62, makam: "Hicaz / Saba", desc: "Mi'rac ve vahiy; tilavet secdesi (62).", tecvid: "Tilavet secdesi (62. Âyet)" },
+    { no: 54, name: "Kamer", ar: "القمر", type: "Mekki", ayet: 55, makam: "Bayati / Saba", desc: "'Kur'an'ı öğüt için kolaylaştırdık' nakaratı.", tecvid: "Mükerret fâsılalar ve ra hükümleri" },
+    { no: 55, name: "Rahman", ar: "الرحمن", type: "Medeni", ayet: 78, makam: "Segah / Nihavend / Hicaz", desc: "Arûsü'l-Kur'ân; 31 kez tekrarlanan 'Âlâi Rabbikümâ' âyeti.", tecvid: "Tekrarlanan kâf ve lâfız ahengi" },
+    { no: 56, name: "Vaki'a", ar: "الواقعة", type: "Mekki", ayet: 96, makam: "Rast / Bayati", desc: "Kıyamet kopuşu ve üç sınıf insan.", tecvid: "İhfâ ve idğâm çeşitleri" },
+    { no: 57, name: "Hadid", ar: "الحديد", type: "Medeni", ayet: 29, makam: "Rast / Uşşak", desc: "Demir ve imanın imtihanı.", tecvid: "Medd-i Muttasıl ve ihfâ" },
+    { no: 58, name: "Mucadele", ar: "المجادلة", type: "Medeni", ayet: 22, makam: "Bayati / Rast", desc: "Her âyetinde 'Allah' lafzı geçen sûre.", tecvid: "Lâfzatullâh'ın kalın ve ince okunuşları" },
+    { no: 59, name: "Hasr", ar: "الحشر", type: "Medeni", ayet: 24, makam: "Hicaz / Rast / Bayati", desc: "Son 3 âyeti (Huvallāhüllezî) aşırların tacıdır.", tecvid: "Esmâü'l-Hüsnâ tecvidleri, Medd-i Muttasıl" },
+    { no: 60, name: "Mumtehine", ar: "الممتحنة", type: "Medeni", ayet: 13, makam: "Uşşak / Rast", desc: "İmtihan ve sadakat.", tecvid: "İdğâm-ı Maal-Gunne" },
+    { no: 61, name: "Saf", ar: "الصف", type: "Medeni", ayet: 14, makam: "Rast / Uşşak", desc: "Kenetlenmiş saflar.", tecvid: "İklâb ve ihfâ" },
+    { no: 62, name: "Cuma", ar: "الجمعة", type: "Medeni", ayet: 11, makam: "Rast / Segah", desc: "Cuma namazı ve ezan çağrısı.", tecvid: "Medd-i Munfasıl ve gunneler" },
+    { no: 63, name: "Munafikun", ar: "المنافقون", type: "Medeni", ayet: 11, makam: "Bayati / Uşşak", desc: "İkiyüzlülüğün tehlikeleri.", tecvid: "Kalkale ve medd-i ârız" },
+    { no: 64, name: "Tegabun", ar: "التغابن", type: "Medeni", ayet: 18, makam: "Segah / Rast", desc: "Kazanma ve kaybetme günü.", tecvid: "İhfâ ve zamîr hükümleri" },
+    { no: 65, name: "Talak", ar: "الطلاق", type: "Medeni", ayet: 12, makam: "Bayati / Rast", desc: "Helal sınırları ve takva müjdeleri.", tecvid: "İdğâm-ı Bilâ-Gunne" },
+    { no: 66, name: "Tahrim", ar: "التحريم", type: "Medeni", ayet: 12, makam: "Hicaz / Saba", desc: "Tevbe-i nasûh çağrısı.", tecvid: "Medd-i Muttasıl" },
+    { no: 67, name: "Mulk", ar: "الملك", type: "Mekki", ayet: 30, makam: "Bayati / Rast / Hicaz", desc: "Tebâreke; kabir azabından koruyucu, yatsıdan sonra sünnet.", tecvid: "İdğâm-ı Maal-Gunne, Kalkale, İklâb" },
+    { no: 68, name: "Kalem", ar: "القلم", type: "Mekki", ayet: 52, makam: "Uşşak / Bayati", desc: "Peygamberin yüce ahlâkı.", tecvid: "Nûn mukatta'a harfi" },
+    { no: 69, name: "Hakka", ar: "الحاقة", type: "Mekki", ayet: 52, makam: "Hicaz / Saba", desc: "Gerçekleşecek kıyamet uyarısı.", tecvid: "Medd-i Lâzım (el-Hâkka)" },
+    { no: 70, name: "Mearic", ar: "المعارج", type: "Mekki", ayet: 44, makam: "Bayati / Saba", desc: "Yükseliş dereceleri ve sabır.", tecvid: "Fâsıla tecvidleri" },
+    { no: 71, name: "Nuh", ar: "نوح", type: "Mekki", ayet: 28, makam: "Segah / Saba", desc: "Hz. Nuh'un 950 yıllık tebliğ niyazı.", tecvid: "İstiğfar ve isti'âze tecvidi" },
+    { no: 72, name: "Cin", ar: "الجن", type: "Mekki", ayet: 28, makam: "Hicaz / Bayati", desc: "Cinlerin Kur'an'ı dinleyip imanı.", tecvid: "Kalkale ve medd-i ârız" },
+    { no: 73, name: "Muzzemmil", ar: "المزمل", type: "Mekki", ayet: 20, makam: "Segah / Rast", desc: "'Kur'an'ı tertîl ile tane tane oku' emri.", tecvid: "Tertîl esası (4. âyet)" },
+    { no: 74, name: "Muddessir", ar: "المدثر", type: "Mekki", ayet: 56, makam: "Rast / Uşşak", desc: "'Kalk ve uyar' risalet emri.", tecvid: "Kısa ve dinamik fâsılalar" },
+    { no: 75, name: "Kiyame", ar: "القيامة", type: "Mekki", ayet: 40, makam: "Hicaz / Saba", desc: "27. âyette (Men-Râk) vâcip sekte bulunur.", tecvid: "3. Vâcip Sekte (Kıyâme 27: وَقِيلَ مَنْ ۜ رَاقٍ)" },
+    { no: 76, name: "Insan", ar: "الإنسان", type: "Medeni", ayet: 31, makam: "Segah / Nihavend", desc: "İnsanın yaratılışı ve cennet nimetleri.", tecvid: "Medd-i Lîn ve gunneler" },
+    { no: 77, name: "Murselat", ar: "المرسلات", type: "Mekki", ayet: 50, makam: "Hicaz / Saba", desc: "Rüzgârlar ve kıyamet müjdesi.", tecvid: "Tekrarlanan fâsılalar" },
+    { no: 78, name: "Nebe", ar: "النبإ", type: "Mekki", ayet: 40, makam: "Rast / Bayati / Uşşak", desc: "Amme cüzünün başı; aşır meşkinin ilk adımı.", tecvid: "İdğâm-ı Maal-Gunne, Kalkale, Medd-i Muttasıl" },
+    { no: 79, name: "Naziat", ar: "النازعات", type: "Mekki", ayet: 46, makam: "Hicaz / Rast", desc: "Can alan melekler ve Hz. Musa.", tecvid: "Medd-i Munfasıl ve gunneler" },
+    { no: 80, name: "Abese", ar: "عبس", type: "Mekki", ayet: 42, makam: "Bayati / Segah", desc: "İlâhî ikaz ve insanın yaratılışı.", tecvid: "Fâsıla harflerinde medd-i ârız" },
+    { no: 81, name: "Tekvir", ar: "التكوير", type: "Mekki", ayet: 29, makam: "Hicaz / Saba", desc: "Güneşin dürüldüğü kıyamet sahnesi.", tecvid: "İdğâm-ı Şemsiyye" },
+    { no: 82, name: "Infitar", ar: "الانفطار", type: "Mekki", ayet: 19, makam: "Segah / Saba", desc: "Göğün yarıldığı gün.", tecvid: "İhfâ ve kalkale" },
+    { no: 83, name: "Mutaffifin", ar: "المطففين", type: "Mekki", ayet: 36, makam: "Bayati / Hicaz", desc: "14. âyette (Bel-Râne) vâcip sekte bulunur.", tecvid: "4. Vâcip Sekte (Mutaffifîn 14: كَلَّا بَلْ ۜ رَانَ)" },
+    { no: 84, name: "Insikak", ar: "الانشقاق", type: "Mekki", ayet: 25, makam: "Rast / Segah", desc: "Göğün yarılıp Rabbine boyun eğmesi; tilavet secdesi (21).", tecvid: "Tilavet secdesi (21. Âyet)" },
+    { no: 85, name: "Buruc", ar: "البروج", type: "Mekki", ayet: 22, makam: "Hicaz / Rast", desc: "Burçlar ve Ashâb-ı Uhdûd.", tecvid: "Kalkale harfleri (ق ط ب ج د)" },
+    { no: 86, name: "Tarik", ar: "الطارق", type: "Mekki", ayet: 17, makam: "Rast / Uşşak", desc: "Gece parlayan necm-i sâkıb.", tecvid: "Medd-i Muttasıl" },
+    { no: 87, name: "A'la", ar: "الأعلى", type: "Mekki", ayet: 19, makam: "Segah / Rast", desc: "'Yüce Rabbinin adını tesbih et' emri.", tecvid: "İzhâr ve ihfâ" },
+    { no: 88, name: "Gasiye", ar: "الغاشية", type: "Mekki", ayet: 26, makam: "Hicaz / Saba", desc: "Dehşetiyle her şeyi kaplayan kıyamet.", tecvid: "Fâsıla harfleri" },
+    { no: 89, name: "Fecr", ar: "الفجر", type: "Mekki", ayet: 30, makam: "Hüseyni / Rast / Segah", desc: "On geceye yemin ve 'Ey mutmainne nefis' hitabı.", tecvid: "Hükmü'r-Râ durakları (kalın ve ince)" },
+    { no: 90, name: "Beled", ar: "البلد", type: "Mekki", ayet: 20, makam: "Rast / Uşşak", desc: "Mekke şehri ve sarp yokuş imtihanı.", tecvid: "Kalkale (Bê, Dêl)" },
+    { no: 91, name: "Sems", ar: "الشمس", type: "Mekki", ayet: 15, makam: "Segah / Rast", desc: "Güneşe ve aya yemin.", tecvid: "Fâsıla harflerinde medd-i tabiî" },
+    { no: 92, name: "Leyl", ar: "الليل", type: "Mekki", ayet: 21, makam: "Bayati / Uşşak", desc: "Gece ve gündüzün karşıtlığı.", tecvid: "İdğâm-ı Maal-Gunne" },
+    { no: 93, name: "Duha", ar: "الضحى", type: "Mekki", ayet: 11, makam: "Rast / Segah", desc: "Peygambere teselli ve rabbinin nimetini anma.", tecvid: "Medd-i Tabiî ve fâsılalar" },
+    { no: 94, name: "Insirah", ar: "الشرح", type: "Mekki", ayet: 8, makam: "Segah / Rast", desc: "Göğsün açılıp ferahlaması, güçlükle gelen kolaylık.", tecvid: "Râ harfi ve kalkale" },
+    { no: 95, name: "Tin", ar: "التين", type: "Mekki", ayet: 8, makam: "Rast / Uşşak", desc: "İncir, zeytin ve ahsen-i takvîm.", tecvid: "İdğâm-ı Şemsiyye" },
+    { no: 96, name: "Alak", ar: "العلق", type: "Mekki", ayet: 19, makam: "Hicaz / Bayati", desc: "İlk inen 'İkra' âyetleri; tilavet secdesi (19).", tecvid: "Tilavet secdesi (19. Âyet)" },
+    { no: 97, name: "Kadir", ar: "القدر", type: "Mekki", ayet: 5, makam: "Segah / Rast", desc: "Bin aydan hayırlı Kadir gecesi.", tecvid: "Hükmü'r-Râ ve kalkale" },
+    { no: 98, name: "Beyyine", ar: "البينة", type: "Medeni", ayet: 8, makam: "Rast / Uşşak", desc: "Apaçık delil ve ihlaslı ibadet.", tecvid: "Medd-i Muttasıl ve ihfâ" },
+    { no: 99, name: "Zilzal", ar: "الزلزلة", type: "Medeni", ayet: 8, makam: "Hicaz / Bayati", desc: "Yerin şiddetle sarsılması ve zerre miskal hesap.", tecvid: "İdğâm-ı Maal-Gunne ve ihfâ" },
+    { no: 100, name: "Adiyat", ar: "العاديات", type: "Mekki", ayet: 11, makam: "Hicaz / Saba", desc: "Soluk soluğa koşan atlar ve kıyamet.", tecvid: "Kalkale harfleri (Kutbu Cedin)" },
+    { no: 101, name: "Kari'a", ar: "القارعة", type: "Mekki", ayet: 11, makam: "Hicaz / Saba", desc: "Kapıları çalan kıyamet dehşeti.", tecvid: "Hê-i sekteler ve medd-i lâzım" },
+    { no: 102, name: "Tekasur", ar: "التكاثر", type: "Mekki", ayet: 8, makam: "Bayati / Uşşak", desc: "Çoklukla övünme yarışı ve kabirler.", tecvid: "Medd-i Ârız ve ra hükümleri" },
+    { no: 103, name: "Asr", ar: "العصر", type: "Mekki", ayet: 3, makam: "Rast / Segah / Uşşak", desc: "Zamâna yemin, hüsran ve kurtuluşun 4 şartı.", tecvid: "Vakıfta Râ harfi ve sâkin Sâd harfi telaffuzu" },
+    { no: 104, name: "Humeze", ar: "الهمزة", type: "Mekki", ayet: 9, makam: "Hicaz / Bayati", desc: "Dedikodu ve mal yığma uyarısı.", tecvid: "İdğâm-ı Bilâ-Gunne" },
+    { no: 105, name: "Fil", ar: "الفيل", type: "Mekki", ayet: 5, makam: "Rast / Uşşak", desc: "Kâbe'yi yıkmaya gelen Ebrehe ordusu.", tecvid: "İzhâr-ı Şefevî (Mîm harfi izhârı)" },
+    { no: 106, name: "Kureys", ar: "قريش", type: "Mekki", ayet: 4, makam: "Segah / Rast", desc: "Kureyş'in kış ve yaz emniyeti.", tecvid: "Medd-i Lîn kuralları (Sayf, Havf, Beyt)" },
+    { no: 107, name: "Ma'un", ar: "الماعون", type: "Mekki", ayet: 7, makam: "Bayati / Uşşak", desc: "Yetimi itip kakan ve gösteriş yapanlar.", tecvid: "İdğâm-ı Maal-Gunne" },
+    { no: 108, name: "Kevser", ar: "الكوثر", type: "Mekki", ayet: 3, makam: "Rast / Segah", desc: "Kur'an'ın en kısa sûresi; bitip tükenmeyen hayır.", tecvid: "Râ harfinde kalkale yapmama kuralı" },
+    { no: 109, name: "Kafirun", ar: "الكافرون", type: "Mekki", ayet: 6, makam: "Rast / Uşşak", desc: "Şirkten berî olma bildirisi.", tecvid: "Medd-i Munfasıl ve medd-i ârızlar" },
+    { no: 110, name: "Nasr", ar: "النصر", type: "Medeni", ayet: 3, makam: "Rast / Segah", desc: "Allah'ın yardımı ve fetih müjdesi.", tecvid: "Medd-i Muttasıl ve kalkale" },
+    { no: 111, name: "Tebbet", ar: "المسد", type: "Mekki", ayet: 5, makam: "Hicaz / Bayati", desc: "Ebû Leheb ve karısının helâki.", tecvid: "Kalkale harfleri (ق ط ب ج د)" },
+    { no: 112, name: "Ihlas", ar: "الإخلاص", type: "Mekki", ayet: 4, makam: "Rast / Segah / Uşşak", desc: "Tevhidin özü, Kur'an'ın üçte birine muadil.", tecvid: "Kalkale ve İklâb (Kufüven ehad)" },
+    { no: 113, name: "Felak", ar: "الفلق", type: "Mekki", ayet: 5, makam: "Hicaz / Rast", desc: "Muavvizeteyn; karanlıktan sabahın Rabbine sığınma.", tecvid: "Âyet sonu kuvvetli kalkaleler" },
+    { no: 114, name: "Nas", ar: "الناس", type: "Mekki", ayet: 6, makam: "Rast / Uşşak", desc: "Muavvizeteyn; vesveseci şeytandan sığınma.", tecvid: "Nûn-ı Müşeddede gunneleri" }
+  ];
+
+  // ===========================================================================
+  // 5.9.3 ARAPÇA 28 HARF VE FONETİK MAHREÇ VERİTABANI
+  // ===========================================================================
+  const ASISTAN_LETTERS = [
+    { name: "Elif", ar: "ا", mahrec: "Cevf (Ağız ve boğaz boşluğu)", sifat: "Hafâ, Med", kalin: false, tips: "Harekeli olduğunda hemze olur; sâkin uzatma harfi olduğunda önceki harfin kalınlığına uyar." },
+    { name: "Be", ar: "ب", mahrec: "Şefeteyn (İki dudağın ıslak iç kısımları)", sifat: "Cehr, Şiddet, İstifâl, İnfitâh, İzlâk, Kalkale", kalin: false, tips: "Sâkin olduğunda dudaklar tam kapanıp net bir kalkale ile patlatılır." },
+    { name: "Te", ar: "ت", mahrec: "Dil ucunun üst ön dişlerin etlerine değmesi", sifat: "Hems, Şiddet, İstifâl, İnfitâh, İsmât", kalin: false, tips: "Sâkin olduğunda arkasından hafif bir nefes fısıltısı (hems) bırakılır; ancak 'ts' gibi ıslıklanmamalıdır." },
+    { name: "Se (Peltek)", ar: "ث", mahrec: "Dil ucunun üst ön dişlerin kesici kenarlarına hafifçe dokunması", sifat: "Hems, Rihvet, İstifâl, İnfitâh, İsmât", kalin: false, tips: "Dil ucu hafifçe dışarı çıkarılır; keskin 'S' sesine kaçmamalıdır." },
+    { name: "Cim", ar: "ج", mahrec: "Dil ortasının üst damağa tam basması", sifat: "Cehr, Şiddet, İstifâl, İnfitâh, İsmât, Kalkale", kalin: false, tips: "Türkçedeki 'c' gibi yumuşak veya 'j' gibi gevşek değil; kuvvetli ve akmayan sert bir temasla seslendirilir." },
+    { name: "Ha", ar: "ح", mahrec: "Vesatu'l-Halk (Boğazın tam ortası)", sifat: "Hems, Rihvet, İstifâl, İnfitâh, İsmât", kalin: false, tips: "Boğaz hafifçe kısılarak tatlı bir nefes akıntısıyla çıkarılır; hırıltı (Hı) katılmamalıdır." },
+    { name: "Hi", ar: "خ", mahrec: "Edne'l-Halk (Boğazın ağza en yakın üst kısmı)", sifat: "Hems, Rihvet, İsti'lâ, İnfitâh, İsmât", kalin: true, tips: "Boğazın üst kısmında doğal ve yumuşak bir hırıltı ile kalın seslendirilir." },
+    { name: "Dal", ar: "د", mahrec: "Dil ucunun üst ön diş etlerine basması", sifat: "Cehr, Şiddet, İstifâl, İnfitâh, İsmât, Kalkale", kalin: false, tips: "Sâkin olduğunda kuvvetli bir kalkale ile tınlatılır; peltekleştirilmemelidir." },
+    { name: "Zel (Peltek)", ar: "ذ", mahrec: "Dil ucunun üst ön dişlerin uçlarına temas etmesi", sifat: "Cehr, Rihvet, İstifâl, İnfitâh, İsmât", kalin: false, tips: "Dil ucu dişlerin arasından hafifçe görünür; keskin 'Z' sesine dönüştürülmemelidir." },
+    { name: "Ra", ar: "ر", mahrec: "Dil ucunun üst ön diş etlerine yakın üst yüzeyi", sifat: "Cehr, Beyniyye, İstifâl/İsti'lâ, İnfitâh, İzlâk, İnhirâf, Tekrîr", kalin: false, tips: "Üstün ve ötrede kalın, esrede incedir. Dil fazla titretilmemeli (tekrir gizlenmeli), bir kez hafifçe değip ayrılmalıdır." },
+    { name: "Ze", ar: "ز", mahrec: "Dil ucunun alt ön dişlerin iç kısmına dayanması", sifat: "Cehr, Rihvet, İstifâl, İnfitâh, İzlâk, Safîr", kalin: false, tips: "Arı vızıltısına benzer keskin ve akıcı bir safîr ıslığıyla seslendirilir." },
+    { name: "Sin", ar: "س", mahrec: "Dil ucunun alt ön dişlerin iç yüzeyine yaklaşması", sifat: "Hems, Rihvet, İstifâl, İnfitâh, İsmât, Safîr", kalin: false, tips: "İnce, berrak ve nefes fısıltısıyla zengin bir safîr sesi üretilir." },
+    { name: "Sin (Şın)", ar: "ش", mahrec: "Dil ortasının üst damağa doğru yayılması", sifat: "Hems, Rihvet, İstifâl, İnfitâh, İsmât, Tefeşşî", kalin: false, tips: "Tefeşşî sıfatı gereği ses ağız boşluğuna yayılır." },
+    { name: "Sad", ar: "ص", mahrec: "Dil ucunun alt dişlere dayanıp dil arkasının damağa yükselmesi", sifat: "Hems, Rihvet, İsti'lâ, İtbâk, İsmât, Safîr", kalin: true, tips: "Tok, kalın ve kuvvetli ıslıklı safîr harfidir; dudaklar öne büzülmemelidir." },
+    { name: "Dad", ar: "ض", mahrec: "Dilin sol veya sağ yanının üst azı dişlerinin iç yüzeyine yaslanması", sifat: "Cehr, Rihvet, İsti'lâ, İtbâk, İsmât, İstitâle", kalin: true, tips: "Kur'an harflerinin en hususîsidir. Ses dil kenarı boyunca uzatılır (istitâle); Zê veya Dêl sesine dönüştürülmemelidir." },
+    { name: "Ti (Ta)", ar: "ط", mahrec: "Dil ucunun üst ön diş köklerine yapışması", sifat: "Cehr, Şiddet, İsti'lâ, İtbâk, İsmât, Kalkale", kalin: true, tips: "Kur'an'ın en kuvvetli harfidir. Hem kalkaleli hem kalın (itbâklı) olarak tok bir sesle patlatılır." },
+    { name: "Zi (Za)", ar: "ظ", mahrec: "Dil ucunun üst ön diş uçlarına dokunup dil arkasının yükselmesi", sifat: "Cehr, Rihvet, İsti'lâ, İtbâk, İsmât", kalin: true, tips: "Peltek ve kalın harftir; dil ucu azıcık dışarı çıkar, ses tok ve itbâklı akar." },
+    { name: "Ayn", ar: "ع", mahrec: "Vesatu'l-Halk (Boğazın tam ortası)", sifat: "Cehr, Beyniyye, İstifâl, İnfitâh, İsmât", kalin: false, tips: "Boğaz hafifçe sıkılarak ses pürüzsüzce akıtılır; Türkçe sesletimindeki yapay gırtlak darbelerinden kaçınılmalıdır." },
+    { name: "Gayn", ar: "غ", mahrec: "Edne'l-Halk (Boğazın ağza en yakın üst kısmı)", sifat: "Cehr, Rihvet, İsti'lâ, İnfitâh, İsmât", kalin: true, tips: "Hı harfinden farklı olarak cehr ile (ses telleri titreşerek) akıcı ve kalın çıkarılır." },
+    { name: "Fe", ar: "ف", mahrec: "Üst ön dişlerin uçlarının alt dudağın ıslak kısmına dokunması", sifat: "Hems, Rihvet, İstifâl, İnfitâh, İzlâk", kalin: false, tips: "Dişler dudağı ısırmaz, hafifçe nefes fısıltısıyla temas eder." },
+    { name: "Kaf", ar: "ق", mahrec: "Aksa'l-Lisân (Dil kökünün küçük dile yakın üst damağa basması)", sifat: "Cehr, Şiddet, İsti'lâ, İnfitâh, İsmât, Kalkale", kalin: true, tips: "Tok ve dolgun bir kalkale ile sarsılır; ince Kef harfiyle kesinlikle karıştırılmamalıdır." },
+    { name: "Kef", ar: "ك", mahrec: "Dil kökünün Kâf harfinin hemen önündeki sert damağa basması", sifat: "Hems, Şiddet, İstifâl, İnfitâh, İsmât", kalin: false, tips: "Sâkin olduğunda şiddetten sonra arkasından incecik bir nefes akımı (hems) bırakılır." },
+    { name: "Lam", ar: "ل", mahrec: "Dil ucunun iki yanıyla üst ön diş etlerine genişçe dokunması", sifat: "Cehr, Beyniyye, İstifâl, İnfitâh, İzlâk, İnhirâf", kalin: false, tips: "Allah lafzında üstün ve ötre öncesinde kalın, diğer yerlerde ince ve berraktır." },
+    { name: "Mim", ar: "م", mahrec: "Şefeteyn (İki dudağın birbirine hafifçe kapanması)", sifat: "Cehr, Beyniyye, İstifâl, İnfitâh, İzlâk, Gunne", kalin: false, tips: "Sesi dudak kapanışıyla genizden (hayşum) 1.5 elif miktarı gunne ile tutulabilir." },
+    { name: "Nun", ar: "ن", mahrec: "Dil ucunun üst ön diş etlerine dokunması", sifat: "Cehr, Beyniyye, İstifâl, İnfitâh, İzlâk, Gunne", kalin: false, tips: "Tenvin ve nûn-ı sâkin kurallarının (İzhâr, İhfâ, İdğâm, İklâb) temel merkezidir." },
+    { name: "Vav", ar: "و", mahrec: "Şefeteyn (İki dudağın öne doğru yuvarlanıp büzülmesi)", sifat: "Cehr, Rihvet, İstifâl, İnfitâh, İsmât, Lîn", kalin: false, tips: "Dudaklar öne doğru iyice yuvarlanmalı, dişler dudağa değdirilmemelidir." },
+    { name: "He", ar: "ه", mahrec: "Aksa'l-Halk (Boğazın göğse en yakın dibi)", sifat: "Hems, Rihvet, İstifâl, İnfitâh, İsmât, Hafâ", kalin: false, tips: "Göğüsten gelen derin bir nefesle çıkarılır; zayıf (hafâ) bir harf olduğundan kaybolmamasına dikkat edilmelidir." },
+    { name: "Ye", ar: "ي", mahrec: "Dil ortasının üst sert damağa yükselmesi", sifat: "Cehr, Rihvet, İstifâl, İnfitâh, İsmât, Lîn", kalin: false, tips: "Sâkin olup önceki harf üstünlü olduğunda yumuşacık bir Medd-i Lîn oluşturur." }
+  ];
+
+  // ===========================================================================
+  // 5.9.4 MEŞHUR KURRÂ & TİLAVET ÜSLUPLARI
+  // ===========================================================================
+  const ASISTAN_RECITERS = [
+    { id: "abdussamed", name: "Şeyh Abdüsbâsit Abdüssamed", country: "Mısır", style: "Tahkîk & Mecd", desc: "Benzersiz nefes kapasitesi, tiz perdelerdeki kusursuz rezonans ve vakur tahkik üslubu.", listens: "Yûsuf Sûresi, Meryem Sûresi, Tekvîr Sûresi" },
+    { id: "mensavi", name: "Şeyh Muhammed Sıddık el-Menşâvî", country: "Mısır", style: "Tahkîk & Tedvîr", desc: "Huşû, hüzün ve kusursuz mahreç edası; Kur'an tilavetinde kalbe en çok tesir eden kâri olarak bilinir.", listens: "Haşr Sûresi sonu, Rûm Sûresi, Yûsuf Sûresi" },
+    { id: "husari", name: "Şeyh Mahmûd Halîl el-Husarî", country: "Mısır", style: "Şeyhu'l-Kurrâ (Mutlak Referans)", desc: "Tecvid ilminin ve mahreç netliğinin tartışmasız hocasıdır; tahkik ve hadr kayıtları tüm dünyada tecvid ölçüsüdür.", listens: "Cüz 30 (Amme Cüzü), Mülk Sûresi" },
+    { id: "mustafa_ismail", name: "Şeyh Mustafa İsmâil", country: "Mısır", style: "Makamât Sultanı", desc: "Âyet mânâsına göre benzersiz makam geçkileri (Rast, Bayati, Saba, Hicaz, Segah); aşır icrasının zirvesidir.", listens: "Hucurât Sûresi, Kâf Sûresi" },
+    { id: "devseri", name: "Şeyh Yâsir ed-Devserî", country: "Suudi Arabistan", style: "Hadr & Hızlı İmamet", desc: "Mescid-i Harâm imamı; namaz imameti süratinde (110-120 BPM) güçlü, akıcı ve heyecan verici kıraat.", listens: "Mülk Sûresi, Kıyamet Sûresi" },
+    { id: "sudeys", name: "Şeyh Abdurrahman es-Sudeys", country: "Suudi Arabistan", style: "Kâbe İmamet Üslubu", desc: "Mescid-i Harâm imamı & hatibi; kendine has Uşşak/Hicaz nağmeleri ve dua kıraatleri.", listens: "Fatiha Sûresi, Bakara Sûresi" },
+    { id: "suraym", name: "Şeyh Suud eş-Şuraym", country: "Suudi Arabistan", style: "Hüzünlü & Vakur", desc: "Mescid-i Harâm eski imamı; derin, hüzünlü ve akıcı tilavet tarzı.", listens: "İnşikak Sûresi, Necm Sûresi" },
+    { id: "muaykili", name: "Şeyh Mâhir el-Muaykılî", country: "Suudi Arabistan", style: "Duygulu Uşşak", desc: "Mescid-i Harâm imamı; sade, berrak diksiyon ve dinleyeni saran huzurlu nağmeler.", listens: "Rahmân Sûresi, Yâsîn Sûresi" },
+    { id: "afasi", name: "Şeyh Mişârî Râşid el-Afâsî", country: "Kuveyt", style: "Stüdyo & Aşır", desc: "Net harf telaffuzları, melodik Nihavend ve Uşşak icraları.", listens: "Kehf Sûresi, Duhâ Sûresi" },
+    { id: "gamidi", name: "Şeyh Sa'd el-Gâmidî", country: "Suudi Arabistan", style: "Sakin Tedvîr", desc: "Hafızlık tekrarı ve mukabele dinlemesi için son derece dengeli ve sakin bir sürat.", listens: "Cüz 1-30 Mukabele kayıtları" }
+  ];
+
+  // ===========================================================================
+  // 5.9.5 TİLAVET MAKAMLARI DERİN REHBERİ
+  // ===========================================================================
+  const ASISTAN_MAKAMS_EXP = [
+    { id: "rast", name: "Rast Makamı", karar: "G3 (Sol / Rast)", guclu: "D4 (Re / Nevâ)", duygu: "Ferahlık, vakar, teslimiyet, sevinç", ayetler: "Fâtiha, Duhâ, İnşirâh, müjde ve cennet âyetleri", gecki: "Uşşak veya Segâh'a geçiş son derece doğaldır." },
+    { id: "ussak", name: "Uşşak Makamı", karar: "A3 (La / Dügâh)", guclu: "D4 (Re / Nevâ)", duygu: "Sıcaklık, tevazu, samimiyet, kalbî yakınlık", ayetler: "Namaz tilavetleri, öğüt ve kıssa âyetleri", gecki: "Hicaz veya Bayatî ile çok yakın akrabadır." },
+    { id: "bayati", name: "Bayatî Makamı", karar: "A3 (La / Dügâh)", guclu: "D4 (Re / Nevâ)", duygu: "Hüzün, vakar, derinlik ve huşû", ayetler: "Mülk, Yâsîn, Nebe ve tefekkür âyetleri", gecki: "Sabâ veya Hicaz geçkileriyle rikkati artırır." },
+    { id: "hicaz", name: "Hicaz Makamı", karar: "A3 (La / Dügâh)", guclu: "D4 (Re / Nevâ)", duygu: "Yakarış, haşyet, heybet ve tevbe hissi", ayetler: "Kıyamet, azap uyarıları, kabir ve ilâhî celâl âyetleri", gecki: "Rast veya Uşşak'a yumuşak bir kararla bağlanabilir." },
+    { id: "segah", name: "Segâh Makamı", karar: "B3d (Si 1 Koma Bemol / Segâh)", guclu: "D4 (Re / Nevâ)", duygu: "Mistik, uhrevî, iç huzuru, ruhanî derinlik", ayetler: "Âyetü'l-Kürsî, Rahmân, Kadir ve dua âyetleri", gecki: "Müstakil icra edilir, hüzzam nağmeleriyle zenginleşir." },
+    { id: "saba", name: "Sabâ Makamı", karar: "A3 (La / Dügâh)", guclu: "C4 (Do / Çargâh)", duygu: "İçli hüzün, pişmanlık, gözyaşı ve niyaz", ayetler: "Geçmiş kavimlerin helâki, kıyamet ve cehennem tasvirleri", gecki: "Hicaz dörtlüsü üzerinden seyreder." },
+    { id: "nihavend", name: "Nihâvend Makamı", karar: "G3 (Sol / Rast)", guclu: "D4 (Re / Nevâ)", duygu: "Tatlı duygusallık, asalet, dinginlik (minör tını)", ayetler: "Kıssalar, cennet ırmakları ve nimet tasvirleri", gecki: "Kürdî veya Rast ile dengelenir." },
+    { id: "kurdi", name: "Kürdî Makamı", karar: "A3 (La / Dügâh)", guclu: "D4 (Re / Nevâ)", duygu: "Hüzünlü, akıcı, modern ve sade", ayetler: "Geceleri yapılan hüzünlü tilavetler", gecki: "Hicaz veya Uşşak geçkileri yapılabilir." },
+    { id: "huseyni", name: "Hüseynî Makamı", karar: "A3 (La / Dügâh)", guclu: "E4 (Mi / Hüseynî)", duygu: "Mertlik, vakar, ferahlık ve ulviyet", ayetler: "Cihad, zafer, tevhid ve azamet âyetleri", gecki: "Uşşak dizisiyle karar verir." },
+    { id: "acem", name: "Acem Makamı", karar: "F4 (Fa / Acem) / Rast", guclu: "A4 (La / Gerdâniye)", duygu: "Coşku, parlaklık, nurlu ve açık atmosfer", ayetler: "Müjde, sevinç ve hamd âyetleri", gecki: "Beyâtî veya Uşşak üzerine parlak bir perde olarak kullanılır." }
+  ];
+
+  // ===========================================================================
+  // 5.9.6 KOMBİNATÖRİK BİLGİ VE SENARYO SENTEZ MOTORU
+  // ===========================================================================
+  function synthesizeCombinatorialAnswer(q, rawQuery) {
+    // 1. Sûre Tespiti
+    const matchedSurah = ASISTAN_SURAHS.find(s => {
+      const normName = trNormalize(s.name);
+      return q.includes(normName) || (normName.length >= 4 && q.split(' ').includes(normName));
+    });
+
+    // 2. Makam Tespiti
+    const matchedMakam = ASISTAN_MAKAMS_EXP.find(m => {
+      const normM = trNormalize(m.id);
+      return q.includes(normM);
+    });
+
+    // 3. Harf Tespiti
+    const matchedLetter = ASISTAN_LETTERS.find(l => {
+      const normL = trNormalize(l.name.split(' ')[0]);
+      return q.includes(`${normL} harfi`) || q.includes(`${normL} mahrec`) || q.includes(`${normL} nasil`) || (normL.length >= 3 && q.split(' ').includes(normL));
+    });
+
+    // 4. Kâri Tespiti
+    const matchedReciter = ASISTAN_RECITERS.find(r => {
+      const normR = trNormalize(r.name);
+      const words = normR.split(' ');
+      return words.some(w => w.length > 4 && q.includes(w)) || q.includes(r.id);
+    });
+
+    // 5. Zaman / Çalışma Süresi Tespiti
+    const timeMatch = q.match(/\b(5|10|15|20|25|30|45|60)\s*(dk|dakika|dakikalik)\b/);
+
+    // 6. Ses ve Nefes Sağlığı Tespiti
+    const isVocalHealth = /\b(ses kisik|sesim kisildi|bogaz agrisi|bogazim aciyor|sesim yoruluyor|nefesim yetmiyor|diyafram nasil|ses telleri|vokal hijyen|ses isinmasi|sesimi nasil acarim|nefes egzersizi)\b/.test(q);
+
+    // 7. Durak ve Secavend Tespiti
+    const isDurak = /\b(secavend|durak|vakif|mim duragi|ta duragi|cim duragi|ze duragi|sad duragi|la duragi|sekte)\b/.test(q);
+
+    // SENARYO A: SÛRE + MAKAM BİLEŞİMİ
+    if (matchedSurah && matchedMakam) {
+      return {
+        text: `📖 ${matchedSurah.name} Sûresi & 🎵 ${matchedMakam.name} Meşki\n\n` +
+          `• Karakter Uyumu: ${matchedSurah.name} sûresi (${matchedSurah.type}, ${matchedSurah.ayet} âyet), ${matchedMakam.name}'nın ${matchedMakam.duygu} atmosferiyle son derece ahenkli bir icra sunar.\n` +
+          `• Karar ve Seyir: ${matchedMakam.karar} perdesinde karar kılarak başlayın; güçlü perdesi olan ${matchedMakam.guclu} üzerinde cümlenin mânâ vurgusunu verin.\n` +
+          `• Tecvid Dikkat Noktası: ${matchedSurah.tecvid} kurallarını makam nağmelerine kurban etmeyin; tecvid daima makamın önündedir.\n` +
+          `• Geçki Önerisi: Âyet geçişlerinde ${matchedMakam.gecki}`,
+        references: [`Tilavet Akademisi Makam Atlası`, `TDV İslâm Ansiklopedisi: Makâmât fî Tilâveti'l-Kur'ân`],
+        options: [
+          { label: `${matchedSurah.name} sûresi detayları`, query: `${matchedSurah.name} suresi ozellikleri` },
+          { label: `${matchedMakam.name} özellikleri`, query: `${matchedMakam.id} makamı özellikleri` },
+          { label: "20 dk tilavet planı", query: "20 dakikalık çalışma planı" }
+        ]
+      };
+    }
+
+    // SENARYO B: SÛRE + TECVİD / SEKTE / ÖZEL KELİME BİLEŞİMİ
+    if (matchedSurah && (q.includes('tecvid') || q.includes('sekte') || q.includes('kural') || q.includes('okunus'))) {
+      return {
+        text: `📖 ${matchedSurah.name} Sûresi — Tecvid & Vakıf İncelemesi\n\n` +
+          `• Temel Bilgiler: ${matchedSurah.no}. Sûre, ${matchedSurah.type} dönemde nâzil olmuştur ve ${matchedSurah.ayet} âyettir.\n` +
+          `• Öne Çıkan Hükümler: ${matchedSurah.tecvid}\n` +
+          `• Mânâ ve Muhteva: ${matchedSurah.desc}\n` +
+          `• Tavsiye Edilen Tilavet Makamı: ${matchedSurah.makam}\n\n` +
+          `💡 Püf Noktası: Bu sûreyi okurken vakıf yerlerinde nefesinizi tazeleyin, harflerin mahrecini aceleye getirmeksizin tertîl ile eda edin.`,
+        references: [`Mushaf-ı Şerîf Tedkik ve Kıraat Kurulu Rehberi`, `İbnü'l-Cezerî, en-Neşr`],
+        options: [
+          { label: `${matchedSurah.name} hangi makamda okunur?`, query: `${matchedSurah.name} suresi hangi makamda okunur?` },
+          { label: "4 Vâcip Sekte", query: "Kur'an'daki 4 sekte" },
+          { label: "Özel kelimeler atlası", query: "Özel kelimeler" }
+        ]
+      };
+    }
+
+    // SENARYO C: SADECE SÛRE SORULDUĞUNDA
+    if (matchedSurah && (q.includes('hakkinda') || q.includes('nedir') || q.includes('anlat') || q.includes('ozellik') || q.includes('sure') || q.split(' ').length <= 3)) {
+      return {
+        text: `📖 ${matchedSurah.no}. ${matchedSurah.name} Sûresi (${matchedSurah.ar})\n\n` +
+          `• İniş Yeri & Âyet: ${matchedSurah.type} sûredir, toplam ${matchedSurah.ayet} âyetten oluşur.\n` +
+          `• Özeti: ${matchedSurah.desc}\n` +
+          `• Tilavette Öne Çıkan Makamlar: ${matchedSurah.makam}\n` +
+          `• Dikkat Edilecek Tecvidler: ${matchedSurah.tecvid}`,
+        references: [`Diyanet Kur'an Yolu Tefsiri`, `Tilavet Akademisi Sûre Rehberi`],
+        options: [
+          { label: `${matchedSurah.name} tecvid incelikleri`, query: `${matchedSurah.name} suresinde hangi tecvidler var?` },
+          { label: `${matchedSurah.name} makam meşki`, query: `${matchedSurah.name} suresi hangi makamda okunur?` },
+          { label: "Günlük tilavet planı", query: "20 dakikalık çalışma planı" }
+        ]
+      };
+    }
+
+    // SENARYO D: HARF + MAHREÇ / TELAFFUZ
+    if (matchedLetter) {
+      return {
+        text: `🔤 ${matchedLetter.name} Harfi (${matchedLetter.ar}) Fonetik ve Mahreç Rehberi\n\n` +
+          `• Mahreç Yeri: ${matchedLetter.mahrec}\n` +
+          `• Sıfatları: ${matchedLetter.sifat}\n` +
+          `• Kalınlık/İncelik: ${matchedLetter.kalin ? 'Kalın (Mufahham / İsti\'lâ)' : 'İnce (Murakkak / İstifâl)'}\n` +
+          `• Telaffuz Püf Noktası: ${matchedLetter.tips}\n\n` +
+          `💡 Alıştırma: Harfi önce cezimli (ör. “Eb”, “Et”, “E'”), ardından sırasıyla üstün, esre ve ötre ile ayna karşısında çalışın.`,
+        references: [`el-Cezeriyye, Bâbu Mahârici'l-Hurûf`, `Tilavet Akademisi Fonetik Atölyesi`],
+        options: [
+          { label: "Kalkale harfleri", query: "Kalkale kuralı nedir?" },
+          { label: "Mahreçler modülü", query: "Mahreç ve harflerin çıkış yerleri" },
+          { label: "Lahn çeşitleri", query: "Lahn-ı Celî ve Lahn-ı Hafî" }
+        ]
+      };
+    }
+
+    // SENARYO E: KÂRÎ / KURRÂ BİLGİSİ
+    if (matchedReciter) {
+      return {
+        text: `🎙 ${matchedReciter.name} Tilavet Ekolü\n\n` +
+          `• Ülke ve Ekol: ${matchedReciter.country} — ${matchedReciter.style}\n` +
+          `• Üslûp Karakteri: ${matchedReciter.desc}\n` +
+          `• Örnek Dinleme Sûreleri: ${matchedReciter.listens}\n\n` +
+          `💡 Öğrenci Tavsiyesi: Bu kârinin okuyuşunu taklit ederken harf netliğine ve nefes tasarrufuna dikkat edin. Kendi doğal ses sınırlarınızı zorlamadan meşk edin.`,
+        references: [`Âlemü'l-Kurrâ Ansiklopedisi`, `Tilavet Akademisi Kâri Atlası`],
+        options: [
+          { label: "Tahkîk ve Hadr farkı", query: "Tilavet mertebeleri" },
+          { label: "Nefes ve ses yönetimi", query: "Güvenli nefes ve ses çalışması" },
+          { label: "Rast makamı özellikleri", query: "Rast makamı özellikleri" }
+        ]
+      };
+    }
+
+    // SENARYO F: ZAMAN BAZLI ÇALIŞMA PLANI (5, 10, 15, 20, 30, 45, 60 DK)
+    if (timeMatch) {
+      const mins = parseInt(timeMatch[1], 10);
+      let planText = "";
+      if (mins <= 10) {
+        planText = `• 1-2 dk: Sakin burun nefesi ve gevşeme.\n• 2 dk: Yumuşak dudak trili ve mırıldanma (humming) ile ses ısınması.\n• 6 dk: Kısa bir sûrede (ör. Fâtiha veya Duhâ) tecvid odaklı yavaş okuyuş.`;
+      } else if (mins <= 20) {
+        planText = `• 2 dk: Diyafram nefes tazelemesi; omuzları kasmadan rahat nefes.\n• 2 dk: Lip trill ve ses teli ısınması.\n• 8 dk: Tecvid kurallarını (İzhâr, İhfâ, Kalkale) hedefleyen odaklı tilavet.\n• 8 dk: Seçtiğiniz makamda (ör. Rast veya Uşşak) ses sınırınızı zorlamadan aşır meşki.`;
+      } else if (mins <= 35) {
+        planText = `• 3 dk: Vokal açma ve nefes eşgüdümü.\n• 10 dk: Yeni ezberlenecek veya pekiştirilecek âyetlerin hecelenerek dinlenmesi.\n• 10 dk: Ezber tekrarı (5'li usul: dünün dersi + son sayfalar).\n• 7 dk: Aşır tarzında huşû ile tilavet ve vakıf tatbikatı.`;
+      } else {
+        planText = `• 5 dk: Kapsamlı ses ısınması ve nefes disiplini.\n• 15 dk: Tecvid incelikleri, lahn tespiti ve özel kelimeler (sekte, imale, teshil).\n• 20 dk: Makam geçkileri (Bayati -> Saba -> Hicaz) ile uzun nefes aşır çalışması.\n• 5 dk: Ses dinlendirme, oda sıcaklığında su tüketimi ve vokal soğuma.`;
+      }
+      return {
+        text: `⏱ ${mins} Dakikalık Özel Tilavet ve Meşk Programı\n\n${planText}\n\n💡 Öneri: Çalışırken boğazınızda yanma veya batma hissederseniz derhal durup ses istirahati yapın.`,
+        references: [`Tilavet Akademisi Pedagojik Öğretim Tasarımı`],
+        options: [
+          { label: "Nefes egzersizi", query: "Güvenli nefes ve ses çalışması" },
+          { label: "Tecvid kuralları", query: "İzhâr kuralı nedir?" },
+          { label: "Rast makamı", query: "Rast makamı özellikleri" }
+        ]
+      };
+    }
+
+    // SENARYO G: SES VE NEFES SAĞLIĞI
+    if (isVocalHealth) {
+      return {
+        text: `🎙 Tilavette Ses & Nefes Sağlığı İlkeleri\n\n` +
+          `• Diyafram Kullanımı: Nefes alırken omuzlarınızı ve göğsünüzü yukarı kaldırmayın; karın kaslarınızı ve alt kaburgalarınızı rahatça yana doğru genişletin.\n` +
+          `• Boğaz Ağrısı & Kısıklık: Asla kısık veya ağrıyan sesin üzerine okumaya devam etmeyin. Boğazınızı öksürerek temizlemek ses tellerine çarpar; bunun yerine bir yudum ılık su için.\n` +
+          `• Vokal Hijyen: Tilavet öncesi aşırı soğuk, aşırı sıcak, acı veya koyu çay/kahve tüketmeyin. Oda sıcaklığında su için.\n` +
+          `• Sabah Isınması: Sabah tilavetinden önce 3 dakika yumuşak dudak trili (lip trill) ve hafif mırıldanma (humming) yapın.`,
+        references: [`Prof. Dr. Erol Belgin, Ses Hijyeni ve Vokal Sağlık`, `Tilavet Akademisi Ses Atölyesi`],
+        options: [
+          { label: "20 dk çalışma planı", query: "20 dakikalık çalışma planı" },
+          { label: "Fem-i Muhsin ilkesi", query: "Fem-i Muhsin ilkesi nedir?" },
+          { label: "Makam rehberi", query: "Makamlar tilavette nasıl kullanılır?" }
+        ]
+      };
+    }
+
+    // SENARYO H: VAKIF & SECAVEND DURAKLARI
+    if (isDurak) {
+      return {
+        text: `⏸ Kur'an Tilavetinde Secavend Durak İşaretleri\n\n` +
+          `• (م) Lâzım Vakıf: Durulması şarttır; geçilirse mânâ karışabilir.\n` +
+          `• (ط) Mutlak Vakıf: Durmak evlâdır; cümlenin mânâsı tamamlanmıştır.\n` +
+          `• (ج) Câiz Vakıf: Durmak da geçmek de caizdir; durmak daha efdaldir.\n` +
+          `• (ز) Mücevvez Vakıf: Geçmek evlâ, durmak caizdir.\n` +
+          `• (ص) Murahhas Vakıf: Nefes yetmezse zaruret sebebiyle durulabilir.\n` +
+          `• (لا) Lâ Vakfı: Durulmaz; nefes bitip durulursa geriden alınarak devam edilir.\n` +
+          `• (∴ ∴) Mu'âneka (Üç Nokta): Birbirine yakın iki yerde bulunur; birinde durulursa diğerinde geçilir.`,
+        references: [`İmam Muhammed b. Tayfur es-Secâvendî, Kitâbü'l-Vakf ve'l-İbtidâ`],
+        options: [
+          { label: "Kur'an'daki 4 sekte", query: "Kur'an'daki 4 sekte" },
+          { label: "Lahn çeşitleri", query: "Lahn-ı Celî ve Lahn-ı Hafî" },
+          { label: "20 dk plan", query: "20 dakikalık çalışma planı" }
+        ]
+      };
+    }
+
+    return null;
+  }
+
   function queryAsistan(queryText) {
     const q = trNormalize(queryText);
     if (/^\d{1,2}$/.test(q) && pendingAsistanOptions.length) {
@@ -9620,6 +10097,14 @@
       };
     }
 
+    // 1. Gündelik Konuşmalar & İslâmî Hitaplar (Selam, Hal Hatır, Teşekkür, Dua, Vedalaşma, vb.)
+    const dailyReply = matchDailyDialogue(q, queryText);
+    if (dailyReply) return dailyReply;
+
+    // 2. Kombinatorik Bilgi & Senaryo Sentez Motoru (Sûre, Makam, Harf, Kâri, Süre, Ses & Nefes)
+    const synthReply = synthesizeCombinatorialAnswer(q, queryText);
+    if (synthReply) return synthReply;
+
     // Bilgi tabanında arama (en spesifik anahtar kelime öncelikli)
     let match = null;
     let bestKeywordLen = 0;
@@ -9681,12 +10166,12 @@
 
     container.innerHTML = `
       <div class="asistan-layout-wrap">
-        <!-- Başlık Kartı -->
-        <div class="akademi-card">
+        <!-- Başlık Kartı (Mobilde ℹ️ ikonu ile açılır/kapanır, Masaüstünde her zaman görünür) -->
+        <div class="akademi-card asistan-header-card ${asistanInfoOpen ? 'is-open' : ''}">
           <div class="card-headline">
             <div>
               <span class="card-badge gold">KONU MENÜLÜ ÖĞRENME REHBERİ</span>
-              <h2 class="card-title"> Tilavet Öğrenme Asistanı</h2>
+              <h2 class="card-title">🕌 Tilavet Öğrenme Asistanı</h2>
               <p class="card-desc">Tilavet, Kur’an ilimleri ve İslamî temel kavramlarda uygulama içi kaynaklara dayalı rehberlik; anlamadığında farklı anlatım ve konu seçimi.</p>
             </div>
           </div>
@@ -9695,7 +10180,8 @@
           </div>
         </div>
 
-        <div class="asistan-topic-menu" aria-label="Asistan konu menüsü">
+        <!-- Konu Menüsü (Mobilde 📋 ikonu ile açılır/kapanır, Masaüstünde her zaman görünür) -->
+        <div class="asistan-topic-menu ${asistanTopicsOpen ? 'is-open' : ''}" aria-label="Asistan konu menüsü">
           <div class="asistan-topic-menu-heading">
             <strong>Hangi konuda yardımcı olayım?</strong>
             <span>Bir başlık seç veya kendi sorunu yaz.</span>
@@ -9709,29 +10195,43 @@
           </div>
         </div>
 
-        <!-- Sohbet Kartı -->
+        <!-- Sohbet Kartı (Mobilde WhatsApp Arayüzü) -->
         <div class="asistan-chat-card">
+          <!-- WhatsApp Başlık Barı -->
           <div class="asistan-chat-header">
-            <div style="display:flex; align-items:center; gap:0.6rem;">
-              <span style="font-size:1.3rem;"></span>
-              <div>
-                <strong style="color:var(--accent-gold); font-size:0.95rem;">Tilavet ve Dinî Bilgi Rehberi</strong>
-                <span style="font-size:0.75rem; color:#00e676; margin-left:0.5rem;">● Uygulama içi</span>
+            <div class="asistan-wa-contact">
+              <div class="asistan-wa-avatar">
+                <span class="asistan-wa-avatar-icon">🕌</span>
+                <span class="asistan-wa-online-dot" title="Çevrimiçi"></span>
+              </div>
+              <div class="asistan-wa-meta">
+                <strong class="asistan-wa-name">Tilavet Asistanı</strong>
+                <span class="asistan-wa-status">çevrimiçi</span>
               </div>
             </div>
-            <button type="button" class="btn-sm-action" id="btnClearAsistanChat" style="font-size:0.78rem;">Sohbeti Sıfırla</button>
+            <div class="asistan-wa-actions">
+              <button type="button" class="asistan-wa-btn-icon" id="btnToggleAsistanInfo" title="Rehber ve İlkeler" aria-label="Rehber">
+                ℹ️
+              </button>
+              <button type="button" class="asistan-wa-btn-icon" id="btnToggleAsistanTopics" title="Konu Başlıkları" aria-label="Konular">
+                📋
+              </button>
+              <button type="button" class="asistan-wa-btn-icon" id="btnClearAsistanChat" title="Sohbeti Sıfırla" aria-label="Sıfırla">
+                🔄
+              </button>
+            </div>
           </div>
 
-          <!-- Mesajlar Kutusu -->
+          <!-- Mesajlar Kutusu (Mobilde Cami Desenli WhatsApp Duvar Kâğıdı) -->
           <div class="asistan-messages-box" id="asistanMessagesBox">
             ${asistanChatHistory.map(m => `
               <div class="asistan-msg-row ${m.sender}">
-                <div class="asistan-avatar">${m.sender === 'user' ? '' : ''}</div>
+                <div class="asistan-avatar">${m.sender === 'user' ? '👤' : '🕌'}</div>
                 <div class="asistan-msg-bubble">
-                  ${escapeAsistanHtml(m.text).replace(/\n/g, '<br/>')}
+                  <div class="asistan-msg-text">${escapeAsistanHtml(m.text).replace(/\n/g, '<br/>')}</div>
                   ${m.references && m.references.length > 0 ? `
                     <div class="asistan-msg-references">
-                       <strong>Kaynak:</strong> ${m.references.map(escapeAsistanHtml).join(', ')}
+                      <strong>Kaynak:</strong> ${m.references.map(escapeAsistanHtml).join(', ')}
                     </div>
                   ` : ''}
                   ${m.options && m.options.length ? `
@@ -9743,15 +10243,19 @@
                       `).join('')}
                     </div>
                   ` : ''}
+                  <div class="asistan-msg-meta">
+                    <span class="asistan-msg-time">${escapeAsistanHtml(m.time || getAsistanNowTime())}</span>
+                    ${m.sender === 'user' ? '<span class="asistan-msg-status" title="Okundu">✓✓</span>' : ''}
+                  </div>
                 </div>
               </div>
             `).join('')}
           </div>
 
-          <!-- Öneri Çipleri -->
+          <!-- Öneri Çipleri (Mobilde WhatsApp Hızlı Aksiyon Bandı) -->
           <div class="asistan-suggestions-wrap">
-            <span style="font-size:0.78rem; color:#8a94a6; align-self:center;">Hızlı Sor:</span>
-            <button type="button" class="asistan-suggestion-pill" data-q="İzhâr kuralı nedir?">İzhâr kuralı</button>
+            <span class="asistan-suggestions-label">Hızlı Sor:</span>
+            <button type="button" class="asistan-suggestion-pill" data-q="İzhâr kuralı nedir?">İzhâr</button>
             <button type="button" class="asistan-suggestion-pill" data-q="Rast makamı özellikleri">Rast makamı</button>
             <button type="button" class="asistan-suggestion-pill" data-q="Segâh makamı özellikleri">Segâh makamı</button>
             <button type="button" class="asistan-suggestion-pill" data-q="Kur'an'daki 4 sekte">4 Sekte</button>
@@ -9760,15 +10264,15 @@
             <button type="button" class="asistan-suggestion-pill" data-q="Lahn-ı Celî ve Lahn-ı Hafî">Lahn çeşitleri</button>
             <button type="button" class="asistan-suggestion-pill" data-q="Fem-i Muhsin ilkesi nedir?">Fem-i Muhsin</button>
             <button type="button" class="asistan-suggestion-pill" data-q="20 dakikalık çalışma planı">20 dk plan</button>
-            <button type="button" class="asistan-suggestion-pill" data-q="Güvenli nefes ve ses çalışması">Nefes &amp; ses rehberi</button>
+            <button type="button" class="asistan-suggestion-pill" data-q="Güvenli nefes ve ses çalışması">Nefes &amp; ses</button>
           </div>
 
-          <!-- Mesaj Gönderme Formu -->
+          <!-- Mesaj Gönderme Formu (Mobilde WhatsApp Tarzı Yuvarlak Butonlu Giriş Barı) -->
           <form class="asistan-input-form" id="formAsistanChat">
-            <input type="text" id="inputAsistanQuery" class="asistan-input-text" placeholder="Bir soru yazın; ör. “tenvin nasıl okunur?”" autocomplete="off" maxlength="500" aria-label="Asistana soru yaz">
-            <button type="submit" class="asistan-btn-send">
-              <span>Gönder</span>
-              <span>➤</span>
+            <input type="text" id="inputAsistanQuery" class="asistan-input-text" placeholder="Bir mesaj yazın..." autocomplete="off" maxlength="500" aria-label="Asistana soru yaz">
+            <button type="submit" class="asistan-btn-send" title="Gönder" aria-label="Gönder">
+              <span class="asistan-btn-send-label">Gönder</span>
+              <span class="asistan-btn-send-icon">➤</span>
             </button>
           </form>
         </div>
@@ -9786,7 +10290,7 @@
         id: 'u-' + Date.now(),
         sender: 'user',
         text: q,
-        time: 'Şimdi'
+        time: getAsistanNowTime()
       });
 
       const reply = queryAsistan(q);
@@ -9799,7 +10303,7 @@
           text: reply.text,
           references: reply.references,
           options: reply.options,
-          time: 'Şimdi'
+          time: getAsistanNowTime()
         });
         renderAsistanView();
       }, 300);
@@ -9823,13 +10327,23 @@
       });
     });
 
+    document.getElementById('btnToggleAsistanInfo')?.addEventListener('click', () => {
+      asistanInfoOpen = !asistanInfoOpen;
+      renderAsistanView();
+    });
+
+    document.getElementById('btnToggleAsistanTopics')?.addEventListener('click', () => {
+      asistanTopicsOpen = !asistanTopicsOpen;
+      renderAsistanView();
+    });
+
     document.getElementById('btnClearAsistanChat')?.addEventListener('click', () => {
       asistanChatHistory = [
         {
           id: 'init',
           sender: 'assistant',
           text: "Esselâmü aleyküm ve rahmetullāh. Sohbet sıfırlandı. Tecvid, makam veya çalışma planınızla ilgili her türlü soruyu sorabilirsiniz.",
-          time: "Şimdi"
+          time: getAsistanNowTime()
         }
       ];
       renderAsistanView();

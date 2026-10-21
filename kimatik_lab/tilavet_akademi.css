@@ -4422,6 +4422,76 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.asistan-wa-contact {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.asistan-wa-avatar {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(229, 184, 105, 0.15);
+  border: 1px solid var(--accent-gold, #e5b869);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.asistan-wa-online-dot {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #00e676;
+  border: 2px solid #0e121a;
+}
+
+.asistan-wa-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.asistan-wa-name {
+  color: var(--accent-gold, #e5b869);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.asistan-wa-status {
+  font-size: 0.75rem;
+  color: #00e676;
+}
+
+.asistan-wa-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.asistan-wa-btn-icon {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 0.4rem 0.65rem;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.asistan-wa-btn-icon:hover {
+  background: rgba(229, 184, 105, 0.18);
+  border-color: var(--accent-gold, #e5b869);
+  color: #ffffff;
+}
+
 .asistan-messages-box {
   flex: 1;
   padding: 1.5rem;
@@ -4494,6 +4564,21 @@
   background: rgba(23, 30, 44, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom-left-radius: 2px;
+}
+
+.asistan-msg-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.asistan-msg-row.user .asistan-msg-status {
+  color: #6ee7b7;
+  font-weight: 700;
 }
 
 .asistan-msg-references {
@@ -4644,30 +4729,363 @@
   box-shadow: 0 4px 14px rgba(229, 184, 105, 0.35);
 }
 
-@media (max-width: 640px) {
+/* =============================================================================
+   TİLAVET ASİSTANI - MOBİL & TABLET WHATSAPP ARAYÜZÜ (YALNIZCA MOBİL & TABLET)
+   ============================================================================= */
+@media (max-width: 1024px) {
+  /* Üst kart mobilde varsayılan gizlenir / başlık ℹ️ ile açılır */
+  .asistan-layout-wrap .asistan-header-card {
+    display: none;
+    margin-bottom: 0.5rem;
+  }
+  .asistan-layout-wrap .asistan-header-card.is-open {
+    display: block;
+    animation: asistanSlideDown 0.22s ease-out;
+  }
+
+  /* Konu menüsü mobilde varsayılan gizlenir / menü 📋 ile açılır */
+  .asistan-layout-wrap .asistan-topic-menu {
+    display: none;
+    margin-bottom: 0.5rem;
+  }
+  .asistan-layout-wrap .asistan-topic-menu.is-open {
+    display: block;
+    animation: asistanSlideDown 0.22s ease-out;
+  }
+
+  @keyframes asistanSlideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* WhatsApp Tarzı Sohbet Kartı */
   .asistan-chat-card {
-    height: min(650px, 78vh);
+    height: calc(100dvh - 150px);
+    min-height: 520px;
+    max-height: 860px;
+    background: #0b141a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
   }
 
-  .asistan-topic-menu {
-    padding: 0.85rem;
+  /* WhatsApp Üst Başlık Barı */
+  .asistan-chat-header {
+    background: #1f2c34;
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 56px;
+    z-index: 10;
   }
 
-  .asistan-topic-pill {
-    flex: 1 1 145px;
+  .asistan-wa-contact {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    cursor: default;
   }
 
+  .asistan-wa-avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2a3942;
+    border: 1.5px solid #00a884;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .asistan-wa-online-dot {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #25d366;
+    border: 2px solid #1f2c34;
+    box-shadow: 0 0 6px rgba(37, 211, 102, 0.6);
+  }
+
+  .asistan-wa-meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+  }
+
+  .asistan-wa-name {
+    color: #e9edef;
+    font-size: 0.96rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+
+  .asistan-wa-status {
+    color: #00a884;
+    font-size: 0.74rem;
+    font-weight: 500;
+  }
+
+  .asistan-wa-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .asistan-wa-btn-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: #aebac1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+
+  .asistan-wa-btn-icon:hover,
+  .asistan-wa-btn-icon:active {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+  }
+
+  /* WhatsApp Mesajlaşma Alanı & Silik Cami Deseni */
+  .asistan-messages-box {
+    flex: 1;
+    background-color: #0b141a;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600' fill='none' stroke='%2300a884' stroke-width='1.5' stroke-opacity='0.05'%3E%3Cpath d='M200 420 C200 270 300 210 300 150 C300 210 400 270 400 420 Z' fill='%2300a884' fill-opacity='0.02'/%3E%3Cline x1='300' y1='150' x2='300' y2='105' stroke-width='2'/%3E%3Cpath d='M302 90 A9 9 0 1 1 298 106 A7 7 0 1 0 302 90 Z' fill='%2300a884' fill-opacity='0.05'/%3E%3Crect x='180' y='420' width='240' height='110' rx='4'/%3E%3Cpath d='M265 530 L265 455 C265 435 335 435 335 455 L335 530 Z'/%3E%3Cpath d='M210 495 L210 465 C210 452 245 452 245 465 L245 495 Z'/%3E%3Cpath d='M355 495 L355 465 C355 452 390 452 390 465 L390 495 Z'/%3E%3Crect x='130' y='270' width='28' height='260'/%3E%3Cpath d='M122 270 L166 270 L144 195 Z'/%3E%3Cline x1='144' y1='195' x2='144' y2='170' stroke-width='2'/%3E%3Ccircle cx='144' cy='165' r='5'/%3E%3Crect x='126' y='310' width='36' height='10' rx='2'/%3E%3Crect x='126' y='380' width='36' height='10' rx='2'/%3E%3Crect x='442' y='270' width='28' height='260'/%3E%3Cpath d='M434 270 L478 270 L456 195 Z'/%3E%3Cline x1='456' y1='195' x2='456' y2='170' stroke-width='2'/%3E%3Ccircle cx='456' cy='165' r='5'/%3E%3Crect x='438' y='310' width='36' height='10' rx='2'/%3E%3Crect x='438' y='380' width='36' height='10' rx='2'/%3E%3Cpath d='M90 170 L95 185 L110 185 L98 195 L102 210 L90 200 L78 210 L82 195 L70 185 L85 185 Z'/%3E%3Cpath d='M510 170 L515 185 L530 185 L518 195 L522 210 L510 200 L498 210 L502 195 L490 185 L505 185 Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 280px;
+    padding: 0.85rem 0.75rem;
+    gap: 0.65rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Mesaj Satırları ve WhatsApp Balonları */
   .asistan-msg-row {
-    max-width: 100%;
+    max-width: 86%;
+    gap: 0;
+    margin-bottom: 2px;
   }
 
+  /* Mobilde sol/sağ avatar gizlenir, gerçek WhatsApp gibi sadece balon görünür */
+  .asistan-msg-row .asistan-avatar {
+    display: none;
+  }
+
+  .asistan-msg-row.assistant {
+    align-self: flex-start;
+  }
+
+  .asistan-msg-row.user {
+    align-self: flex-end;
+  }
+
+  .asistan-msg-bubble {
+    padding: 0.55rem 0.8rem 0.4rem 0.8rem;
+    font-size: 0.91rem;
+    line-height: 1.45;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    word-break: break-word;
+  }
+
+  /* Karşı Taraf (Asistan) Balonu - Koyu Gri WhatsApp Balonu */
+  .asistan-msg-row.assistant .asistan-msg-bubble {
+    background: #202c33;
+    border: none;
+    border-radius: 8px 8px 8px 2px;
+    color: #e9edef;
+  }
+
+  /* Kullanıcı Balonu - WhatsApp Zümrüt Yeşili */
+  .asistan-msg-row.user .asistan-msg-bubble {
+    background: #005c4b;
+    border: none;
+    border-radius: 8px 8px 2px 8px;
+    color: #e9edef;
+  }
+
+  /* Mesaj Saati ve Çift Tik */
+  .asistan-msg-meta {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-top: 3px;
+    font-size: 0.68rem;
+    color: rgba(233, 237, 239, 0.6);
+    user-select: none;
+  }
+
+  .asistan-msg-row.user .asistan-msg-status {
+    color: #53bdeb; /* WhatsApp Mavi Çift Tik */
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-size: 0.74rem;
+  }
+
+  .asistan-msg-references {
+    background: rgba(0, 0, 0, 0.22);
+    border-left: 3px solid #00a884;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.74rem;
+    color: #8696a0;
+    margin-top: 6px;
+    border-top: none;
+  }
+
+  .asistan-msg-references strong {
+    color: #00a884;
+  }
+
+  /* Seçenek Butonları (İnteraktif WhatsApp Yanıt Kartları) */
+  .asistan-option-list {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .asistan-option-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #00a884;
+    border-radius: 8px;
+    padding: 0.45rem 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: left;
+    width: 100%;
+  }
+
+  .asistan-option-pill:hover,
+  .asistan-option-pill:active {
+    background: rgba(0, 168, 132, 0.15);
+    border-color: #00a884;
+  }
+
+  .asistan-option-number {
+    background: rgba(0, 168, 132, 0.2);
+    color: #00a884;
+  }
+
+  /* Hızlı Soru Çipleri (WhatsApp Hızlı Yanıt Kaydırma Bandı) */
+  .asistan-suggestions-wrap {
+    background: #111b21;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0.45rem 0.65rem;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 6px;
+    scrollbar-width: none;
+  }
+
+  .asistan-suggestions-wrap::-webkit-scrollbar {
+    display: none;
+  }
+
+  .asistan-suggestions-label {
+    display: none; /* Mobilde yer kaplamasın */
+  }
+
+  .asistan-suggestion-pill {
+    flex: 0 0 auto;
+    background: #202c33;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #00a884;
+    border-radius: 16px;
+    font-size: 0.76rem;
+    padding: 0.35rem 0.75rem;
+    white-space: nowrap;
+  }
+
+  .asistan-suggestion-pill:hover,
+  .asistan-suggestion-pill:active {
+    background: #2a3942;
+    border-color: #00a884;
+  }
+
+  /* WhatsApp Alt Mesaj Yazma Barı */
   .asistan-input-form {
+    background: #1f2c34;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0.5rem 0.65rem;
+    display: flex;
+    align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem;
+  }
+
+  .asistan-input-text {
+    flex: 1;
+    background: #2a3942;
+    border: none;
+    border-radius: 24px;
+    padding: 0.65rem 1rem;
+    color: #e9edef;
+    font-size: 0.94rem;
+    outline: none;
+  }
+
+  .asistan-input-text::placeholder {
+    color: #8696a0;
+  }
+
+  .asistan-input-text:focus {
+    border: none;
+    box-shadow: 0 0 0 1px #00a884;
   }
 
   .asistan-btn-send {
-    padding: 0.75rem 0.85rem;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    padding: 0;
+    border-radius: 50%;
+    background: #00a884;
+    color: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .asistan-btn-send:hover,
+  .asistan-btn-send:active {
+    background: #029474;
+    transform: scale(1.04);
+    box-shadow: 0 3px 8px rgba(0, 168, 132, 0.45);
+  }
+
+  .asistan-btn-send-label {
+    display: none; /* Mobilde sadece ok simgesi */
+  }
+
+  .asistan-btn-send-icon {
+    font-size: 1.1rem;
+    margin-left: 2px;
   }
 }
 
@@ -6563,54 +6981,6 @@
   .btn-drawer-text {
     white-space: normal;
     text-align: center;
-  }
-
-  .asistan-chat-card {
-    height: min(68vh, 620px);
-    min-height: 380px;
-  }
-
-  .asistan-chat-header {
-    gap: 0.5rem;
-    padding: 0.75rem;
-  }
-
-  .asistan-messages-box {
-    padding: 0.85rem;
-    gap: 0.75rem;
-  }
-
-  .asistan-msg-row {
-    max-width: 100%;
-  }
-
-  .asistan-msg-bubble {
-    min-width: 0;
-    padding: 0.75rem;
-    overflow-wrap: anywhere;
-  }
-
-  .asistan-suggestions-wrap {
-    max-height: 108px;
-    overflow-y: auto;
-    padding: 0.65rem 0.75rem;
-  }
-
-  .asistan-input-form {
-    gap: 0.5rem;
-    padding: 0.65rem;
-  }
-
-  .asistan-input-text {
-    min-width: 0;
-    padding: 0.7rem;
-    font-size: 16px;
-  }
-
-  .asistan-btn-send {
-    flex: 0 0 auto;
-    min-height: 44px;
-    padding: 0.65rem 0.8rem;
   }
 
   .side-nav-drawer {

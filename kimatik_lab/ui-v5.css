@@ -938,37 +938,53 @@
   #v5 .toolbar-right-group { order: 3; margin-left: 0 !important; }
   #v5 .mushaf-split-workspace { grid-template-columns: minmax(0, 1fr) !important; }
 
-  /* Yan panel → alttan açılan panel (Headspace) */
+  /* Yan panel → alttan açılan panel (Headspace / Spotify tarzı modern bottom sheet) */
   #v5 .mushaf-companion-sidebar {
     position: fixed !important; left: 0; right: 0; top: auto !important;
     bottom: calc(var(--v5-mobile-nav-h) + env(safe-area-inset-bottom));
     z-index: var(--v5-z-sheet);
     max-height: min(78vh, 720px); max-height: min(78dvh, 720px);
     width: min(100%, 720px); margin: 0 auto !important;
-    padding: 0 12px 12px !important; gap: 10px !important;
+    padding: 0 12px 14px !important; gap: 10px !important;
     overflow: hidden;
     border-radius: var(--v5-r-xl) var(--v5-r-xl) 0 0 !important;
     background: var(--v5-surface) !important;
-    box-shadow: 0 -1px 0 var(--v5-hairline), 0 -12px 32px rgba(0, 0, 0, 0.12) !important;
-    transition: max-height var(--v5-t-med) var(--v5-ease);
+    box-shadow: 0 -1px 0 var(--v5-hairline), 0 -12px 32px rgba(0, 0, 0, 0.28) !important;
+    transition: max-height var(--v5-t-med) var(--v5-ease), box-shadow var(--v5-t-med) var(--v5-ease);
   }
+  #v5 .mushaf-companion-sidebar > * { flex-shrink: 0 !important; }
   #v5 .mushaf-companion-sidebar > :not(.v5-sheet-handle):not(.mushaf-player-hero-card) { display: none !important; }
-  #v5 .mushaf-companion-sidebar.is-open { overflow: auto; }
+  #v5 .mushaf-companion-sidebar.is-open {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding-bottom: 28px !important;
+  }
   #v5 .mushaf-companion-sidebar.is-open > :not(.v5-sheet-handle):not(.mushaf-player-hero-card) { display: flex !important; }
-  #v5 .mushaf-companion-sidebar.is-open > details.sidebar-collapsible:not(:has(.simulator-button-grid)) { display: block !important; }
+  #v5 .mushaf-companion-sidebar.is-open > details.sidebar-collapsible:not(:has(.simulator-button-grid)):not([data-acc="simulator"]):not([data-acc="simulatör"]) { display: block !important; }
+  #v5 .mushaf-companion-sidebar.is-open > :is(.sidebar-collapsible:has(.simulator-button-grid), details[data-acc="simulator"], details[data-acc="simulatör"]),
+  #v5 .mushaf-companion-sidebar :is(.sidebar-collapsible:has(.simulator-button-grid), details[data-acc="simulator"], details[data-acc="simulatör"]) { display: none !important; }
   #v5 .mushaf-companion-sidebar :is(.panel-card, .sidebar-collapsible) { box-shadow: none !important; padding-inline: 4px !important; }
   #v5 .mushaf-companion-sidebar.is-open :is(.mushaf-reader-card, .mushaf-tajweed-edu-card, .sidebar-collapsible) { border-top: 1px solid var(--v5-hairline) !important; border-radius: 0 !important; padding-top: 14px !important; }
   #v5 .mushaf-tajweed-edu-card { flex-direction: column; }
 
   #v5 .v5-sheet-handle {
-    position: sticky; top: 0; z-index: 2;
-    display: flex; flex-direction: column; align-items: center; gap: 2px;
-    width: calc(100% + 24px); margin: 0 -12px 4px; padding: 6px 12px 4px; min-height: 0;
+    position: sticky; top: 0; z-index: 10;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    width: calc(100% + 24px); margin: 0 -12px 4px; padding: 8px 12px 6px; min-height: 0;
     border: 0; background: var(--v5-surface); color: var(--v5-text-3); cursor: pointer;
     font-size: var(--v5-fs-xs); font-weight: 650;
+    border-radius: var(--v5-r-xl) var(--v5-r-xl) 0 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--v5-t-fast) var(--v5-ease), background var(--v5-t-fast) var(--v5-ease);
   }
-  #v5 .v5-sheet-handle::before { content: ""; width: 36px; height: 4px; border-radius: 99px; background: var(--v5-border); }
-  #v5 .mushaf-companion-sidebar:not(.is-open) .v5-sheet-handle { margin-bottom: 0; padding-bottom: 0; font-size: 0.6875rem; }
+  #v5 .mushaf-companion-sidebar.is-open .v5-sheet-handle {
+    border-bottom-color: var(--v5-hairline);
+    background: var(--v5-surface);
+  }
+  #v5 .v5-sheet-handle::before { content: ""; width: 38px; height: 4px; border-radius: 99px; background: var(--v5-border); flex-shrink: 0; }
+  #v5 .mushaf-companion-sidebar:not(.is-open) .v5-sheet-handle { margin-bottom: 0; padding-bottom: 2px; font-size: 0.6875rem; }
   #v5 .v5-sheet-handle .v5-handle-label { display: inline-flex; align-items: center; gap: 4px; }
   #v5 .mushaf-companion-sidebar.is-open .v5-sheet-handle .v5-ico { transform: rotate(180deg); }
 
@@ -1013,9 +1029,12 @@
   #v5 .page-selector-box { flex: 1 1 auto; justify-content: center; }
 
   #v5 .quick-page-shortcuts-disclosure { margin-bottom: 8px !important; }
-  #v5 .quick-page-shortcuts { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px !important; margin-inline: -10px; padding-inline: 10px !important; }
+  #v5 .quick-page-shortcuts { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 6px !important; margin-inline: -10px; padding-inline: 10px !important; -webkit-overflow-scrolling: touch; }
   #v5 .quick-page-shortcuts::-webkit-scrollbar { display: none; }
-  #v5 .btn-page-shortcut { flex: 0 0 auto; }
+  #v5 .btn-page-shortcut { flex: 0 0 auto !important; width: auto !important; white-space: nowrap !important; }
+
+  #v5 .mushaf-global-toolbar.v5-tools-open .toolbar-right-group .font-scale { width: 100%; display: flex; }
+  #v5 .mushaf-global-toolbar.v5-tools-open .toolbar-right-group .font-scale .btn { flex: 1 1 50%; justify-content: center; }
 
   /* Mushaf sayfası: kenardan kenara, çerçevesiz */
   #v5 .real-mushaf-page-frame { padding: 16px 12px 12px !important; border-radius: var(--v5-r-md) !important; outline: 0; }
@@ -2498,7 +2517,9 @@
 #v5 .side-nav-drawer .drawer-module-btn { width: 100%; }
 /* Mushaf araç çubuğu sayfayla birlikte yukarıda kalır (yapışkan değil) */
 #v5 .mushaf-global-toolbar { position: static !important; }
-#v5 .mushaf-companion-sidebar { top: calc(var(--v5-header-h) + 16px) !important; max-height: calc(100vh - var(--v5-header-h) - 32px) !important; }
+@media (min-width: 1024px) {
+  #v5 .mushaf-companion-sidebar { top: calc(var(--v5-header-h) + 16px) !important; max-height: calc(100vh - var(--v5-header-h) - 32px) !important; }
+}
 
 /* =====================================================================
    26. SES LABORATUVARI v5

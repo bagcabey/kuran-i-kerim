@@ -439,6 +439,7 @@
   // 10. SEKME (TAB) GEZİNTİSİ VE ÇİFT YÖNLÜ BAĞLANTI (MUSHAF <-> İNCELEME)
   function switchAppTab(tabId) {
     if (!tabId) return;
+    const previousTab = document.querySelector('.app-shell')?.getAttribute('data-active-tab');
 
     // 1. Tab butonlarının aktifliğini güncelle
     const tabBtns = document.querySelectorAll('.nav-tab-btn');
@@ -496,7 +497,8 @@
       if (miniPill) miniPill.style.display = 'none';
     }
 
-    if (tabId === 'tab-akademi' && typeof window.TilavetAkademiEngine?.init === 'function') {
+    // Akademi motoru yalnızca sekmeye başka bir sekmeden girilirken çalışır
+    if (tabId === 'tab-akademi' && previousTab !== 'tab-akademi' && typeof window.TilavetAkademiEngine?.init === 'function') {
       window.TilavetAkademiEngine.init();
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -508,42 +510,53 @@
   }
   window.switchAppTab = switchAppTab;
 
+  // Sol menü (v5): ≥1280 px varsayılan açık, 1024–1279 px varsayılan dar.
+  // Kullanıcının seçimi saklanır. Geçiş sırasında ikonlar yerinde kalır.
   function initRailCollapse() {
     const appShell = document.querySelector('.app-shell');
     const toggle = document.getElementById('btnToggleRail');
     if (!appShell || !toggle) return;
 
-    const storageKey = 'cymatique_rail_collapsed';
-    let isCollapsed = false;
+    const storageKey = 'cymatique_rail_pref';
+    const wide = window.matchMedia('(min-width: 1280px)');
+    let preference = null; // null = ekran genişliğine göre
 
     try {
-      isCollapsed = localStorage.getItem(storageKey) === 'true';
+      const saved = localStorage.getItem(storageKey);
+      if (saved === 'collapsed' || saved === 'expanded') preference = saved;
     } catch (error) {
       console.warn('[UI] Gezinti menüsü tercihi okunamadı:', error);
     }
 
+    const isCollapsed = () => (preference ? preference === 'collapsed' : !wide.matches);
+
     function applyState() {
-      appShell.dataset.railCollapsed = String(isCollapsed);
-      const label = isCollapsed ? 'Menüyü genişlet' : 'Menüyü daralt';
-      toggle.setAttribute('aria-expanded', String(!isCollapsed));
+      const collapsed = isCollapsed();
+      appShell.dataset.railCollapsed = String(collapsed);
+      const label = collapsed ? 'Menüyü genişlet' : 'Menüyü daralt';
+      toggle.setAttribute('aria-expanded', String(!collapsed));
       toggle.setAttribute('aria-label', label);
       toggle.setAttribute('title', label);
-      const screenReaderLabel = toggle.querySelector('.sr-only');
-      if (screenReaderLabel) screenReaderLabel.textContent = label;
-      const icon = toggle.querySelector('.rail-toggle-icon');
-      if (icon) icon.textContent = isCollapsed ? '›' : '‹';
+      const text = toggle.querySelector('.rail-toggle-text, .sr-only');
+      if (text) text.textContent = label;
     }
 
-    applyState();
+    let animTimer = null;
     toggle.addEventListener('click', () => {
-      isCollapsed = !isCollapsed;
+      preference = isCollapsed() ? 'expanded' : 'collapsed';
+      appShell.classList.add('rail-animating');
+      clearTimeout(animTimer);
+      animTimer = setTimeout(() => appShell.classList.remove('rail-animating'), 320);
       applyState();
       try {
-        localStorage.setItem(storageKey, String(isCollapsed));
+        localStorage.setItem(storageKey, preference);
       } catch (error) {
         console.warn('[UI] Gezinti menüsü tercihi kaydedilemedi:', error);
       }
     });
+
+    wide.addEventListener?.('change', () => { if (!preference) applyState(); });
+    applyState();
   }
 
   function initTabNavigation() {

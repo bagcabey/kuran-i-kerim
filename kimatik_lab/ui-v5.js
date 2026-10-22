@@ -128,11 +128,21 @@
 
     function setOpen(open) {
       aside.classList.toggle('is-open', open);
+      document.body.classList.toggle('v5-sheet-open', open && mqSheet.matches);
+      syncScrollLock();
       handle.setAttribute('aria-expanded', String(open));
       txt.textContent = open ? 'Paneli küçült' : 'Meal, okunuş ve tecvid';
       if (open) aside.scrollTop = 0;
     }
     handle.addEventListener('click', () => setOpen(!aside.classList.contains('is-open')));
+    // Panel dışına dokununca kapanır (alt gezinti hariç)
+    document.addEventListener('click', e => {
+      if (!aside.classList.contains('is-open') || !mqSheet.matches) return;
+      if (aside.contains(e.target) || e.target.closest('.mobile-primary-nav')) return;
+      setOpen(false);
+    }, true);
+    // Sekme değişince panel kapanır
+    document.querySelectorAll('.mobile-nav-item, .nav-tab-btn').forEach(b => b.addEventListener('click', () => setOpen(false)));
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && aside.classList.contains('is-open') && mqSheet.matches) setOpen(false); });
     // Telefonda ayrı bir âyete dokunulunca panel kapalı kalır; mini oynatıcı başlığı güncellenir.
     mqSheet.addEventListener?.('change', () => setOpen(false));
@@ -191,6 +201,26 @@
     }
   }
 
+  /* Açık bir panel/pencere varken arka sayfa kaymaz */
+  function syncScrollLock() {
+    const deck = document.getElementById('beniBulDeck');
+    const deckOpen = deck && deck.style.display !== 'none' && !deck.classList.contains('hidden');
+    const drawerOpen = document.getElementById('sideNavDrawer')?.classList.contains('active');
+    const modalOpen = !!document.querySelector('.akademi-modal-overlay');
+    const sheetOpen = document.body.classList.contains('v5-sheet-open');
+    const mini = document.getElementById('miniMushafWidget');
+    const miniOpen = mqPhone.matches && mini && mini.style.display !== 'none' && getComputedStyle(mini).display !== 'none';
+    document.body.classList.toggle('v5-scroll-lock', !!(deckOpen || drawerOpen || modalOpen || sheetOpen));
+    void miniOpen; // kayan Mushaf açıkken sayfa kaydırılabilir kalır (örnekleri takip etmek için)
+  }
+  window.V5SyncScrollLock = syncScrollLock;
+  function initScrollLockWatch() {
+    const mo = new MutationObserver(() => syncScrollLock());
+    mo.observe(document.body, { childList: true });
+    const drawer = document.getElementById('sideNavDrawer');
+    if (drawer) mo.observe(drawer, { attributes: true, attributeFilter: ['class'] });
+  }
+
   /* 8. Açılır pencereler için arka perde */
   function initModalScrim() {
     const deck = document.getElementById('beniBulDeck');
@@ -198,6 +228,7 @@
     const sync = () => {
       const open = deck.style.display !== 'none' && !deck.classList.contains('hidden');
       document.body.classList.toggle('v5-modal-open', open);
+      syncScrollLock();
     };
     new MutationObserver(sync).observe(deck, { attributes: true, attributeFilter: ['style', 'class'] });
     sync();
@@ -231,7 +262,49 @@
     run();
   }
 
+
+  // Akademi bölümleri sol menüde: başka sekmedeyken de doğrudan bölüme gider.
+  function initRailAkademiSub() {
+    document.querySelectorAll('.v5-rail-subbtn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var view = btn.getAttribute('data-view');
+        var shell = document.querySelector('.app-shell');
+        if (shell && shell.getAttribute('data-active-tab') !== 'tab-akademi') {
+          var tab = document.getElementById('tabBtnAkademi');
+          if (tab) tab.click();
+          if (typeof window.switchAkademiSubView === 'function') window.switchAkademiSubView(view);
+        }
+        if (window.innerWidth < 1024) window.scrollTo({ top: 0 });
+      });
+    });
+  }
+
+  // Âyet paneli: bir bölüm açılınca diğerleri kapanır; tecvid bölümünde kural sayısı
+  function initAyahAccordion() {
+    var aside = document.querySelector('.mushaf-companion-sidebar');
+    if (!aside) return;
+    aside.addEventListener('toggle', function (e) {
+      var d = e.target;
+      if (!d || !d.classList || !d.classList.contains('v5-acc') || !d.open) return;
+      aside.querySelectorAll('details.v5-acc[open]').forEach(function (o) { if (o !== d) o.open = false; });
+    }, true);
+    var list = document.getElementById('activeAyahTajweedRules');
+    var badge = document.getElementById('activeAyahTajweedCount');
+    if (list && badge) {
+      var sync = function () {
+        var n = list.querySelectorAll('.tajweed-edu-card:not([data-family="neutral"])').length;
+        badge.hidden = n === 0;
+        badge.textContent = n + ' kural';
+      };
+      new MutationObserver(sync).observe(list, { childList: true });
+      sync();
+    }
+  }
+
   function init() {
+    initRailAkademiSub();
+    initAyahAccordion();
+    initScrollLockWatch();
     initEmojiCleanup();
     initModalScrim();
     initInceleme();

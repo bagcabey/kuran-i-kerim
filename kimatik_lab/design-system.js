@@ -54,6 +54,16 @@
     applyTheme();
   });
 
+  window.TilavetTheme = {
+    getMode: () => mode,
+    setMode: (next) => {
+      if (next !== 'system' && !ORDER.includes(next)) return;
+      mode = next;
+      try { localStorage.setItem(storageKey, mode); } catch (_) {}
+      applyTheme();
+    }
+  };
+
   preference.addEventListener?.('change', () => {
     if (mode === 'system') applyTheme();
   });

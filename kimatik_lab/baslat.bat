@@ -24,10 +24,10 @@ echo ===========================================================================
 echo.
 
 REM 1. Port 8000 ve Saglik Kontrolu
-powershell -NoProfile -Command "$ok = $false; try { $r = Invoke-WebRequest -Uri 'http://localhost:8000/index.html' -TimeoutSec 2 -UseBasicParsing; if ($r.StatusCode -eq 200) { $ok = $true } } catch {}; if (-not $ok) { Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; exit 1 } else { exit 0 }" >nul 2>&1
+powershell -NoProfile -Command "$ok = $false; try { $r = Invoke-WebRequest -Uri 'http://localhost:8000/index.html' -TimeoutSec 2 -UseBasicParsing; if ($r.StatusCode -eq 200 -and $r.Headers['Cache-Control']) { $ok = $true } } catch {}; if (-not $ok) { Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; exit 1 } else { exit 0 }" >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
     echo [1/2] Yerel Python HTTP Sunucusu (Port 8000) baslatiliyor...
-    powershell -NoProfile -WindowStyle Hidden -Command "Start-Process -WindowStyle Hidden python -ArgumentList '-m http.server 8000' -WorkingDirectory '%~dp0'"
+    powershell -NoProfile -WindowStyle Hidden -Command "Start-Process -WindowStyle Hidden python -ArgumentList 'sunucu.py 8000' -WorkingDirectory '%~dp0'"
     timeout /t 1 /nobreak >nul
 ) else (
     echo [1/2] Yerel HTTP Sunucusu (Port 8000) aktif durumda calisiyor.

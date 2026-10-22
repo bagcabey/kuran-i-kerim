@@ -9,7 +9,7 @@ if /i "%~1"=="inceleme" set "TARGET_PAGE=inceleme.html"
 if /i "%~1"=="inceleme.html" set "TARGET_PAGE=inceleme.html"
 
 REM 2. Port 8000 ve Saglik Kontrolu (Yanit vermiyorsa temizleyip yeniden baslat)
-powershell -NoProfile -WindowStyle Hidden -Command "$ok = $false; try { $r = Invoke-WebRequest -Uri 'http://localhost:8000/index.html' -TimeoutSec 2 -UseBasicParsing; if ($r.StatusCode -eq 200) { $ok = $true } } catch {}; if (-not $ok) { Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; Start-Process -WindowStyle Hidden python -ArgumentList '-m http.server 8000' -WorkingDirectory '%~dp0' }"
+powershell -NoProfile -WindowStyle Hidden -Command "$ok = $false; try { $r = Invoke-WebRequest -Uri 'http://localhost:8000/index.html' -TimeoutSec 2 -UseBasicParsing; if ($r.StatusCode -eq 200 -and $r.Headers['Cache-Control']) { $ok = $true } } catch {}; if (-not $ok) { Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; Start-Process -WindowStyle Hidden python -ArgumentList 'sunucu.py 8000' -WorkingDirectory '%~dp0' }"
 
 REM 3. Sunucunun hazir olmasi icin kisa bekleme
 powershell -NoProfile -Command "Start-Sleep -Milliseconds 400"

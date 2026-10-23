@@ -34,7 +34,6 @@
   }
   window.V5Icon = svg;
 
-  const mqSheet = window.matchMedia('(max-width: 1023px)');
   const mqPhone = window.matchMedia('(max-width: 767px)');
 
   /* 1. Başlık araması: Beni Bul'u açan mevcut düğmeyi tetikler */
@@ -107,52 +106,14 @@
     center.appendChild(btn);
   }
 
-  /* 5. Âyet paneli: tablet/telefonda alttan açılan panel */
-  function initCompanionSheet() {
-    const aside = document.querySelector('.mushaf-companion-sidebar');
-    if (!aside || aside.querySelector('.v5-sheet-handle')) return;
-    const handle = document.createElement('button');
-    handle.type = 'button';
-    handle.className = 'v5-sheet-handle';
-    handle.setAttribute('aria-expanded', 'false');
-    const lbl = document.createElement('span');
-    lbl.className = 'v5-handle-label';
-    const txt = document.createElement('span');
-    txt.textContent = 'Meal, okunuş ve tecvid';
-    lbl.appendChild(txt);
-    lbl.appendChild(svg('chevronUp', 'v5-ico--sm'));
-    handle.appendChild(lbl);
-    aside.insertBefore(handle, aside.firstChild);
-    aside.setAttribute('role', 'region');
-    aside.setAttribute('aria-label', 'Seçili âyet');
-
-    function setOpen(open) {
-      aside.classList.toggle('is-open', open);
-      document.body.classList.toggle('v5-sheet-open', open && mqSheet.matches);
-      syncScrollLock();
-      handle.setAttribute('aria-expanded', String(open));
-      txt.textContent = open ? 'Paneli küçült' : 'Meal, okunuş ve tecvid';
-      if (open) aside.scrollTop = 0;
-    }
-    handle.addEventListener('click', () => setOpen(!aside.classList.contains('is-open')));
-    // Panel dışına dokununca kapanır (alt gezinti hariç)
-    document.addEventListener('click', e => {
-      if (!aside.classList.contains('is-open') || !mqSheet.matches) return;
-      if (aside.contains(e.target) || e.target.closest('.mobile-primary-nav')) return;
-      setOpen(false);
-    }, true);
-    // Sekme değişince panel kapanır
-    document.querySelectorAll('.mobile-nav-item, .nav-tab-btn').forEach(b => b.addEventListener('click', () => setOpen(false)));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && aside.classList.contains('is-open') && mqSheet.matches) setOpen(false); });
-    // Telefonda ayrı bir âyete dokunulunca panel kapalı kalır; mini oynatıcı başlığı güncellenir.
-    mqSheet.addEventListener?.('change', () => setOpen(false));
-  }
 
   /* 6. Mobil gezinti ikonları */
   const NAV_ICONS = {
     'tab-tilavet': 'M5 3.5A2.5 2.5 0 0 1 7.5 1H20v17H7.5a1 1 0 0 0 0 2H20v2H7.5A2.5 2.5 0 0 1 5 19.5zM9 5v2h7V5z',
     'tab-inceleme': 'M6 2h8l6 6v14H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V9h5.5zM8 13h8v2H8zm0 4h6v2H8z',
     'open-beni-bul': ICONS.search,
+    'open-seslab': 'M3 10h2v4H3zm4-4h2v12H7zm4-3h2v18h-2zm4 5h2v8h-2zm4-2h2v12h-2z',
+    'open-pratik': 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16zm0 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z',
     'tab-akademi': 'M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8z'
   };
   function initMobileNavIcons() {
@@ -301,8 +262,182 @@
     }
   }
 
+  /* Telefon ve tablet: uygulama kabuğu (başlık, bölüm menüsü, alt sekmeler, Mushaf çevirme) */
+  const IC = {
+    menu: 'M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z',
+    flip: 'M7 7h10v3l4-4-4-4v3H5v6h2zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2z',
+    play: ICONS.play,
+    pause: ICONS.pause,
+    left: 'M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z',
+    right: 'M8.6 16.6 10 18l6-6-6-6-1.4 1.4 4.6 4.6z'
+  };
+  function icon(d) {
+    const ns = 'http://www.w3.org/2000/svg';
+    const el = document.createElementNS(ns, 'svg');
+    el.setAttribute('viewBox', '0 0 24 24'); el.setAttribute('aria-hidden', 'true'); el.setAttribute('class', 'v5-ico');
+    const p = document.createElementNS(ns, 'path'); p.setAttribute('d', d); el.appendChild(p);
+    return el;
+  }
+
+  function initMobileApp() {
+    const shell = document.querySelector('.app-shell');
+    const brand = document.querySelector('.brand-area');
+    const header = document.querySelector('.app-header');
+    if (!shell || !brand || !header) return;
+    const mq = window.matchMedia('(max-width: 1023px)');
+
+    const title = document.createElement('span');
+    title.className = 'v5-appbar-title';
+    title.id = 'v5AppTitle';
+    brand.appendChild(title);
+
+    // Akademi bölümleri menüsü: başlıktaki menü düğmesi
+    const menuBtn = document.createElement('button');
+    menuBtn.type = 'button';
+    menuBtn.className = 'v5-appbar-menu';
+    menuBtn.setAttribute('aria-label', 'Akademi bölümleri');
+    menuBtn.appendChild(icon(IC.menu));
+    menuBtn.addEventListener('click', (e) => { e.stopPropagation(); window.openSideNavDrawer?.(); });
+    header.insertBefore(menuBtn, header.firstChild);
+
+    const goView = (view) => {
+      if (shell.getAttribute('data-active-tab') !== 'tab-akademi') document.getElementById('tabBtnAkademi')?.click();
+      setTimeout(() => { window.switchAkademiSubView?.(view); window.scrollTo({ top: 0 }); }, 0);
+    };
+    const pratikNav = document.querySelector('.mobile-nav-item[data-action="open-pratik"]');
+    const labNav = document.querySelector('.mobile-nav-item[data-action="open-seslab"]');
+    const akademiNav = document.querySelector('.mobile-nav-item[data-tab="tab-akademi"]');
+    pratikNav?.addEventListener('click', () => goView('pratik'));
+    labNav?.addEventListener('click', () => goView('studyo'));
+    akademiNav?.addEventListener('click', () => {
+      setTimeout(() => {
+        const v = document.querySelector('.v5-rail-subbtn.active')?.dataset.view;
+        if (v === 'pratik' || v === 'studyo') window.switchAkademiSubView?.('yolculuk');
+      }, 0);
+    });
+
+    const TAB_TITLES = { 'tab-tilavet': 'Mushaf', 'tab-inceleme': 'Âyet İnceleme', 'tab-akademi': 'Akademi' };
+    function sync() {
+      const tab = shell.getAttribute('data-active-tab') || 'tab-tilavet';
+      const activeBtn = document.querySelector('.v5-rail-subbtn.active');
+      const view = tab === 'tab-akademi' ? (activeBtn?.dataset.view || 'yolculuk') : '';
+      title.textContent = view ? (activeBtn?.dataset.tip || 'Akademi') : (TAB_TITLES[tab] || '');
+      document.body.dataset.v5View = view || tab.replace('tab-', '');
+      const set = (el, on) => { if (!el) return; el.classList.toggle('active', on); if (on) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current'); };
+      const onAk = tab === 'tab-akademi';
+      set(pratikNav, onAk && view === 'pratik');
+      set(labNav, onAk && view === 'studyo');
+      set(akademiNav, onAk && view !== 'pratik' && view !== 'studyo');
+      // Menüde seçili bölüm belirgin
+      document.querySelectorAll('.drawer-acc-node').forEach(n => n.classList.toggle('is-current', onAk && n.dataset.module === view));
+    }
+    new MutationObserver(sync).observe(shell, { attributes: true, attributeFilter: ['data-active-tab'] });
+    document.querySelectorAll('.v5-rail-subbtn').forEach(b => new MutationObserver(sync).observe(b, { attributes: true, attributeFilter: ['class'] }));
+    sync();
+
+    initMushafFlip(mq);
+  }
+
+  /* Mushaf (telefon/tablet): araç çubuğunda Dinle + Çevir; çevirince âyet sayfası tam ekran açılır */
+  function initMushafFlip(mq) {
+    const toolbar = document.querySelector('.mushaf-global-toolbar');
+    const ws = document.querySelector('.mushaf-split-workspace');
+    const master = document.getElementById('btnPlayActiveAyah');
+    const titleEl = document.getElementById('activeAyahTitle');
+    if (!toolbar || !ws || !master) return;
+
+    const bar = document.createElement('div');
+    bar.className = 'v5-m-ayahbar';
+    bar.innerHTML = '<div class="v5-m-ayah"><span class="v5-m-ayah-kicker">Seçili âyet</span><strong class="v5-m-ayah-name"></strong></div>';
+    const play = document.createElement('button');
+    play.type = 'button';
+    play.className = 'v5-m-play';
+    const playTxt = document.createElement('span');
+    play.appendChild(icon(IC.play)); play.appendChild(playTxt);
+    const flip = document.createElement('button');
+    flip.type = 'button';
+    flip.className = 'v5-m-flip';
+    flip.setAttribute('aria-pressed', 'false');
+    const flipTxt = document.createElement('span');
+    flip.appendChild(icon(IC.flip)); flip.appendChild(flipTxt);
+    bar.appendChild(play); bar.appendChild(flip);
+    toolbar.appendChild(bar);
+
+    const nameEl = bar.querySelector('.v5-m-ayah-name');
+    const syncTitle = () => {
+      const t = (titleEl?.textContent || '').trim();
+      const m = t.match(/^(\d+)\.\s*(.+?)\s+Suresi\s*-\s*(\d+)\./i);
+      nameEl.textContent = m ? `${m[2]} · ${m[3]}. âyet` : t;
+    };
+    const syncPlay = () => {
+      const on = master.classList.contains('is-playing');
+      play.classList.toggle('is-playing', on);
+      play.querySelector('path').setAttribute('d', on ? IC.pause : IC.play);
+      playTxt.textContent = on ? 'Durdur' : 'Dinle';
+      play.setAttribute('aria-label', on ? 'Âyeti durdur' : 'Âyeti dinle');
+    };
+    const setFlip = (on) => {
+      ws.classList.toggle('v5-flipped', on);
+      flip.setAttribute('aria-pressed', String(on));
+      flipTxt.textContent = on ? 'Mushaf' : 'Âyet';
+      flip.setAttribute('aria-label', on ? 'Mushaf sayfasına dön' : 'Âyetin meal, okunuş ve tecvidini aç');
+      if (mq.matches) toolbar.scrollIntoView({ block: 'start' });
+    };
+    play.addEventListener('click', (e) => { e.stopPropagation(); master.click(); });
+    flip.addEventListener('click', (e) => { e.stopPropagation(); setFlip(!ws.classList.contains('v5-flipped')); });
+    if (titleEl) new MutationObserver(syncTitle).observe(titleEl, { childList: true, characterData: true, subtree: true });
+    new MutationObserver(syncPlay).observe(master, { attributes: true, attributeFilter: ['class'] });
+    mq.addEventListener?.('change', () => { if (!mq.matches) setFlip(false); });
+    syncTitle(); syncPlay(); setFlip(false);
+  }
+
+  /* Yana kayan sekme şeritleri: taşma varsa iki yanda ok ve solma; aktif öğe görünür */
+  const SCROLLER_SEL = ['.elifba-sub-nav', '.teknik-sub-nav', '.tecvid-cat-strip', '.mk-picker', '.sl-tabs', '.kt-filter', '.elifba-filter-row', '.wa-quick', '.quick-page-shortcuts', '.mushaf-legend-bar', '.makam-selector-strip', '.quick-discovery-strip', '.lounge-quick-pills', '.reciter-filter-strip', '.secavend-filter-bar', '.mk-scale', '.tp-compare-scroll'].join(',');
+  const SCROLLER_FREE = '.mk-scale, .tp-compare-scroll';
+  function enhanceScroller(el) {
+    if (el.dataset.v5Scroller || !el.parentElement) return;
+    el.dataset.v5Scroller = '1';
+    const wrap = document.createElement('div');
+    wrap.className = 'v5-scroller' + (el.matches(SCROLLER_FREE) ? ' v5-scroller--free' : '');
+    el.parentElement.insertBefore(wrap, el);
+    wrap.appendChild(el);
+    el.classList.add('v5-scroller-track');
+    const mk = (dir) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'v5-scroller-btn is-' + dir;
+      b.setAttribute('aria-label', dir === 'prev' ? 'Öncekiler' : 'Sonrakiler');
+      b.tabIndex = -1;
+      b.appendChild(icon(dir === 'prev' ? IC.left : IC.right));
+      b.addEventListener('click', (e) => { e.stopPropagation(); el.scrollBy({ left: (dir === 'prev' ? -1 : 1) * el.clientWidth * 0.7, behavior: 'smooth' }); });
+      wrap.appendChild(b);
+      return b;
+    };
+    mk('prev'); mk('next');
+    const update = () => {
+      const max = el.scrollWidth - el.clientWidth;
+      const over = max > 4;
+      wrap.classList.toggle('has-overflow', over);
+      wrap.classList.toggle('can-prev', over && el.scrollLeft > 4);
+      wrap.classList.toggle('can-next', over && el.scrollLeft < max - 4);
+    };
+    el.addEventListener('scroll', update, { passive: true });
+    new ResizeObserver(update).observe(el);
+    const active = el.querySelector('.active, .is-active, [aria-selected="true"], [aria-pressed="true"]');
+    if (active && el.scrollWidth > el.clientWidth) el.scrollLeft = Math.max(0, active.offsetLeft - el.clientWidth / 2 + active.offsetWidth / 2);
+    update();
+  }
+  function initScrollers() {
+    let t = null;
+    const run = () => { t = null; document.querySelectorAll(SCROLLER_SEL).forEach(enhanceScroller); };
+    new MutationObserver(() => { if (!t) t = requestAnimationFrame(run); }).observe(document.body, { childList: true, subtree: true });
+    run();
+  }
+
   function init() {
     initRailAkademiSub();
+    initMobileApp();
+    initScrollers();
     initAyahAccordion();
     initScrollLockWatch();
     initEmojiCleanup();
@@ -312,7 +447,6 @@
     initPageNavButtons();
     initDisclosureChevrons();
     initToolsToggle();
-    initCompanionSheet();
     initMobileNavIcons();
   }
 

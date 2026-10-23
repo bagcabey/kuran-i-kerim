@@ -2541,26 +2541,8 @@ body {
   box-shadow: none;
 }
 
-.app-shell :is(button, a, [role="button"]):not(.btn-danger):not(.danger):not([aria-disabled="true"]):hover {
-  background-image: none !important;
-  background-color: var(--accent-green-soft) !important;
-  border-color: var(--accent-green) !important;
-  color: var(--text-main) !important;
-  box-shadow: none !important;
-  transform: none;
-}
-
 #tab-akademi .akademi-view-panel :is([class*="card"], [class*="panel"], [class*="banner"], [class*="tile"]) {
   background-image: none !important;
-}
-
-#tab-akademi .akademi-view-panel :is(button, a, [role="button"]):not(.btn-danger):not(.danger):not([aria-disabled="true"]):hover {
-  background-image: none !important;
-  background-color: var(--accent-green-soft) !important;
-  border-color: var(--accent-green) !important;
-  color: var(--text-main) !important;
-  box-shadow: none !important;
-  transform: none !important;
 }
 
 .tecvid-rule-block:hover {

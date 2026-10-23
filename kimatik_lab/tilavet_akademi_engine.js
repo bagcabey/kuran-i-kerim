@@ -837,92 +837,80 @@
     ];
 
     let currentQ = 0;
-    let totalScore = 0;
+    const answers = [];
+    const LEVEL_NAMES = ['Hazırlık', 'Elif-Ba ve Mahreç', 'Harekeler', 'Tecvid Temelleri', 'Tilavet Teknikleri', 'Makam ve Ses'];
+
+    // Cevaba göre seviye: başlangıç düzeyindeki cevaplarda test erken biter
+    function decideLevel() {
+      const [q1, q2, q3, q4] = answers;
+      if (q1 === 0) return 0;
+      if (q1 === 1) return 1;
+      if (q2 !== undefined && q2 < 2) return 2;
+      if (q3 !== undefined && q3 < 2) return 3;
+      if (q4 !== undefined && q4 === 0) return 4;
+      if (q4 !== undefined) return 5;
+      return null;
+    }
 
     function renderQuestion() {
-      if (currentQ < questions.length) {
+      const decided = decideLevel();
+      if (decided === null && currentQ < questions.length) {
         const qData = questions[currentQ];
         overlay.innerHTML = `
-          <div class="akademi-modal-box">
+          <div class="akademi-modal-box pt-box">
             <div class="modal-header-row">
               <div>
-                <span class="card-badge cyan">SEVİYE BELİRLEME TESTİ</span>
-                <h3 style="margin-top:0.35rem; color:var(--v5-text);">Soru ${currentQ + 1} / ${questions.length}</h3>
+                <span class="pt-kicker">Seviye testi · Soru ${currentQ + 1}</span>
+                <div class="pt-progress" aria-hidden="true"><span style="width:${(currentQ / questions.length) * 100}%"></span></div>
               </div>
-              <button class="modal-close-btn" id="btnClosePlacement">&times;</button>
+              <button class="modal-close-btn" id="btnClosePlacement" aria-label="Kapat">&times;</button>
             </div>
             <div class="modal-body">
-              <h4 style="font-size:1.15rem; color:var(--v5-gold-ink); margin-bottom:1.25rem;">${qData.q}</h4>
-              <div style="display:flex; flex-direction:column; gap:0.75rem;">
+              <h3 class="pt-q">${qData.q.replace(/^\d+\.\s*/, '')}</h3>
+              <div class="pt-opts">
                 ${qData.options.map((opt, oIdx) => `
-                  <button class="btn-akademi-secondary btn-placement-opt" data-score="${opt.score}" style="text-align:left; padding:0.9rem 1.25rem;">
-                    ${opt.text}
-                  </button>
+                  <button type="button" class="pt-opt btn-placement-opt" data-idx="${oIdx}">${opt.text}</button>
                 `).join('')}
               </div>
             </div>
           </div>
         `;
-
         document.getElementById('btnClosePlacement')?.addEventListener('click', () => overlay.remove());
-
         overlay.querySelectorAll('.btn-placement-opt').forEach(b => {
           b.addEventListener('click', () => {
-            const sc = parseInt(b.getAttribute('data-score'), 10);
-            totalScore += sc;
+            answers.push(parseInt(b.getAttribute('data-idx'), 10));
             currentQ++;
             renderQuestion();
           });
         });
-      } else {
-        let recommendedLevel = 0;
-        let levelTitle = "Seviye 0: Hazırlık & Kur'an'a Giriş";
-        if (totalScore <= 3) {
-          recommendedLevel = 1;
-          levelTitle = "Seviye 1: Elif-Ba ve Mahreç Atlası";
-        } else if (totalScore <= 6) {
-          recommendedLevel = 2;
-          levelTitle = "Seviye 2: Harekeler ve Okumaya Geçiş";
-        } else if (totalScore <= 9) {
-          recommendedLevel = 3;
-          levelTitle = "Seviye 3: Tecvid Temelleri";
-        } else if (totalScore <= 12) {
-          recommendedLevel = 4;
-          levelTitle = "Seviye 4: Tilavet Teknikleri";
-        } else {
-          recommendedLevel = 5;
-          levelTitle = "Seviye 5: Makam Okulu & Şan Eğitimi";
-        }
-
-        overlay.innerHTML = `
-          <div class="akademi-modal-box" style="text-align:center;">
-            <span class="card-badge gold" style="font-size:0.8rem;">TEST TAMAMLANDI</span>
-            <h2 style="color:var(--v5-text); margin:0.75rem 0;">Tavsiye Edilen Başlangıç Noktanız</h2>
-            <div style="font-size:1.4rem; font-weight:800; color:var(--v5-gold-ink); margin:1rem 0; padding:1.25rem; background:var(--v5-gold-soft); border:0; border-radius:12px;">
-              ${levelTitle}
-            </div>
-            <p style="color:var(--v5-text-2); font-size:0.95rem; line-height:1.5;">
-              Cevaplarınıza göre en verimli gelişimi bu seviyeden başlayarak sağlayabilirsiniz. Dilediğiniz zaman seviyeler arasında serbestçe geçiş yapabilirsiniz.
-            </p>
-            <div style="display:flex; justify-content:center; gap:1rem; margin-top:1.5rem;">
-              <button class="btn-akademi-primary" id="btnAcceptLevel">
-                <span></span> Seviyeye Başla
-              </button>
-              <button class="btn-akademi-secondary" id="btnCancelPlacement">Kapat</button>
-            </div>
-          </div>
-        `;
-
-        document.getElementById('btnCancelPlacement')?.addEventListener('click', () => overlay.remove());
-        document.getElementById('btnAcceptLevel')?.addEventListener('click', () => {
-          state.currentLevel = recommendedLevel;
-          state.placedLevel = recommendedLevel;
-          saveState();
-          overlay.remove();
-          renderYolculukView();
-          if (window.showToast) window.showToast(`${levelTitle} başlatıldı!`);
-        });
+        return;
       }
+
+      const level = decided === null ? 5 : decided;
+      const firstLesson = LESSONS.find(l => l.level === level && !(state.completedLessons || []).includes(l.id)) || LESSONS.find(l => l.level === level);
+      overlay.innerHTML = `
+        <div class="akademi-modal-box pt-box pt-result">
+          <span class="pt-kicker">Sonuç</span>
+          <h3 class="pt-q">Seviye ${level}: ${LEVEL_NAMES[level]}</h3>
+          <p class="pt-text">Buradan başlamanız önerilir. ${level > 0 ? `Önceki ${level === 1 ? 'seviye' : 'seviyeler'} öğrenme yolunda "testle geçildi" olarak işaretlenir; istediğiniz zaman geri dönebilirsiniz.` : 'Kısa giriş dersleriyle başlayıp harflere geçeceksiniz.'}</p>
+          ${firstLesson ? `<div class="pt-lesson"><span>İlk ders</span><strong>${akademiLessonTitle(firstLesson)}</strong></div>` : ''}
+          <div class="pt-actions">
+            <button type="button" class="btn-akademi-primary" id="btnAcceptLevel">${firstLesson ? 'İlk derse başla' : 'Öğrenme yoluna git'}</button>
+            <button type="button" class="btn-akademi-secondary" id="btnCancelPlacement">Kapat</button>
+          </div>
+        </div>
+      `;
+      document.getElementById('btnCancelPlacement')?.addEventListener('click', () => overlay.remove());
+      document.getElementById('btnAcceptLevel')?.addEventListener('click', () => {
+        state.currentLevel = level;
+        state.placedLevel = level;
+        saveState();
+        overlay.remove();
+        if (typeof window.switchAppTab === 'function') window.switchAppTab('tab-akademi');
+        switchAkademiSubView('yolculuk');
+        window.scrollTo({ top: 0 });
+        if (firstLesson) setTimeout(() => openLessonModal(firstLesson.id), 120);
+      });
     }
 
     renderQuestion();
@@ -1080,7 +1068,7 @@
           </div>
 
           <div class="modal-body">
-            <h4 style="color:var(--v5-primary); margin-bottom:0.75rem;">Adım ${currentStep + 1}: ${stepMeta.name}</h4>
+            <h4 style="color:var(--v5-primary-ink); margin-bottom:0.75rem;">Adım ${currentStep + 1}: ${stepMeta.name}</h4>
             ${stepContentHtml}
           </div>
 
@@ -1704,19 +1692,19 @@
           <!-- Hareke Seçici Sekmeler -->
           <div class="hareke-mode-selector">
             <button type="button" class="btn-hareke-mode ${activeHarekeType === 'ustun' ? 'active' : ''}" data-type="ustun">
-              <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">1. HAREKE</span>
-              <span style="font-size:1.15rem; font-weight:800;">Üstün (Fetha · َ )</span>
-              <span style="font-size:0.78rem; color:#8a94a6;">İnceye "e", kalına "a" verir</span>
+              <span class="hk-kicker">1. HAREKE</span>
+              <span class="hk-title">Üstün (Fetha · َ )</span>
+              <span class="hk-desc">İnceye "e", kalına "a" verir</span>
             </button>
             <button type="button" class="btn-hareke-mode ${activeHarekeType === 'esre' ? 'active' : ''}" data-type="esre">
-              <span style="font-size:0.75rem; color:var(--accent-cyan); font-weight:700;">2. HAREKE</span>
-              <span style="font-size:1.15rem; font-weight:800;">Esre (Kesra · ِ )</span>
-              <span style="font-size:0.78rem; color:#8a94a6;">İnceye "i", kalına "ı-i" verir</span>
+              <span class="hk-kicker">2. HAREKE</span>
+              <span class="hk-title">Esre (Kesra · ِ )</span>
+              <span class="hk-desc">İnceye "i", kalına "ı-i" verir</span>
             </button>
             <button type="button" class="btn-hareke-mode ${activeHarekeType === 'otre' ? 'active' : ''}" data-type="otre">
-              <span style="font-size:0.75rem; color:var(--accent-green); font-weight:700;">3. HAREKE</span>
-              <span style="font-size:1.15rem; font-weight:800;">Ötre (Damme · ُ )</span>
-              <span style="font-size:0.78rem; color:#8a94a6;">İnceye "ü-u", kalına "u" verir</span>
+              <span class="hk-kicker">3. HAREKE</span>
+              <span class="hk-title">Ötre (Damme · ُ )</span>
+              <span class="hk-desc">İnceye "ü-u", kalına "u" verir</span>
             </button>
           </div>
 
@@ -6408,7 +6396,6 @@
     const cvd = document.documentElement.hasAttribute('data-cvd');
     const reciters = (window.QuranAudio && window.QuranAudio.RECITERS) || [];
     const reciterId = window.QuranAudio ? window.QuranAudio.getDefaultReciter() : 6;
-    const placed = Number.isFinite(state.placedLevel) ? state.placedLevel : 0;
     const doneCount = (state.completedLessons || []).length;
     const themes = [['system', 'Cihaza göre'], ['light', 'Aydınlık'], ['sepia', 'Sepya'], ['dark', 'Karanlık']];
 
@@ -6459,10 +6446,6 @@
 
         <section class="st-group" aria-labelledby="stLearn">
           <h3 class="st-group-title" id="stLearn">Öğrenme</h3>
-          <div class="st-row">
-            <div class="st-label"><strong>Seviye testi</strong><span>${placed > 0 ? `Şu an Seviye ${placed}'ten başlıyorsunuz.` : 'Nereden başlayacağınızı belirler.'}</span></div>
-            <button type="button" class="st-btn" id="stPlacement">Testi çöz</button>
-          </div>
           <div class="st-row">
             <div class="st-label"><strong>İlerlemeyi sıfırla</strong><span>${doneCount} tamamlanmış ders ve seviye bilgisi silinir. Geri alınamaz.</span></div>
             <button type="button" class="st-btn st-btn--danger" id="stReset">Sıfırla</button>
@@ -6516,7 +6499,6 @@
       window.QuranAudio?.stop();
     });
 
-    document.getElementById('stPlacement')?.addEventListener('click', () => openPlacementTestModal());
 
     const confirmBox = document.getElementById('stResetConfirm');
     document.getElementById('stReset')?.addEventListener('click', () => { if (confirmBox) confirmBox.hidden = false; });
@@ -6557,7 +6539,7 @@
 
   function getAsistanNowTime() {
     const d = new Date();
-    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return d.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
   }
 
   let asistanChatHistory = [
@@ -7526,19 +7508,24 @@
     const lines = clean.split('\n');
     let html = '';
     let inList = false;
+    let listTag = 'ul';
     lines.forEach(line => {
       const t = line.trim();
-      const bullet = t.match(/^(?:[-•]|\d+\.)\s+(.*)$/);
+      let bullet = t.match(/^(?:[-•]|\d+\.)\s+(.*)$/);
+      let numbered = /^\d+\.\s/.test(t);
+      if (bullet && /^\d+\.\s+/.test(bullet[1])) { numbered = true; bullet = [bullet[0], bullet[1].replace(/^\d+\.\s+/, '')]; }
       const esc = (str) => escapeAsistanHtml(str).replace(/([؀-ۿݐ-ݿࢠ-ࣿ][؀-ۿݐ-ݿࢠ-ࣿ\sً-ٰٟۖ-ۭ]*)/g, '<span class="wa-ar" lang="ar" dir="rtl">$1</span>');
       if (bullet) {
-        if (!inList) { html += '<ul class="wa-list">'; inList = true; }
+        const tag = numbered ? 'ol' : 'ul';
+        if (inList && tag !== listTag) { html += `</${listTag}>`; inList = false; }
+        if (!inList) { html += `<${tag} class="wa-list">`; inList = true; listTag = tag; }
         html += `<li>${esc(bullet[1])}</li>`;
       } else {
-        if (inList) { html += '</ul>'; inList = false; }
+        if (inList) { html += `</${listTag}>`; inList = false; }
         if (t) html += `<p>${esc(t)}</p>`;
       }
     });
-    if (inList) html += '</ul>';
+    if (inList) html += `</${listTag}>`;
     return html;
   }
 
@@ -7847,6 +7834,8 @@
         }
 
         switchAkademiSubView(viewId);
+        closeSideNavDrawer();
+        window.scrollTo({ top: 0 });
 
         // İlgili akordiyon düğümünü açık yap
         const parentNode = modBtn.closest('.drawer-acc-node');

@@ -41,7 +41,7 @@
 
   --font-mono: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-arabic: 'Amiri', 'Scheherazade New', 'Traditional Arabic', serif;
+  --font-arabic: 'KFGQPC HAFS', 'KFGQPC Uthman Taha Naskh', 'Amiri', 'Scheherazade New', serif;
 
   /* Mushaf Kâğıdı & Mürekkep */
   --paper: #f6efd8;
@@ -316,7 +316,7 @@ body {
   padding: 9px 12px; border-radius: var(--radius-sm); font: 0.86rem var(--font-sans);
   outline: none; transition: border-color .2s, box-shadow .2s; min-width: 0;
 }
-.form-select option { background: #121722; color: var(--text-main); }
+.form-select option { background: var(--v5-surface, #fff); color: var(--v5-text, #1a1a1a); }
 .form-input:focus, .form-select:focus { border-color: var(--accent-cyan); box-shadow: 0 0 0 3px rgba(63,224,232,0.12); }
 .form-input::placeholder { color: var(--text-placeholder); }
 

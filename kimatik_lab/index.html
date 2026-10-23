@@ -7,14 +7,14 @@
   <title>KUR'ÂN-I KERÎM — Tilavet, Tecvid &amp; Âyet İnceleme Atölyesi</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" href="favicon.ico">
-  <link rel="stylesheet" href="style.css?v=20261020_1740">
-  <link rel="stylesheet" href="tilavet_akademi.css?v=20261022_06">
+  <link rel="stylesheet" href="style.css?v=20261023_e">
+  <link rel="stylesheet" href="tilavet_akademi.css?v=20261023_f">
   <link rel="stylesheet" href="audio_lab/ui/ses_lab_v4.css?v=20261020_1640">
-  <link rel="stylesheet" href="design-system.css?v=20261023_a">
+  <link rel="stylesheet" href="design-system.css?v=20261023_f">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Amiri:wght@400;700&family=Amiri+Quran&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="ui-v5.css?v=20261023_a">
+  <link rel="stylesheet" href="ui-v5.css?v=20261023_h">
 </head>
 <body id="v5">
 
@@ -122,9 +122,9 @@
 
       <!-- Akademi bölümleri: tek menü, solda -->
       <div class="v5-rail-sub" id="v5RailAkademiSub" role="group" aria-label="Akademi bölümleri">
-        <button type="button" class="v5-rail-subbtn akademi-nav-btn" data-view="yolculuk" data-tip="Yolculuğum" aria-selected="false">
-          <span class="rail-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3h2v18H5zM8 4h11l-2.5 4L19 12H8z"/></svg></span>
-          <span class="nav-txt">Yolculuğum</span>
+        <button type="button" class="v5-rail-subbtn akademi-nav-btn" data-view="baslangic" data-tip="Başlangıç" aria-selected="false">
+          <span class="rail-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm12 12a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM7 10v1a4 4 0 0 0 4 4h2a2 2 0 0 1 2 2h2a4 4 0 0 0-4-4h-2a2 2 0 0 1-2-2v-1z"/></svg></span>
+          <span class="nav-txt">Başlangıç</span>
         </button>
         <button type="button" class="v5-rail-subbtn akademi-nav-btn" data-view="pratik" data-tip="Pratikler" aria-selected="false">
           <span class="rail-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16zm0 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></span>
@@ -717,7 +717,7 @@
                 <div class="exec-breadcrumb" id="akademiBreadcrumb" aria-label="Aktif Konum">
                   <span class="crumb-root">Akademi</span>
                   <span class="crumb-separator">/</span>
-                  <span class="crumb-current" id="akademiCrumbCurrent">Yolculuğum</span>
+                  <span class="crumb-current" id="akademiCrumbCurrent">Başlangıç</span>
                   <span class="crumb-sub" id="akademiCrumbSub"></span>
                 </div>
               </div>
@@ -727,7 +727,7 @@
               <!-- Hızlı Modül Seçici Açılır Liste -->
               <div class="exec-select-wrapper" title="Modül Değiştir">
                   <select id="akademiQuickModuleSelect" class="exec-module-select" aria-label="Akademi Modülü Seç">
-                  <option value="yolculuk" data-view="yolculuk">Yolculuğum (Seviye ve Rozetler)</option>
+                  <option value="baslangic" data-view="baslangic">Başlangıç (Adım adım yol)</option>
                   <option value="pratik" data-view="pratik">Pratikler</option>
                   <option value="elifba" data-view="elifba">Sıfırdan Kur'an (8 Alt Modül)</option>
                   <option value="tecvid" data-view="tecvid">Tecvid Okulu (20 Kural ve Mushaf)</option>
@@ -750,7 +750,7 @@
           </div>
 
           <!-- Alt Panel Konteynerleri -->
-          <div id="akademi-view-yolculuk" class="akademi-view-panel active"></div>
+          <div id="akademi-view-baslangic" class="akademi-view-panel active"></div>
           <div id="akademi-view-pratik" class="akademi-view-panel" style="display:none;"></div>
           <div id="akademi-view-elifba" class="akademi-view-panel" style="display:none;"></div>
           <div id="akademi-view-tecvid" class="akademi-view-panel" style="display:none;"></div>
@@ -811,31 +811,14 @@
 
         <div class="drawer-accordion-tree" id="drawerAccordionTree">
 
-          <!-- 1. YOLCULUĞUM -->
-          <div class="drawer-acc-node" data-module="yolculuk">
+          <!-- BAŞLANGIÇ -->
+          <div class="drawer-acc-node" data-module="baslangic">
             <div class="drawer-node-header">
-              <button type="button" class="drawer-module-btn akademi-nav-btn active" data-view="yolculuk">
+              <button type="button" class="drawer-module-btn akademi-nav-btn active" data-view="baslangic">
                 <div class="node-text">
-                  <span class="node-title">Yolculuğum</span>
-                  <span class="node-desc">Müfredat Haritası, Rozetler &amp; İlerleme</span>
+                  <span class="node-title">Başlangıç</span>
+                  <span class="node-desc">Adım adım yol: dersler ve bağlı alıştırmalar</span>
                 </div>
-              </button>
-              <button type="button" class="drawer-node-toggle" aria-expanded="false" title="Alt Menüyü Genişlet">
-                <span class="node-chevron" aria-hidden="true">▾</span>
-              </button>
-            </div>
-            <div class="drawer-node-sub">
-              <button type="button" class="drawer-sub-btn" data-module="yolculuk" data-action="scroll-levels">
-                <span class="sub-bullet"></span>
-                <span class="sub-label">10 Seviyeli Müfredat Haritası</span>
-              </button>
-              <button type="button" class="drawer-sub-btn" data-module="yolculuk" data-action="scroll-badges">
-                <span class="sub-bullet"></span>
-                <span class="sub-label">Kazanılan Rozetler &amp; Başarılar</span>
-              </button>
-              <button type="button" class="drawer-sub-btn" data-module="yolculuk" data-action="scroll-stats">
-                <span class="sub-bullet"></span>
-                <span class="sub-label">Tilavet İstatistikleri &amp; Seri</span>
               </button>
             </div>
           </div>
@@ -1251,7 +1234,7 @@
   </nav>
 
   <!-- Kur'an-ı Kerim Tilavet & Tecvid Motoru -->
-  <script src="tilavet_engine.js?v=20261021_1300"></script>
+  <script src="tilavet_engine.js?v=20261023_f"></script>
   <!-- Âyet İnceleme, Esbâb-ı Nüzûl ve Büyük Âlimler Tefsir Motoru -->
   <script src="inceleme_engine.js?v=20261021_1300"></script>
   <!-- Tilavet Akademisi Ses Laboratuvarı & DSP Motoru -->
@@ -1262,14 +1245,14 @@
   <!-- Tilavet Akademisi Kapsamlı Veri Havuzu -->
   <script src="tilavet_akademi_data.js?v=20261021_1300"></script>
   <!-- Tilavet Akademisi Ana Motoru -->
-  <script src="quran_audio.js?v=20261023_a"></script>
-  <script src="asistan_kb.js?v=20261023_a"></script>
-  <script src="ses_lab.js?v=20261023_a"></script>
-  <script src="tilavet_akademi_engine.js?v=20261023_a"></script>
+  <script src="quran_audio.js?v=20261023_h"></script>
+  <script src="asistan_kb.js?v=20261023_h"></script>
+  <script src="ses_lab.js?v=20261023_h"></script>
+  <script src="tilavet_akademi_engine.js?v=20261023_h"></script>
   <!-- UI / UX Orkestrasyon Katmanı (Erişilebilirlik, CVD, Sekme Senkronizasyonu, HUD) -->
   <script src="ui.js?v=20261022_a"></script>
   <script src="design-system.js?v=20261023_a"></script>
-  <script src="ui-v5.js?v=20261023_a"></script>
+  <script src="ui-v5.js?v=20261023_h"></script>
   <!-- Ses Laboratuvarı v4.0.0 Modülleri & Okuma Penceresi Köprüsü -->
   <script type="module">
     import { readingModal } from './audio_lab/ui/reading_modal.js';

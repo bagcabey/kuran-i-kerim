@@ -2,7 +2,7 @@
  * CYMATIQUE — TİLAVET AKADEMİSİ
  * Ana Akademi Motoru (tilavet_akademi_engine.js)
  * =============================================================================
- * 12 Alt Modül: Yolculuğum, Sıfırdan Kur'an, Tecvid Okulu, Tilavet Teknikleri,
+ * Alt modüller: Pratikler, Sıfırdan Kur'an, Tecvid Okulu, Tilavet Teknikleri,
  * Makam Okulu, Şan & Ses Eğitimi, Dinleme Salonu, Pratik Stüdyosu, Sınav/Sertifika,
  * Hoca Paneli, Sözlük/Kaynaklar, Ayarlar/Gizlilik.
  * =============================================================================
@@ -16,7 +16,7 @@
 
   const defaultState = {
     currentLevel: 1,
-    activeSubView: 'yolculuk',
+    activeSubView: 'baslangic',
     selectedMakam: 'rast',
     todayMinutes: 0,
     dailyGoalMinutes: 15,
@@ -25,6 +25,7 @@
     lastActiveDate: null,
     placedLevel: 0,
     completedLessons: [],
+    pathDone: [],
     completedQuizzes: {}
   };
 
@@ -548,7 +549,7 @@
 
   // 4. ALT GÖRÜNÜM GEÇİŞİ (SUB-VIEW ROUTER)
   const AKADEMI_MODULE_META = {
-    yolculuk: { title: "Yolculuğum", icon: "", subTitle: "Müfredat & İlerleme" },
+    baslangic: { title: "Başlangıç", icon: "", subTitle: "Adım adım öğrenme yolu" },
     pratik: { title: "Pratikler", icon: "", subTitle: "Kulak, okuma ve ses alıştırmaları" },
     elifba: { title: "Sıfırdan Kur'an (Elifba)", icon: "", subTitle: "28 Harf & Mahreç" },
     tecvid: { title: "Tecvid Okulu", icon: "", subTitle: "20 Kural & Renkli Mushaf" },
@@ -563,7 +564,7 @@
   };
 
   const MODULE_ORDER = [
-    'yolculuk', 'pratik', 'elifba', 'tecvid', 'teknik', 'makam',
+    'baslangic', 'pratik', 'elifba', 'tecvid', 'teknik', 'makam',
     'san', 'studyo', 'dinleme', 'asistan',
     'sozluk', 'ayarlar'
   ];
@@ -713,8 +714,8 @@
   }
 
   function switchAkademiSubView(viewId) {
-    if (viewId === 'sinav' || viewId === 'hoca' || viewId === 'qiraat') {
-      viewId = 'yolculuk';
+    if (viewId === 'sinav' || viewId === 'hoca' || viewId === 'qiraat' || viewId === 'yolculuk' || !AKADEMI_MODULE_META[viewId]) {
+      viewId = 'baslangic';
     }
     state.activeSubView = viewId;
     saveState();
@@ -758,6 +759,7 @@
 
     // İlgili modülün render tetikleyicisi
     renderActiveSubView(viewId);
+    bsReturnPill(viewId);
 
     // Yönetici barı ve Sağ Menü Senkronizasyonu
     updateExecutiveBarAndDrawer(viewId);
@@ -773,7 +775,7 @@
     }
 
     switch (viewId) {
-      case 'yolculuk': renderYolculukView(); break;
+      case 'baslangic': renderBaslangicView(true); break;
       case 'pratik': renderPratikView(); break;
       case 'elifba': renderElifbaView(); break;
       case 'tecvid': renderTecvidView(); break;
@@ -785,7 +787,7 @@
       case 'asistan': renderAsistanView(); break;
       case 'sozluk': renderSozlukView(); break;
       case 'ayarlar': renderAyarlarView(); break;
-      default: renderYolculukView(); break;
+      default: renderBaslangicView(true); break;
     }
   }
 
@@ -892,10 +894,10 @@
         <div class="akademi-modal-box pt-box pt-result">
           <span class="pt-kicker">Sonuç</span>
           <h3 class="pt-q">Seviye ${level}: ${LEVEL_NAMES[level]}</h3>
-          <p class="pt-text">Buradan başlamanız önerilir. ${level > 0 ? `Önceki ${level === 1 ? 'seviye' : 'seviyeler'} öğrenme yolunda "testle geçildi" olarak işaretlenir; istediğiniz zaman geri dönebilirsiniz.` : 'Kısa giriş dersleriyle başlayıp harflere geçeceksiniz.'}</p>
+          <p class="pt-text">Buradan başlamanız önerilir. ${level > 0 ? `Önceki ${level === 1 ? 'seviye' : 'seviyeler'} başlangıç yolunda "testle geçildi" olarak işaretlenir; istediğiniz zaman geri dönebilirsiniz.` : 'Kısa giriş dersleriyle başlayıp harflere geçeceksiniz.'}</p>
           ${firstLesson ? `<div class="pt-lesson"><span>İlk ders</span><strong>${akademiLessonTitle(firstLesson)}</strong></div>` : ''}
           <div class="pt-actions">
-            <button type="button" class="btn-akademi-primary" id="btnAcceptLevel">${firstLesson ? 'İlk derse başla' : 'Öğrenme yoluna git'}</button>
+            <button type="button" class="btn-akademi-primary" id="btnAcceptLevel">${firstLesson ? 'İlk derse başla' : 'Başlangıç yoluna git'}</button>
             <button type="button" class="btn-akademi-secondary" id="btnCancelPlacement">Kapat</button>
           </div>
         </div>
@@ -907,8 +909,8 @@
         saveState();
         overlay.remove();
         if (typeof window.switchAppTab === 'function') window.switchAppTab('tab-akademi');
-        switchAkademiSubView('yolculuk');
-        window.scrollTo({ top: 0 });
+        switchAkademiSubView('baslangic');
+        setTimeout(() => document.getElementById('bsUnit' + level)?.scrollIntoView({ block: 'start', behavior: 'smooth' }), 60);
         if (firstLesson) setTimeout(() => openLessonModal(firstLesson.id), 120);
       });
     }
@@ -1097,12 +1099,11 @@
 
       document.getElementById('btnFinishLesson')?.addEventListener('click', () => {
         if (typeof window.TilavetAudioManager !== 'undefined') window.TilavetAudioManager.stopAll('lesson_finish');
-        if (!state.completedLessons.includes(lesson.id)) {
-          state.completedLessons.push(lesson.id);
-        }
+        const doneList = Array.isArray(state.completedLessons) ? state.completedLessons : [];
+        if (!doneList.includes(lesson.id)) state.completedLessons = doneList.concat(lesson.id);
         recordAkademiActivity(lesson.estimatedMinutes || 10);
         overlay.remove();
-        renderYolculukView();
+        if (state.activeSubView === 'baslangic') renderBaslangicView(true);
         if (window.showToast) window.showToast("Ders başarıyla tamamlandı!");
       });
 
@@ -1258,90 +1259,6 @@
     return { levels, current, nextLesson, done };
   }
 
-  function openAkademiPractice(practice) {
-    if (!practice) return;
-    if (practice.tab) activeElifbaTab = practice.tab;
-    switchAkademiSubView(practice.view);
-  }
-
-  function renderYolculukView() {
-    const container = document.getElementById('akademi-view-yolculuk');
-    if (!container) return;
-
-    syncAkademiDay();
-    const { levels, current, nextLesson, done } = akademiLevelProgress();
-    const totalLessons = LESSONS.length;
-    container.innerHTML = `
-      <div class="yl-page">
-        <section class="yl-today" aria-labelledby="ylTodayTitle">
-          <div class="yl-today-main">
-            <span class="yl-eyebrow">Bugün</span>
-            <h2 class="yl-today-title" id="ylTodayTitle">${nextLesson ? 'Sıradaki ders' : 'Tüm dersler tamamlandı'}</h2>
-            ${nextLesson ? `
-              <button type="button" class="yl-next" id="btnContinueJourney" data-lesson="${nextLesson.id}">
-                <span class="yl-next-level">Seviye ${nextLesson.level} · ${nextLesson.estimatedMinutes || 10} dk</span>
-                <span class="yl-next-title">${akademiLessonTitle(nextLesson)}</span>
-                ${nextLesson.title?.ar ? `<span class="yl-next-ar" lang="ar">${nextLesson.title.ar}</span>` : ''}
-                <span class="yl-next-cta">Derse başla</span>
-              </button>` : `
-              <p class="yl-muted">Dilediğiniz dersi aşağıdaki yoldan yeniden açabilirsiniz.</p>`}
-            <button type="button" class="yl-link" id="btnOpenPlacementTest">Nereden başlayacağınızı bilmiyor musunuz? Seviye testini çözün</button>
-          </div>
-        </section>
-
-        <section class="yl-path" aria-labelledby="ylPathTitle">
-          <div class="yl-section-head">
-            <h3 id="ylPathTitle">Öğrenme yolu</h3>
-            <p>Altı seviye, ${totalLessons} ders. Her dersin ardından ilgili alıştırmaya geçebilirsiniz.</p>
-          </div>
-          <ol class="yl-levels">
-            ${levels.map(lvl => {
-              const status = lvl.finished ? 'is-done' : (lvl.skipped ? 'is-skipped' : (lvl === current ? 'is-current' : 'is-next'));
-              const statusText = lvl.finished ? 'Tamamlandı' : (lvl.skipped ? 'Testle geçildi' : (lvl === current ? 'Devam ediyor' : 'Sırada'));
-              return `
-              <li class="yl-level ${status}">
-                <div class="yl-level-marker" aria-hidden="true">${lvl.finished ? '' : lvl.level}</div>
-                <div class="yl-level-body">
-                  <div class="yl-level-head">
-                    <div>
-                      <span class="yl-level-num">Seviye ${lvl.level} · ${statusText}</span>
-                      <h4 class="yl-level-title">${lvl.title}</h4>
-                      <p class="yl-level-desc">${lvl.desc}</p>
-                    </div>
-                    <span class="yl-level-count">${lvl.doneCount}/${lvl.lessons.length}</span>
-                  </div>
-                  <ul class="yl-lessons">
-                    ${lvl.lessons.map(lesson => `
-                      <li>
-                        <button type="button" class="yl-lesson ${done.has(lesson.id) ? 'is-done' : ''}" data-lesson="${lesson.id}">
-                          <span class="yl-lesson-check" aria-hidden="true"></span>
-                          <span class="yl-lesson-title">${akademiLessonTitle(lesson)}</span>
-                          <span class="yl-lesson-min">${lesson.estimatedMinutes || 10} dk</span>
-                        </button>
-                      </li>`).join('')}
-                  </ul>
-                  ${lvl.practice ? `<button type="button" class="yl-practice" data-practice-level="${lvl.level}">Alıştırma: ${lvl.practice.label}</button>` : ''}
-                </div>
-              </li>`;
-            }).join('')}
-          </ol>
-        </section>
-
-      </div>
-    `;
-
-    container.querySelectorAll('[data-lesson]').forEach(btn => {
-      btn.addEventListener('click', () => openLessonModal(btn.getAttribute('data-lesson')));
-    });
-    document.getElementById('btnOpenPlacementTest')?.addEventListener('click', () => openPlacementTestModal());
-    container.querySelectorAll('[data-practice-level]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const lvl = AKADEMI_LEVELS.find(l => String(l.level) === btn.getAttribute('data-practice-level'));
-        openAkademiPractice(lvl && lvl.practice);
-      });
-    });
-  }
-
   // 6.1b PRATİKLER — kısa alıştırmaların tek adresi (sayfalar yerinde korunur)
   const PRATIK_GROUPS = [
     {
@@ -1358,10 +1275,9 @@
       title: 'Okuma',
       desc: 'Kendi okuyuşunuzu ölçün ve sınayın.',
       items: [
-        { id: 'kurra', title: 'Kâri ile karşılaştır', desc: 'Bir âyeti okuyun; perde, seyir ve tempo uyumunuzu görün.', meta: () => 'Mikrofon', icon: 'mic', go: { view: 'studyo', station: 'kurra' } },
+        { id: 'kurra', title: 'Kâri ile karşılaştır', desc: 'İstediğiniz kadar okuyun; perde, seyir ve tempo uyumunuzu âyet âyet görün.', meta: () => 'Mikrofon', icon: 'mic', go: { view: 'studyo', station: 'kurra' } },
         { id: 'elif', title: 'Elif ölçer', desc: 'Med uzatmanızı elif cinsinden ölçün.', meta: () => 'Mikrofon', icon: 'timer', go: { view: 'studyo', station: 'medd' } },
-        { id: 'sina', title: 'Kendini sına', desc: 'Durak, vasl ve okuma hataları soruları.', meta: () => `${(typeof TEKNIK_QUIZ !== 'undefined' && TEKNIK_QUIZ.length) || ''} soru`.trim(), icon: 'check', go: { view: 'teknik', teknik: 'pratik' } },
-        { id: 'seviye', title: 'Seviye testi', desc: 'Nereden başlamanız gerektiğini bulun.', meta: () => 'Kısa test', icon: 'flag', go: { action: 'placement' } }
+        { id: 'sina', title: 'Kendini sına', desc: 'Durak, vasl ve okuma hataları soruları.', meta: () => `${(typeof TEKNIK_QUIZ !== 'undefined' && TEKNIK_QUIZ.length) || ''} soru`.trim(), icon: 'check', go: { view: 'teknik', teknik: 'pratik' } }
       ]
     },
     {
@@ -1388,7 +1304,6 @@
 
   function openPratik(go) {
     if (!go) return;
-    if (go.action === 'placement') { openPlacementTestModal(); return; }
     if (go.elifba) activeElifbaTab = go.elifba;
     if (go.teknik) activeTeknikTab = go.teknik;
     if (go.san) activeSanTab = go.san;
@@ -1397,6 +1312,313 @@
     const panel = document.getElementById(`akademi-view-${go.view}`);
     if (panel) panel.scrollIntoView({ block: 'start' });
     window.scrollTo({ top: 0 });
+  }
+
+  // 6.1 BAŞLANGIÇ — adım adım öğrenme yolu. Dersler ve ilgili alanlar tek bir yolda sıralanır.
+  // Ders adımları dersi açar; alan adımları ilgili bölümü açar ve "Yola dön" bağlantısı bırakır.
+  const BS_UNITS = [
+    {
+      level: 0, title: 'Hazırlık', ar: 'آدَابُ التِّلَاوَة',
+      desc: 'Tilavet adabı ve Mushaf\'ın düzeni.',
+      steps: [
+        { lesson: 'L0-1-giris-ve-adab' },
+        { lesson: 'L0-2-mushaf-anatomisi' },
+        { id: 'u0-mushaf', icon: 'book', title: 'Mushaf\'ta bir sayfa açın', desc: 'Sûre, âyet, cüz ve hizb işaretlerini yerinde görün.', where: 'Mushaf', go: { tab: 'tab-tilavet' } },
+        { id: 'u0-dinle', icon: 'headphones', title: 'Bir kâriyi dinleyin', desc: 'Dinleme Salonu\'nda bir sûreyi baştan sona dinleyin.', where: 'Dinleme Salonu', go: { view: 'dinleme' } }
+      ]
+    },
+    {
+      level: 1, title: 'Elif-Ba ve Mahreç', ar: 'حُرُوفُ الْهِجَاء',
+      desc: '28 harf, çıkış yerleri ve benzer harfler.',
+      steps: [
+        { lesson: 'L1-1-harfler-ve-sesler' },
+        { id: 'u1-harfler', icon: 'letters', title: 'Harfleri tek tek dinleyin', desc: 'Her harfin sesini ve Kur\'an\'dan bir örnek kelimeyi duyun.', where: 'Sıfırdan Kur\'an', go: { view: 'elifba', elifba: 'harfler' } },
+        { id: 'u1-yazilis', icon: 'pen', title: 'Yazılış halleri', desc: 'Harfin başta, ortada ve sonda aldığı biçimler.', where: 'Sıfırdan Kur\'an', go: { view: 'elifba', elifba: 'yazilis' } },
+        { lesson: 'L1-2-kulak-egitimi-benzer-harfler' },
+        { id: 'u1-kulak', icon: 'ear', title: 'Kulak testi', desc: 'Benzer harfleri gerçek okunuşla ayırt edin.', where: 'Pratikler', go: { view: 'elifba', elifba: 'kulak' } },
+        { lesson: 'L1-5-mahreclere-giris' }
+      ]
+    },
+    {
+      level: 2, title: 'Harekeler', ar: 'الْحَرَكَات',
+      desc: 'Üstün, esre, ötre, cezm, şedde ve tenvin.',
+      steps: [
+        { lesson: 'L2-1-harekeler-giris' },
+        { id: 'u2-hareke', icon: 'letters', title: 'Harekeleri çalışın', desc: 'Aynı harfi üç hareke ile okuyun.', where: 'Sıfırdan Kur\'an', go: { view: 'elifba', elifba: 'harekeler' } },
+        { id: 'u2-tenvin', icon: 'wave', title: 'Tenvin dinle', desc: 'Kur\'an\'dan tenvinli kelimeleri dinleyip tekrar edin.', where: 'Pratikler', go: { view: 'elifba', elifba: 'tenvin' } },
+        { lesson: 'L2-2-cezm-ve-sedde' },
+        { id: 'u2-heceleme', icon: 'blocks', title: 'Heceleme', desc: 'Kelimeyi hece hece kurup okuyun.', where: 'Pratikler', go: { view: 'elifba', elifba: 'heceleme' } },
+        { lesson: 'L2-5-fatiha-okumaya-gecis' },
+        { id: 'u2-kurra', icon: 'mic', title: 'Fâtiha\'yı kâriyle okuyun', desc: 'Okuyuşunuzu kârinin perde eğrisiyle karşılaştırın.', where: 'Ses Laboratuvarı', go: { view: 'studyo', station: 'kurra' } }
+      ]
+    },
+    {
+      level: 3, title: 'Tecvid Temelleri', ar: 'أَحْكَامُ التَّجْوِيد',
+      desc: 'Nûn-ı sâkin, tenvin ve med kaideleri.',
+      steps: [
+        { lesson: 'L3-1-nun-sakin-izhar' },
+        { id: 'u3-nun', icon: 'tecvid', title: 'Nûn-ı sâkin kuralları', desc: 'İzhâr, idğâm, iklâb ve ihfâ örnekleri, renkli Mushaf ile.', where: 'Tecvid Okulu', go: { view: 'tecvid', tecvid: 'nun' } },
+        { lesson: 'L3-4-med-bolumu' },
+        { id: 'u3-med', icon: 'tecvid', title: 'Med kuralları', desc: 'Medlerin türleri ve kaç elif uzatıldıkları.', where: 'Tecvid Okulu', go: { view: 'tecvid', tecvid: 'madd' } },
+        { id: 'u3-elif', icon: 'timer', title: 'Elif ölçer', desc: 'Med uzatmanızı elif cinsinden ölçün.', where: 'Ses Laboratuvarı', go: { view: 'studyo', station: 'medd' } }
+      ]
+    },
+    {
+      level: 4, title: 'Tilavet Teknikleri', ar: 'مَرَاتِبُ الْقِرَاءَة',
+      desc: 'Okuma hızları, duraklar ve sık yapılan hatalar.',
+      steps: [
+        { lesson: 'L4-1-okuma-hizlari' },
+        { id: 'u4-tempo', icon: 'timer', title: 'Okuma hızlarını dinleyin', desc: 'Tahkîk, tertîl, tedvîr ve hadr örnekleri.', where: 'Tilavet Teknikleri', go: { view: 'teknik', teknik: 'tempolar' } },
+        { id: 'u4-secavend', icon: 'flag', title: 'Secavend işaretleri', desc: 'Nerede durulur, nerede geçilir.', where: 'Tilavet Teknikleri', go: { view: 'teknik', teknik: 'secavend' } },
+        { lesson: 'L4-5-hatalar-atlasi' },
+        { id: 'u4-sina', icon: 'check', title: 'Kendini sına', desc: 'Durak, vasl ve okuma hataları soruları.', where: 'Pratikler', go: { view: 'teknik', teknik: 'pratik' } }
+      ]
+    },
+    {
+      level: 5, title: 'Makam ve Ses', ar: 'الْمَقَامَات',
+      desc: 'Nefes, perde, karar ve seyir.',
+      steps: [
+        { id: 'u5-nefes', icon: 'breath', title: 'Nefes ve ses', desc: 'Kısa nefes ritmi ve ses ısınması.', where: 'Şan ve Ses', go: { view: 'san', san: 'diyafram' } },
+        { lesson: 'L5-1-makama-giris' },
+        { id: 'u5-makam', icon: 'music', title: 'Makamları dinleyin', desc: 'On makamı hocaların okuyuşundan tanıyın.', where: 'Makam Okulu', go: { view: 'makam' } },
+        { id: 'u5-perde', icon: 'tune', title: 'Perde ve makam', desc: 'Kendi karar perdenizi bulun; okuyuşunuz hangi makama yakın görün.', where: 'Ses Laboratuvarı', go: { view: 'studyo', station: 'tuner' } },
+        { id: 'u5-kurra', icon: 'mic', title: 'Kâriyle karşılaştırın', desc: 'İstediğiniz kadar okuyun, âyet âyet puanınızı görün.', where: 'Ses Laboratuvarı', go: { view: 'studyo', station: 'kurra' } }
+      ]
+    }
+  ];
+  const BS_ICONS = Object.assign({}, PRATIK_ICONS, {
+    lesson: 'M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5a.5.5 0 0 0 0 1H20v2H6.5A2.5 2.5 0 0 1 4 19.5zM8 6v2h8V6z',
+    book: 'M5 3h11a3 3 0 0 1 3 3v15H7a2 2 0 0 1-2-2zm2 2v12h10V6a1 1 0 0 0-1-1zm2 2h6v2H9zm0 4h6v2H9z',
+    headphones: 'M12 3a9 9 0 0 0-9 9v7a2 2 0 0 0 2 2h3v-8H5v-1a7 7 0 0 1 14 0v1h-3v8h3a2 2 0 0 0 2-2v-7a9 9 0 0 0-9-9z',
+    letters: 'M4 18h3l1-3h5l1 3h3L12 5h-2zm5-5 1.5-4.5L12 13zM19 9h2v9h-2z',
+    pen: 'M3 17.2V21h3.8L17.8 10 14 6.2zM20.7 7a1 1 0 0 0 0-1.4l-2.3-2.3a1 1 0 0 0-1.4 0l-1.8 1.8 3.7 3.7z',
+    tecvid: 'M12 3a9 9 0 1 0 9 9h-9z M14 2v8h8a8 8 0 0 0-8-8z',
+    music: 'M9 3v10.6A4 4 0 1 0 11 17V8h6V3z',
+    flame: 'M13.5 1s.7 2.6.7 4.7c0 2-1.3 3.7-3.3 3.7S7.4 7.7 7.4 5.7l.03-.36C5.3 7.8 4 11.3 4 15a8 8 0 0 0 16 0c0-5.4-2.6-10.2-6.5-14zM11.7 19c-1.8 0-3.2-1.4-3.2-3.1 0-1.6 1-2.8 2.8-3.1 1.8-.4 3.6-1.2 4.6-2.6.4 1.3.6 2.6.6 4 0 2.6-2.1 4.8-4.8 4.8z',
+    seal: 'M12 2l2.4 2.4H18v3.6l2.4 2.4-2.4 2.4V16h-3.6L12 18.4 9.6 16H6v-3.6L3.6 10 6 7.6V4h3.6z'
+  });
+  let bsOpenStep = null;      // açık açıklama kartı
+  let bsFromPath = false;      // alan, yoldan açıldıysa "Yola dön" bağlantısı gösterilir
+
+  function bsStepId(step) { return step.lesson || step.id; }
+  function bsLesson(step) { return step.lesson ? LESSONS.find(l => l.id === step.lesson) : null; }
+  function bsUnits() {
+    // Veride olmayan dersleri yoldan düşür
+    return BS_UNITS.map(u => ({ ...u, steps: u.steps.filter(s => !s.lesson || bsLesson(s)) }));
+  }
+  function bsProgress() {
+    const doneLessons = new Set(state.completedLessons || []);
+    const doneLinks = new Set(state.pathDone || []);
+    const placed = Number.isFinite(state.placedLevel) ? state.placedLevel : 0;
+    const units = bsUnits().map(u => {
+      const steps = u.steps.map(s => ({ ...s, sid: bsStepId(s), done: s.lesson ? doneLessons.has(s.lesson) : doneLinks.has(s.id) }));
+      const doneCount = steps.filter(s => s.done).length;
+      const skipped = u.level < placed && doneCount < steps.length;
+      return { ...u, steps, doneCount, finished: doneCount === steps.length, skipped };
+    });
+    let current = null;
+    for (const u of units) {
+      if (u.skipped) continue;
+      const s = u.steps.find(x => !x.done);
+      if (s) { current = { unit: u, step: s }; break; }
+    }
+    const lessonTotal = LESSONS.length;
+    const lessonDone = LESSONS.filter(l => doneLessons.has(l.id)).length;
+    return { units, current, lessonTotal, lessonDone };
+  }
+  function bsMarkLink(id) {
+    const cur = Array.isArray(state.pathDone) ? state.pathDone : [];
+    if (!cur.includes(id)) { state.pathDone = cur.concat(id); saveState(); }
+  }
+  function bsOpenGo(go) {
+    if (!go) return;
+    if (go.tab) {
+      bsFromPath = false;
+      if (typeof window.switchAppTab === 'function') window.switchAppTab(go.tab);
+      window.scrollTo({ top: 0 });
+      return;
+    }
+    if (go.tecvid) activeTecvidCategory = go.tecvid;
+    bsFromPath = true;
+    openPratik(go);
+  }
+  // Yoldan açılan bölümün üstüne "Yola dön" bağlantısı
+  function bsReturnPill(viewId) {
+    document.querySelectorAll('.bs-return').forEach(el => el.remove());
+    const fromPath = bsFromPath;
+    bsFromPath = false;
+    if (!fromPath || viewId === 'baslangic') return;
+    const panel = document.getElementById(`akademi-view-${viewId}`);
+    if (!panel || !panel.parentNode) return;
+    const { current } = bsProgress();
+    const pill = document.createElement('div');
+    pill.className = 'bs-return';
+    pill.innerHTML = `<button type="button" class="bs-return-btn"><span aria-hidden="true">‹</span> Başlangıç yoluna dön</button>${current ? `<span class="bs-return-next">Sıradaki: ${bsEsc(current.step.lesson ? akademiLessonTitle(bsLesson(current.step)) : current.step.title)}</span>` : ''}`;
+    pill.querySelector('button').addEventListener('click', () => { switchAkademiSubView('baslangic'); });
+    panel.parentNode.insertBefore(pill, panel);
+  }
+  function bsEsc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+  function renderBaslangicView(scrollToCurrent) {
+    const container = document.getElementById('akademi-view-baslangic');
+    if (!container) return;
+    syncAkademiDay();
+    const { units, current, lessonTotal, lessonDone } = bsProgress();
+    const goal = state.dailyGoalMinutes || 15;
+    const today = state.todayMinutes || 0;
+    const streak = state.streak || 0;
+    const curUnit = current ? current.unit : units[units.length - 1];
+    const ZIG = [0, -1, -1.6, -1, 0, 1, 1.6, 1];
+
+    const stats = `
+      <div class="bs-stats" role="list">
+        <div class="bs-stat" role="listitem" title="Art arda çalışılan gün"><svg class="bs-stat-ico is-streak" viewBox="0 0 24 24" aria-hidden="true"><path d="${BS_ICONS.flame}"/></svg><strong>${streak}</strong><small>gün seri</small></div>
+        <div class="bs-stat" role="listitem" title="Bugün derslerde geçen süre"><svg class="bs-stat-ico is-time" viewBox="0 0 24 24" aria-hidden="true"><path d="${BS_ICONS.timer}"/></svg><strong>${today}</strong><small>dk bugün</small></div>
+        <div class="bs-stat" role="listitem" title="Tamamlanan dersler"><svg class="bs-stat-ico is-lesson" viewBox="0 0 24 24" aria-hidden="true"><path d="${BS_ICONS.lesson}"/></svg><strong>${lessonDone}/${lessonTotal}</strong><small>ders</small></div>
+      </div>`;
+
+    const stepNode = (u, s, i, unitIndex) => {
+      const isCur = current && current.step.sid === s.sid;
+      const st = s.done ? 'is-done' : (u.skipped ? 'is-skipped' : (isCur ? 'is-current' : 'is-next'));
+      const lesson = bsLesson(s);
+      const kind = s.lesson ? 'lesson' : 'link';
+      const title = lesson ? akademiLessonTitle(lesson) : s.title;
+      const icon = s.done ? 'check' : (s.lesson ? 'lesson' : s.icon);
+      const off = ZIG[(i + unitIndex * 3) % ZIG.length];
+      const open = bsOpenStep === s.sid;
+      const meta = lesson
+        ? `Ders · ${lesson.estimatedMinutes || 10} dk`
+        : `${bsEsc(s.where)} · alıştırma`;
+      const desc = lesson ? ((lesson.objectives || [])[0] || '') : s.desc;
+      const cta = lesson ? (s.done ? 'Yeniden aç' : (isCur ? 'Derse başla' : 'Dersi aç')) : (s.done ? 'Yeniden aç' : 'Şimdi çalış');
+      return `
+        <li class="bs-step ${st} bs-${kind}" style="--off:${off}" data-sid="${s.sid}">
+          ${isCur ? `<span class="bs-bubble" aria-hidden="true">${s.lesson ? 'BAŞLA' : 'SIRADA'}</span>` : ''}
+          <button type="button" class="bs-node" data-step="${s.sid}" aria-expanded="${open}" aria-label="${bsEsc(title)}${s.done ? ' (tamamlandı)' : ''}">
+            <span class="bs-node-face"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${BS_ICONS[icon] || BS_ICONS.check}"/></svg></span>
+          </button>
+          <div class="bs-pop" ${open ? '' : 'hidden'} role="dialog" aria-label="${bsEsc(title)}">
+            <span class="bs-pop-meta">${meta}</span>
+            <strong class="bs-pop-title">${bsEsc(title)}</strong>
+            ${lesson && lesson.title && lesson.title.ar ? `<span class="bs-pop-ar" lang="ar" dir="rtl">${lesson.title.ar}</span>` : ''}
+            ${desc ? `<p class="bs-pop-desc">${bsEsc(desc)}</p>` : ''}
+            <button type="button" class="bs-pop-cta" data-go="${s.sid}">${cta}</button>
+          </div>
+        </li>`;
+    };
+
+    container.innerHTML = `
+      <div class="bs-page">
+        <div class="bs-main">
+          <div class="bs-stats-top">${stats}</div>
+          ${units.map((u, ui) => {
+            const lessonsIn = u.steps.filter(s => s.lesson).length;
+            const linksIn = u.steps.length - lessonsIn;
+            const lessonObjs = u.steps.filter(s => s.lesson).map(s => bsLesson(s));
+            const areas = [...new Map(u.steps.filter(s => !s.lesson).map(s => [s.where, s])).values()];
+            return `
+            <section class="bs-unit ${u.finished ? 'is-finished' : ''} ${u === curUnit ? 'is-active' : ''}" id="bsUnit${u.level}" aria-labelledby="bsUnitTitle${u.level}">
+              <header class="bs-banner">
+                <div class="bs-banner-text">
+                  <span class="bs-banner-kicker">Seviye ${u.level} · ${lessonsIn} ders, ${linksIn} alıştırma${u.skipped ? ' · testle geçildi' : ''}</span>
+                  <h3 class="bs-banner-title" id="bsUnitTitle${u.level}">${bsEsc(u.title)}</h3>
+                </div>
+                <span class="bs-banner-ar" lang="ar" dir="rtl" aria-hidden="true">${u.ar}</span>
+                <button type="button" class="bs-guide-btn" data-guide="${u.level}" aria-expanded="false" aria-controls="bsGuide${u.level}">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="${BS_ICONS.book}"/></svg><span>Rehber</span>
+                </button>
+                <div class="bs-banner-bar" aria-hidden="true"><i style="--v:${Math.round(100 * u.doneCount / Math.max(1, u.steps.length))}%"></i></div>
+              </header>
+              <div class="bs-guide" id="bsGuide${u.level}" hidden>
+                <p class="bs-guide-desc">${bsEsc(u.desc)}</p>
+                ${lessonObjs.length ? `<div class="bs-guide-col"><span class="bs-guide-label">Bu seviyede öğrenecekleriniz</span><ul>${lessonObjs.flatMap(l => (l.objectives || []).slice(0, 2)).map(o => `<li>${bsEsc(o)}</li>`).join('')}</ul></div>` : ''}
+                ${areas.length ? `<div class="bs-guide-col"><span class="bs-guide-label">Bağlı alanlar</span><div class="bs-chips">${areas.map(s => `<button type="button" class="bs-chip" data-go="${s.id}">${bsEsc(s.where)}</button>`).join('')}</div></div>` : ''}
+              </div>
+              <ol class="bs-path">
+                ${u.steps.map((s, i) => stepNode(u, s, i, ui)).join('')}
+                <li class="bs-step bs-seal ${u.finished ? 'is-done' : ''}" style="--off:0">
+                  <span class="bs-seal-face" title="${u.finished ? 'Seviye tamamlandı' : `${u.steps.length - u.doneCount} adım kaldı`}"><span lang="ar">${String(u.level + 1).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</span></span>
+                  <span class="bs-seal-label">${u.finished ? 'Seviye tamamlandı' : `${bsEsc(u.title)} · ${u.doneCount}/${u.steps.length}`}</span>
+                </li>
+              </ol>
+            </section>`;
+          }).join('')}
+          <p class="bs-end">${current ? 'Adımları sırayla izlemeniz önerilir; dilediğiniz adımı istediğiniz an açabilirsiniz.' : 'Tüm adımları tamamladınız. Pratikler ve Ses Laboratuvarı ile çalışmaya devam edin.'}</p>
+        </div>
+
+        <aside class="bs-side" aria-label="Özet">
+          <div class="bs-side-card bs-side-stats">${stats}</div>
+          <section class="bs-side-card">
+            <h4>Günlük hedef</h4>
+            <div class="bs-goal">
+              <svg class="bs-goal-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="${BS_ICONS.flame}"/></svg>
+              <div class="bs-goal-body">
+                <span>Derslerde ${goal} dakika</span>
+                <div class="bs-goal-bar"><i style="--v:${Math.min(100, Math.round(100 * today / goal))}%"></i><b>${Math.min(today, goal)} / ${goal}</b></div>
+              </div>
+            </div>
+          </section>
+          ${curUnit ? `
+          <section class="bs-side-card">
+            <h4>Seviye ${curUnit.level} ile bağlantılı</h4>
+            <ul class="bs-links">
+              ${[...new Map(curUnit.steps.filter(s => !s.lesson).map(s => [s.where, s])).values()].map(s => `
+                <li><button type="button" data-go="${s.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${BS_ICONS[s.icon] || BS_ICONS.check}"/></svg><span>${bsEsc(s.where)}</span><small>${bsEsc(s.title)}</small></button></li>`).join('')}
+              <li><button type="button" data-view-go="pratik"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${BS_ICONS.blocks}"/></svg><span>Tüm pratikler</span><small>Kulak, okuma ve ses</small></button></li>
+            </ul>
+          </section>` : ''}
+          <section class="bs-side-card bs-place">
+            <h4>Nereden başlamalıyım?</h4>
+            <p>Harfleri ya da tecvidi biliyorsanız kısa testi çözün; uygun seviyeden devam edin.</p>
+            <button type="button" class="bs-place-btn" id="bsPlacement">Seviye testini çöz</button>
+          </section>
+        </aside>
+      </div>`;
+
+    const findStep = sid => { for (const u of units) { const s = u.steps.find(x => x.sid === sid); if (s) return s; } return null; };
+    const runStep = (s) => {
+      if (!s) return;
+      if (s.lesson) { openLessonModal(s.lesson); return; }
+      bsMarkLink(s.id);
+      bsOpenStep = null;
+      bsOpenGo(s.go);
+    };
+    container.querySelectorAll('.bs-node').forEach(btn => btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const sid = btn.dataset.step;
+      bsOpenStep = bsOpenStep === sid ? null : sid;
+      container.querySelectorAll('.bs-step').forEach(li => {
+        const on = li.dataset.sid === bsOpenStep;
+        const pop = li.querySelector('.bs-pop');
+        if (pop) pop.hidden = !on;
+        li.classList.toggle('is-open', on);
+        li.querySelector('.bs-node')?.setAttribute('aria-expanded', String(on));
+      });
+      const pop = btn.parentNode.querySelector('.bs-pop');
+      if (pop && !pop.hidden) { pop.querySelector('.bs-pop-cta')?.focus({ preventScroll: true }); pop.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+    }));
+    container.querySelectorAll('[data-go]').forEach(btn => btn.addEventListener('click', (e) => { e.stopPropagation(); runStep(findStep(btn.dataset.go)); }));
+    container.querySelectorAll('[data-view-go]').forEach(btn => btn.addEventListener('click', () => { bsFromPath = true; openPratik({ view: btn.dataset.viewGo }); }));
+    container.querySelectorAll('[data-guide]').forEach(btn => btn.addEventListener('click', () => {
+      const g = document.getElementById('bsGuide' + btn.dataset.guide);
+      if (!g) return;
+      g.hidden = !g.hidden;
+      btn.setAttribute('aria-expanded', String(!g.hidden));
+    }));
+    document.getElementById('bsPlacement')?.addEventListener('click', () => openPlacementTestModal());
+    container.addEventListener('click', (e) => {
+      if (bsOpenStep && !e.target.closest('.bs-step')) {
+        bsOpenStep = null;
+        container.querySelectorAll('.bs-pop').forEach(p => { p.hidden = true; });
+        container.querySelectorAll('.bs-step.is-open').forEach(li => li.classList.remove('is-open'));
+      }
+    });
+    if (scrollToCurrent && current) {
+      requestAnimationFrame(() => {
+        const el = container.querySelector(`.bs-step[data-sid="${current.step.sid}"]`);
+        if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      });
+    }
   }
 
   function renderPratikView() {
@@ -1614,7 +1836,7 @@
           <!-- Bitişmeyen 6 Harf Uyarısı -->
           <div class="non-connector-alert-box">
             <h4 style="color:var(--accent-gold); font-size:1.05rem; margin:0 0 0.4rem 0;">⚠ Kendinden Sonrasına Bitişmeyen 6 Harf:</h4>
-            <div style="font-family:'Amiri', serif; font-size:2.2rem; color:#f0f3fa; direction:rtl; margin-bottom:0.5rem; letter-spacing:0.5rem;">
+            <div style="font-family: 'KFGQPC HAFS', 'Amiri', serif; font-size:2.2rem; color:#f0f3fa; direction:rtl; margin-bottom:0.5rem; letter-spacing:0.5rem;">
               ا · د · ذ · ر · ز · و
             </div>
             <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.6; margin:0;">
@@ -1773,7 +1995,7 @@
               <div class="sedde-card" data-sound="${item.sound}" data-glyph="${item.glyph || item.char}">
                 <div class="sedde-glyph" lang="ar">${item.glyph || item.char}</div>
                 <div style="font-size:1.1rem; font-weight:800; color:#f0f3fa;">${item.sound}</div>
-                ${item.breakdown ? `<div style="font-size:0.82rem; color:var(--accent-gold); margin-top:0.35rem; font-weight:600;">Açılımı: <span lang="ar" style="font-family:'Amiri', serif; font-size:1.15rem;">${item.breakdown}</span></div>` : ''}
+                ${item.breakdown ? `<div style="font-size:0.82rem; color:var(--accent-gold); margin-top:0.35rem; font-weight:600;">Açılımı: <span lang="ar" style="font-family: 'KFGQPC HAFS', 'Amiri', serif; font-size:1.15rem;">${item.breakdown}</span></div>` : ''}
                 <div style="font-size:0.78rem; color:#8a94a6; margin-top:0.3rem;">${item.desc || ''}</div>
               </div>
             `).join('')}
@@ -1887,7 +2109,7 @@
                 </div>
 
                 <div style="text-align:center;">
-                  <div style="font-family:'Amiri', serif; font-size:2.6rem; color:var(--accent-gold); margin:0.35rem 0;" class="word-target-glyph" lang="ar">${item.word}</div>
+                  <div style="font-family: 'KFGQPC HAFS', 'Amiri', serif; font-size:2.6rem; color:var(--accent-gold); margin:0.35rem 0;" class="word-target-glyph" lang="ar">${item.word}</div>
                   <div class="hece-feedback-text" style="font-size:0.82rem; color:#8a94a6;">Hecelere sağdan sola sırayla dokunarak birleştirin...</div>
                 </div>
               </div>
@@ -3767,7 +3989,8 @@
                 <p class="sv-desc">${esc(s.desc)}</p>
                 <details class="sv-why"><summary>Neden?</summary><p>${esc(s.explanation)}</p></details>
                 <div class="sv-actions">
-                  ${range ? `<button type="button" class="sv-play" data-clip-key="${key}" data-clip-from="${range[0]}" data-clip-to="${range[1]}" aria-pressed="false"><span class="v5-word-play-icon" aria-hidden="true"></span>Dinle</button>` : ''}
+                  ${range ? `<button type="button" class="sv-play" data-clip-key="${key}" data-clip-from="${range[0]}" data-clip-to="${range[1]}" aria-pressed="false"><span class="v5-word-play-icon" aria-hidden="true"></span>Dinle</button>
+                  <button type="button" class="sv-play sv-more" data-clip-key="${key}" data-clip-from="${range[0]}" data-clip-continue aria-pressed="false" title="Buradan itibaren durdurana kadar okur"><span class="v5-word-play-icon" aria-hidden="true"></span>Devamını dinle</button>` : ''}
                   <button type="button" class="sv-open btn-goto-secavend-ayah" data-surah="${s.surah}" data-ayah="${s.ayah}">Mushaf'ta aç</button>
                 </div>
               </article>`;
@@ -3923,6 +4146,7 @@
                       <p class="vs-note">${esc(it.note)}</p>
                       <div class="sv-actions">
                         <button type="button" class="sv-play" data-clip-key="${it.key}" data-clip-from="${it.from}" data-clip-to="${it.to}" aria-pressed="false"><span class="v5-word-play-icon" aria-hidden="true"></span>Dinle</button>
+                        <button type="button" class="sv-play sv-more" data-clip-key="${it.key}" data-clip-from="${it.from}" data-clip-continue aria-pressed="false" title="Buradan itibaren durdurana kadar okur"><span class="v5-word-play-icon" aria-hidden="true"></span>Devamı</button>
                         <span class="sv-ref">Âyet ${it.key}</span>
                       </div>
                     </article>`).join('')}
@@ -3963,7 +4187,7 @@
                     <div class="ozel-place-item">
                       <div>
                         <div style="font-size:0.76rem; color:var(--text-muted); font-weight:700;">${p.name}</div>
-                        <div style="font-family:'Amiri Quran',serif; font-size:1.45rem; color:#fff; direction:rtl; text-align:right; margin:0.4rem 0;">${p.phraseAr}</div>
+                        <div style="font-family:'KFGQPC HAFS', 'KFGQPC Uthman Taha Naskh', 'Amiri Quran',serif; font-size:1.45rem; color:#fff; direction:rtl; text-align:right; margin:0.4rem 0;">${p.phraseAr}</div>
                         <div style="font-size:0.8rem; color:var(--accent-gold); font-weight:600;">${p.latin}</div>
                       </div>
 
@@ -3995,7 +4219,7 @@
                     <div class="ozel-place-item">
                       <div>
                         <div style="font-size:0.76rem; color:var(--text-muted); font-weight:700;">${p.name}</div>
-                        <div style="font-family:'Amiri Quran',serif; font-size:1.45rem; color:#fff; direction:rtl; text-align:right; margin:0.4rem 0;">${p.phraseAr}</div>
+                        <div style="font-family:'KFGQPC HAFS', 'KFGQPC Uthman Taha Naskh', 'Amiri Quran',serif; font-size:1.45rem; color:#fff; direction:rtl; text-align:right; margin:0.4rem 0;">${p.phraseAr}</div>
                         <div style="font-size:0.8rem; color:var(--accent-gold); font-weight:600;">${p.latin}</div>
                       </div>
 
@@ -6396,7 +6620,6 @@
     const cvd = document.documentElement.hasAttribute('data-cvd');
     const reciters = (window.QuranAudio && window.QuranAudio.RECITERS) || [];
     const reciterId = window.QuranAudio ? window.QuranAudio.getDefaultReciter() : 6;
-    const doneCount = (state.completedLessons || []).length;
     const themes = [['system', 'Cihaza göre'], ['light', 'Aydınlık'], ['sepia', 'Sepya'], ['dark', 'Karanlık']];
 
     container.innerHTML = `
@@ -6439,7 +6662,7 @@
               <select id="stReciter" class="st-select" aria-label="Örnekleri okuyan kâri">
                 ${reciters.map(r => `<option value="${r.id}" ${r.id === reciterId ? 'selected' : ''}>${r.name} · ${r.style}</option>`).join('')}
               </select>
-              <button type="button" class="st-btn" id="stReciterTry" data-clip-key="1:1" aria-pressed="false">Dinle</button>
+              <button type="button" class="st-btn" id="stReciterTry" data-clip-key="1:1" data-clip-continue aria-pressed="false">Dinle</button>
             </div>
           </div>
         </section>
@@ -6447,7 +6670,7 @@
         <section class="st-group" aria-labelledby="stLearn">
           <h3 class="st-group-title" id="stLearn">Öğrenme</h3>
           <div class="st-row">
-            <div class="st-label"><strong>İlerlemeyi sıfırla</strong><span>${doneCount} tamamlanmış ders ve seviye bilgisi silinir. Geri alınamaz.</span></div>
+            <div class="st-label"><strong>İlerlemeyi sıfırla</strong><span>Tamamlanan dersler, başlangıç yolu ve seviye bilgisi silinir. Geri alınamaz.</span></div>
             <button type="button" class="st-btn st-btn--danger" id="stReset">Sıfırla</button>
           </div>
           <div class="st-confirm" id="stResetConfirm" hidden>
@@ -6537,9 +6760,9 @@
   // 5.9 TİLAVET ÖĞRENME ASİSTANI (GUARDRAILS & KNOWLEDGE BASE)
   // ===========================================================================
 
+  const ASISTAN_TIME_FMT = new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' });
   function getAsistanNowTime() {
-    const d = new Date();
-    return d.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+    return ASISTAN_TIME_FMT.format(new Date());
   }
 
   let asistanChatHistory = [
@@ -7730,7 +7953,7 @@
     backdrop.classList.add('active');
     drawer.setAttribute('aria-hidden', 'false');
     document.getElementById('btnOpenSideDrawer')?.setAttribute('aria-expanded', 'true');
-    syncDrawerActiveTree(state.activeSubView || 'yolculuk');
+    syncDrawerActiveTree(state.activeSubView || 'baslangic');
 
     // Aktif modüle hafifçe odaklan veya kaydır
     const activeNode = drawer.querySelector('.drawer-acc-node.active-module');
@@ -7905,10 +8128,6 @@
           const btnMini = document.getElementById('btnToggleMiniMushaf');
           if (btnMini) btnMini.click();
           else if (window.showMiniMushafForRule) window.showMiniMushafForRule('izhar', false);
-        } else if (action?.startsWith('scroll-')) {
-          const targetSection = action.replace('scroll-', '');
-          const targetEl = document.querySelector(`.yolculuk-${targetSection}-section`) || document.querySelector(`#yolculuk-${targetSection}`);
-          if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
         }
 
         updateExecutiveBarAndDrawer(moduleName || state.activeSubView);
@@ -7989,7 +8208,7 @@
     await akademiDataPromise;
 
     if (akademiListenersBound) {
-      switchAkademiSubView(state.activeSubView || 'yolculuk');
+      switchAkademiSubView(state.activeSubView || 'baslangic');
       return;
     }
     akademiListenersBound = true;
@@ -8006,7 +8225,7 @@
     });
 
     // İlk alt görünümü aç
-    switchAkademiSubView(state.activeSubView || 'yolculuk');
+    switchAkademiSubView(state.activeSubView || 'baslangic');
   }
 
   // Tecvid Kuralı ile Mushaf'a Gitme ve Vurgulama Köprüsü
@@ -8072,6 +8291,8 @@
   };
 
   // Dışa aktar
+  window.openPlacementTestModal = openPlacementTestModal;
+  window.openLessonModal = openLessonModal;
   window.TilavetAkademiEngine = {
     init: initTilavetAkademi,
     switchSubView: switchAkademiSubView,
@@ -8085,8 +8306,5 @@
 
   // Kolay erişim için doğrudan window üzerine de köprüle
   window.switchAkademiSubView = switchAkademiSubView;
-  window.openPlacementTestModal = openPlacementTestModal;
-  window.openLessonModal = openLessonModal;
-  window.closeLessonModal = closeLessonModal;
 
 })(window);

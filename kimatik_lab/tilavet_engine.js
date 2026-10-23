@@ -11,6 +11,7 @@
 // =========================================================
 const TilavetAudioManager = (function() {
   const registeredPlayers = new Map();
+  let stopping = false;
   let currentActiveId = null;
 
   // Akış tercihi: 'auto_advance' (kesintisiz devam) | 'stay_on_ayah' (seçili âyette sabit kal)
@@ -73,19 +74,32 @@ const TilavetAudioManager = (function() {
     },
     notifyPlay(sourceId) {
       currentActiveId = sourceId;
-      registeredPlayers.forEach((player, id) => {
-        if (id !== sourceId && typeof player.stop === 'function') {
-          try { player.stop(); } catch(e) { console.warn(`[AudioManager] Error stopping ${id}:`, e); }
-        }
-      });
+      if (stopping) return;
+      stopping = true;
+      try {
+        registeredPlayers.forEach((player, id) => {
+          if (id !== sourceId && typeof player.stop === 'function') {
+            try { player.stop(); } catch(e) { console.warn(`[AudioManager] Error stopping ${id}:`, e); }
+          }
+        });
+      } finally {
+        stopping = false;
+      }
     },
     stopAll(reason = 'manual') {
+      // Bir oynatıcının stop() fonksiyonu yeniden stopAll çağırabilir: tekrar girişi engelle
+      if (stopping) return;
+      stopping = true;
       currentActiveId = null;
-      registeredPlayers.forEach((player, id) => {
-        if (typeof player.stop === 'function') {
-          try { player.stop(reason); } catch(e) { console.warn(`[AudioManager] Error stopping ${id}:`, e); }
-        }
-      });
+      try {
+        registeredPlayers.forEach((player, id) => {
+          if (typeof player.stop === 'function') {
+            try { player.stop(reason); } catch(e) { console.warn(`[AudioManager] Error stopping ${id}:`, e); }
+          }
+        });
+      } finally {
+        stopping = false;
+      }
     },
     getActiveSource() {
       return currentActiveId;
@@ -1411,7 +1425,7 @@ function renderMushafPage(pageData, targetAyahNo = null, targetSurahNo = null) {
       </div>
 
       <div class="mushaf-header-meta">
-        <span>Sayfa ${pageData.pageNum} / ${arabicPageNum}</span>
+        <span>Sayfa ${pageData.pageNum}</span>
       </div>
     </div>
 

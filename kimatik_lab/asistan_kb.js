@@ -20,7 +20,7 @@
       title: 'Sıfırdan başlamak',
       answer: 'Sıfırdan başlıyorsanız şu sırayı öneririm:\n- 1. Harfler: 28 harfi ve çıkış yerlerini (mahreç) tanıyın.\n- 2. Harekeler: üstün, esre, ötre; ardından cezm ve şedde.\n- 3. Tenvin ve med harfleri.\n- 4. Heceleme: kısa kelimeleri hece hece okuyun.\n- 5. Kısa sûreler: Fâtiha ve son sûreler, hocadan dinleyerek.\nGünde 15–20 dakika, her gün düzenli çalışmak; seyrek ve uzun oturumlardan daha verimlidir.',
       references: [DIYANET_TECVID],
-      go: { view: 'elifba', elifba: 'harfler', label: 'Sıfırdan Kur\u2019an\u2019ı aç' },
+      go: { view: 'baslangic', label: 'Başlangıç yolunu aç' },
       options: [{ label: 'Harekeler nedir?', query: 'Harekeler ve cezim nedir?' }, { label: 'Ne kadar sürede öğrenirim?', query: 'Kuran okumayı ne kadar sürede öğrenirim' }]
     },
     {
@@ -526,11 +526,11 @@
       go: { view: 'ayarlar', label: 'Ayarlar\u2019ı aç' }
     },
     {
-      keywords: ['ilerlemem', 'kaldigim yer', 'dersler nerede', 'seviyem', 'seviye testi'],
-      title: 'İlerleme ve seviye',
-      answer: 'Yolculuğum sayfasında sıradaki dersiniz ve altı seviyelik öğrenme yolu görünür. Nereden başlayacağınızdan emin değilseniz seviye testini çözün; test sizi uygun seviyeye yerleştirir. İlerlemeniz bu tarayıcıda saklanır.',
+      keywords: ['ilerlemem', 'kaldigim yer', 'dersler nerede', 'seviye testi', 'seviyem', 'baslangic yolu'],
+      title: 'Nereden başlamalıyım?',
+      answer: 'Akademi\u2019deki Başlangıç yolu dersleri ve onlara bağlı alıştırmaları adım adım sıralar. Sıradaki adım yeşil işaretlidir; her dersin ardından ilgili bölüme (Sıfırdan Kur\u2019an, Tecvid Okulu, Ses Laboratuvarı…) geçersiniz. Harfleri biliyorsanız yoldaki seviye testini çözüp uygun seviyeden devam edin. İlerlemeniz bu tarayıcıda saklanır.',
       references: ['Tilavet Akademisi'],
-      go: { view: 'yolculuk', label: 'Yolculuğum\u2019u aç' }
+      go: { view: 'baslangic', label: 'Başlangıç yolunu aç' }
     },
     {
       keywords: ['pratik', 'alistirma', 'calisma onerisi', 'ne calisayim', 'bugun ne yapayim'],

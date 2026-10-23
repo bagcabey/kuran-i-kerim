@@ -312,7 +312,7 @@
     akademiNav?.addEventListener('click', () => {
       setTimeout(() => {
         const v = document.querySelector('.v5-rail-subbtn.active')?.dataset.view;
-        if (v === 'pratik' || v === 'studyo') window.switchAkademiSubView?.('yolculuk');
+        if (v === 'pratik' || v === 'studyo') window.switchAkademiSubView?.('baslangic');
       }, 0);
     });
 
@@ -320,7 +320,7 @@
     function sync() {
       const tab = shell.getAttribute('data-active-tab') || 'tab-tilavet';
       const activeBtn = document.querySelector('.v5-rail-subbtn.active');
-      const view = tab === 'tab-akademi' ? (activeBtn?.dataset.view || 'yolculuk') : '';
+      const view = tab === 'tab-akademi' ? (activeBtn?.dataset.view || 'baslangic') : '';
       title.textContent = view ? (activeBtn?.dataset.tip || 'Akademi') : (TAB_TITLES[tab] || '');
       document.body.dataset.v5View = view || tab.replace('tab-', '');
       const set = (el, on) => { if (!el) return; el.classList.toggle('active', on); if (on) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current'); };
@@ -367,7 +367,7 @@
     const syncTitle = () => {
       const t = (titleEl?.textContent || '').trim();
       const m = t.match(/^(\d+)\.\s*(.+?)\s+Suresi\s*-\s*(\d+)\./i);
-      nameEl.textContent = m ? `${m[2]} · ${m[3]}. âyet` : t;
+      nameEl.textContent = m ? `${m[3]}. âyet` : t;
     };
     const syncPlay = () => {
       const on = master.classList.contains('is-playing');
@@ -376,15 +376,15 @@
       playTxt.textContent = on ? 'Durdur' : 'Dinle';
       play.setAttribute('aria-label', on ? 'Âyeti durdur' : 'Âyeti dinle');
     };
-    const setFlip = (on) => {
+    const setFlip = (on, scroll) => {
       ws.classList.toggle('v5-flipped', on);
       flip.setAttribute('aria-pressed', String(on));
       flipTxt.textContent = on ? 'Mushaf' : 'Âyet';
       flip.setAttribute('aria-label', on ? 'Mushaf sayfasına dön' : 'Âyetin meal, okunuş ve tecvidini aç');
-      if (mq.matches) toolbar.scrollIntoView({ block: 'start' });
+      if (scroll && mq.matches) toolbar.scrollIntoView({ block: 'start' });
     };
     play.addEventListener('click', (e) => { e.stopPropagation(); master.click(); });
-    flip.addEventListener('click', (e) => { e.stopPropagation(); setFlip(!ws.classList.contains('v5-flipped')); });
+    flip.addEventListener('click', (e) => { e.stopPropagation(); setFlip(!ws.classList.contains('v5-flipped'), true); });
     if (titleEl) new MutationObserver(syncTitle).observe(titleEl, { childList: true, characterData: true, subtree: true });
     new MutationObserver(syncPlay).observe(master, { attributes: true, attributeFilter: ['class'] });
     mq.addEventListener?.('change', () => { if (!mq.matches) setFlip(false); });
@@ -434,7 +434,33 @@
     run();
   }
 
+  /* Kur'an metni sade yazım: vasl elifi düz elif, sessiz harf sıfırı ve küçük mîm işaretleri gösterilmez
+     (Türk Mushaflarındaki gibi; okunuş değişmez). Yalnız ekrandaki metne uygulanır. */
+  const QT_RE = /[\u0671\u06DF\u06E0\u06E2\u06ED]/;
+  function cleanQuranText(t) {
+    return t.replace(/\u0671/g, '\u0627').replace(/[\u06DF\u06E0\u06E2\u06ED]/g, '');
+  }
+  window.V5CleanQuranText = cleanQuranText;
+  function initQuranTextClean() {
+    const SKIP = { SCRIPT: 1, STYLE: 1, TEXTAREA: 1, INPUT: 1, OPTION: 1, NOSCRIPT: 1 };
+    const fix = (root) => {
+      if (root.nodeType === 3) { if (QT_RE.test(root.nodeValue)) root.nodeValue = cleanQuranText(root.nodeValue); return; }
+      if (root.nodeType !== 1 || SKIP[root.nodeName]) return;
+      const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      let n;
+      while ((n = w.nextNode())) { if (QT_RE.test(n.nodeValue) && !SKIP[n.parentNode.nodeName]) n.nodeValue = cleanQuranText(n.nodeValue); }
+    };
+    let queue = [];
+    let t = null;
+    new MutationObserver(muts => {
+      muts.forEach(m => { if (m.type === 'characterData') queue.push(m.target); else m.addedNodes.forEach(x => queue.push(x)); });
+      if (!t) t = requestAnimationFrame(() => { t = null; const q = queue; queue = []; q.forEach(fix); });
+    }).observe(document.body, { childList: true, subtree: true, characterData: true });
+    fix(document.body);
+  }
+
   function init() {
+    initQuranTextClean();
     initRailAkademiSub();
     initMobileApp();
     initScrollers();

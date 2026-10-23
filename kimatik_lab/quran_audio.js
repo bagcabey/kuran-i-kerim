@@ -140,7 +140,9 @@
     btn.classList.toggle('is-playing', playing);
     btn.setAttribute('aria-pressed', String(playing));
   }
+  let chainToken = 0;
   function stop() {
+    chainToken++;
     if (stopTimer) { clearInterval(stopTimer); stopTimer = null; }
     if (player) { try { player.pause(); } catch (_) {} player = null; }
     if (playerButton) { setButton(playerButton, false); playerButton = null; }
@@ -182,6 +184,8 @@
         endMs = to >= lastPos ? null : maxEnd + 250;
       }
     }
+    // continue: kelimeden/âyetten başlayıp sonraki âyetlerle sûre sonuna kadar sürer; düğmeye yeniden basınca durur
+    if (opts.continue) { playChain(key, reciter, startMs, button, opts.onEnd); return; }
     const audio = new Audio(rec.url);
     player = audio;
     const finish = () => { if (player === audio) stop(); if (typeof opts.onEnd === 'function') opts.onEnd(); };
@@ -200,6 +204,40 @@
     }
   }
 
+  async function playChain(key, reciter, startMs, button, onEnd) {
+    const token = chainToken;
+    const [s, a0] = key.split(':').map(Number);
+    let total = 286;
+    try { const ch = (await getChapters()).find(c => c.id === s); if (ch) total = ch.verses; } catch (_) {}
+    let a = a0;
+    let offset = startMs;
+    const end = () => { if (token === chainToken) stop(); if (typeof onEnd === 'function') onEnd(); };
+    while (token === chainToken && a <= total) {
+      let rec;
+      try { rec = await getRecitation(reciter, `${s}:${a}`); } catch (_) { break; }
+      if (token !== chainToken) return;
+      if (a < total) getRecitation(reciter, `${s}:${a + 1}`).then(r => { const p = new Audio(); p.preload = 'auto'; p.src = r.url; }).catch(() => {});
+      if (button) button.setAttribute('title', `${s}:${a} okunuyor · durdurmak için yeniden basın`);
+      const ok = await new Promise(resolve => {
+        const audio = new Audio(rec.url);
+        player = audio;
+        audio.addEventListener('ended', () => resolve(true));
+        audio.addEventListener('error', () => resolve(false));
+        audio.addEventListener('pause', () => { if (!audio.ended) resolve(false); });
+        const begin = () => {
+          if (offset > 0) { try { audio.currentTime = offset / 1000; } catch (_) {} }
+          audio.play().catch(() => resolve(false));
+        };
+        if (audio.readyState >= 1) begin(); else audio.addEventListener('loadedmetadata', begin, { once: true });
+      });
+      offset = 0;
+      if (!ok || token !== chainToken) break;
+      a++;
+    }
+    if (button) button.removeAttribute('title');
+    end();
+  }
+
   if (window.TilavetAudioManager && typeof window.TilavetAudioManager.register === 'function') {
     window.TilavetAudioManager.register('quran-clip', { stop, category: 'akademi' });
   }
@@ -215,6 +253,7 @@
       from: parseInt(btn.getAttribute('data-clip-from'), 10) || null,
       to: parseInt(btn.getAttribute('data-clip-to'), 10) || null,
       reciter: parseInt(btn.getAttribute('data-clip-reciter'), 10) || null,
+      continue: btn.hasAttribute('data-clip-continue'),
       button: btn
     }).catch(() => {
       btn.classList.add('is-error');
